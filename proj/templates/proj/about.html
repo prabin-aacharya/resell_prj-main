@@ -1,0 +1,147 @@
+{% extends 'proj/base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock title %}
+
+{% block main-content %}
+<!-- Hero Section -->
+<section class="hero-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">About Bike Resale</h1>
+                <p class="lead mb-4">Your Trusted Partner in Two-Wheeler Resales</p>
+                <p class="text-muted">We're revolutionizing the way Nepal buys and sells pre-owned bikes and scooters. Born from a passion for seamless transactions, we've built a platform where trust meets convenience.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'proj/images/product/about-bike.jpeg' %}" 
+                     class="img-fluid rounded shadow-lg" 
+                     alt="About Bike Resale">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="mission-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="mission-card p-4 shadow-sm rounded h-100">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
+                        <h2>Our Mission</h2>
+                    </div>
+                    <p class="text-muted">To provide a secure, transparent, and user-friendly platform for buying and selling pre-owned two-wheelers in Nepal. We aim to make the process of vehicle resale as smooth and trustworthy as possible.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mission-card p-4 shadow-sm rounded h-100">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-eye fa-3x text-primary mb-3"></i>
+                        <h2>Our Vision</h2>
+                    </div>
+                    <p class="text-muted">To become Nepal's most trusted platform for two-wheeler resales, setting new standards in customer service, transparency, and reliability in the pre-owned vehicle market.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Why Choose Us?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
+                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                    <h3>Verified Listings</h3>
+                    <p class="text-muted">Every vehicle listed on our platform undergoes a thorough verification process to ensure authenticity and quality.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
+                    <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                    <h3>Trusted Sellers</h3>
+                    <p class="text-muted">We work with verified sellers who maintain high standards of quality and transparency in their transactions.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
+                    <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                    <h3>24/7 Support</h3>
+                    <p class="text-muted">Our dedicated support team is always ready to assist you with any queries or concerns regarding your purchase.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Stats Section -->
+<section class="stats-section py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h2 class="display-4 fw-bold">5000+</h2>
+                <p class="lead">Happy Customers</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="display-4 fw-bold">1000+</h2>
+                <p class="lead">Verified Listings</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="display-4 fw-bold">50+</h2>
+                <p class="lead">Cities Covered</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="display-4 fw-bold">98%</h2>
+                <p class="lead">Customer Satisfaction</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.mission-card, .feature-card, .team-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: #fff;
+}
+
+.mission-card:hover, .feature-card:hover, .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.mission-card i, .feature-card i {
+    color: #0d6efd;
+    margin-bottom: 15px;
+}
+
+.team-card img {
+    border: 3px solid #0d6efd;
+}
+
+.stats-section {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.stats-section h2 {
+    font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+    .stats-section h2 {
+        font-size: 2.5rem;
+    }
+    
+    .mission-card, .feature-card, .team-card {
+        margin-bottom: 20px;
+    }
+}
+</style>
+{% endblock main-content %}

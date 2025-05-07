@@ -1,0 +1,25 @@
+{% extends 'proj/base.html' %}
+{% block main-content %}
+<div class="container py-4">
+  <h2>My Wishlist</h2>
+  <div class="row g-4">
+    {% for product in products %}
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <img src="{{ product.product_image.url }}" class="card-img-top" style="height: 220px; object-fit: cover;" alt="{{ product.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.title }}</h5>
+          <p class="mb-1"><b>Brand:</b> {{ product.brand }}</p>
+          <p class="mb-1 text-danger fw-bold">Rs. {{ product.price }}</p>
+          <a href="{% url 'product-detail' product.id %}" class="btn btn-success btn-sm w-100 mt-2">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+      <p class="text-muted">No products in your wishlist.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

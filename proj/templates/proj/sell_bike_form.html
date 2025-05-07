@@ -1,0 +1,111 @@
+{% extends 'proj/base.html' %}
+{% load static %}
+{% block main-content %}
+<div class="container py-5">
+  <h2 class="mb-4">Sell Your Used Bike</h2>
+  <form method="post" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm sell-bike-form">
+    {% csrf_token %}
+    <div class="row g-4">
+      <div class="col-md-4">
+        <label class="form-label">{{ form.brand.label }}</label>
+        {{ form.brand }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.model.label }}</label>
+        {{ form.model }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.made_year.label }}</label>
+        {{ form.made_year }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.kilometers.label }}</label>
+        <div class="input-group">
+          {{ form.kilometers }}
+          <span class="input-group-text">Km</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.city.label }}</label>
+        {{ form.city }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.price.label }}</label>
+        <div class="input-group">
+          <span class="input-group-text">Rs</span>
+          {{ form.price }}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.condition.label }}</label>
+        {{ form.condition }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.engine_size.label }}</label>
+        <div class="input-group">
+          {{ form.engine_size }}
+          <span class="input-group-text">cc</span>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.seller_name.label }}</label>
+        {{ form.seller_name }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.product_image.label }}</label>
+        {{ form.product_image }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.bluebook_page2.label }}</label>
+        {{ form.bluebook_page2 }}
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">{{ form.bluebook_page9.label }}</label>
+        {{ form.bluebook_page9 }}
+      </div>
+    </div>
+    <div class="alert alert-info mt-3" role="alert">
+      <strong>Note:</strong> Please upload clear images of Page 2 and Page 9 of your Bluebook. These images will be securely stored with your bike listing.
+    </div>
+    <button type="submit" class="btn btn-danger mt-4 px-5">Save Bike Listing</button>
+  </form>
+</div>
+<style>
+.sell-bike-form {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.sell-bike-form label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.sell-bike-form .form-control, .sell-bike-form .form-select {
+  border-radius: 8px;
+  min-height: 44px;
+  font-size: 1rem;
+}
+.sell-bike-form .input-group-text {
+  border-radius: 0 8px 8px 0;
+  background: #f8f9fa;
+  font-weight: 600;
+}
+.sell-bike-form button[type="submit"] {
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 10px 0;
+  width: 220px;
+  display: block;
+  margin: 32px auto 0 auto;
+  box-shadow: 0 2px 8px rgba(220,53,69,0.08);
+}
+@media (max-width: 768px) {
+  .sell-bike-form .row > div {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+</style>
+{% endblock %}

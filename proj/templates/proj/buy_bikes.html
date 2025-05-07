@@ -1,0 +1,64 @@
+{% extends 'proj/base.html' %}
+{% block main-content %}
+<div class="container py-4">
+  <div class="d-flex flex-wrap align-items-center mb-4">
+    <form class="me-3 flex-grow-1" method="get">
+      <input type="text" id="bikeSearch" class="form-control" placeholder="Search bikes by brand or model...">
+    </form>
+    <form method="get" class="d-flex align-items-center">
+      <label class="me-2 mb-0 fw-bold">Sort by</label>
+      <select name="sort" class="form-select" style="width: 180px;" onchange="this.form.submit()">
+        <option value="relevance" {% if sort == 'relevance' %}selected{% endif %}>Relevance</option>
+        <option value="price_asc" {% if sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
+        <option value="price_desc" {% if sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
+        <option value="latest" {% if sort == 'latest' %}selected{% endif %}>Latest</option>
+      </select>
+      <input type="hidden" name="q" value="{{ query }}">
+    </form>
+  </div>
+  <div class="row g-4">
+    {% for bike in bikes %}
+    <div class="col-md-4 bike-card" data-brand="{{ bike.brand|lower }}" data-title="{{ bike.title|lower }}">
+      <div class="card h-100 shadow-sm">
+        <img src="{{ bike.product_image.url }}" class="card-img-top" style="height: 220px; object-fit: cover;" alt="{{ bike.title }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ bike.title }}</h5>
+          <p class="mb-1"><b>Brand:</b> {{ bike.brand }}</p>
+          <p class="mb-1 text-danger fw-bold">Rs. {{ bike.price }}</p>
+          <p class="mb-1"><b>Year:</b> {{ bike.made_year }} | <b>Kms:</b> {{ bike.kilometers }} Km</p>
+          <p class="mb-1"><b>Location:</b> {{ bike.location }}</p>
+          <a href="{% url 'product-detail' bike.id %}" class="btn btn-success btn-sm w-100 mt-2">View Details</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center">
+      <p class="text-muted">No bikes found.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+document.getElementById('bikeSearch').addEventListener('input', function() {
+  var query = this.value.toLowerCase();
+  document.querySelectorAll('.bike-card').forEach(function(card) {
+    var brand = card.getAttribute('data-brand');
+    var title = card.getAttribute('data-title');
+    
+    // Precise brand search (first letter or full match)
+    var brandMatch = brand.startsWith(query);
+    
+    // Precise model search (first letter of model or full match)
+    var modelMatch = title.split(' ').some(function(word) {
+      return word.toLowerCase().startsWith(query);
+    });
+    
+    if (brandMatch || modelMatch) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+});
+</script>
+{% endblock %}

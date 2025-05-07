@@ -1,0 +1,20 @@
+Watching for file changes with StatReloader
+Email sent successfully. Result: 1
+"POST /contact/ HTTP/1.1" 200 14720
+"GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 1910
+"GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 1913
+"GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 1907
+"GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 1910
+"GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 1904
+"GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 1907
+"GET /admin/auth/user/ HTTP/1.1" 200 14435
+"GET /admin/jsi18n/ HTTP/1.1" 200 3342
+Email sent successfully. Result: 1
+"POST /contact/ HTTP/1.1" 200 14720
+"GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 1910
+"GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 1913
+"GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 1907
+"GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 1910
+"GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 1904
+"GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 1907
+H:\resell_prj-main\summproj\settings.py changed, reloading.

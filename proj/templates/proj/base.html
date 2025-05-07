@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+   
+    <link rel="stylesheet" href="{% static 'proj/css/owl.carousel.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'proj/css/all.min.css'%}"/>
+    <link rel="stylesheet" href="{% static 'proj/css/style.css'%}"/>
+
+    <title>Resale | {% block title %}{% endblock title %}</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="{%static 'proj/images/logo.png'%}" width="70" height="50"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="{% url 'buy_bikes' %}">Buy</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="{% url 'sell_bike' %}">Sell</a>
+          </li>
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Brands
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{%url 'brand' 'HONDA' %}">Honda</a></li>
+              <li><a class="dropdown-item" href="{%url 'brand' 'YAMAHA' %}">Yamaha</a></li>
+              <li><a class="dropdown-item" href="{%url 'brand' 'BAJAJ' %}">Bajaj</a></li>
+              <li><a class="dropdown-item" href="{%url 'brand' 'HERO' %}">Hero</a></li>
+              <li><a class="dropdown-item" href="{%url 'brand' 'TVS' %}">TVS</a></li>
+            </ul>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">Prabin Acharya</a>
+          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Orders</a></li>
+            <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
+            <li><form method="post" action="{% url 'logout' %}" style="display: inline;"> {% csrf_token %}<button type="submit" class="dropdown-item">Logout</button></form></li>
+          </ul>
+        </li>
+        <li class="nav-item mx-2">
+          {% if request.user.is_authenticated %}
+            {% with request.user.wishlist_set.count as wishlist_count %}
+              <a href="{% url 'wishlist' %}" class="nav-link text-white position-relative">
+                Wishlist
+                {% if wishlist_count > 0 %}
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ wishlist_count }}
+                  </span>
+                {% endif %}
+              </a>
+            {% endwith %}
+          {% endif %}
+        </li>
+        {% else %}
+        <li class="nav-item mx-2">
+          <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a href="{% url 'customerregistration'%}" class="nav-link text-white">Registration</a>
+        </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </nav>
+  
+  {% block banner_slider %}{% endblock banner_slider %}
+  
+
+  {% block main-content %}{% endblock main-content %}
+
+  <footer class="footer-green mt-5 pt-4 pb-2 bg-success text-white">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8 mb-3 mb-md-0">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item"><a href="#" class="footer-link">Terms & Conditions</a></li>
+            <li class="list-inline-item"><a href="#" class="footer-link">Privacy & Policy</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-youtube fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-instagram fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-tiktok fa-lg"></i></a></li>
+          </ul>
+        </div>
+      </div>
+      <hr style="border-color: #157347;">
+      <div class="row">
+        <div class="col-12 text-center">
+          <small>&copy;2025 Resale. All rights reserved</small>
+        </div>
+      </div>
+    </div>
+    <style>
+      .footer-green {
+        background: #198754 !important;
+        color: #fff;
+      }
+      .footer-link {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+        font-size: 1.1rem;
+        transition: color 0.2s;
+      }
+      .footer-link:hover {
+        color: #ffc107;
+        text-decoration: underline;
+      }
+      .footer-social i {
+        color: #0f0f0f;
+        transition: color 0.2s;
+      }
+      .footer-social:hover i {
+        color: #ffc107;
+      }
+      @media (max-width: 768px) {
+        .footer-link {
+          margin-right: 10px;
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </footer>
+    
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="{% static 'proj/js/owl.carousel.min.js'%}"></script>
+<script src="{% static 'proj/js/all.min.js'%}"></script>
+<script src="{% static 'proj/js/myscript.js'%}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var productId = this.getAttribute('data-product-id');
+            var csrftoken = getCookie('csrftoken');
+            fetch("{% url 'toggle_wishlist' %}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'product_id=' + productId
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                var icon = this.querySelector('i');
+                if (data.in_wishlist) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    this.setAttribute('title', 'Remove from Wishlist');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    this.setAttribute('title', 'Add to Wishlist');
+                }
+                var wishlistCount = document.getElementById('wishlist-count');
+                if (wishlistCount) {
+                    wishlistCount.textContent = data.count;
+                }
+            })
+            .catch((error) => {
+                alert("You must be logged in to use the wishlist, or there was a server error.");
+                console.error('Wishlist error:', error);
+            });
+        });
+    });
+});
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+</body>
+</html>

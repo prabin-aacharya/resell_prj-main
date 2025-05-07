@@ -1,0 +1,141 @@
+{% extends 'proj/base.html' %}
+{% load static %}
+{% block title %}{{brand}} Bikes{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar with Models -->
+        <div class="col-lg-3">
+            <div class="sidebar-card shadow-sm rounded p-3 mb-4">
+                <h4 class="mb-3">{{brand}} Models</h4>
+                <div class="list-group">
+                    {% for val in title %}
+                    <a href="{% url 'brand-title' val.title %}" 
+                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        {{val.title}}
+                        <span class="badge bg-primary rounded-pill">{{val.count}}</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9">
+            <div class="row">
+                {% for prod in product %}
+                <div class="col-md-4 mb-4">
+                    <div class="product-card shadow-sm rounded overflow-hidden h-100">
+                        <a href="{% url 'product-detail' prod.id %}" class="text-decoration-none text-dark">
+                            <div class="product-image-container">
+                                <img src="{{prod.product_image.url}}" 
+                                     class="img-fluid product-image" 
+                                     alt="{{prod.title}}"/>
+                            </div>
+                            <div class="p-3">
+                                <h5 class="product-title mb-2">{{prod.title}}</h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="price">Rs. {{prod.price}}</div>
+                                    <div class="call-now">
+                                        <a href="tel:{{prod.seller_mobile}}" class="btn btn-sm btn-success">
+                                            <i class="fas fa-phone-alt me-1"></i>Call Now
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-details mt-2">
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i> {{prod.made_year}} |
+                                        <i class="fas fa-tachometer-alt me-1"></i> {{prod.kilometers}} km
+                                    </small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.sidebar-card {
+    background: #fff;
+    position: sticky;
+    top: 20px;
+}
+
+.product-card {
+    background: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.product-image-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #dc3545;
+}
+
+.call-now .btn {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.product-details {
+    font-size: 0.875rem;
+}
+
+.list-group-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding: 0.75rem 1rem;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .sidebar-card {
+        position: static;
+        margin-bottom: 20px;
+    }
+    
+    .product-image-container {
+        height: 180px;
+    }
+}
+</style>
+{% endblock main-content %}
