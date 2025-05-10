@@ -1,0 +1,78 @@
+{% extends 'proj/admin/base.html' %}
+
+{% block title %}Update Customer{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="table-container">
+            <h1 class="mb-4">Update Customer</h1>
+            
+            <!-- Customer Details -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Customer Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Email:</strong> {{ object.user.email }}</p>
+                            <p><strong>Total Orders:</strong> {{ object.orders.count }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Member Since:</strong> {{ object.user.date_joined|date:"M d, Y" }}</p>
+                            <p><strong>Last Login:</strong> {{ object.user.last_login|date:"M d, Y H:i" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    
+                    {% if field.field.widget.input_type == 'select' %}
+                        <select name="{{ field.name }}" 
+                                class="form-select {% if field.errors %}is-invalid{% endif %}"
+                                id="{{ field.id_for_label }}"
+                                {% if field.field.required %}required{% endif %}>
+                            {% for choice in field.field.choices %}
+                                <option value="{{ choice.0 }}" {% if field.value == choice.0 %}selected{% endif %}>
+                                    {{ choice.1 }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
+                        <input type="{{ field.field.widget.input_type|default:'text' }}"
+                               name="{{ field.name }}"
+                               value="{{ field.value|default:'' }}"
+                               class="form-control {% if field.errors %}is-invalid{% endif %}"
+                               id="{{ field.id_for_label }}"
+                               {% if field.field.required %}required{% endif %}>
+                    {% endif %}
+                    
+                    {% if field.errors %}
+                        <div class="invalid-feedback">
+                            {{ field.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'admin:admin_customer_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to List
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Update Customer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

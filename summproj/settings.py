@@ -47,7 +47,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # Replace the default SessionMiddleware with our custom AdminSessionMiddleware
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'proj.middleware.AdminSessionMiddleware',  # Custom middleware for separate admin/user sessions
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -60,8 +62,7 @@ ROOT_URLCONF = 'summproj.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-
+        'DIRS': [os.path.join(BASE_DIR, 'proj', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,6 +123,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'proj', 'static'),
+]
+
 MEDIA_URL='/media/'
 MEDIA_ROOT= BASE_DIR/'media'
 LOGIN_REDIRECT_URL = '/'
@@ -134,3 +139,12 @@ LOGOUT_REDIRECT_URL = 'login'  # Redirect to login page after logout
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Session configuration
+SESSION_COOKIE_NAME = 'sessionid'  # Default session cookie name
+ADMIN_SESSION_COOKIE_NAME = 'admin_sessionid'  # Admin session cookie name
+
+# Session settings
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Don't expire when browser closes
+SESSION_SAVE_EVERY_REQUEST = True  # Update the session on every request

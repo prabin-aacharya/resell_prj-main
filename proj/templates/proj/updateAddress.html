@@ -20,7 +20,7 @@
             {% endfor %}
             <div class="col-12 mt-3">
                 <button type="submit"  class="btn btn-primary">Update</button>
-                <a href="{% url 'address' %}" type="button"  class="btn btn-danger">Back</a>
+                <a href="{% url 'main:address' %}" type="button"  class="btn btn-danger">Back</a>
             </div>
 
             {% if form.non_field_errors %}

@@ -1,51 +1,150 @@
 {% extends 'proj/base.html' %}
 {% load static %}
-{% block title %}Profile{% endblock title %}
+{% block title %}My Profile{% endblock title %}
 
 {% block main-content %}
-<div class="container my-5">
-    <div class="row">
-        <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
-    
-
-    <div class="col-sm-2 border-end">
-        <ul class="list-unstyled">
-            <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-primary">Profile</a></li>
-            <li class="d-grid"><a href="{% url 'address' %}" class="btn">Address</a></li>
-        </ul>
-    </div>
-
-    <div class="col-sm-8 offset-sm-1">
-        <form action="" method="post">
-        {% csrf_token %}
-        {% for fm in form %}
-
-        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
-        <br>
-
-        {% endfor %}
-        <div class="col-12 mt-3">
-            <button type="submit"  class="btn btn-primary">Submit</button>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="card-header bg-success text-white py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-icon me-3">
+                            <i class="fas fa-user-circle fa-3x"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">Welcome, <span class="text-capitalize fw-bold">{{request.user}}</span></h3>
+                            <p class="mb-0 small">{{ request.user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <!-- Sidebar Navigation -->
+                        <div class="col-md-3 border-end">
+                            <div class="nav flex-column nav-pills p-4" role="tablist">
+                                <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
+                                    <i class="fas fa-id-card me-2"></i> My Profile
+                                </a>
+                                <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
+                                    <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                                </a>
+                                <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
+                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Profile Form -->
+                        <div class="col-md-9">
+                            <div class="p-4 p-md-5">
+                                <h4 class="mb-4 border-bottom pb-3">
+                                    {% if has_profile %}
+                                    <i class="fas fa-pen me-2"></i>Update Your Profile
+                                    {% else %}
+                                    <i class="fas fa-plus-circle me-2"></i>Create Your Profile
+                                    {% endif %}
+                                </h4>
+                                
+                                {% if messages %}
+                                <div class="mb-4">
+                                    {% for msg in messages %}
+                                    <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                        <i class="{% if msg.tags == 'success' %}fas fa-check-circle{% else %}fas fa-exclamation-triangle{% endif %} me-2"></i>
+                                        {{ msg }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                
+                                <form method="post" class="row g-3">
+                                    {% csrf_token %}
+                                    
+                                    <div class="col-md-6">
+                                        <label for="{{ form.name.id_for_label }}" class="form-label"><i class="fas fa-user me-2"></i>{{ form.name.label }}</label>
+                                        {{ form.name }}
+                                        {% if form.name.errors %}
+                                        <div class="text-danger small mt-1">{{ form.name.errors|striptags }}</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="{{ form.mobile.id_for_label }}" class="form-label"><i class="fas fa-phone me-2"></i>{{ form.mobile.label }}</label>
+                                        {{ form.mobile }}
+                                        {% if form.mobile.errors %}
+                                        <div class="text-danger small mt-1">{{ form.mobile.errors|striptags }}</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="{{ form.city.id_for_label }}" class="form-label"><i class="fas fa-city me-2"></i>{{ form.city.label }}</label>
+                                        {{ form.city }}
+                                        {% if form.city.errors %}
+                                        <div class="text-danger small mt-1">{{ form.city.errors|striptags }}</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="{{ form.zipcode.id_for_label }}" class="form-label"><i class="fas fa-map-pin me-2"></i>{{ form.zipcode.label }}</label>
+                                        {{ form.zipcode }}
+                                        {% if form.zipcode.errors %}
+                                        <div class="text-danger small mt-1">{{ form.zipcode.errors|striptags }}</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <label for="{{ form.state.id_for_label }}" class="form-label"><i class="fas fa-flag me-2"></i>{{ form.state.label }}</label>
+                                        {{ form.state }}
+                                        {% if form.state.errors %}
+                                        <div class="text-danger small mt-1">{{ form.state.errors|striptags }}</div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    {% if form.non_field_errors %}
+                                    <div class="col-12">
+                                        {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger my-3">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-success py-2 px-4 fw-bold">
+                                            <i class="fas fa-save me-2"></i>
+                                            {% if has_profile %}Update Profile{% else %}Save Profile{% endif %}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer bg-light py-3 text-center">
+                    <img src="{% static 'proj/images/logo.png' %}" alt="Resale Logo" height="40">
+                    <p class="text-muted mb-0 small mt-2">Complete your profile to enhance your bike buying and selling experience</p>
+                </div>
+            </div>
         </div>
-        {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-           <p class =" alert alert-danger my-3">{{error}}</p>
-           {% endfor %}
-           {% endif %}
-
-
-           {% if messages %}
-                              {% for msg in messages%}
-                              <div class ="alert alert-{{msg.tags}}" role="alert">
-                                {{msg}}
-                              </div>
-                              {% endfor %}
-                              {% endif %}
-
-
-    </form>
-    </div>
     </div>
 </div>
 
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .nav-link {
+        transition: all 0.3s;
+        border-radius: 8px;
+    }
+    .nav-link:hover, .nav-link.active {
+        background-color: #198754;
+        color: white;
+    }
+</style>
 {% endblock main-content %}

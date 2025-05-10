@@ -1,0 +1,118 @@
+{% extends 'proj/admin/base.html' %}
+
+{% block title %}Wishlists{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Wishlists</h1>
+
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Product</th>
+                    <th>Product Price</th>
+                    <th>Product Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for wishlist in wishlists %}
+                <tr>
+                    <td>
+                        <div>{{ wishlist.user.get_full_name|default:wishlist.user.username }}</div>
+                        <small class="text-muted">{{ wishlist.user.email }}</small>
+                    </td>
+                    <td>
+                        <div>{{ wishlist.product.title }}</div>
+                        <small class="text-muted">{{ wishlist.product.brand }}</small>
+                    </td>
+                    <td>₹{{ wishlist.product.price|floatformat:2 }}</td>
+                    <td>
+                        <span class="badge {% if wishlist.product.status == 'available' %}bg-success{% elif wishlist.product.status == 'pending' %}bg-warning{% elif wishlist.product.status == 'sold' %}bg-info{% else %}bg-secondary{% endif %}">
+                            {{ wishlist.product.status|title }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#wishlistModal{{ wishlist.id }}">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                            <form method="post" action="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Wishlist Details Modal -->
+                        <div class="modal fade" id="wishlistModal{{ wishlist.id }}" tabindex="-1" aria-labelledby="wishlistModalLabel{{ wishlist.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="wishlistModalLabel{{ wishlist.id }}">Wishlist Item Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <h6>Customer Information</h6>
+                                            <p><strong>Name:</strong> {{ wishlist.user.get_full_name|default:wishlist.user.username }}</p>
+                                            <p><strong>Email:</strong> {{ wishlist.user.email }}</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6>Product Information</h6>
+                                            <p><strong>Title:</strong> {{ wishlist.product.title }}</p>
+                                            <p><strong>Brand:</strong> {{ wishlist.product.brand }}</p>
+                                            <p><strong>Price:</strong> ₹{{ wishlist.product.price|floatformat:2 }}</p>
+                                            <p><strong>Status:</strong> {{ wishlist.product.status|title }}</p>
+                                            <p><strong>Description:</strong> {{ wishlist.product.description|truncatewords:50 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <form method="post" action="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="d-inline">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-danger">Remove from Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center">No wishlist items available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,174 @@
+{% extends 'proj/admin/base.html' %}
+
+{% block title %}
+    {% if object %}Edit Seller{% else %}Add New Seller{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="table-container">
+            <h1 class="mb-4">{% if object %}Edit Seller{% else %}Add New Seller{% endif %}</h1>
+            
+            {% if object %}
+            <!-- Seller Details -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Current Information</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Created:</strong> {{ object.created_at|date:"M d, Y H:i" }}</p>
+                            <p><strong>Last Updated:</strong> {{ object.updated_at|date:"M d, Y H:i" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            {% if object.product %}
+                            <p><strong>Associated Product:</strong> {{ object.product.title }}</p>
+                            {% else %}
+                            <p class="text-muted"><strong>Associated Product:</strong> None</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Personal Information -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Information</h5>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.full_name.id_for_label }}" class="form-label">Full Name</label>
+                            <input type="text" 
+                                   name="{{ form.full_name.name }}"
+                                   value="{{ form.full_name.value|default:'' }}"
+                                   class="form-control {% if form.full_name.errors %}is-invalid{% endif %}"
+                                   id="{{ form.full_name.id_for_label }}"
+                                   required>
+                            {% if form.full_name.errors %}
+                                <div class="invalid-feedback">{{ form.full_name.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                            <input type="email"
+                                   name="{{ form.email.name }}"
+                                   value="{{ form.email.value|default:'' }}"
+                                   class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                                   id="{{ form.email.id_for_label }}"
+                                   required>
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">{{ form.email.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.phone.id_for_label }}" class="form-label">Phone</label>
+                            <input type="tel"
+                                   name="{{ form.phone.name }}"
+                                   value="{{ form.phone.value|default:'' }}"
+                                   class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+                                   id="{{ form.phone.id_for_label }}"
+                                   required>
+                            {% if form.phone.errors %}
+                                <div class="invalid-feedback">{{ form.phone.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bike Information -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Bike Information</h5>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.bike_brand.id_for_label }}" class="form-label">Brand</label>
+                            <select name="{{ form.bike_brand.name }}"
+                                    class="form-select {% if form.bike_brand.errors %}is-invalid{% endif %}"
+                                    id="{{ form.bike_brand.id_for_label }}"
+                                    required>
+                                {% for choice in form.bike_brand.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if form.bike_brand.value == choice.0 %}selected{% endif %}>
+                                        {{ choice.1 }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.bike_brand.errors %}
+                                <div class="invalid-feedback">{{ form.bike_brand.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.bike_model.id_for_label }}" class="form-label">Model</label>
+                            <input type="text"
+                                   name="{{ form.bike_model.name }}"
+                                   value="{{ form.bike_model.value|default:'' }}"
+                                   class="form-control {% if form.bike_model.errors %}is-invalid{% endif %}"
+                                   id="{{ form.bike_model.id_for_label }}"
+                                   required>
+                            {% if form.bike_model.errors %}
+                                <div class="invalid-feedback">{{ form.bike_model.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Information -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Status Information</h5>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.status.id_for_label }}" class="form-label">Account Status</label>
+                            <select name="{{ form.status.name }}"
+                                    class="form-select {% if form.status.errors %}is-invalid{% endif %}"
+                                    id="{{ form.status.id_for_label }}"
+                                    required>
+                                {% for choice in form.status.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if form.status.value == choice.0 %}selected{% endif %}>
+                                        {{ choice.1 }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.status.errors %}
+                                <div class="invalid-feedback">{{ form.status.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.verification_status.id_for_label }}" class="form-label">Verification Status</label>
+                            <select name="{{ form.verification_status.name }}"
+                                    class="form-select {% if form.verification_status.errors %}is-invalid{% endif %}"
+                                    id="{{ form.verification_status.id_for_label }}"
+                                    required>
+                                {% for choice in form.verification_status.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if form.verification_status.value == choice.0 %}selected{% endif %}>
+                                        {{ choice.1 }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.verification_status.errors %}
+                                <div class="invalid-feedback">{{ form.verification_status.errors|join:", " }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'admin:admin_seller_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to List
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>{% if object %}Update{% else %}Create{% endif %} Seller
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

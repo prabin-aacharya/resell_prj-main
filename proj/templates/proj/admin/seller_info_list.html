@@ -1,0 +1,141 @@
+{% extends 'proj/admin/base.html' %}
+
+{% block title %}Seller Information{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Seller Information</h1>
+    <a href="{% url 'admin:admin_seller_create' %}" class="btn btn-primary">
+        <i class="fas fa-plus me-2"></i>Add New Seller
+    </a>
+</div>
+
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Bike Details</th>
+                    <th>Status</th>
+                    <th>Verification</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seller in sellers %}
+                <tr>
+                    <td>{{ seller.full_name }}</td>
+                    <td>
+                        <div>{{ seller.email }}</div>
+                        <small class="text-muted">{{ seller.phone }}</small>
+                    </td>
+                    <td>
+                        <div>{{ seller.bike_brand }}</div>
+                        <small class="text-muted">{{ seller.bike_model }}</small>
+                    </td>
+                    <td>
+                        <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.status|title }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.verification_status|title }}
+                        </span>
+                    </td>
+                    <td>{{ seller.created_at|date:"M d, Y" }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#sellerModal{{ seller.id }}">
+                                <i class="fas fa-info-circle"></i>
+                            </button>
+                            <a href="{% url 'admin:admin_seller_delete' seller.id %}" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+
+                        <!-- Seller Details Modal -->
+                        <div class="modal fade" id="sellerModal{{ seller.id }}" tabindex="-1" aria-labelledby="sellerModalLabel{{ seller.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sellerModalLabel{{ seller.id }}">Seller Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <h6>Personal Information</h6>
+                                            <p><strong>Name:</strong> {{ seller.full_name }}</p>
+                                            <p><strong>Email:</strong> {{ seller.email }}</p>
+                                            <p><strong>Phone:</strong> {{ seller.phone }}</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6>Bike Information</h6>
+                                            <p><strong>Brand:</strong> {{ seller.bike_brand }}</p>
+                                            <p><strong>Model:</strong> {{ seller.bike_model }}</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6>Status Information</h6>
+                                            <p><strong>Account Status:</strong> 
+                                                <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
+                                                    {{ seller.status|title }}
+                                                </span>
+                                            </p>
+                                            <p><strong>Verification Status:</strong>
+                                                <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                                                    {{ seller.verification_status|title }}
+                                                </span>
+                                            </p>
+                                            <p><strong>Created:</strong> {{ seller.created_at|date:"M d, Y H:i" }}</p>
+                                            <p><strong>Last Updated:</strong> {{ seller.updated_at|date:"M d, Y H:i" }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No sellers available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if is_paginated %}
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %} 

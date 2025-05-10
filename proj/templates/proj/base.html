@@ -13,67 +13,66 @@
     <title>Resale | {% block title %}{% endblock title %}</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="{%static 'proj/images/logo.png'%}" width="70" height="50"/>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="{%static 'proj/images/logo.png'%}" width="70" height="50" class="me-2"/>
+        <span class="fw-bold d-none d-sm-inline">RESALE</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link nav-item-hover px-3" href="/"><i class="fas fa-home me-1"></i> Home</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="{% url 'buy_bikes' %}">Buy</a>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:buy_bikes' %}"><i class="fas fa-motorcycle me-1"></i> Buy</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="{% url 'sell_bike' %}">Sell</a>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:sell_bike' %}"><i class="fas fa-tags me-1"></i> Sell</a>
           </li>
-          <li class="nav-item dropdown mx-2">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Brands
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav-item-hover px-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-list-alt me-1"></i> Brands
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{%url 'brand' 'HONDA' %}">Honda</a></li>
-              <li><a class="dropdown-item" href="{%url 'brand' 'YAMAHA' %}">Yamaha</a></li>
-              <li><a class="dropdown-item" href="{%url 'brand' 'BAJAJ' %}">Bajaj</a></li>
-              <li><a class="dropdown-item" href="{%url 'brand' 'HERO' %}">Hero</a></li>
-              <li><a class="dropdown-item" href="{%url 'brand' 'TVS' %}">TVS</a></li>
+            <ul class="dropdown-menu border-0 shadow-lg">
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HONDA' %}"><i class="fas fa-motorcycle text-success me-2"></i>Honda</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'YAMAHA' %}"><i class="fas fa-motorcycle text-success me-2"></i>Yamaha</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'BAJAJ' %}"><i class="fas fa-motorcycle text-success me-2"></i>Bajaj</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HERO' %}"><i class="fas fa-motorcycle text-success me-2"></i>Hero</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'TVS' %}"><i class="fas fa-motorcycle text-success me-2"></i>TVS</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:buy_bikes' %}"><i class="fas fa-search text-success me-2"></i>All Bikes</a></li>
             </ul>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:about' %}"><i class="fas fa-info-circle me-1"></i> About</a>
           </li>
-          <li class="nav-item mx-2">
-            <a class="nav-link text-white" href="{% url 'contact' %}">Contact</a>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:contact' %}"><i class="fas fa-envelope me-1"></i> Contact</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="/"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:about' %}"><i class="fas fa-info-circle me-1"></i> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-item-hover px-3" href="{% url 'main:contact' %}"><i class="fas fa-envelope me-1"></i> Contact</a>
+          </li>
+          {% endif %}
         </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown mx-2">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">Prabin Acharya</a>
-          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Orders</a></li>
-            <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-            <li><form method="post" action="{% url 'logout' %}" style="display: inline;"> {% csrf_token %}<button type="submit" class="dropdown-item">Logout</button></form></li>
-          </ul>
-        </li>
-        <li class="nav-item mx-2">
+        
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if request.user.is_authenticated %}
+          <li class="nav-item mx-1">
             {% with request.user.wishlist_set.count as wishlist_count %}
-              <a href="{% url 'wishlist' %}" class="nav-link text-white position-relative">
-                Wishlist
+              <a href="{% url 'main:wishlist' %}" class="nav-link nav-item-hover px-3 position-relative">
+                <i class="fas fa-heart me-1"></i> Wishlist
                 {% if wishlist_count > 0 %}
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     {{ wishlist_count }}
@@ -81,16 +80,51 @@
                 {% endif %}
               </a>
             {% endwith %}
+          </li>
+          <li class="nav-item dropdown mx-1">
+            <a class="nav-link dropdown-toggle nav-item-hover px-3" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+              <i class="fas fa-user-circle me-1"></i>
+              <span class="text-capitalize">{% if request.user.customers.first.name %}{{ request.user.customers.first.name }}{% else %}{{ request.user.username }}{% endif %}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="profileDropdown">
+              <li class="dropdown-header text-center">
+                <div class="user-icon mb-2">
+                  <i class="fas fa-user-circle fa-3x text-success"></i>
+                </div>
+                <h6 class="mb-0">{{ request.user.email }}</h6>
+                <small class="text-muted">Member since {{ request.user.date_joined|date:"M Y" }}</small>
+              </li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:profile' %}"><i class="fas fa-id-card text-success me-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:address' %}"><i class="fas fa-map-marker-alt text-success me-2"></i>My Addresses</a></li>
+              <li><a class="dropdown-item py-2" href="#"><i class="fas fa-shopping-bag text-success me-2"></i>My Orders</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:passwordchange' %}"><i class="fas fa-key text-success me-2"></i>Change Password</a></li>
+              {% if request.user.is_staff %}
+              <li><a class="dropdown-item py-2" href="{% url 'admin:index' %}"><i class="fas fa-user-shield text-success me-2"></i>Admin Dashboard</a></li>
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li>
+                <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
+                  {% csrf_token %}
+                  <button type="submit" class="dropdown-item py-2 text-danger">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                  </button>
+                </form>
+              </li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="nav-item mx-2">
+            <a href="{% url 'main:login' %}" class="nav-link nav-item-hover px-3"><i class="fas fa-sign-in-alt me-1"></i> Login</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{% url 'main:customerregistration'%}" class="nav-link nav-item-hover px-3"><i class="fas fa-user-plus me-1"></i> Register</a>
+          </li>
+          <li class="nav-item mx-2">
+            <a href="{% url 'admin:login' %}" class="nav-link nav-item-hover px-3"><i class="fas fa-user-shield me-1"></i> Admin</a>
+          </li>
           {% endif %}
-        </li>
-        {% else %}
-        <li class="nav-item mx-2">
-          <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
-        </li>
-        <li class="nav-item mx-2">
-          <a href="{% url 'customerregistration'%}" class="nav-link text-white">Registration</a>
-        </li>
-        {% endif %}
 
       </ul>
     </div>
@@ -106,8 +140,8 @@
       <div class="row align-items-center">
         <div class="col-md-8 mb-3 mb-md-0">
           <ul class="list-inline mb-2">
-            <li class="list-inline-item"><a href="#" class="footer-link">Terms & Conditions</a></li>
-            <li class="list-inline-item"><a href="#" class="footer-link">Privacy & Policy</a></li>
+            <li class="list-inline-item"><a href="{% url 'main:terms' %}" class="footer-link">Terms & Conditions</a></li>
+            <li class="list-inline-item"><a href="{% url 'main:privacy' %}" class="footer-link">Privacy Policy</a></li>
           </ul>
         </div>
         <div class="col-md-4 text-md-end">
@@ -127,10 +161,79 @@
       </div>
     </div>
     <style>
+      /* Navbar Styles */
+      .navbar {
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+      }
+      
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      
+      .nav-item-hover {
+        position: relative;
+        margin: 0 0.2rem;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+      }
+      
+      .nav-item-hover:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+      }
+      
+      .nav-item-hover::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #fff;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s;
+      }
+      
+      .nav-item-hover:hover::after {
+        width: 70%;
+      }
+      
+      .dropdown-menu {
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      
+      .dropdown-item {
+        transition: all 0.2s ease;
+      }
+      
+      .dropdown-item:hover {
+        background-color: rgba(25, 135, 84, 0.1);
+        transform: translateX(5px);
+      }
+      
+      .user-icon {
+        display: inline-block;
+        border-radius: 50%;
+        padding: 0.5rem;
+        background-color: rgba(25, 135, 84, 0.1);
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      /* Footer Styles */
       .footer-green {
         background: #198754 !important;
         color: #fff;
       }
+      
       .footer-link {
         color: #fff;
         text-decoration: none;
@@ -138,17 +241,21 @@
         font-size: 1.1rem;
         transition: color 0.2s;
       }
+      
       .footer-link:hover {
         color: #ffc107;
         text-decoration: underline;
       }
+      
       .footer-social i {
         color: #0f0f0f;
         transition: color 0.2s;
       }
+      
       .footer-social:hover i {
         color: #ffc107;
       }
+      
       @media (max-width: 768px) {
         .footer-link {
           margin-right: 10px;
@@ -177,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             var productId = this.getAttribute('data-product-id');
             var csrftoken = getCookie('csrftoken');
-            fetch("{% url 'toggle_wishlist' %}", {
+            fetch("{% url 'main:toggle_wishlist' %}", {
                 method: 'POST',
                 headers: {
                     'X-CSRFToken': csrftoken,

@@ -1,5 +1,8 @@
 {% extends 'proj/base.html' %}
+{% load static %}
+{% block title %}Buy Bikes{% endblock title %}
 {% block main-content %}
+{% csrf_token %}
 <div class="container py-4">
   <div class="d-flex flex-wrap align-items-center mb-4">
     <form class="me-3 flex-grow-1" method="get">
@@ -19,26 +22,124 @@
   <div class="row g-4">
     {% for bike in bikes %}
     <div class="col-md-4 bike-card" data-brand="{{ bike.brand|lower }}" data-title="{{ bike.title|lower }}">
-      <div class="card h-100 shadow-sm">
+      <div class="card h-100 shadow-sm position-relative bike-card-hover">
+        <button class="btn wishlist-btn position-absolute end-0 top-0 m-2 bg-white rounded-circle p-2 shadow-sm" 
+                {% if request.user.is_authenticated %}
+                data-product-id="{{ bike.id }}" 
+                title="{% if bike.id in user_wishlist %}Remove from Wishlist{% else %}Add to Wishlist{% endif %}"
+                {% else %}
+                data-bs-toggle="modal" data-bs-target="#loginRequiredModal"
+                title="Login to add to wishlist"
+                {% endif %}>
+          <i class="fa{% if request.user.is_authenticated and bike.id in user_wishlist %}s text-danger{% else %}r text-secondary{% endif %} fa-heart"></i>
+        </button>
         <img src="{{ bike.product_image.url }}" class="card-img-top" style="height: 220px; object-fit: cover;" alt="{{ bike.title }}">
-        <div class="card-body">
-          <h5 class="card-title">{{ bike.title }}</h5>
-          <p class="mb-1"><b>Brand:</b> {{ bike.brand }}</p>
-          <p class="mb-1 text-danger fw-bold">Rs. {{ bike.price }}</p>
-          <p class="mb-1"><b>Year:</b> {{ bike.made_year }} | <b>Kms:</b> {{ bike.kilometers }} Km</p>
-          <p class="mb-1"><b>Location:</b> {{ bike.location }}</p>
-          <a href="{% url 'product-detail' bike.id %}" class="btn btn-success btn-sm w-100 mt-2">View Details</a>
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <h5 class="card-title mb-0">{{ bike.title }}</h5>
+            <span class="badge bg-success">{{ bike.condition }}</span>
+          </div>
+          <p class="mb-1"><i class="fas fa-tag text-success me-1"></i> <b>Brand:</b> {{ bike.brand }}</p>
+          <p class="mb-1 text-danger fw-bold fs-5">Rs. {{ bike.price }}</p>
+          <p class="mb-1"><i class="fas fa-calendar-alt text-success me-1"></i> <b>Year:</b> {{ bike.made_year }} | <i class="fas fa-tachometer-alt text-success me-1"></i> <b>Kms:</b> {{ bike.kilometers }}</p>
+          <p class="mb-1"><i class="fas fa-map-marker-alt text-success me-1"></i> <b>Location:</b> {{ bike.location }}</p>
+          <div class="mt-auto pt-3 d-grid gap-2">
+            <a href="{% url 'main:product-detail' bike.id %}" class="btn btn-success"><i class="fas fa-eye me-2"></i>View Details</a>
+          </div>
         </div>
       </div>
     </div>
     {% empty %}
-    <div class="col-12 text-center">
-      <p class="text-muted">No bikes found.</p>
+    <div class="col-12 text-center py-5">
+      <div class="empty-state">
+        <i class="fas fa-search fa-5x text-muted mb-3"></i>
+        <h4>No Bikes Found</h4>
+        <p class="text-muted">We couldn't find any bikes matching your search criteria.</p>
+      </div>
     </div>
     {% endfor %}
   </div>
 </div>
+
+<!-- Login Required Modal -->
+<div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="loginRequiredModalLabel"><i class="fas fa-lock me-2"></i>Login Required</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4 text-center">
+        <div class="py-4">
+          <i class="fas fa-user-circle fa-5x text-success mb-3"></i>
+          <h4>Please Login to Continue</h4>
+          <p class="text-muted mb-4">You need to be logged in to add bikes to your wishlist.</p>
+          <div class="d-grid gap-2">
+            <a href="{% url 'main:login' %}?next={{ request.path }}" class="btn btn-success"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+            <a href="{% url 'main:customerregistration' %}" class="btn btn-outline-success"><i class="fas fa-user-plus me-2"></i>Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Bike card styles */
+  .bike-card-hover {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+  }
+  
+  .bike-card-hover:hover {
+    transform: translateY(-10px);
+    border-color: #198754;
+    box-shadow: 0 10px 20px rgba(25, 135, 84, 0.15) !important;
+  }
+  
+  /* Wishlist button styles */
+  .wishlist-btn {
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .wishlist-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  
+  .wishlist-btn i.fas.fa-heart {
+    color: #dc3545 !important;
+  }
+  
+  .wishlist-btn:hover i.far.fa-heart {
+    color: #dc3545 !important;
+  }
+  
+  /* Empty state styles */
+  .empty-state {
+    padding: 3rem 1rem;
+    color: #6c757d;
+  }
+  
+  /* Badge animation */
+  .badge {
+    transition: all 0.3s ease;
+  }
+  
+  .bike-card-hover:hover .badge {
+    transform: scale(1.1);
+  }
+</style>
+
 <script>
+// Search functionality
 document.getElementById('bikeSearch').addEventListener('input', function() {
   var query = this.value.toLowerCase();
   document.querySelectorAll('.bike-card').forEach(function(card) {
@@ -60,5 +161,103 @@ document.getElementById('bikeSearch').addEventListener('input', function() {
     }
   });
 });
+
+// Wishlist functionality
+document.addEventListener('DOMContentLoaded', function() {
+  var wishlistButtons = document.querySelectorAll('.wishlist-btn');
+  
+  wishlistButtons.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      if (!this.hasAttribute('data-product-id')) {
+        // This is for non-logged in users, modal will handle it
+        return;
+      }
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      var productId = this.getAttribute('data-product-id');
+      var icon = this.querySelector('i');
+      
+      // Add animation
+      icon.classList.add('fa-beat');
+      
+      // Get CSRF token using the getCookie function
+      var csrfToken = getCookie('csrftoken');
+      
+      // Send AJAX request
+      fetch('{% url "main:toggle_wishlist" %}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': csrfToken
+        },
+        credentials: 'same-origin',
+        body: 'product_id=' + productId
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Remove the animation
+        setTimeout(function() {
+          icon.classList.remove('fa-beat');
+        }, 500);
+        
+        // Check if the response indicates success
+        if (data.success) {
+          if (data.in_wishlist) {
+            icon.classList.remove('far', 'text-secondary');
+            icon.classList.add('fas', 'text-danger');
+            btn.setAttribute('title', 'Remove from Wishlist');
+          } else {
+            icon.classList.remove('fas', 'text-danger');
+            icon.classList.add('far', 'text-secondary');
+            btn.setAttribute('title', 'Add to Wishlist');
+          }
+          
+          // Update wishlist count in navbar
+          var wishlistCountSpan = document.querySelector('.nav-link .badge');
+          if (wishlistCountSpan) {
+            wishlistCountSpan.textContent = data.count;
+            if (data.count > 0) {
+              wishlistCountSpan.style.display = '';
+            } else {
+              wishlistCountSpan.style.display = 'none';
+            }
+          }
+        } else if (!data.authenticated) {
+          // User is not authenticated
+          window.location.href = '{% url "main:login" %}?next=' + encodeURIComponent(window.location.pathname);
+        }
+      })
+      .catch((error) => {
+        // Remove the animation
+        icon.classList.remove('fa-beat');
+        console.error('Wishlist error:', error);
+        // Don't show alert since user is already logged in
+        // The error is likely just a temporary network issue
+      });
+    });
+  });
+});
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
 </script>
 {% endblock %}

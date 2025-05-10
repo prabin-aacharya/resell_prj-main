@@ -43,7 +43,7 @@
   <div class="row g-4">
     <div class="col-md-4 col-sm-6">
       <div class="brand-card">
-        <a href="{% url 'brand' 'HONDA' %}" class="brand-link">
+        <a href="{% url 'main:brand' 'HONDA' %}" class="brand-link">
           <div class="brand-content">
             <img src="{% static 'proj/images/product/honda.png'%}" 
               class="img-fluid brand-logo" 
@@ -55,7 +55,7 @@
     </div>
     <div class="col-md-4 col-sm-6">
       <div class="brand-card">
-        <a href="{% url 'brand' 'YAMAHA' %}" class="brand-link">
+        <a href="{% url 'main:brand' 'YAMAHA' %}" class="brand-link">
           <div class="brand-content">
             <img src="{% static 'proj/images/product/yamaha.png'%}" 
               class="img-fluid brand-logo" 
@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-4 col-sm-6">
       <div class="brand-card">
-        <a href="{% url 'brand' 'BAJAJ' %}" class="brand-link">
+        <a href="{% url 'main:brand' 'BAJAJ' %}" class="brand-link">
           <div class="brand-content">
             <img src="{% static 'proj/images/product/bajaj.png'%}" 
               class="img-fluid brand-logo" 
@@ -79,7 +79,7 @@
     </div>
     <div class="col-md-4 col-sm-6">
       <div class="brand-card">
-        <a href="{% url 'brand' 'HERO' %}" class="brand-link">
+        <a href="{% url 'main:brand' 'HERO' %}" class="brand-link">
           <div class="brand-content">
             <img src="{% static 'proj/images/product/hero.png'%}" 
               class="img-fluid brand-logo" 
@@ -91,7 +91,7 @@
     </div>
     <div class="col-md-4 col-sm-6">
       <div class="brand-card">
-        <a href="{% url 'brand' 'TVS' %}" class="brand-link">
+        <a href="{% url 'main:brand' 'TVS' %}" class="brand-link">
           <div class="brand-content">
             <img src="{% static 'proj/images/product/tvs.png'%}" 
               class="img-fluid brand-logo" 
@@ -103,39 +103,71 @@
     </div>
   </div>
 
-  <!-- Latest Products Multi-Item Carousel -->
+  <!-- Latest Products Grid Layout with Pagination -->
   <h2 class="text-center p-4 text-black border-bottom mt-5">Latest Listings</h2>
-  <div id="latestProductsCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      {% for group in latest_product_groups %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <div class="row justify-content-center">
-          {% for prod in group %}
-          <div class="col-md-4 mb-3 d-flex align-items-stretch">
-            <div class="card product-card shadow-sm rounded overflow-hidden mx-2 w-100">
-              <a href="{% url 'product-detail' prod.id %}" class="text-decoration-none text-dark">
-                <img src="{{prod.product_image.url}}" class="card-img-top" alt="{{prod.title}}" style="height: 220px; object-fit: cover;">
-                <div class="card-body">
-                  <h5 class="card-title">{{prod.title}}</h5>
-                  <p class="card-text text-danger fw-bold">Rs. {{prod.price}}</p>
-                </div>
-              </a>
-            </div>
+  
+  <!-- Products Grid -->
+  <div class="row g-4">
+    {% for prod in latest_products %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+      <div class="card product-card shadow-sm rounded overflow-hidden h-100">
+        <a href="{% url 'main:product-detail' prod.id %}" class="text-decoration-none text-dark">
+          <img src="{{prod.product_image.url}}" class="card-img-top" alt="{{prod.title}}" style="height: 180px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{prod.title}}</h5>
+            <p class="card-text"><small>{{prod.brand}}</small></p>
+            <p class="card-text text-danger fw-bold mt-auto">Rs. {{prod.price}}</p>
           </div>
-          {% endfor %}
-        </div>
+        </a>
       </div>
-      {% endfor %}
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#latestProductsCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#latestProductsCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+      <p>No bikes available at the moment.</p>
+    </div>
+    {% endfor %}
   </div>
+  
+  <!-- Pagination Controls -->
+  {% if page_obj.paginator.num_pages > 1 %}
+  <nav aria-label="Page navigation" class="my-5">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="First">
+          <span aria-hidden="true">&laquo;&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      {% endif %}
+      
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% endif %}
+      {% endfor %}
+      
+      {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+          <span aria-hidden="true">&raquo;&raquo;</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+  {% endif %}
 </div>
 
 <style>
@@ -161,11 +193,17 @@
 .brand-content {
   padding: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px; /* Fixed height for all brand cards */
 }
 
 .brand-logo {
-  max-width: 120px;
-  height: auto;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
   margin-bottom: 15px;
   transition: transform 0.3s ease;
 }
@@ -194,8 +232,12 @@
   .brand-card {
     margin-bottom: 15px;
   }
+  .brand-content {
+    height: 180px;
+  }
   .brand-logo {
-    max-width: 100px;
+    width: 100px;
+    height: 100px;
   }
   .brand-name {
     font-size: 1.1rem;
@@ -205,8 +247,12 @@
   }
 }
 @media (max-width: 576px) {
+  .brand-content {
+    height: 160px;
+  }
   .brand-logo {
-    max-width: 80px;
+    width: 80px;
+    height: 80px;
   }
   .brand-name {
     font-size: 1rem;

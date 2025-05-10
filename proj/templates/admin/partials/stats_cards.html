@@ -1,0 +1,43 @@
+{% load i18n %}
+<!-- Stats Cards -->
+<div class="stats-container">
+  <div class="stat-card">
+    <div class="stat-icon bike-icon">
+      <i class="fas fa-bicycle"></i>
+    </div>
+    <div class="stat-content">
+      <h3>{{ product_count|default:"0" }}</h3>
+      <p>Total Bikes</p>
+    </div>
+  </div>
+  
+  <div class="stat-card">
+    <div class="stat-icon customer-icon">
+      <i class="fas fa-users"></i>
+    </div>
+    <div class="stat-content">
+      <h3>{{ customer_count|default:"0" }}</h3>
+      <p>Customers</p>
+    </div>
+  </div>
+  
+  <div class="stat-card">
+    <div class="stat-icon wishlist-icon">
+      <i class="fas fa-heart"></i>
+    </div>
+    <div class="stat-content">
+      <h3>{{ wishlist_count|default:"0" }}</h3>
+      <p>Wishlists</p>
+    </div>
+  </div>
+  
+  <div class="stat-card">
+    <div class="stat-icon seller-icon">
+      <i class="fas fa-store"></i>
+    </div>
+    <div class="stat-content">
+      <h3>{{ seller_count|default:"0" }}</h3>
+      <p>Sellers</p>
+    </div>
+  </div>
+</div>

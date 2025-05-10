@@ -1,0 +1,35 @@
+{% load i18n %}
+<!-- Top Header -->
+<header id="header" class="header">
+  <div class="header-content">
+    <!-- Toggle Button for Mobile -->
+    <div class="sidebar-toggle">
+      <button id="sidebarToggle" class="toggle-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    
+    <!-- User Tools -->
+    <div class="user-tools">
+      {% if user.is_authenticated %}
+        <div class="user-dropdown">
+          <button class="dropdown-toggle">
+            <i class="fas fa-user-circle"></i>
+            <span>{{ user.get_username }}</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-menu">
+            {% if user.has_usable_password %}
+              <a href="{% url 'admin:password_change' %}" class="dropdown-item">
+                <i class="fas fa-key"></i> {% translate 'Change password' %}
+              </a>
+            {% endif %}
+            <a href="{% url 'admin:logout' %}" class="dropdown-item">
+              <i class="fas fa-sign-out-alt"></i> {% translate 'Log out' %}
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

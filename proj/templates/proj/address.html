@@ -1,43 +1,134 @@
 {% extends 'proj/base.html' %}
 {% load static %}
-{% block title %}Profile{% endblock title %}
+{% block title %}My Addresses{% endblock title %}
 
 {% block main-content %}
-<div class="container my-5">
-    <div class="row">
-        <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
-    
-
-    <div class="col-sm-2 border-end">
-        <ul class="list-unstyled">
-            <li class="d-grid"><a href="{% url 'profile' %}" class="btn">Profile</a></li>
-            <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
-        </ul>
-    </div>
-
-
-    <div class="col-sm-8 offset-sm-1">
-        <div class="row">
-            {% for ad in add%}
-            <div class="col-sm-6">
-                <div class="card m-2">
-                    <div class="card-body">
-                        <h3>Address {{forloop.counter}}</h3>
-                        <p>Name:{{ad.name}}</p>
-                        <p>City:{{ad.city}}</p>
-                        <p>State:{{ad.state}}</p>
-                        <p>Mobile:{{ad.mobile}}</p>
-                        <p>Zipcode:{{ad.zipcode}}</p>
-                        <p class="text-center"><a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a></p>
-                        
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="card-header bg-success text-white py-4">
+                    <div class="d-flex align-items-center">
+                        <div class="profile-icon me-3">
+                            <i class="fas fa-map-marked-alt fa-3x"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">Welcome, <span class="text-capitalize fw-bold">{{request.user}}</span></h3>
+                            <p class="mb-0 small">{{ request.user.email }}</p>
+                        </div>
                     </div>
                 </div>
+                
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <!-- Sidebar Navigation -->
+                        <div class="col-md-3 border-end">
+                            <div class="nav flex-column nav-pills p-4" role="tablist">
+                                <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
+                                    <i class="fas fa-id-card me-2"></i> My Profile
+                                </a>
+                                <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
+                                    <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                                </a>
+                                <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
+                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Address Cards -->
+                        <div class="col-md-9">
+                            <div class="p-4 p-md-5">
+                                <h4 class="mb-4 border-bottom pb-3">
+                                    <i class="fas fa-address-book me-2"></i>Your Saved Addresses
+                                </h4>
+                                
+                                {% if messages %}
+                                <div class="mb-4">
+                                    {% for msg in messages %}
+                                    <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                        <i class="{% if msg.tags == 'success' %}fas fa-check-circle{% else %}fas fa-exclamation-triangle{% endif %} me-2"></i>
+                                        {{ msg }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                                
+                                <div class="row g-4">
+                                    {% for ad in add %}
+                                    <div class="col-lg-6">
+                                        <div class="card h-100 border-0 shadow-sm hover-card">
+                                            <div class="card-header bg-light py-3">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h5 class="mb-0"><i class="fas fa-home me-2"></i>Address {{forloop.counter}}</h5>
+                                                    <span class="badge bg-success">Primary</span>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-2"><i class="fas fa-user text-success me-2"></i><strong>Name:</strong> {{ad.name}}</li>
+                                                    <li class="mb-2"><i class="fas fa-envelope text-success me-2"></i><strong>Email:</strong> {{request.user.email}}</li>
+                                                    <li class="mb-2"><i class="fas fa-city text-success me-2"></i><strong>City:</strong> {{ad.city}}</li>
+                                                    <li class="mb-2"><i class="fas fa-flag text-success me-2"></i><strong>Province:</strong> {{ad.state}}</li>
+                                                    <li class="mb-2"><i class="fas fa-phone text-success me-2"></i><strong>Mobile:</strong> {{ad.mobile}}</li>
+                                                    <li class="mb-2"><i class="fas fa-map-pin text-success me-2"></i><strong>Postal Code:</strong> {{ad.zipcode}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                    <div class="col-12 text-center py-5">
+                                        <div class="empty-state">
+                                            <i class="fas fa-map-marked fa-5x text-muted mb-3"></i>
+                                            <h5>No Addresses Found</h5>
+                                            <p class="text-muted">You haven't added any addresses yet. Please update your profile to add your address.</p>
+                                            <a href="{% url 'main:profile' %}" class="btn btn-success mt-3">
+                                                <i class="fas fa-plus-circle me-2"></i>Add Your Address
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer bg-light py-3 text-center">
+                    <img src="{% static 'proj/images/logo.png' %}" alt="Resale Logo" height="40">
+                    <p class="text-muted mb-0 small mt-2">Your addresses are used for bike delivery and pickup locations</p>
+                </div>
             </div>
-            {% endfor %}
         </div>
-
-
     </div>
+</div>
 
-
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .nav-link {
+        transition: all 0.3s;
+        border-radius: 8px;
+    }
+    .nav-link:hover, .nav-link.active {
+        background-color: #198754;
+        color: white;
+    }
+    .hover-card {
+        transition: all 0.3s ease;
+    }
+    .hover-card:hover {
+        border-color: #198754 !important;
+        box-shadow: 0 0.5rem 1rem rgba(25, 135, 84, 0.15) !important;
+    }
+    .empty-state {
+        padding: 2rem;
+        color: #6c757d;
+    }
+</style>
 {% endblock main-content %}

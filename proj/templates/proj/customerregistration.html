@@ -3,49 +3,273 @@
 {% block title %}Customer Registration{% endblock title %}
 
 {% block main-content %}
-<div class="container">
-    <div class="row my-3">
-        <div class="col-sm-6 offset-sm-3">
-            
-                
-                    <h3 class="mb-4 text-center">Create Account</h3>
-                    
-                    <form action="" method="post" novalidate class="shadow p-5">
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h3 class="mb-0"><i class="fas fa-user-plus me-2"></i>Create Your Account</h3>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form action="" method="post" id="registrationForm" novalidate>
                         {% csrf_token %}
-                        {% for fm in form %}
-
-                          {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
-                          <br>
-
-                          {% endfor %}
-                          <input type="submit" value="Submit" class="btn btn-primary"><br>
-
-                          <div class="text-center text-primary fw-bold">
-                            <small>Already have an account? <a href="{% url 'login' %}" class="text-danger">Login Now</a> </small>
+                        
+                        <div class="mb-4">
+                          <label for="id_username" class="form-label fw-bold"><i class="fas fa-user me-2"></i>Username</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-user"></i></span>
+                            <input type="text" name="username" id="id_username" class="form-control border-success" placeholder="Choose a unique username" required>
                           </div>
-                          {% if form.non_field_errors %}
-                           {% for error in form.non_field_errors %}
-                              <p class =" alert alert-danger my-3">{{error}}</p>
-                              {% endfor %}
-                              {% endif %}
+                          <div id="usernameError" class="text-danger small mt-1"></div>
+                          <small class="text-danger">{{form.username.errors|striptags}}</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                          <label for="id_email" class="form-label fw-bold"><i class="fas fa-envelope me-2"></i>Email</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-envelope"></i></span>
+                            <input type="email" name="email" id="id_email" class="form-control border-success" placeholder="Your email address" required>
+                          </div>
+                          <div id="emailError" class="text-danger small mt-1"></div>
+                          <small class="text-danger">{{form.email.errors|striptags}}</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                          <label for="id_password1" class="form-label fw-bold"><i class="fas fa-lock me-2"></i>Password</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
+                            <input type="password" name="password1" id="id_password1" class="form-control border-success" placeholder="Create a strong password" required>
+                          </div>
+                          <small class="text-danger">{{form.password1.errors|striptags}}</small>
+                        </div>
+                        
+                        <div class="mb-4">
+                          <label for="id_password2" class="form-label fw-bold"><i class="fas fa-check-circle me-2"></i>Confirm Password</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-success text-white"><i class="fas fa-check-circle"></i></span>
+                            <input type="password" name="password2" id="id_password2" class="form-control border-success" placeholder="Confirm your password" required>
+                          </div>
+                          <small class="text-danger">{{form.password2.errors|striptags}}</small>
+                        </div>
+                        
+                        <div class="d-grid gap-2 mt-5">
+                          <button type="submit" class="btn btn-success btn-lg py-3 fw-bold"><i class="fas fa-user-plus me-2"></i>Create Account</button>
+                        </div>
 
+                        <div class="text-center mt-4">
+                            <span class="text-muted">Already have an account?</span> 
+                            <a href="{% url 'main:login' %}" class="text-success fw-bold">Login Now <i class="fas fa-sign-in-alt ms-1"></i></a>
+                        </div>
+                        
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i> {{error}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
 
-                              {% if messages %}
-                              {% for msg in messages%}
-                              <div class ="alert alert-{{msg.tags}}" role="alert">
+                        {% if messages %}
+                            {% for msg in messages%}
+                            <div class="alert alert-{{msg.tags}} alert-dismissible fade show mt-3" role="alert">
+                                {% if msg.tags == 'success' %}<i class="fas fa-check-circle me-2"></i>{% else %}<i class="fas fa-info-circle me-2"></i>{% endif %}
                                 {{msg}}
-                              </div>
-                              {% endfor %}
-                              {% endif %}
-
-
-
-
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        {% endif %}
                     </form>
-                
-            
+                    
+                    <div class="mt-4 text-center text-muted small">
+                        <p>By creating an account, you agree to our <a href="#" class="text-success">Terms of Service</a> and <a href="#" class="text-success">Privacy Policy</a>.</p>
+                    </div>
+                </div>
+                <div class="card-footer bg-light py-3 text-center">
+                    <img src="{% static 'proj/images/logo.png' %}" alt="Resale Logo" height="40">
+                    <p class="text-muted mb-0 small mt-2">Join our community of bike enthusiasts</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<br><br>
+
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .input-group-text {
+        width: 40px;
+        justify-content: center;
+    }
+    .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+    }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registrationForm');
+    const usernameInput = document.getElementById('id_username');
+    const emailInput = document.getElementById('id_email');
+    const usernameError = document.getElementById('usernameError');
+    const emailError = document.getElementById('emailError');
+    
+    // Username validation
+    usernameInput.addEventListener('input', function() {
+      const username = this.value.trim();
+      
+      // Clear previous errors
+      usernameError.textContent = '';
+      
+      // Check username length
+      if (username.length < 3) {
+        usernameError.textContent = 'Username must be at least 3 characters long';
+        return;
+      }
+      
+      // Check for valid characters (letters, numbers, and some special chars)
+      if (!/^[\w.@+-]+$/.test(username)) {
+        usernameError.textContent = 'Username can only contain letters, numbers, and @/./+/-/_ characters';
+        return;
+      }
+      
+      // Check if username is not entirely numeric
+      if (/^\d+$/.test(username)) {
+        usernameError.textContent = 'Username cannot be entirely numeric';
+        return;
+      }
+    });
+    
+    // Email validation
+    emailInput.addEventListener('input', validateEmail);
+    
+    // Add blur event to ensure validation happens when focus leaves the field
+    emailInput.addEventListener('blur', validateEmail);
+    
+    function validateEmail() {
+      const email = emailInput.value.trim();
+      
+      // Clear previous errors
+      emailError.textContent = '';
+      emailInput.classList.remove('is-invalid');
+      
+      if (email === '') return; // Skip validation if empty
+      
+      // Basic email format validation
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailError.textContent = 'Please enter a valid email address';
+        emailInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Extract domain part
+      const parts = email.split('@');
+      if (parts.length !== 2) return false;
+      
+      const domain = parts[1];
+      const localPart = parts[0];
+      
+      // Check email domain is not numeric-only
+      const domainParts = domain.split('.');
+      const mainDomain = domainParts[0]; // The part before the TLD
+      
+      if (/^\d+$/.test(mainDomain)) {
+        emailError.textContent = 'Email domain cannot be numeric-only (like 123.com)';
+        emailInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Check for valid TLD
+      if (!/\.(com|org|net|edu|gov|mil|io|co|in|info|biz|np)$/i.test(domain)) {
+        emailError.textContent = 'Email must use a valid top-level domain (.com, .org, etc.)';
+        emailInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Check local part length
+      if (localPart.length < 3) {
+        emailError.textContent = 'Username part of email must be at least 3 characters';
+        emailInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Check for disposable email domains
+      const disposableDomains = [
+        'mailinator.com', 'tempmail.com', 'temp-mail.org', 'guerrillamail.com',
+        'throwawaymail.com', 'yopmail.com', 'getnada.com', 'mailnesia.com',
+        'dispostable.com', '10minutemail.com', 'trashmail.com', 'emailondeck.com'
+      ];
+      
+      if (disposableDomains.includes(domain.toLowerCase())) {
+        emailError.textContent = 'Disposable email addresses are not allowed';
+        emailInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    // Username validation function
+    function validateUsername() {
+      const username = usernameInput.value.trim();
+      
+      // Clear previous errors
+      usernameError.textContent = '';
+      usernameInput.classList.remove('is-invalid');
+      
+      if (username === '') return false; // Skip validation if empty
+      
+      // Check username length
+      if (username.length < 3) {
+        usernameError.textContent = 'Username must be at least 3 characters long';
+        usernameInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Check for valid characters (letters, numbers, and some special chars)
+      if (!/^[\w.@+-]+$/.test(username)) {
+        usernameError.textContent = 'Username can only contain letters, numbers, and @/./+/-/_ characters';
+        usernameInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      // Check if username is not entirely numeric
+      if (/^\d+$/.test(username)) {
+        usernameError.textContent = 'Username cannot be entirely numeric';
+        usernameInput.classList.add('is-invalid');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    // Update username validation to use the function
+    usernameInput.addEventListener('input', validateUsername);
+    usernameInput.addEventListener('blur', validateUsername);
+    
+    // Form submission validation
+    form.addEventListener('submit', function(event) {
+      // Run both validations
+      const usernameValid = validateUsername();
+      const emailValid = validateEmail();
+      
+      // If either validation fails, prevent form submission
+      if (!usernameValid || !emailValid) {
+        event.preventDefault();
+        
+        // Focus the first invalid field
+        if (!usernameValid) {
+          usernameInput.focus();
+        } else if (!emailValid) {
+          emailInput.focus();
+        }
+      }
+    });
+  });
+</script>
+
 {% endblock main-content %}
