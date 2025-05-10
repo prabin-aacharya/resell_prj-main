@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proj',
     'widget_tweaks',
-    
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -148,3 +148,12 @@ ADMIN_SESSION_COOKIE_NAME = 'admin_sessionid'  # Admin session cookie name
 SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Don't expire when browser closes
 SESSION_SAVE_EVERY_REQUEST = True  # Update the session on every request
+
+# Payment Gateway Settings
+KHALTI_SECRET_KEY = 'test_secret_key_123456789abcdefghijklmnopqrstuvwxyz'  # Replace with actual key in production
+KHALTI_PUBLIC_KEY = 'test_public_key_123456789abcdefghijklmnopqrstuvwxyz'  # Replace with actual key in production
+
+# Stripe Settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_yourStripePublishableKey'  # Replace with actual key in production
+STRIPE_SECRET_KEY = 'sk_test_yourStripeSecretKey'  # Replace with actual key in production
+STRIPE_ENDPOINT_SECRET = 'whsec_yourStripeEndpointSecret'  # Used for webhook signature verification

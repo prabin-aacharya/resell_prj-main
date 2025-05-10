@@ -31,8 +31,6 @@
                         <i class="fas fa-comment me-2"></i>Message Now
                     </a>
                     
-                    {% include 'buy_button.html' with product=product %}
-                    
                     {% if request.user.is_authenticated %}
                     <button class="btn btn-outline-danger btn-lg px-4 shadow-sm wishlist-btn" 
                             data-product-id="{{ product.id }}"
@@ -49,6 +47,8 @@
                     </button>
                     {% endif %}
                 </div>
+                
+                {% include 'payment_options.html' with product=product %}
             </div>
         </div>
     </div>

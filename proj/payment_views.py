@@ -21,14 +21,14 @@ def initiate_bike_payment(request):
     Initiates a payment with Khalti KPG-2 for a bike purchase
     """
     if request.method != 'POST':
-        return redirect('home')
+        return redirect('main:home')
     
     bike_id = request.POST.get('bike_id')
     sale_price = request.POST.get('sale_price')
     
     if not bike_id or not sale_price:
         messages.error(request, "Missing product information")
-        return redirect('home')
+        return redirect('main:home')
     
     try:
         # Get product and user information
@@ -43,7 +43,7 @@ def initiate_bike_payment(request):
         amount = int(float(sale_price) * 100)
         if amount <= 0:
             messages.error(request, "Invalid product price")
-            return redirect('home')
+            return redirect('main:home')
         
         # Generate a unique order ID
         purchase_order_id = f"BIKE-{uuid.uuid4()}"
@@ -52,7 +52,7 @@ def initiate_bike_payment(request):
         customer = get_object_or_404(Customer, user=buyer)
         
         # Prepare the return URL
-        return_url = request.build_absolute_uri(reverse('verify_bike_payment'))
+        return_url = request.build_absolute_uri(reverse('main:verify_bike_payment'))
         website_url = request.build_absolute_uri('/')
         
         # Prepare payload for Khalti
@@ -124,17 +124,17 @@ def initiate_bike_payment(request):
                 # Handle error
                 error_msg = response_data.get('detail', 'Payment initialization failed')
                 messages.error(request, error_msg)
-                return redirect('payment_error', error=error_msg)
+                return redirect('main:payment_error', error=error_msg)
                 
         except requests.RequestException as e:
             logger.error(f"Khalti request error: {str(e)}")
             messages.error(request, "Could not connect to payment gateway")
-            return redirect('payment_error', error="Connection error")
+            return redirect('main:payment_error', error="Connection error")
             
     except Exception as e:
         logger.error(f"Payment initiation error: {str(e)}")
         messages.error(request, "An error occurred while processing your payment")
-        return redirect('payment_error', error="General error")
+        return redirect('main:payment_error', error="General error")
 
 @login_required
 def verify_bike_payment(request):
@@ -147,7 +147,7 @@ def verify_bike_payment(request):
     
     if not pidx or not purchase_order_id:
         messages.error(request, "Missing transaction information")
-        return redirect('payment_error', error="Invalid transaction")
+        return redirect('main:payment_error', error="Invalid transaction")
     
     try:
         # Look up the transaction in our database
@@ -225,9 +225,11 @@ def verify_bike_payment(request):
         messages.error(request, "An error occurred while verifying your payment")
         return render(request, 'payment_error.html', {'error': 'Verification error'})
 
-def payment_error(request):
+def payment_error(request, error=None):
     """Display payment error page"""
-    error = request.GET.get('error', 'Unknown error')
+    # Get error from URL parameter or GET parameter
+    if error is None:
+        error = request.GET.get('error', 'Unknown error')
     return render(request, 'payment_error.html', {'error': error})
 
 def payment_success(request):

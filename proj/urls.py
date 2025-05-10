@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views, admin_views, payment_views
+from . import views, admin_views, payment_views, stripe_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -18,7 +18,7 @@ urlpatterns = [
     path('admin/lookup-customer/', views.admin_lookup_customer, name='admin_lookup_customer'),
     
     # Original URLs
-    path('', views.home),
+    path('', views.home, name='home'),
     path('about/', views.about,name='about'),
     path('contact/', views.contact,name='contact'),
 
@@ -57,6 +57,13 @@ urlpatterns = [
     path('payment/verify/', payment_views.verify_bike_payment, name='verify_bike_payment'),
     path('payment/success/', payment_views.payment_success, name='payment_success'),
     path('payment/error/', payment_views.payment_error, name='payment_error'),
+    path('payment/error/<str:error>/', payment_views.payment_error, name='payment_error'),
+    
+    # Stripe Payment URLs
+    path('payment/stripe/buy/', stripe_views.initiate_stripe_payment, name='stripe_initiate_payment'),
+    path('payment/stripe/success/', stripe_views.stripe_success, name='stripe_success'),
+    path('payment/stripe/cancel/', stripe_views.stripe_cancel, name='stripe_cancel'),
+    path('payment/stripe/webhook/', stripe_views.stripe_webhook, name='stripe_webhook'),
     
     # Terms and Privacy pages
     path('terms/', views.terms, name='terms'),
