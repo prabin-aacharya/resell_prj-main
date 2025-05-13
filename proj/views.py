@@ -493,15 +493,23 @@ def remove_from_wishlist(request, product_id):
 
 @login_required
 def wishlist(request):
-    # Get all products that are in the user's wishlist
-    wishlisted_products = Product.objects.filter(wishlist__user=request.user).distinct()
+    # Get all products that are in the user's wishlist with all details
+    wishlisted_products = Product.objects.filter(wishlist__user=request.user).distinct().select_related()
     
     # Get all wishlist item IDs for the user
     user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
     
+    # Get the customer information for the current user
+    customer = None
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        pass
+    
     return render(request, 'proj/wishlist.html', {
         'products': wishlisted_products,
-        'user_wishlist': user_wishlist
+        'user_wishlist': user_wishlist,
+        'customer': customer
     })
 
 @require_POST
