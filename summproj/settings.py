@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proj',
     'widget_tweaks',
-    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +129,7 @@ STATICFILES_DIRS = [
 MEDIA_URL='/media/'
 MEDIA_ROOT= BASE_DIR/'media'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'login'  # Redirect to login page after logout
+LOGOUT_REDIRECT_URL = 'main:login'  # Redirect to login page after logout
 
 
 # Default primary key field type
@@ -150,10 +149,49 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Don't expire when browser closes
 SESSION_SAVE_EVERY_REQUEST = True  # Update the session on every request
 
 # Payment Gateway Settings
-KHALTI_SECRET_KEY = 'test_secret_key_123456789abcdefghijklmnopqrstuvwxyz'  # Replace with actual key in production
-KHALTI_PUBLIC_KEY = 'test_public_key_123456789abcdefghijklmnopqrstuvwxyz'  # Replace with actual key in production
+KHALTI_SECRET_KEY = '2fdb277ebbb144448fca0564e5c8c2f8'  # Replace with actual key in production
+KHALTI_PUBLIC_KEY = 'c887a495931546fabfb8a85dd58a1e90'  # Replace with actual key in production
 
-# Stripe Settings
-STRIPE_PUBLISHABLE_KEY = 'pk_test_yourStripePublishableKey'  # Replace with actual key in production
-STRIPE_SECRET_KEY = 'sk_test_yourStripeSecretKey'  # Replace with actual key in production
-STRIPE_ENDPOINT_SECRET = 'whsec_yourStripeEndpointSecret'  # Used for webhook signature verification
+# Set to True to use sandbox environment, False for production
+KHALTI_DEBUG = True  # Set to False in production.py
+
+# Configure logging for better debugging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'proj': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

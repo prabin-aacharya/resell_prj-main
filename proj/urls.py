@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views, admin_views, payment_views, stripe_views
+from . import views, admin_views, payment_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
@@ -29,6 +29,7 @@ urlpatterns = [
 
     path('profile/',views.ProfileView.as_view(),name='profile'),
     path('address/',views.address,name='address'),
+    path('my-orders/',views.my_orders, name='my_orders'),
 
     #login authentication
     path('registration/',views.CustomerRegistrationView.as_view(), name='customerregistration'),
@@ -53,21 +54,16 @@ urlpatterns = [
     path('check-uploaded-files/', views.check_uploaded_files, name='check_uploaded_files'),
     
     # Payment URLs
-    path('payment/buy/', payment_views.initiate_bike_payment, name='initiate_bike_payment'),
-    path('payment/verify/', payment_views.verify_bike_payment, name='verify_bike_payment'),
-    path('payment/success/', payment_views.payment_success, name='payment_success'),
-    path('payment/error/', payment_views.payment_error, name='payment_error'),
-    path('payment/error/<str:error>/', payment_views.payment_error, name='payment_error'),
-    
-    # Stripe Payment URLs
-    path('payment/stripe/buy/', stripe_views.initiate_stripe_payment, name='stripe_initiate_payment'),
-    path('payment/stripe/success/', stripe_views.stripe_success, name='stripe_success'),
-    path('payment/stripe/cancel/', stripe_views.stripe_cancel, name='stripe_cancel'),
-    path('payment/stripe/webhook/', stripe_views.stripe_webhook, name='stripe_webhook'),
+    path('payment/initiate/', payment_views.initiate_bike_payment, name='initiate_bike_payment'),
+    path('payment/callback/', payment_views.payment_callback, name='payment_callback'),
+    path('payment/test-config/', payment_views.test_khalti_config, name='test_khalti_config'),
     
     # Terms and Privacy pages
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
+    
+    # Test URL (only for admins to test functionality)
+    path('test-transaction/', views.create_test_transaction, name='test_transaction'),
 ]
 
 # Add static and media URLs in development

@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
+import uuid
 # Create your views here.
 def home(request):
     from .models import Product
@@ -134,7 +135,7 @@ class CustomerRegistrationView(View):
             )
             
             messages.success(request,"Congratulations! User Registered Successfully")
-            return redirect('login')
+            return redirect('main:login')
         else:
             messages.warning(request,"Invalid Input Data")
         return render(request,'proj/customerregistration.html',locals())
@@ -577,6 +578,92 @@ def terms(request):
 
 def privacy(request):
     return render(request, "proj/privacy.html")
+
+@login_required
+def my_orders(request):
+    """Display all bikes purchased by the user"""
+    purchased_bikes = []
+    
+    try:
+        # 1. Get all completed payments for this user from BikePaymentTransaction
+        from .models import BikePaymentTransaction, Product
+        completed_transactions = BikePaymentTransaction.objects.filter(
+            buyer=request.user,
+            status='Completed'
+        ).order_by('-created_at')
+        
+        purchased_bikes = list(completed_transactions)
+        
+        # 2. As a backup, also check for bikes with 'sold' status 
+        # that might not have transactions but belong to the user
+        # This is a fallback in case transaction records don't exist
+        sold_products = Product.objects.filter(
+            status='sold',
+            bikepaymenttransaction__buyer=request.user
+        ).exclude(
+            bikepaymenttransaction__in=completed_transactions
+        )
+        
+        # For any sold products that don't have transactions, create placeholder transaction objects
+        for product in sold_products:
+            # Create a temporary transaction object for display purposes
+            transaction = BikePaymentTransaction(
+                product=product,
+                buyer=request.user,
+                amount=product.price,
+                status='Completed',
+                purchase_order_id=f"ORDER-{product.id}",
+                pidx=f"PURCHASE-{product.id}",
+                created_at=product.updated_at
+            )
+            purchased_bikes.append(transaction)
+    
+    except Exception as e:
+        messages.error(request, f"Error retrieving your orders: {str(e)}")
+    
+    return render(request, 'proj/my_orders.html', {
+        'purchased_bikes': purchased_bikes
+    })
+
+@login_required
+def create_test_transaction(request):
+    """Test function to create a transaction record for testing purposes"""
+    if not request.user.is_staff:
+        messages.error(request, "You don't have permission to do this")
+        return redirect('main:home')
+    
+    try:
+        from .models import BikePaymentTransaction, Product
+        
+        # Get the first available product
+        product = Product.objects.filter(status='available').first()
+        
+        if not product:
+            messages.error(request, "No available products to use for test transaction")
+            return redirect('main:home')
+        
+        # Create a test transaction
+        transaction = BikePaymentTransaction.objects.create(
+            pidx=f"TEST-{uuid.uuid4()}",
+            purchase_order_id=f"TEST-ORDER-{uuid.uuid4()}",
+            product=product,
+            buyer=request.user,
+            amount=product.price,
+            status='Completed',
+            transaction_id=f"TEST-TXN-{uuid.uuid4()}",
+            payment_method='Test'
+        )
+        
+        # Update product status
+        product.status = 'sold'
+        product.save()
+        
+        messages.success(request, f"Test transaction created successfully. Order ID: {transaction.purchase_order_id}")
+        return redirect('main:my_orders')
+    
+    except Exception as e:
+        messages.error(request, f"Error creating test transaction: {str(e)}")
+        return redirect('main:home')
 
 # Admin view for customer lookup
 @login_required

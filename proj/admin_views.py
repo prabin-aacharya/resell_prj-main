@@ -175,6 +175,12 @@ class CustomerDeleteView(AdminRequiredMixin, DeleteView):
     template_name = 'admin/proj/customer/delete_confirmation.html'
     success_url = reverse_lazy('admin:admin_customer_list')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['opts'] = self.model._meta
+        context['opts'].app_label = 'proj'  # Set app_label explicitly
+        return context
+        
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         user = self.object.user

@@ -86,9 +86,6 @@
             <a href="{% url 'admin:admin_product_list' %}" class="sidebar-link {% if '/admin/products/' in request.path %}active{% endif %}">
                 <i class="fas fa-motorcycle me-2"></i> Products
             </a>
-            <a href="{% url 'admin:admin_order_list' %}" class="sidebar-link {% if '/admin/orders/' in request.path %}active{% endif %}">
-                <i class="fas fa-shopping-cart me-2"></i> Orders
-            </a>
             <a href="{% url 'admin:admin_customer_list' %}" class="sidebar-link {% if '/admin/customers/' in request.path %}active{% endif %}">
                 <i class="fas fa-users me-2"></i> Customers
             </a>
@@ -97,6 +94,9 @@
             </a>
             <a href="{% url 'admin:admin_seller_list' %}" class="sidebar-link {% if '/admin/sellers/' in request.path %}active{% endif %}">
                 <i class="fas fa-user-tie me-2"></i> Seller Info
+            </a>
+            <a href="{% url 'admin:admin_bike_purchases' %}" class="sidebar-link {% if '/admin/purchases/' in request.path %}active{% endif %}">
+                <i class="fas fa-shopping-basket me-2"></i> Bike Purchases
             </a>
             <a href="{% url 'admin:logout' %}" class="sidebar-link">
                 <i class="fas fa-sign-out-alt me-2"></i> Logout

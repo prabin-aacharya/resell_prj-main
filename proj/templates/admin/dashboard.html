@@ -27,14 +27,14 @@
         <div class="stat-card">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h3>Total Orders</h3>
-                    <p>{{ customer_count }}</p>
+                    <h3>Purchases</h3>
+                    <p>{{ purchase_count }}</p>
                 </div>
                 <div>
-                    <i class="fas fa-shopping-cart fa-3x text-success opacity-50"></i>
+                    <i class="fas fa-shopping-basket fa-3x text-success opacity-50"></i>
                 </div>
             </div>
-            <a href="{% url 'admin:admin_order_list' %}" class="btn btn-sm btn-success w-100 mt-3">View Orders</a>
+            <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-sm btn-success w-100 mt-3">View Purchases</a>
         </div>
     </div>
     
@@ -57,14 +57,14 @@
         <div class="stat-card">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h3>Wishlist Items</h3>
-                    <p>{{ wishlist_count }}</p>
+                    <h3>Revenue</h3>
+                    <p>₹{{ total_revenue|floatformat:0 }}</p>
                 </div>
                 <div>
-                    <i class="fas fa-heart fa-3x text-warning opacity-50"></i>
+                    <i class="fas fa-money-bill-wave fa-3x text-warning opacity-50"></i>
                 </div>
             </div>
-            <a href="{% url 'admin:admin_wishlist_list' %}" class="btn btn-sm btn-warning w-100 mt-3">View Wishlists</a>
+            <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-sm btn-warning w-100 mt-3">View Details</a>
         </div>
     </div>
 </div>
@@ -146,38 +146,41 @@
     </div>
   </div>
 
-<!-- Recent Activity -->
+<!-- Recent Purchases -->
 <div class="row mt-4">
     <div class="col-12">
         <div class="table-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h3 class="mb-0">Recent Activity</h3>
+                <h3 class="mb-0">Recent Bike Purchases</h3>
+                <a href="{% url 'admin:proj_bikepaymenttransaction_changelist' %}" class="btn btn-sm btn-outline-success">View All</a>
             </div>
             
-            {% if recent_actions %}
+            {% if recent_bike_payments %}
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead class="table-light">
                         <tr>
-                            <th>Time</th>
-                            <th>User</th>
-                            <th>Action</th>
+                            <th>Order ID</th>
+                            <th>Buyer</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for action in recent_actions %}
+                        {% for payment in recent_bike_payments %}
                         <tr>
-                            <td>{{ action.action_time|date:"M d, Y H:i" }}</td>
-                            <td>{{ action.user.username }}</td>
+                            <td>{{ payment.purchase_order_id }}</td>
+                            <td>{{ payment.buyer.username }}</td>
+                            <td>{{ payment.product.title }}</td>
+                            <td>₹{{ payment.amount }}</td>
                             <td>
-                                {% if action.action_flag == 1 %}
-                                Added {{ action.content_type.name }}: {{ action.object_repr }}
-                                {% elif action.action_flag == 2 %}
-                                Changed {{ action.content_type.name }}: {{ action.object_repr }}
-                                {% elif action.action_flag == 3 %}
-                                Deleted {{ action.content_type.name }}: {{ action.object_repr }}
-                                {% endif %}
+                                <span class="badge {% if payment.status == 'Completed' %}bg-success{% elif payment.status == 'Failed' %}bg-danger{% else %}bg-warning{% endif %}">
+                                    {{ payment.status }}
+                                </span>
                             </td>
+                            <td>{{ payment.created_at|date:"M d, Y" }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -185,9 +188,9 @@
             </div>
             {% else %}
             <div class="text-center py-5">
-                <i class="fas fa-history fa-4x text-muted mb-3"></i>
-                <h5>No recent activity</h5>
-                <p class="text-muted">Your recent actions will appear here</p>
+                <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+                <h5>No purchases yet</h5>
+                <p class="text-muted">Bike purchases will appear here</p>
             </div>
             {% endif %}
         </div>

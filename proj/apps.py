@@ -6,4 +6,5 @@ class ProjConfig(AppConfig):
     name = 'proj'
     
     def ready(self):
-        import proj.signals
+        # Initialize app when ready
+        pass

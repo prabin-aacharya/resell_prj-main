@@ -48,7 +48,43 @@
                     {% endif %}
                 </div>
                 
-                {% include 'payment_options.html' with product=product %}
+                <!-- Payment Button -->
+                {% if product.status == 'available' %}
+                <div class="mt-4">
+                    {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'main:initiate_bike_payment' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="bike_id" value="{{ product.id }}">
+                        <input type="hidden" name="sale_price" value="{{ product.price }}">
+                        <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-sm d-flex align-items-center justify-content-center">
+                            <span class="me-2">Pay with</span>
+                            <img src="https://khalti.com/static/images/logo/khalti-logo.svg" alt="Khalti" height="24" class="me-2">
+                        </button>
+                    </form>
+                    {% else %}
+                    <button class="btn btn-success btn-lg w-100 py-3 shadow-sm"
+                            data-bs-toggle="modal" data-bs-target="#loginRequiredModal">
+                        <i class="fas fa-shopping-cart me-2"></i>Buy Now
+                    </button>
+                    {% endif %}
+                    <div class="mt-2 text-center">
+                        <small class="text-muted d-flex align-items-center justify-content-center">
+                            <i class="fas fa-lock me-1"></i> Secured by Khalti Payment Gateway
+                        </small>
+                    </div>
+                </div>
+                {% else %}
+                <div class="alert alert-warning mt-4">
+                    <i class="fas fa-info-circle me-2"></i>
+                    {% if product.status == 'sold' %}
+                        This bike has been sold.
+                    {% elif product.status == 'pending' %}
+                        This bike is currently reserved.
+                    {% else %}
+                        This bike is not available for purchase at this time.
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -66,7 +102,7 @@
         <div class="py-4">
           <i class="fas fa-user-circle fa-5x text-success mb-3"></i>
           <h4>Please Login to Continue</h4>
-          <p class="text-muted mb-4">You need to be logged in to add bikes to your wishlist.</p>
+          <p class="text-muted mb-4">You need to be logged in to complete this action.</p>
           <div class="d-grid gap-2">
             <a href="{% url 'main:login' %}?next={{ request.path }}" class="btn btn-success"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
             <a href="{% url 'main:customerregistration' %}" class="btn btn-outline-success"><i class="fas fa-user-plus me-2"></i>Register</a>

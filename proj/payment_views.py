@@ -5,13 +5,12 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-from .models import Product, BikePaymentTransaction, Customer
+from .models import Product, Customer, BikePaymentTransaction
 
 logger = logging.getLogger(__name__)
 
@@ -35,10 +34,6 @@ def initiate_bike_payment(request):
         product = get_object_or_404(Product, id=bike_id, status='available')
         buyer = request.user
         
-        # Get seller info (assuming product has a seller field)
-        # If not, you can adjust this to get the seller from elsewhere
-        seller = get_object_or_404(User, username=product.seller_name)
-        
         # Format amount (convert to paisa)
         amount = int(float(sale_price) * 100)
         if amount <= 0:
@@ -48,24 +43,33 @@ def initiate_bike_payment(request):
         # Generate a unique order ID
         purchase_order_id = f"BIKE-{uuid.uuid4()}"
         
-        # Get customer info for the buyer
-        customer = get_object_or_404(Customer, user=buyer)
+        # Check if customer info exists
+        try:
+            # Get customer info for the buyer
+            customer = get_object_or_404(Customer, user=buyer)
+            phone = customer.mobile
+        except:
+            # No customer record, show error
+            messages.error(request, "Your profile is incomplete. Please update your profile with contact information.")
+            return redirect('main:profile')
         
         # Prepare the return URL
-        return_url = request.build_absolute_uri(reverse('main:verify_bike_payment'))
+        return_url = request.build_absolute_uri(reverse('main:payment_callback'))
         website_url = request.build_absolute_uri('/')
         
-        # Prepare payload for Khalti
+        logger.info(f"Initiating payment for product {product.id} with amount {amount} paisa")
+        
+        # Prepare payload for Khalti based on KPG-2 documentation
         payload = {
             "return_url": return_url,
             "website_url": website_url,
             "amount": amount,
             "purchase_order_id": purchase_order_id,
-            "purchase_order_name": f"Bike Purchase: {product.title}",
+            "purchase_order_name": f"Bike: {product.title}",
             "customer_info": {
                 "name": buyer.get_full_name() or buyer.username,
                 "email": buyer.email,
-                "phone": customer.mobile,
+                "phone": phone
             },
             "product_details": [
                 {
@@ -73,7 +77,7 @@ def initiate_bike_payment(request):
                     "name": product.title,
                     "total_price": amount,
                     "quantity": 1,
-                    "unit_price": amount,
+                    "unit_price": amount
                 }
             ],
             "amount_breakdown": [
@@ -91,147 +95,246 @@ def initiate_bike_payment(request):
         }
         
         try:
+            # Log the payload for debugging
+            logger.debug(f"Khalti request payload: {json.dumps(payload)}")
+            
+            # Use the correct API endpoint based on the Khalti documentation
+            khalti_endpoint = "https://khalti.com/api/v2/epayment/initiate/"
+            if hasattr(settings, 'KHALTI_DEBUG') and settings.KHALTI_DEBUG:
+                khalti_endpoint = "https://dev.khalti.com/api/v2/epayment/initiate/"
+                
             response = requests.post(
-                "https://a.khalti.com/api/v2/epayment/initiate/",
+                khalti_endpoint,
                 json=payload,
                 headers=headers
             )
             
             # Log the response for debugging
-            logger.info(f"Khalti initiate response: {response.status_code}, {response.text}")
-            
-            # Check if the response was successful
-            response_data = response.json()
-            if response.status_code == 200 and response_data.get('payment_url'):
-                # Store transaction details
-                transaction = BikePaymentTransaction.objects.create(
-                    pidx=response_data['pidx'],
-                    purchase_order_id=purchase_order_id,
-                    product=product,
-                    buyer=buyer,
-                    seller=seller,
-                    amount=amount,
-                    status='Initiated'
-                )
-                
-                # Update product status to pending
-                product.status = 'pending'
-                product.save()
-                
-                # Redirect to Khalti payment page
-                return redirect(response_data['payment_url'])
-            else:
-                # Handle error
-                error_msg = response_data.get('detail', 'Payment initialization failed')
-                messages.error(request, error_msg)
-                return redirect('main:payment_error', error=error_msg)
-                
-        except requests.RequestException as e:
-            logger.error(f"Khalti request error: {str(e)}")
-            messages.error(request, "Could not connect to payment gateway")
-            return redirect('main:payment_error', error="Connection error")
-            
-    except Exception as e:
-        logger.error(f"Payment initiation error: {str(e)}")
-        messages.error(request, "An error occurred while processing your payment")
-        return redirect('main:payment_error', error="General error")
-
-@login_required
-def verify_bike_payment(request):
-    """
-    Verifies a payment with Khalti KPG-2 after user returns from payment gateway
-    """
-    # Get transaction details from callback parameters
-    pidx = request.GET.get('pidx')
-    purchase_order_id = request.GET.get('purchase_order_id')
-    
-    if not pidx or not purchase_order_id:
-        messages.error(request, "Missing transaction information")
-        return redirect('main:payment_error', error="Invalid transaction")
-    
-    try:
-        # Look up the transaction in our database
-        transaction = get_object_or_404(
-            BikePaymentTransaction, 
-            pidx=pidx,
-            purchase_order_id=purchase_order_id
-        )
-        
-        # Verify with Khalti
-        headers = {
-            "Authorization": f"Key {settings.KHALTI_SECRET_KEY}",
-            "Content-Type": "application/json"
-        }
-        
-        payload = {"pidx": pidx}
-        
-        try:
-            response = requests.post(
-                "https://a.khalti.com/api/v2/epayment/lookup/",
-                json=payload,
-                headers=headers
-            )
-            
-            # Log the response for debugging
-            logger.info(f"Khalti lookup response: {response.status_code}, {response.text}")
+            logger.info(f"Khalti initiate response: {response.status_code}")
+            logger.debug(f"Khalti initiate response text: {response.text}")
             
             # Check if the response was successful
             if response.status_code == 200:
                 response_data = response.json()
+                if 'payment_url' in response_data:
+                    # Store product in session for later verification
+                    request.session['pending_product_id'] = product.id
+                    request.session['pending_purchase_order_id'] = purchase_order_id
+                    request.session['pending_pidx'] = response_data['pidx']
+                    
+                    logger.info(f"Payment initiated with pidx: {response_data['pidx']}")
+                    
+                    # Update product status to pending
+                    product.status = 'pending'
+                    product.save()
+                    
+                    # Redirect to Khalti payment page
+                    return redirect(response_data['payment_url'])
+                else:
+                    logger.error(f"Payment URL not found in response: {response_data}")
+                    messages.error(request, "Payment initialization failed (no payment URL)")
+                    return redirect('main:product-detail', pk=product.id)
+            else:
+                # Handle error
+                error_msg = "Payment initialization failed"
+                try:
+                    response_json = response.json()
+                    logger.error(f"Khalti error response: {response_json}")
+                    if 'detail' in response_json:
+                        error_msg = response_json['detail']
+                    elif 'error_key' in response_json:
+                        error_msg = f"Error: {response_json.get('error_key')}"
+                except Exception as json_err:
+                    logger.exception(f"Error parsing JSON response: {str(json_err)}")
                 
-                # Verify the transaction
-                if response_data.get('status') == 'Completed':
-                    # Verify amount
-                    if int(response_data.get('total_amount', 0)) == transaction.amount:
-                        # Update transaction status
-                        transaction.status = 'Completed'
-                        transaction.save()
+                messages.error(request, error_msg)
+                return redirect('main:product-detail', pk=product.id)
+                
+        except requests.RequestException as e:
+            logger.exception(f"Khalti request error: {str(e)}")
+            messages.error(request, "Could not connect to payment gateway")
+            return redirect('main:product-detail', pk=product.id)
+            
+    except Exception as e:
+        logger.exception(f"Payment initiation error: {str(e)}")
+        messages.error(request, "An error occurred while processing your payment")
+        return redirect('main:home')
+
+def payment_callback(request):
+    """
+    Callback endpoint for Khalti payments - handles both success and failure
+    """
+    # Log all request parameters for debugging
+    logger.info(f"Payment callback received: {request.GET}")
+    
+    # Get parameters from the callback
+    pidx = request.GET.get('pidx')
+    status = request.GET.get('status')
+    transaction_id = request.GET.get('transaction_id') or request.GET.get('txnId')
+    amount = request.GET.get('amount')
+    mobile = request.GET.get('mobile')
+    purchase_order_id = request.GET.get('purchase_order_id')
+    
+    if not pidx:
+        logger.error("No pidx in callback parameters")
+        messages.error(request, "Invalid payment callback")
+        return redirect('main:home')
+    
+    # Get the pending product from session
+    product_id = request.session.get('pending_product_id')
+    session_purchase_order_id = request.session.get('pending_purchase_order_id')
+    session_pidx = request.session.get('pending_pidx')
+    
+    logger.info(f"Session data: product_id={product_id}, purchase_order_id={session_purchase_order_id}, pidx={session_pidx}")
+    
+    # Clear session data
+    if 'pending_product_id' in request.session:
+        del request.session['pending_product_id']
+    if 'pending_purchase_order_id' in request.session:
+        del request.session['pending_purchase_order_id']
+    if 'pending_pidx' in request.session:
+        del request.session['pending_pidx']
+    
+    # Verify the pidx matches
+    if session_pidx != pidx:
+        logger.error(f"Pidx mismatch: session={session_pidx}, callback={pidx}")
+        messages.error(request, "Payment verification failed - mismatched transaction ID")
+        return redirect('main:home')
+    
+    try:
+        product = get_object_or_404(Product, id=product_id)
+        
+        # Check status first
+        if status == 'Completed' and transaction_id:
+            logger.info(f"Payment status: Completed, transaction_id: {transaction_id}")
+            
+            # Verify with Khalti lookup API
+            headers = {
+                "Authorization": f"Key {settings.KHALTI_SECRET_KEY}",
+                "Content-Type": "application/json"
+            }
+            
+            lookup_payload = {"pidx": pidx}
+            
+            try:
+                # Use the correct API endpoint based on the Khalti documentation
+                khalti_lookup_endpoint = "https://khalti.com/api/v2/epayment/lookup/"
+                if hasattr(settings, 'KHALTI_DEBUG') and settings.KHALTI_DEBUG:
+                    khalti_lookup_endpoint = "https://dev.khalti.com/api/v2/epayment/lookup/"
+                    
+                lookup_response = requests.post(
+                    khalti_lookup_endpoint,
+                    json=lookup_payload,
+                    headers=headers
+                )
+                
+                logger.info(f"Khalti lookup response: {lookup_response.status_code}")
+                logger.debug(f"Khalti lookup response text: {lookup_response.text}")
+                
+                if lookup_response.status_code == 200:
+                    lookup_data = lookup_response.json()
+                    
+                    # Final verification
+                    if lookup_data.get('status') == 'Completed':
+                        logger.info(f"Payment verified as Completed for pidx: {pidx}")
                         
-                        # Update product status
-                        product = transaction.product
+                        # Payment successful - mark product as sold
                         product.status = 'sold'
                         product.save()
                         
-                        # Success message and redirect
-                        messages.success(request, "Payment successful! Your bike purchase is complete.")
-                        return render(request, 'payment_success.html', {'transaction': transaction})
+                        # Create a BikePaymentTransaction record
+                        try:
+                            # Convert amount from paisa to rupees if needed
+                            payment_amount = float(amount) / 100 if amount else product.price
+                            
+                            # Create the transaction record
+                            BikePaymentTransaction.objects.create(
+                                pidx=pidx,
+                                purchase_order_id=purchase_order_id or session_purchase_order_id,
+                                product=product,
+                                buyer=request.user,
+                                amount=payment_amount,
+                                status='Completed',
+                                transaction_id=transaction_id,
+                                payment_method='Khalti'
+                            )
+                            logger.info(f"Created BikePaymentTransaction record for pidx: {pidx}")
+                        except Exception as tx_error:
+                            logger.exception(f"Error creating transaction record: {str(tx_error)}")
+                        
+                        messages.success(request, "Payment successful! The bike is now yours.")
+                        return render(request, 'proj/payment_success.html', {
+                            'product': product,
+                            'transaction_id': transaction_id
+                        })
                     else:
-                        # Amount mismatch
-                        logger.error(f"Amount mismatch: {response_data.get('total_amount')} vs {transaction.amount}")
-                        transaction.status = 'Failed'
-                        transaction.save()
-                        messages.error(request, "Payment verification failed: Amount mismatch")
-                        return render(request, 'payment_error.html', {'error': 'Amount verification failed'})
+                        logger.warning(f"Payment not completed in lookup: {lookup_data.get('status')}")
+                        
+                        # Payment not completed
+                        product.status = 'available'
+                        product.save()
+                        
+                        messages.warning(request, f"Payment status: {lookup_data.get('status')}")
+                        return render(request, 'proj/payment_error.html', {
+                            'error': f"Payment status: {lookup_data.get('status')}",
+                            'product': product
+                        })
                 else:
-                    # Payment not completed
-                    transaction.status = response_data.get('status', 'Failed')
-                    transaction.save()
-                    messages.warning(request, f"Payment {transaction.status.lower()}")
-                    return render(request, 'payment_error.html', {'error': f"Payment {transaction.status.lower()}"})
-            else:
-                # Failed to verify with Khalti
-                transaction.status = 'Failed'
-                transaction.save()
-                messages.error(request, "Payment verification failed")
-                return render(request, 'payment_error.html', {'error': 'Verification failed'})
-                
-        except requests.RequestException as e:
-            logger.error(f"Khalti verification request error: {str(e)}")
-            messages.error(request, "Could not verify payment with gateway")
-            return render(request, 'payment_error.html', {'error': 'Verification failed'})
+                    logger.error(f"Lookup verification failed: {lookup_response.status_code}")
+                    
+                    # Verification failed
+                    product.status = 'available'
+                    product.save()
+                    
+                    messages.error(request, "Payment verification failed")
+                    return render(request, 'proj/payment_error.html', {
+                        'error': 'Payment verification failed',
+                        'product': product
+                    })
             
+            except Exception as e:
+                # API error
+                logger.exception(f"Khalti lookup error: {str(e)}")
+                
+                product.status = 'available'
+                product.save()
+                
+                messages.error(request, "Error verifying payment")
+                return render(request, 'proj/payment_error.html', {
+                    'error': 'Error verifying payment',
+                    'product': product
+                })
+        
+        else:
+            logger.info(f"Payment not completed: {status}")
+            
+            # Payment not completed
+            product.status = 'available'
+            product.save()
+            
+            if status == 'User canceled':
+                messages.info(request, "Payment was canceled")
+                return redirect('main:product-detail', pk=product.id)
+            elif status == 'Expired':
+                messages.info(request, "Payment session expired")
+                return redirect('main:product-detail', pk=product.id)
+            else:
+                messages.warning(request, f"Payment status: {status}")
+                return render(request, 'proj/payment_error.html', {
+                    'error': f"Payment status: {status}",
+                    'product': product
+                })
+    
     except Exception as e:
-        logger.error(f"Payment verification error: {str(e)}")
-        messages.error(request, "An error occurred while verifying your payment")
-        return render(request, 'payment_error.html', {'error': 'Verification error'})
+        logger.exception(f"Payment callback error: {str(e)}")
+        messages.error(request, "An error occurred while processing your payment")
+        return redirect('main:home')
 
-def payment_error(request, error=None):
-    """Display payment error page"""
-    # Get error from URL parameter or GET parameter
-    if error is None:
-        error = request.GET.get('error', 'Unknown error')
-    return render(request, 'payment_error.html', {'error': error})
-
-def payment_success(request):
-    """Display payment success page"""
-    return render(request, 'payment_success.html') 
+# Add a test view to check Khalti configuration
+def test_khalti_config(request):
+    """Simple view to test if Khalti is properly configured"""
+    return JsonResponse({
+        'khalti_public_key': settings.KHALTI_PUBLIC_KEY[:5] + '...',
+        'khalti_secret_key': settings.KHALTI_SECRET_KEY[:5] + '...' if settings.KHALTI_SECRET_KEY else 'Not configured',
+        'is_debug': getattr(settings, 'KHALTI_DEBUG', False)
+    }) 

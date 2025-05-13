@@ -3,14 +3,15 @@ from django.utils.html import format_html
 from django.urls import reverse, path
 from django.contrib.auth.models import User, Group
 from django.contrib.admin.views.main import ChangeList
-from django.db.models import Count, Sum
-from . models import Product, Customer, Wishlist, SellerInfo, Order, BikePaymentTransaction
+from django.db.models import Count, Sum, Q
+from . models import Product, Customer, Wishlist, SellerInfo, BikePaymentTransaction
 from .forms import SellBikeForm, SellerInfoForm
 from django import forms
 import datetime
 from . import admin_views
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
+from django.contrib.admin import AdminSite
 
 # Customize admin site
 admin.site.site_header = 'Bike Resell Admin'
@@ -18,8 +19,6 @@ admin.site.site_title = 'Bike Resell Admin Portal'
 admin.site.index_title = 'Welcome to Bike Resell Admin Portal'
 
 # Custom admin index view to add statistics
-from django.contrib.admin.sites import AdminSite
-
 class BikeResellAdminSite(AdminSite):
     """
     Custom admin site for Bike Resell with dashboard statistics
@@ -51,6 +50,7 @@ class BikeResellAdminSite(AdminSite):
             path('sellers/create/', self.admin_view(admin_views.SellerInfoCreateView.as_view()), name='admin_seller_create'),
             path('sellers/<int:pk>/update/', self.admin_view(admin_views.SellerInfoUpdateView.as_view()), name='admin_seller_update'),
             path('sellers/<int:pk>/delete/', self.admin_view(admin_views.SellerInfoDeleteView.as_view()), name='admin_seller_delete'),
+            path('purchases/', self.admin_view(self.bike_purchases_view), name='admin_bike_purchases'),
             path('logout/', self.logout_view, name='logout'),
         ]
         
@@ -72,20 +72,45 @@ class BikeResellAdminSite(AdminSite):
         context['wishlist_count'] = Wishlist.objects.count()
         context['seller_count'] = SellerInfo.objects.count()
         
+        # Purchase statistics
+        context['purchase_count'] = BikePaymentTransaction.objects.filter(status='Completed').count()
+        context['total_revenue'] = BikePaymentTransaction.objects.filter(status='Completed').aggregate(
+            total=Sum('amount')
+        )['total'] or 0
+        
         # Recent products
         context['recent_products'] = Product.objects.order_by('-id')[:5]
         
         # Recent customers
         context['recent_customers'] = Customer.objects.order_by('-id')[:5]
         
-        # Recent orders
-        context['recent_orders'] = Order.objects.select_related('customer', 'product').order_by('-order_date')[:5]
-        
-        # Recent actions for admin activity feed
-        from django.contrib.admin.models import LogEntry
-        context['recent_actions'] = LogEntry.objects.select_related('user', 'content_type').order_by('-action_time')[:10]
+        # Recent bike payments
+        context['recent_bike_payments'] = BikePaymentTransaction.objects.select_related('buyer', 'product').order_by('-created_at')[:5]
         
         return render(request, 'admin/dashboard.html', context)
+    
+    def bike_purchases_view(self, request):
+        """Custom view for bike purchases"""
+        context = self.each_context(request)
+        
+        # Get all bike payment transactions
+        context['bike_payments'] = BikePaymentTransaction.objects.select_related(
+            'product', 'buyer'
+        ).order_by('-created_at')
+        
+        # Get purchase statistics
+        context['total_purchases'] = BikePaymentTransaction.objects.filter(status='Completed').count()
+        context['total_revenue'] = BikePaymentTransaction.objects.filter(status='Completed').aggregate(
+            total=Sum('amount')
+        )['total'] or 0
+        
+        # Get top buyers
+        from django.db.models import Count
+        context['top_buyers'] = User.objects.annotate(
+            purchase_count=Count('bike_purchases', filter=Q(bike_purchases__status='Completed'))
+        ).filter(purchase_count__gt=0).order_by('-purchase_count')[:5]
+        
+        return render(request, 'admin/bike_purchases.html', context)
     
     def index(self, request, extra_context=None):
         # Redirect to our custom dashboard
@@ -599,17 +624,29 @@ class SellerInfoAdmin(admin.ModelAdmin):
         return format_html(html)
     bluebook_preview.short_description = 'Bluebook Images Preview'
 
+# BikePaymentTransaction Admin
+class BikePaymentTransactionAdmin(admin.ModelAdmin):
+    list_display = ['purchase_order_id', 'get_product_title', 'get_buyer_name', 'amount', 'status', 'created_at', 'payment_method']
+    list_filter = ['status', 'payment_method', 'created_at']
+    search_fields = ['purchase_order_id', 'pidx', 'product__title', 'buyer__username', 'buyer__email']
+    readonly_fields = ['purchase_order_id', 'pidx', 'transaction_id', 'created_at', 'updated_at']
+    list_per_page = 20
+    ordering = ['-created_at']
+    
+    def get_product_title(self, obj):
+        return obj.product.title
+    get_product_title.short_description = 'Product'
+    
+    def get_buyer_name(self, obj):
+        return f"{obj.buyer.username} ({obj.buyer.email})"
+    get_buyer_name.short_description = 'Buyer'
+
 # Register all models with our custom admin site
 admin_site.register(Product, ProductModelAdmin)
 admin_site.register(Customer, CustomerModelAdmin)
 admin_site.register(Wishlist, WishlistAdmin)
 admin_site.register(SellerInfo, SellerInfoAdmin)
+admin_site.register(BikePaymentTransaction, BikePaymentTransactionAdmin)
 
 # Register User model from django.contrib.auth
 admin_site.register(User)
-
-@admin.register(BikePaymentTransaction)
-class BikePaymentTransactionAdmin(admin.ModelAdmin):
-    list_display = ['purchase_order_id', 'product', 'buyer', 'seller', 'amount', 'status', 'created_at']
-    search_fields = ['purchase_order_id', 'product__title', 'buyer__username', 'seller__username']
-    list_filter = ['status', 'created_at']

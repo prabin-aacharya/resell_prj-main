@@ -1,0 +1,131 @@
+{% extends 'proj/admin/base.html' %}
+{% load static %}
+
+{% block title %}Bike Purchases{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Bike Purchases</h2>
+
+<!-- Statistics Cards -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Total Purchases</h3>
+                    <p>{{ total_purchases }}</p>
+                </div>
+                <div>
+                    <i class="fas fa-shopping-cart fa-3x text-primary opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Total Revenue</h3>
+                    <p>Rs. {{ total_revenue|floatformat:2 }}</p>
+                </div>
+                <div>
+                    <i class="fas fa-money-bill-wave fa-3x text-success opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Top Buyers -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="table-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">Top Buyers</h3>
+            </div>
+            
+            {% if top_buyers %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Purchases</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in top_buyers %}
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.purchase_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-users fa-4x text-muted mb-3"></i>
+                <h5>No buyers yet</h5>
+                <p class="text-muted">Buyer statistics will appear here</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- All Purchases -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="table-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">All Bike Purchases</h3>
+            </div>
+            
+            {% if bike_payments %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Buyer</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Payment Method</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for payment in bike_payments %}
+                        <tr>
+                            <td>{{ payment.purchase_order_id }}</td>
+                            <td>{{ payment.buyer.username }}</td>
+                            <td>{{ payment.product.title }}</td>
+                            <td>₹{{ payment.amount }}</td>
+                            <td>
+                                <span class="badge {% if payment.status == 'Completed' %}bg-success{% elif payment.status == 'Failed' %}bg-danger{% else %}bg-warning{% endif %}">
+                                    {{ payment.status }}
+                                </span>
+                            </td>
+                            <td>{{ payment.payment_method }}</td>
+                            <td>{{ payment.created_at|date:"M d, Y" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+                <h5>No purchases yet</h5>
+                <p class="text-muted">Bike purchases will appear here</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

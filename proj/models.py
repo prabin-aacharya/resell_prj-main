@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MinLengthValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
@@ -18,9 +18,10 @@ BRAND_CHOICES=(
 )
 
 STATE_CHOICES = (
-    ('Koshi', 'Koshi'),
-    ('Madhesh', 'Madhesh'),  # Corrected spelling
-    ('Bagmati', 'Bagmati'),
+    ('', 'Select Province'),
+    ('Province No. 1', 'Province No. 1'),
+    ('Madhesh Province', 'Madhesh Province'),
+    ('Bagmati Province', 'Bagmati Province'),
     ('Gandaki', 'Gandaki'),
     ('Lumbini', 'Lumbini'),
     ('Karnali', 'Karnali'),
@@ -175,6 +176,45 @@ class SellerInfo(models.Model):
     def __str__(self):
         return self.full_name
 
+class BikePaymentTransaction(models.Model):
+    """Track bike payments and purchases"""
+    STATUS_CHOICES = [
+        ('Initiated', 'Initiated'),
+        ('Pending', 'Pending'),
+        ('Completed', 'Completed'),
+        ('Failed', 'Failed'),
+        ('Refunded', 'Refunded'),
+    ]
+    
+    pidx = models.CharField(max_length=100, unique=True)
+    purchase_order_id = models.CharField(max_length=100, unique=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bike_purchases')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Initiated')
+    transaction_id = models.CharField(max_length=100, blank=True, null=True)
+    payment_method = models.CharField(max_length=50, default="Khalti", blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "Bike Payment"
+        verbose_name_plural = "Bike Payments"
+
+    def __str__(self):
+        return f"{self.product.title} - {self.buyer.username} - {self.status}"
+
+    @property
+    def amount_in_paisa(self):
+        """Returns amount in paisa for Khalti"""
+        return int(self.amount * 100)
+    
+    @property
+    def amount_display(self):
+        """Returns formatted amount for display"""
+        return f"Rs. {self.amount}"
+
 # Signal handlers to keep SellerInfo in sync with Customer profile updates
 @receiver(post_save, sender=Customer)
 def update_seller_info_on_customer_update(sender, instance, **kwargs):
@@ -199,24 +239,4 @@ def update_seller_info_on_customer_update(sender, instance, **kwargs):
             if (not seller_info.email or seller_info.email == '') and instance.user and instance.user.email:
                 seller_info.email = instance.user.email
                 seller_info.save()
-
-class BikePaymentTransaction(models.Model):
-    STATUS_CHOICES = [
-        ('Initiated', 'Initiated'),
-        ('Pending', 'Pending'),
-        ('Completed', 'Completed'),
-        ('Failed', 'Failed'),
-    ]
-    pidx = models.CharField(max_length=100, unique=True)
-    purchase_order_id = models.CharField(max_length=100, unique=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    buyer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bike_purchases')
-    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bike_sales')
-    amount = models.PositiveIntegerField()  # in paisa
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Initiated')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.product} - {self.buyer} - {self.status}"
 
