@@ -2,7 +2,7 @@ from django import forms
 from django.core.validators import EmailValidator, RegexValidator
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm,UsernameField,PasswordChangeForm,SetPasswordForm,PasswordResetForm
 from django.contrib.auth.models import User
-from .models import Customer, Product
+from .models import Customer, Product, SellerInfo
 import re
 import dns.resolver
 from django.utils import timezone
@@ -189,14 +189,35 @@ class SellBikeForm(forms.Form):
 
 from django.utils.safestring import mark_safe
 
-class SellerInfoForm(forms.Form):
-    full_name = forms.CharField(label="Name", max_length=100, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    phone = forms.CharField(label="Mobile number", max_length=20, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    agree = forms.BooleanField(
-        label=mark_safe('I agree with BikeWale sell bike <a href="/terms/" target="_blank">Terms & Conditions</a>, visitor agreement and <a href="/privacy/" target="_blank">Privacy Policy</a>. I agree that by clicking \'List your bike\' button, I am permitting buyers to contact me on my Mobile number.'),
-        required=True
+class SellerInfoForm(forms.ModelForm):
+    # Define the BRAND_CHOICES constant from the Product model
+    BRAND_CHOICES = [
+        ('', 'Select Brand'),
+        ('HONDA', 'Honda'),
+        ('YAMAHA', 'Yamaha'),
+        ('BAJAJ', 'Bajaj'),
+        ('HERO', 'Hero'),
+        ('TVS', 'TVS'),
+    ]
+    
+    # Override the bike_brand field to use choices
+    bike_brand = forms.ChoiceField(
+        choices=BRAND_CHOICES,
+        required=True,
+        widget=forms.Select(attrs={'class': 'form-select'})
     )
+    
+    # Include product field
+    product = forms.ModelChoiceField(
+        queryset=Product.objects.all(),
+        required=False,
+        empty_label="No associated product"
+    )
+    
+    class Meta:
+        model = SellerInfo
+        fields = ['full_name', 'email', 'phone', 'bike_brand', 'bike_model', 
+                  'status', 'verification_status', 'product']
 
 class ProductForm(forms.ModelForm):
     class Meta:

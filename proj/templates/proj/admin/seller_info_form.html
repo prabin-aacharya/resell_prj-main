@@ -92,7 +92,7 @@
                                     class="form-select {% if form.bike_brand.errors %}is-invalid{% endif %}"
                                     id="{{ form.bike_brand.id_for_label }}"
                                     required>
-                                {% for choice in form.bike_brand.field.choices %}
+                                {% for choice in form.fields.bike_brand.choices %}
                                     <option value="{{ choice.0 }}" {% if form.bike_brand.value == choice.0 %}selected{% endif %}>
                                         {{ choice.1 }}
                                     </option>
@@ -115,6 +115,24 @@
                                 <div class="invalid-feedback">{{ form.bike_model.errors|join:", " }}</div>
                             {% endif %}
                         </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.product.id_for_label }}" class="form-label">Associated Product</label>
+                            <select name="{{ form.product.name }}"
+                                    class="form-select {% if form.product.errors %}is-invalid{% endif %}"
+                                    id="{{ form.product.id_for_label }}">
+                                <option value="">No associated product</option>
+                                {% for product in form.fields.product.queryset %}
+                                    <option value="{{ product.id }}" {% if form.product.value|stringformat:"i" == product.id|stringformat:"i" %}selected{% endif %}>
+                                        {{ product.title }} ({{ product.brand }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.product.errors %}
+                                <div class="invalid-feedback">{{ form.product.errors|join:", " }}</div>
+                            {% endif %}
+                            <div class="form-text">Optional: Associate this seller with a product in the system</div>
+                        </div>
                     </div>
                 </div>
 
@@ -129,7 +147,7 @@
                                     class="form-select {% if form.status.errors %}is-invalid{% endif %}"
                                     id="{{ form.status.id_for_label }}"
                                     required>
-                                {% for choice in form.status.field.choices %}
+                                {% for choice in form.fields.status.choices %}
                                     <option value="{{ choice.0 }}" {% if form.status.value == choice.0 %}selected{% endif %}>
                                         {{ choice.1 }}
                                     </option>
@@ -146,7 +164,7 @@
                                     class="form-select {% if form.verification_status.errors %}is-invalid{% endif %}"
                                     id="{{ form.verification_status.id_for_label }}"
                                     required>
-                                {% for choice in form.verification_status.field.choices %}
+                                {% for choice in form.fields.verification_status.choices %}
                                     <option value="{{ choice.0 }}" {% if form.verification_status.value == choice.0 %}selected{% endif %}>
                                         {{ choice.1 }}
                                     </option>

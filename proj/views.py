@@ -377,7 +377,7 @@ def sell_bike(request):
             
             # Use redirect instead of render to avoid POST-refresh issues
             from django.shortcuts import redirect
-            response = redirect('sell_success')
+            response = redirect('main:sell_success')
             
             # Ensure cookies are properly set in the response
             if request.user.is_authenticated:

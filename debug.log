@@ -1496,3 +1496,155 @@ INFO 2025-05-13 18:35:21,508 basehttp "GET /admin/products/ HTTP/1.1" 200 24077
 INFO 2025-05-13 18:35:31,516 basehttp "GET /admin/products/4/update/ HTTP/1.1" 200 12783
 INFO 2025-05-13 18:35:35,517 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
 INFO 2025-05-13 18:35:40,848 basehttp "GET /admin/products/ HTTP/1.1" 200 24077
+INFO 2025-05-13 18:43:01,171 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36590
+INFO 2025-05-13 18:43:03,171 basehttp "GET /admin/sellers/1/update/ HTTP/1.1" 200 11057
+INFO 2025-05-13 18:49:23,343 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36590
+INFO 2025-05-13 18:49:25,194 basehttp "GET /admin/sellers/create/ HTTP/1.1" 200 10261
+INFO 2025-05-13 18:49:52,099 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-13 18:49:57,968 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36590
+INFO 2025-05-13 18:50:09,155 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:09,877 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:09,972 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:10,220 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:10,026 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:10,716 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:50:18,904 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:50:20,560 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:50:20,633 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:50:20,731 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:50:20,973 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:50:22,363 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:10,356 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:10,356 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:10,610 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:11,378 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:12,207 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:12,888 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 18:51:29,108 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:29,129 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:29,269 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:29,312 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:29,518 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:51:29,681 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:50,737 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:50,771 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:50,905 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:51,234 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:51,316 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:51,413 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-13 18:52:58,292 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:58,688 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:58,702 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:59,347 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:59,472 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:52:59,711 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:53:08,647 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36716
+INFO 2025-05-13 18:53:10,763 basehttp "GET /admin/sellers/create/ HTTP/1.1" 200 14595
+INFO 2025-05-13 18:53:17,456 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 18:53:21,484 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9364
+INFO 2025-05-13 18:53:22,656 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36716
+INFO 2025-05-13 18:53:25,411 basehttp "GET /admin/sellers/1/update/ HTTP/1.1" 200 15417
+INFO 2025-05-13 18:53:44,102 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-13 18:53:47,433 basehttp "GET /admin/products/ HTTP/1.1" 200 24077
+INFO 2025-05-13 18:54:09,775 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9364
+INFO 2025-05-13 18:54:12,672 basehttp "GET /admin/sellers/ HTTP/1.1" 200 36716
+INFO 2025-05-13 18:54:16,617 basehttp "GET /admin/sellers/1/update/ HTTP/1.1" 200 15417
+INFO 2025-05-13 18:54:31,591 basehttp "POST /admin/sellers/1/update/ HTTP/1.1" 302 0
+INFO 2025-05-13 18:54:31,778 basehttp "GET /admin/sellers/ HTTP/1.1" 200 37061
+INFO 2025-05-13 18:54:42,800 basehttp "GET /admin/products/ HTTP/1.1" 200 24077
+INFO 2025-05-13 18:54:48,576 basehttp "GET /admin/products/5/update/ HTTP/1.1" 200 12741
+INFO 2025-05-13 18:54:56,542 basehttp "POST /admin/products/5/update/ HTTP/1.1" 200 12991
+INFO 2025-05-13 18:55:11,905 basehttp "POST /admin/products/5/update/ HTTP/1.1" 302 0
+INFO 2025-05-13 18:55:12,080 basehttp "GET /admin/products/ HTTP/1.1" 200 24409
+INFO 2025-05-13 18:55:31,048 basehttp "GET /my-orders/ HTTP/1.1" 200 14372
+INFO 2025-05-13 18:55:35,155 basehttp "GET /buy/ HTTP/1.1" 200 39589
+WARNING 2025-05-13 18:55:35,468 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 18:55:35,598 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-13 18:55:35,794 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 18:55:36,121 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 18:55:36,446 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-13 18:55:36,548 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 18:55:36,709 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 18:55:36,722 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-13 18:55:36,730 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 18:55:37,341 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 18:55:37,372 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 18:55:37,540 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 18:55:40,184 basehttp "GET /sell/ HTTP/1.1" 200 19869
+WARNING 2025-05-13 18:55:40,363 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 18:55:40,379 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 18:55:40,503 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 18:55:40,503 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 18:55:40,624 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 18:55:40,825 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+ERROR 2025-05-13 19:00:56,256 log Internal Server Error: /sell/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 380, in sell_bike
+    response = redirect('sell_success')
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'sell_success' not found. 'sell_success' is not a valid view function or pattern name.
+ERROR 2025-05-13 19:00:56,276 basehttp "POST /sell/ HTTP/1.1" 500 103043
+INFO 2025-05-13 19:02:35,585 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:35,836 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:36,402 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:36,674 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:36,746 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:36,926 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:37,174 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:02:45,457 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:49,847 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-13 19:02:53,730 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:54,393 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:54,769 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:54,785 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:54,940 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:02:55,472 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:02,483 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:02,784 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:03,003 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:03,175 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:03,655 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:03,581 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:07,269 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:12,161 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:12,398 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:12,741 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:12,744 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:12,875 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:13,364 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:14,817 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:21,326 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:21,363 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:21,932 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:21,961 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:22,069 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-13 19:03:25,649 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:26,639 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:26,720 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:26,718 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:27,071 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:27,768 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 19:03:37,816 autoreload Watching for file changes with StatReloader

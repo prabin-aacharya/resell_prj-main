@@ -10,7 +10,7 @@ from datetime import timedelta
 
 from .models import Product, Order, Customer, Wishlist, SellerInfo
 from django.contrib.auth.models import User
-from .forms import ProductForm
+from .forms import ProductForm, SellerInfoForm
 
 def is_admin(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser)
@@ -220,9 +220,8 @@ class SellerInfoListView(AdminRequiredMixin, ListView):
 
 class SellerInfoCreateView(AdminRequiredMixin, CreateView):
     model = SellerInfo
+    form_class = SellerInfoForm
     template_name = 'proj/admin/seller_info_form.html'
-    fields = ['full_name', 'email', 'phone', 'bike_brand', 'bike_model', 
-              'status', 'verification_status']
     success_url = reverse_lazy('admin:admin_seller_list')
     
     def form_valid(self, form):
@@ -231,9 +230,8 @@ class SellerInfoCreateView(AdminRequiredMixin, CreateView):
 
 class SellerInfoUpdateView(AdminRequiredMixin, UpdateView):
     model = SellerInfo
+    form_class = SellerInfoForm
     template_name = 'proj/admin/seller_info_form.html'
-    fields = ['full_name', 'email', 'phone', 'bike_brand', 'bike_model', 
-              'status', 'verification_status']
     success_url = reverse_lazy('admin:admin_seller_list')
     
     def form_valid(self, form):
