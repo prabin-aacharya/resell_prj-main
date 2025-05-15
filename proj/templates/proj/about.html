@@ -3,145 +3,405 @@
 {% block title %}About Us{% endblock title %}
 
 {% block main-content %}
-<!-- Hero Section -->
-<section class="hero-section py-5 bg-light">
+<!-- Hero Section with Improved Image Placement -->
+<section class="hero-section py-5">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-4">About Bike Resale</h1>
-                <p class="lead mb-4">Your Trusted Partner in Two-Wheeler Resales</p>
-                <p class="text-muted">We're revolutionizing the way Nepal buys and sells pre-owned bikes and scooters. Born from a passion for seamless transactions, we've built a platform where trust meets convenience.</p>
+                <h1 class="display-4 fw-bold mb-3 text-primary">About Bike Resell</h1>
+                <div class="title-underline mb-4"></div>
+                <p class="lead mb-4 fw-bold">Your Trusted Partner in Two-Wheeler Resales</p>
+                <p class="text-muted mb-4">We're revolutionizing the way Nepal buys and sells pre-owned bikes and scooters. Born from a passion for seamless transactions, we've built a platform where trust meets convenience.</p>
+                <a href="{% url 'main:contact' %}" class="btn btn-primary btn-lg">Contact Us</a>
             </div>
-            <div class="col-lg-6">
-                <img src="{% static 'proj/images/product/about-bike.jpeg' %}" 
-                     class="img-fluid rounded shadow-lg" 
-                     alt="About Bike Resale">
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="hero-image-container">
+                    <img src="{% static 'proj/images/product/about-bike.jpeg' %}" 
+                         class="hero-image" 
+                         alt="About Bike Resell">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Mission & Vision Section -->
-<section class="mission-section py-5">
-    <div class="container">
+<!-- Mission & Vision Section with Background Shape -->
+<section class="mission-section py-5 position-relative">
+    <div class="section-shape"></div>
+    <div class="container position-relative">
+        <h2 class="text-center mb-5 section-title">Our Purpose</h2>
         <div class="row g-4">
             <div class="col-md-6">
-                <div class="mission-card p-4 shadow-sm rounded h-100">
+                <div class="mission-card p-4 shadow rounded h-100">
                     <div class="text-center mb-4">
-                        <i class="fas fa-bullseye fa-3x text-primary mb-3"></i>
-                        <h2>Our Mission</h2>
+                        <div class="icon-circle mb-3">
+                            <i class="fas fa-bullseye fa-2x text-white"></i>
+                        </div>
+                        <h2 class="card-title">Our Mission</h2>
                     </div>
-                    <p class="text-muted">To provide a secure, transparent, and user-friendly platform for buying and selling pre-owned two-wheelers in Nepal. We aim to make the process of vehicle resale as smooth and trustworthy as possible.</p>
+                    <p>To provide a secure, transparent, and user-friendly platform for buying and selling pre-owned two-wheelers in Nepal. We aim to make the process of vehicle resale as smooth and trustworthy as possible.</p>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="mission-card p-4 shadow-sm rounded h-100">
+                <div class="mission-card p-4 shadow rounded h-100">
                     <div class="text-center mb-4">
-                        <i class="fas fa-eye fa-3x text-primary mb-3"></i>
-                        <h2>Our Vision</h2>
+                        <div class="icon-circle mb-3">
+                            <i class="fas fa-eye fa-2x text-white"></i>
+                        </div>
+                        <h2 class="card-title">Our Vision</h2>
                     </div>
-                    <p class="text-muted">To become Nepal's most trusted platform for two-wheeler resales, setting new standards in customer service, transparency, and reliability in the pre-owned vehicle market.</p>
+                    <p>To become Nepal's most trusted platform for two-wheeler resales, setting new standards in customer service, transparency, and reliability in the pre-owned vehicle market.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Features Section -->
-<section class="features-section py-5 bg-light">
+<!-- Features Section with Better Styling -->
+<section class="features-section py-5">
     <div class="container">
-        <h2 class="text-center mb-5">Why Choose Us?</h2>
+        <h2 class="text-center mb-5 section-title">Why Choose Us?</h2>
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
-                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
-                    <h3>Verified Listings</h3>
-                    <p class="text-muted">Every vehicle listed on our platform undergoes a thorough verification process to ensure authenticity and quality.</p>
+                <div class="feature-card p-4 shadow rounded h-100">
+                    <div class="text-center mb-3">
+                        <div class="icon-circle">
+                            <i class="fas fa-shield-alt fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-center mb-3">Verified Listings</h3>
+                    <p>Every vehicle listed undergoes thorough verification to ensure authenticity and quality standards are met before being available to buyers.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
-                    <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
-                    <h3>Trusted Sellers</h3>
-                    <p class="text-muted">We work with verified sellers who maintain high standards of quality and transparency in their transactions.</p>
+                <div class="feature-card p-4 shadow rounded h-100">
+                    <div class="text-center mb-3">
+                        <div class="icon-circle">
+                            <i class="fas fa-handshake fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-center mb-3">Trusted Sellers</h3>
+                    <p>We partner with verified sellers who maintain high standards of quality and transparency in every transaction on our platform.</p>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="feature-card p-4 text-center shadow-sm rounded h-100">
-                    <i class="fas fa-headset fa-3x text-primary mb-3"></i>
-                    <h3>24/7 Support</h3>
-                    <p class="text-muted">Our dedicated support team is always ready to assist you with any queries or concerns regarding your purchase.</p>
+                <div class="feature-card p-4 shadow rounded h-100">
+                    <div class="text-center mb-3">
+                        <div class="icon-circle">
+                            <i class="fas fa-headset fa-2x text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-center mb-3">24/7 Support</h3>
+                    <p>Our dedicated support team is always ready to assist you with any queries or concerns throughout your buying or selling journey.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-
-<!-- Stats Section -->
-<section class="stats-section py-5 bg-primary text-white">
+<!-- Stats Section with Improved Styling -->
+<section class="stats-section py-5 text-white">
     <div class="container">
         <div class="row text-center">
-            <div class="col-md-3">
-                <h2 class="display-4 fw-bold">5000+</h2>
-                <p class="lead">Happy Customers</p>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <h2 class="display-4 fw-bold counter">5000+</h2>
+                    <div class="stat-divider"></div>
+                    <p class="lead">Happy Customers</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <h2 class="display-4 fw-bold counter">1000+</h2>
+                    <div class="stat-divider"></div>
+                    <p class="lead">Verified Listings</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 mb-md-0">
+                <div class="stat-item">
+                    <h2 class="display-4 fw-bold counter">50+</h2>
+                    <div class="stat-divider"></div>
+                    <p class="lead">Cities Covered</p>
+                </div>
             </div>
             <div class="col-md-3">
-                <h2 class="display-4 fw-bold">1000+</h2>
-                <p class="lead">Verified Listings</p>
+                <div class="stat-item">
+                    <h2 class="display-4 fw-bold counter">98%</h2>
+                    <div class="stat-divider"></div>
+                    <p class="lead">Customer Satisfaction</p>
+                </div>
             </div>
-            <div class="col-md-3">
-                <h2 class="display-4 fw-bold">50+</h2>
-                <p class="lead">Cities Covered</p>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 section-title">What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4 shadow rounded h-100">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left fa-2x text-primary opacity-25"></i></div>
+                    <p class="testimonial-text mb-4">I was skeptical about buying a used bike online, but BikeResell made the entire process incredibly smooth and trustworthy.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="testimonial-avatar bg-primary text-white">RP</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Ram Pradhan</h5>
+                            <p class="text-muted mb-0">Kathmandu</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                <h2 class="display-4 fw-bold">98%</h2>
-                <p class="lead">Customer Satisfaction</p>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4 shadow rounded h-100">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left fa-2x text-primary opacity-25"></i></div>
+                    <p class="testimonial-text mb-4">Sold my bike within a week! The verification process gave my listing credibility and attracted serious buyers quickly.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="testimonial-avatar bg-primary text-white">SK</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Sita Karki</h5>
+                            <p class="text-muted mb-0">Pokhara</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="testimonial-card p-4 shadow rounded h-100">
+                    <div class="testimonial-quote"><i class="fas fa-quote-left fa-2x text-primary opacity-25"></i></div>
+                    <p class="testimonial-text mb-4">Their customer support was exceptional when I had questions about a listing. They went above and beyond to help me.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="testimonial-avatar bg-primary text-white">AT</div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Anil Thapa</h5>
+                            <p class="text-muted mb-0">Bharatpur</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <style>
+/* General Styling */
+.section-title {
+    position: relative;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #198754, #77c79a);
+    bottom: 0;
+    left: calc(50% - 40px);
+    border-radius: 2px;
+}
+
+.title-underline {
+    height: 4px;
+    width: 70px;
+    background: linear-gradient(to right, #198754, #77c79a);
+    border-radius: 2px;
+}
+
+/* Hero Section Styling */
 .hero-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    overflow: hidden;
 }
 
-.mission-card, .feature-card, .team-card {
+.hero-image-container {
+    position: relative;
+    width: 90%;
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover {
+    transform: scale(1.05);
+}
+
+/* Mission & Vision Section */
+.mission-section {
+    background-color: #f8f9fa;
+}
+
+.section-shape {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(25, 135, 84, 0.05);
+    border-radius: 50%;
+    transform: translate(150px, -150px);
+    z-index: 0;
+}
+
+.mission-card, .feature-card, .testimonial-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.mission-card:hover, .feature-card:hover, .team-card:hover {
+.mission-card:hover, .feature-card:hover, .testimonial-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
 }
 
-.mission-card i, .feature-card i {
-    color: #0d6efd;
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #198754 0%, #77c79a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(25, 135, 84, 0.3);
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #fff;
+}
+
+/* Stats Section */
+.stats-section {
+    background: linear-gradient(135deg, #198754 0%, #0e5c3f 100%);
+    position: relative;
+}
+
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h60v60H0z" fill="none"/><path d="M30 30m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.stat-item {
+    position: relative;
+    z-index: 1;
+}
+
+.stat-divider {
+    width: 40px;
+    height: 3px;
+    background-color: #fff;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.counter {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: #f8f9fa;
+}
+
+.testimonial-quote {
     margin-bottom: 15px;
 }
 
-.team-card img {
-    border: 3px solid #0d6efd;
+.testimonial-text {
+    font-style: italic;
+    color: #4a5568;
 }
 
-.stats-section {
-    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+.testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
-.stats-section h2 {
-    font-size: 3rem;
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .hero-image-container {
+        margin-top: 30px;
+        height: 350px;
+    }
 }
 
 @media (max-width: 768px) {
-    .stats-section h2 {
+    .counter {
         font-size: 2.5rem;
     }
     
-    .mission-card, .feature-card, .team-card {
-        margin-bottom: 20px;
+    .hero-image-container {
+        height: 300px;
+    }
+    
+    .section-shape {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-image-container {
+        height: 250px;
     }
 }
 </style>
+
+<!-- Animation Script for Counters -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate the counters when they come into view
+    const counters = document.querySelectorAll('.counter');
+    const options = {
+        threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+    
+    counters.forEach(counter => {
+        observer.observe(counter);
+    });
+});
+</script>
 {% endblock main-content %}

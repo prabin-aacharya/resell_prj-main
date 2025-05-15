@@ -33,6 +33,7 @@ urlpatterns = [
 
     #login authentication
     path('registration/',views.CustomerRegistrationView.as_view(), name='customerregistration'),
+    path('activate/<uidb64>/<token>/', views.activate_account, name='activate'),
     path('accounts/login/', CustomLoginView.as_view(template_name='proj/login.html', authentication_form=LoginForm), name='login'),
     path('passwordchange/', auth_views.PasswordChangeView.as_view(template_name='proj/changepassword.html', form_class=MyPasswordChangeForm, success_url='/passwordchange?success=true'),name='passwordchange'),
     path('logout/', auth_views.LogoutView.as_view(next_page='main:login'), name='logout'),
@@ -57,6 +58,7 @@ urlpatterns = [
     path('payment/initiate/', payment_views.initiate_bike_payment, name='initiate_bike_payment'),
     path('payment/callback/', payment_views.payment_callback, name='payment_callback'),
     path('payment/test-config/', payment_views.test_khalti_config, name='test_khalti_config'),
+    path('payment/sales-report/<str:transaction_id>/', payment_views.generate_pdf_sales_report, name='sales_report_pdf'),
     
     # Terms and Privacy pages
     path('terms/', views.terms, name='terms'),
@@ -64,6 +66,9 @@ urlpatterns = [
     
     # Test URL (only for admins to test functionality)
     path('test-transaction/', views.create_test_transaction, name='test_transaction'),
+    
+    # Debug email sending
+    path('test-email/', views.test_email, name='test_email'),
 ]
 
 # Add static and media URLs in development

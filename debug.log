@@ -2279,3 +2279,1394 @@ WARNING 2025-05-13 20:30:05,371 basehttp "GET /static/proj/webfonts/fa-brands-40
 WARNING 2025-05-13 20:30:05,433 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
 WARNING 2025-05-13 20:30:05,465 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
 INFO 2025-05-13 20:30:54,005 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-13 21:05:58,740 basehttp "GET /accounts/login/ HTTP/1.1" 200 13123
+INFO 2025-05-13 21:06:10,593 basehttp "POST /accounts/login/ HTTP/1.1" 200 13621
+WARNING 2025-05-13 21:06:10,857 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:06:10,857 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:06:10,889 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:06:10,913 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:06:10,928 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:06:10,965 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:06:24,303 basehttp "POST /accounts/login/ HTTP/1.1" 200 13621
+WARNING 2025-05-13 21:06:24,436 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:06:24,451 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:06:24,616 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:06:24,665 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:06:24,742 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:06:24,761 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:06:36,004 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:06:36,222 basehttp "GET / HTTP/1.1" 200 26122
+WARNING 2025-05-13 21:06:37,019 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:06:37,173 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-13 21:06:37,287 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-13 21:06:37,401 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:06:37,541 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+WARNING 2025-05-13 21:06:37,561 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:06:37,575 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-05-13 21:06:37,663 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:06:37,932 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:06:38,226 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 21:06:38,651 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-13 21:06:39,481 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:06:39,570 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-13 21:06:39,714 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:06:39,785 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-13 21:06:40,050 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:06:40,360 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-13 21:06:40,534 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-13 21:11:07,180 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:11:07,188 basehttp "GET /accounts/login/ HTTP/1.1" 200 13123
+WARNING 2025-05-13 21:11:07,259 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:07,282 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:11:07,375 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:11:07,483 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:07,617 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:11:07,630 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:11:08,568 basehttp "GET / HTTP/1.1" 200 22894
+WARNING 2025-05-13 21:11:08,651 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:08,661 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:11:09,300 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:11:09,316 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:09,389 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:11:09,408 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:11:12,520 basehttp "GET /product-detail/26 HTTP/1.1" 200 13751
+WARNING 2025-05-13 21:11:12,656 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:12,666 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-13 21:11:12,693 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:11:12,752 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:11:12,777 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:11:12,801 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:11:12,802 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:12,872 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:11:12,873 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:12:57,771 basehttp "GET /admin/login/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:12:57,907 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-13 21:13:02,989 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-13 21:13:03,058 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-05-13 21:13:03,070 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-05-13 21:13:04,648 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-13 21:13:05,548 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-13 21:13:06,630 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-13 21:13:07,578 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9984
+INFO 2025-05-13 21:13:08,792 basehttp "GET /admin/logout/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:13:08,868 basehttp "GET /admin/login/ HTTP/1.1" 200 41092
+INFO 2025-05-13 21:13:19,085 basehttp "POST /admin/login/ HTTP/1.1" 200 41263
+INFO 2025-05-13 21:13:28,104 basehttp "POST /admin/login/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:13:28,219 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-13 21:14:19,139 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-13 21:14:19,192 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-13 21:14:19,193 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-13 21:14:19,194 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-05-13 21:14:19,200 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-05-13 21:14:19,205 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-13 21:14:19,206 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-13 21:14:19,258 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 21:14:19,280 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:14:19,280 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:14:19,288 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:16:40,867 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-13 21:16:42,334 basehttp "GET /admin/products/create/ HTTP/1.1" 200 12324
+INFO 2025-05-13 21:16:45,054 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-13 21:16:47,472 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-13 21:16:49,559 basehttp "GET /admin/products/create/ HTTP/1.1" 200 12324
+INFO 2025-05-13 21:16:52,741 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-13 21:16:54,005 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 12089
+INFO 2025-05-13 21:16:57,136 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-13 21:16:58,156 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-13 21:16:59,932 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9984
+INFO 2025-05-13 21:22:07,612 autoreload Watching for file changes with StatReloader
+INFO 2025-05-13 21:22:14,667 basehttp "GET / HTTP/1.1" 200 22894
+INFO 2025-05-13 21:22:15,332 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:22:15,335 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 21:22:15,553 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:22:15,756 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+WARNING 2025-05-13 21:22:16,217 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:16,817 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:17,035 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:17,095 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:17,436 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:22:17,500 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:17,998 log Not Found: /favicon.ico
+WARNING 2025-05-13 21:22:17,998 basehttp "GET /favicon.ico HTTP/1.1" 404 11985
+INFO 2025-05-13 21:22:20,929 basehttp "GET /accounts/login/ HTTP/1.1" 200 13123
+WARNING 2025-05-13 21:22:21,135 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:21,137 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:21,257 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:21,257 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:21,285 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:22:21,299 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:22:24,016 basehttp "POST /accounts/login/ HTTP/1.1" 200 13146
+WARNING 2025-05-13 21:22:24,101 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:24,108 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:24,139 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:24,157 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:24,182 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:24,199 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:22:36,394 basehttp "POST /accounts/login/ HTTP/1.1" 200 13621
+WARNING 2025-05-13 21:22:36,492 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:36,492 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:36,532 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:36,556 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:36,716 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:36,717 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:22:39,197 basehttp "POST /accounts/login/ HTTP/1.1" 200 13146
+WARNING 2025-05-13 21:22:39,286 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:39,308 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:39,361 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:39,379 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:39,449 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:39,470 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:22:51,976 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-05-13 21:22:52,132 basehttp "GET / HTTP/1.1" 200 26122
+WARNING 2025-05-13 21:22:52,291 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:52,365 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-13 21:22:52,640 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-13 21:22:52,746 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-13 21:22:52,864 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:52,871 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:53,029 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:53,054 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:22:53,095 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:22:53,157 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 21:22:53,402 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:22:53,670 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:22:54,131 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-13 21:22:54,310 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-13 21:22:54,609 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-13 21:22:54,807 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-13 21:22:55,009 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-13 21:22:55,309 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-13 21:22:55,515 basehttp "GET / HTTP/1.1" 200 26122
+WARNING 2025-05-13 21:22:55,649 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:55,649 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:56,545 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:56,547 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:56,701 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:22:56,727 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:22:56,793 basehttp "GET /buy/ HTTP/1.1" 200 41152
+WARNING 2025-05-13 21:22:57,061 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:57,086 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:57,102 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-13 21:22:57,199 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:57,251 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:57,387 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+INFO 2025-05-13 21:22:57,436 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-05-13 21:22:57,542 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+WARNING 2025-05-13 21:22:57,591 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:57,593 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:22:57,694 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:22:59,070 basehttp "GET /sell/ HTTP/1.1" 200 19869
+WARNING 2025-05-13 21:22:59,166 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:59,190 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:22:59,281 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:22:59,309 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:22:59,372 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:22:59,388 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:23:02,211 basehttp "GET /about/ HTTP/1.1" 200 17795
+WARNING 2025-05-13 21:23:02,692 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:02,693 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:03,076 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:03,095 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:03,231 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:23:03,318 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:23:03,892 basehttp "GET /contact/ HTTP/1.1" 200 17973
+WARNING 2025-05-13 21:23:04,028 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:04,047 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:04,209 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:04,210 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:04,407 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:04,617 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-13 21:23:05,113 basehttp "GET /wishlist/ HTTP/1.1" 200 21399
+WARNING 2025-05-13 21:23:05,285 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-13 21:23:05,285 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:05,360 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:05,379 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:05,404 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:05,889 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:05,919 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:23:05,939 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:06,089 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:23:08,013 basehttp "GET /my-orders/ HTTP/1.1" 200 16199
+WARNING 2025-05-13 21:23:08,175 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:08,195 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:08,300 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:08,341 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:08,404 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:23:08,413 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-13 21:23:14,891 basehttp "GET /product-detail/12 HTTP/1.1" 200 16459
+WARNING 2025-05-13 21:23:15,034 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:15,057 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-13 21:23:15,121 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:15,181 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-13 21:23:15,217 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-13 21:23:15,239 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:15,259 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-13 21:23:15,333 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-13 21:23:15,408 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:19:24,240 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:19:30,626 basehttp "GET / HTTP/1.1" 200 26122
+INFO 2025-05-15 13:19:31,022 basehttp "GET /static/proj/css/style.css HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,028 basehttp "GET /static/proj/images/banner/b2.jpg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,096 basehttp "GET /static/proj/images/product/yamaha.png HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,577 basehttp "GET /static/proj/images/product/honda.png HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,579 basehttp "GET /static/proj/images/banner/b1.jpg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,653 basehttp "GET /static/proj/images/logo.png HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,659 basehttp "GET /static/proj/images/banner/b3.jpg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:31,947 basehttp "GET /static/proj/images/product/bajaj.png HTTP/1.1" 304 0
+WARNING 2025-05-15 13:19:32,153 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 13:19:32,155 basehttp "GET /static/proj/images/product/tvs.png HTTP/1.1" 304 0
+WARNING 2025-05-15 13:19:32,212 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 13:19:32,248 basehttp "GET /static/proj/images/product/hero.png HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:33,352 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:33,594 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:34,011 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:34,408 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:34,629 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:34,982 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:35,254 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:35,740 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:35,928 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:36,162 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 304 0
+INFO 2025-05-15 13:19:36,271 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 304 0
+WARNING 2025-05-15 13:19:36,512 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:19:36,513 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:19:36,570 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:19:36,727 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 304 0
+WARNING 2025-05-15 13:19:38,245 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:19:39,406 log Not Found: /favicon.ico
+WARNING 2025-05-15 13:19:39,407 basehttp "GET /favicon.ico HTTP/1.1" 404 12273
+INFO 2025-05-15 13:19:43,966 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:19:44,184 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 13:19:44,395 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:19:44,417 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:19:44,780 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:19:44,828 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:19:44,855 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:19:45,115 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:19:56,000 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 13:19:56,089 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:19:56,214 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:19:56,243 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:19:56,332 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:19:56,535 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:19:56,536 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:20:35,053 basehttp "POST /registration/ HTTP/1.1" 200 20472
+WARNING 2025-05-15 13:20:35,346 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:20:35,352 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:20:35,650 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:20:35,667 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:20:35,860 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:20:35,860 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:21:49,672 basehttp "POST /registration/ HTTP/1.1" 200 20480
+WARNING 2025-05-15 13:21:49,843 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:21:49,844 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:21:50,101 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:21:50,104 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:21:50,298 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:21:50,298 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+ERROR 2025-05-15 13:22:24,161 log Internal Server Error: /registration/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\mail\message.py", line 86, in sanitize_address
+    token, rest = parser.get_mailbox(addr)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\email\_header_value_parser.py", line 1792, in get_mailbox
+    token, value = get_name_addr(value)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\email\_header_value_parser.py", line 1761, in get_name_addr
+    if value[0] in CFWS_LEADER:
+       ~~~~~^^^
+IndexError: string index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 147, in post
+    send_activation_email(request, user, form.cleaned_data.get('email'))
+  File "H:\resell_prj-main\proj\views.py", line 754, in send_activation_email
+    if email.send():
+       ^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\mail\message.py", line 301, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\mail\backends\smtp.py", line 136, in send_messages
+    sent = self._send(message)
+           ^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\mail\backends\smtp.py", line 149, in _send
+    from_email = sanitize_address(email_message.from_email, encoding)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\mail\message.py", line 88, in sanitize_address
+    raise ValueError('Invalid address "%s"' % addr)
+ValueError: Invalid address ""
+ERROR 2025-05-15 13:22:24,183 basehttp "POST /registration/ HTTP/1.1" 500 113088
+INFO 2025-05-15 13:23:08,173 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:23:11,532 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:23:20,597 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:23:23,381 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:23:39,863 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:23:44,704 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:23:53,365 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:23:56,951 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:24:42,106 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:24:43,934 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:24:48,361 basehttp "POST /registration/ HTTP/1.1" 200 20474
+WARNING 2025-05-15 13:24:48,569 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:24:48,572 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:24:48,753 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:24:48,754 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:24:48,793 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:24:48,880 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:24:56,248 basehttp "POST /registration/ HTTP/1.1" 200 20474
+WARNING 2025-05-15 13:24:56,391 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:24:56,406 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:24:56,598 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:24:56,600 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:24:56,773 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:24:56,774 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:25:45,618 basehttp "GET /admin/login/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:25:45,826 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-15 13:25:53,016 basehttp "GET /admin/customers/ HTTP/1.1" 200 24335
+INFO 2025-05-15 13:26:07,362 basehttp "GET /admin/customers/12/delete/ HTTP/1.1" 200 40401
+INFO 2025-05-15 13:26:07,520 basehttp "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-05-15 13:26:10,048 basehttp "POST /admin/customers/12/delete/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:26:10,291 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-15 13:27:31,740 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:27:34,919 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:27:53,932 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:27:55,384 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:33:10,638 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-15 13:33:13,620 basehttp "GET / HTTP/1.1" 200 22894
+WARNING 2025-05-15 13:33:14,174 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:33:14,307 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 13:33:14,382 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:33:14,524 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 13:33:14,530 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 13:33:14,716 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 13:33:14,733 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:33:14,734 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 13:33:14,744 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 13:33:15,004 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 13:33:15,015 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 13:33:15,016 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 13:33:15,119 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:33:15,278 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+WARNING 2025-05-15 13:33:15,602 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:33:15,603 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:33:15,737 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:33:16,318 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:33:18,706 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 13:33:19,035 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:33:19,064 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:33:19,568 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:33:19,569 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:33:19,790 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:33:19,809 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:35:33,859 basehttp "POST /registration/ HTTP/1.1" 200 20433
+WARNING 2025-05-15 13:35:34,043 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:35:34,043 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:35:34,318 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:35:34,408 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:35:34,427 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:35:34,500 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:35:59,053 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-15 13:36:34,835 basehttp "POST /registration/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:36:34,870 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 13:36:35,162 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:36:35,268 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:36:35,392 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:36:35,596 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:36:35,820 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:36:35,854 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:37:18,682 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:37:18,871 basehttp "GET / HTTP/1.1" 200 26111
+WARNING 2025-05-15 13:37:19,320 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:37:19,338 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 13:37:19,399 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:37:19,608 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 13:37:19,844 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 13:37:20,026 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 13:37:20,814 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+WARNING 2025-05-15 13:37:20,878 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:37:21,295 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+INFO 2025-05-15 13:37:21,781 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 13:37:22,468 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:37:23,408 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 13:37:23,949 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 13:37:24,222 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 13:37:24,532 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 13:37:24,832 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+WARNING 2025-05-15 13:37:26,276 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:37:26,297 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:40:01,821 basehttp "GET /admin/customers/ HTTP/1.1" 200 25059
+INFO 2025-05-15 13:44:48,476 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:44:52,901 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:45:08,361 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:45:14,122 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:45:23,553 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:45:26,620 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:46:42,011 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:46:49,448 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:47:17,815 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:47:20,712 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:48:02,458 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:48:06,880 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:49:35,213 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:49:39,662 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:49:48,060 autoreload H:\resell_prj-main\proj\urls.py changed, reloading.
+INFO 2025-05-15 13:49:50,558 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:50:10,217 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:50:14,177 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:51:18,265 basehttp "GET / HTTP/1.1" 200 26111
+WARNING 2025-05-15 13:51:18,476 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:18,476 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:51:19,343 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:19,425 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:19,555 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:19,566 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:51:21,987 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:51:22,017 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 13:51:22,257 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:51:22,258 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:22,607 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:22,609 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:22,752 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:22,932 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:51:45,234 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 13:51:45,543 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:51:45,564 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:45,927 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:51:45,948 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:46,161 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:51:46,185 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 13:52:43,565 basehttp "GET /admin/customers/ HTTP/1.1" 200 24333
+ERROR 2025-05-15 13:53:29,722 views Email error: Invalid address ""
+INFO 2025-05-15 13:53:29,944 basehttp "POST /registration/ HTTP/1.1" 302 0
+INFO 2025-05-15 13:53:29,952 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 13:53:30,146 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 13:53:30,167 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:53:30,417 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 13:53:30,431 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 13:53:30,982 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 13:53:30,997 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 13:53:56,914 basehttp "GET /admin/customers/ HTTP/1.1" 200 28711
+INFO 2025-05-15 13:54:46,190 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:54:50,349 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:55:04,658 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:55:20,989 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:55:47,615 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 13:55:51,114 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:55:55,266 basehttp "GET /test-email/ HTTP/1.1" 200 802
+INFO 2025-05-15 13:56:14,717 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:56:18,108 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:56:29,059 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:56:33,802 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 13:56:36,061 basehttp "GET /test-email/?email=test@example.com HTTP/1.1" 200 225
+INFO 2025-05-15 13:59:44,674 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 13:59:48,021 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:00:04,790 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 14:00:08,561 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:00:21,230 autoreload H:\resell_prj-main\proj\apps.py changed, reloading.
+INFO 2025-05-15 14:00:27,472 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:00:37,320 autoreload H:\resell_prj-main\proj\apps.py changed, reloading.
+INFO 2025-05-15 14:00:43,238 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:00:52,648 basehttp "GET /test-email/?email=yourtestemail@gmail.com HTTP/1.1" 200 822
+INFO 2025-05-15 14:01:04,514 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 14:01:09,768 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:02:01,234 autoreload H:\resell_prj-main\summproj\settings.py changed, reloading.
+INFO 2025-05-15 14:02:05,552 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 14:04:53,807 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 14:04:53,962 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:04:54,107 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:04:54,186 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:04:54,283 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:04:54,346 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:04:54,374 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:05:10,609 basehttp "GET /admin/customers/ HTTP/1.1" 200 27622
+INFO 2025-05-15 14:06:21,867 basehttp "POST /registration/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:06:21,900 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 14:06:22,316 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:06:22,412 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:06:22,485 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:06:22,601 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:06:22,756 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:06:22,773 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:09:02,671 basehttp "GET /activate/MjM/cpukih-d805006e15d69c00ea9cbd4b80e25c5b/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:09:03,191 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:09:04,985 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:09:05,306 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 14:09:06,185 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 14:09:06,613 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:09:07,637 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:09:08,073 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:09:08,480 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-15 14:09:08,879 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+INFO 2025-05-15 14:09:08,902 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+WARNING 2025-05-15 14:09:09,050 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-05-15 14:09:09,235 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:09:09,722 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:09:10,031 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 14:09:10,074 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-15 14:09:10,230 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 14:09:10,442 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-15 14:09:14,637 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:09:14,657 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:09:29,276 basehttp "GET /admin/customers/ HTTP/1.1" 200 31690
+INFO 2025-05-15 14:14:53,477 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:14:53,710 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:14:53,713 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:14:54,485 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:14:54,502 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:14:54,708 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:14:54,774 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:14:57,267 basehttp "GET /profile/ HTTP/1.1" 200 18977
+WARNING 2025-05-15 14:14:57,523 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:14:57,523 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:14:58,011 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:14:58,028 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:14:58,248 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:14:58,266 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:15:02,022 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:15:03,811 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:15:03,811 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:15:03,964 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:15:03,978 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:15:04,191 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:15:04,192 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:24:04,325 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:24:04,431 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 14:24:04,838 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:24:05,095 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:05,720 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:05,836 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:05,871 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:05,942 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:24:09,345 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 14:24:09,667 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:24:09,685 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:09,955 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:09,973 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:10,235 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:10,365 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:24:48,896 basehttp "POST /registration/ HTTP/1.1" 200 20441
+WARNING 2025-05-15 14:24:49,116 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:49,117 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:24:49,400 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:24:49,414 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:49,595 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:24:49,596 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:25:19,234 basehttp "POST /registration/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:25:19,242 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 14:25:19,419 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:25:19,505 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:25:19,505 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:25:19,668 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:25:19,691 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:25:19,916 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:26:56,026 basehttp "GET /admin/customers/ HTTP/1.1" 200 34658
+INFO 2025-05-15 14:27:28,726 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:27:28,846 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:27:28,863 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:27:29,064 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:27:29,064 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:27:29,128 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:27:29,142 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:27:58,619 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:27:58,756 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:27:58,771 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:27:58,997 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:27:58,998 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:27:59,171 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:27:59,171 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:29:54,152 basehttp "GET /admin/customers/ HTTP/1.1" 200 34198
+INFO 2025-05-15 14:30:16,558 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:30:16,742 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:30:16,766 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:30:17,002 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:30:17,017 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:30:17,197 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:30:17,206 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:30:19,643 basehttp "GET /admin/customers/ HTTP/1.1" 200 34198
+INFO 2025-05-15 14:30:30,358 basehttp "GET /admin/customers/ HTTP/1.1" 200 34198
+INFO 2025-05-15 14:30:39,794 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:30:40,451 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:30:40,451 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:30:40,685 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:30:40,686 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:30:40,884 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:30:40,915 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:30:47,113 basehttp "GET /admin/customers/ HTTP/1.1" 200 34198
+INFO 2025-05-15 14:31:01,458 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:31:01,587 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:31:01,628 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:31:01,822 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:31:01,952 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:31:01,972 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:31:02,194 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:32:42,621 basehttp "GET /admin/customers/16/delete/ HTTP/1.1" 200 40405
+INFO 2025-05-15 14:32:45,171 basehttp "POST /admin/customers/16/delete/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:32:45,423 basehttp "GET /admin/customers/ HTTP/1.1" 200 30907
+INFO 2025-05-15 14:32:54,026 basehttp "GET /admin/customers/14/delete/ HTTP/1.1" 200 40400
+INFO 2025-05-15 14:32:55,988 basehttp "POST /admin/customers/14/delete/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:32:56,218 basehttp "GET /admin/customers/ HTTP/1.1" 200 27618
+INFO 2025-05-15 14:32:59,255 basehttp "GET /admin/customers/15/delete/ HTTP/1.1" 200 40396
+INFO 2025-05-15 14:33:00,867 basehttp "POST /admin/customers/15/delete/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:33:01,103 basehttp "GET /admin/customers/ HTTP/1.1" 200 24333
+INFO 2025-05-15 14:33:04,013 basehttp "GET /admin/customers/13/delete/ HTTP/1.1" 200 40398
+INFO 2025-05-15 14:33:06,008 basehttp "POST /admin/customers/13/delete/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:33:06,240 basehttp "GET /admin/customers/ HTTP/1.1" 200 21046
+INFO 2025-05-15 14:33:13,575 basehttp "GET /registration/ HTTP/1.1" 200 19926
+WARNING 2025-05-15 14:33:13,793 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:33:13,798 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:33:14,199 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:33:14,200 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:33:14,347 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:33:14,363 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:33:49,508 basehttp "POST /registration/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:33:49,611 basehttp "GET /accounts/login/ HTTP/1.1" 200 13596
+WARNING 2025-05-15 14:33:49,842 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:33:49,843 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:33:50,039 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:33:50,048 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:33:50,238 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:33:50,243 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:34:05,588 basehttp "POST /accounts/login/ HTTP/1.1" 200 14094
+WARNING 2025-05-15 14:34:05,790 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:34:05,804 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:34:06,044 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:34:06,061 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:34:06,246 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:34:06,318 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:34:50,475 basehttp "GET /activate/MjU/cpuls9-c83f88f024f7af5c4272d115d3aa6a19/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:34:50,873 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:34:53,280 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 14:34:53,303 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-15 14:34:53,502 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 14:34:55,732 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:34:56,280 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 14:34:56,886 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:34:57,866 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:34:58,599 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:34:58,935 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:34:59,251 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:34:59,439 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 14:35:00,065 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 14:35:00,604 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-15 14:35:00,776 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+WARNING 2025-05-15 14:35:03,300 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:35:03,448 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:35:03,622 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:35:03,721 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:35:09,973 log Forbidden (CSRF token from POST incorrect.): /accounts/login/
+WARNING 2025-05-15 14:35:10,148 basehttp "POST /accounts/login/ HTTP/1.1" 403 2503
+WARNING 2025-05-15 14:35:13,314 log Forbidden (CSRF token from POST incorrect.): /accounts/login/
+WARNING 2025-05-15 14:35:13,462 basehttp "POST /accounts/login/ HTTP/1.1" 403 2503
+INFO 2025-05-15 14:35:18,191 basehttp "GET /accounts/login/ HTTP/1.1" 200 16812
+INFO 2025-05-15 14:35:27,962 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-05-15 14:35:28,065 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:35:28,312 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:35:28,349 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 14:35:28,477 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 14:35:28,673 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:35:28,934 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:35:29,096 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:35:29,211 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:35:29,352 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:35:29,591 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+WARNING 2025-05-15 14:35:29,618 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:35:29,658 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+INFO 2025-05-15 14:35:29,701 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 14:35:29,901 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-15 14:35:30,088 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:35:30,283 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:35:30,432 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+WARNING 2025-05-15 14:35:31,131 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:35:31,142 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:35:43,327 basehttp "GET /admin/customers/ HTTP/1.1" 200 25114
+INFO 2025-05-15 14:36:24,144 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:36:24,491 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:24,522 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:25,589 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:25,626 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:25,891 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:26,000 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:36:26,156 basehttp "GET /buy/ HTTP/1.1" 200 41140
+WARNING 2025-05-15 14:36:26,678 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+INFO 2025-05-15 14:36:26,807 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+WARNING 2025-05-15 14:36:26,939 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:27,260 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 14:36:27,265 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+WARNING 2025-05-15 14:36:27,349 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:27,352 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:27,352 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:28,054 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:28,064 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:36:28,136 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+INFO 2025-05-15 14:36:29,295 basehttp "GET /sell/ HTTP/1.1" 200 19831
+WARNING 2025-05-15 14:36:29,522 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:29,554 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:29,824 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:30,270 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:30,524 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:36:30,716 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:36:30,941 basehttp "GET /buy/ HTTP/1.1" 200 41140
+WARNING 2025-05-15 14:36:31,255 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:31,439 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 14:36:31,635 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:31,866 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:32,068 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:32,275 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:32,395 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:36:32,419 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:32,497 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:36:41,070 basehttp "GET /sell/ HTTP/1.1" 200 19831
+WARNING 2025-05-15 14:36:41,287 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:41,319 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:41,687 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:41,715 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:41,978 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:41,979 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:36:44,484 basehttp "GET /about/ HTTP/1.1" 200 17783
+INFO 2025-05-15 14:36:44,694 basehttp "GET /static/proj/images/product/about-bike.jpeg HTTP/1.1" 304 0
+WARNING 2025-05-15 14:36:45,420 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:45,449 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:45,523 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:45,786 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:45,792 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:36:46,128 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:36:46,670 basehttp "GET /contact/ HTTP/1.1" 200 17961
+WARNING 2025-05-15 14:36:47,058 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:47,059 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:47,278 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:47,488 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:47,682 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:47,824 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:36:54,173 basehttp "GET /wishlist/ HTTP/1.1" 200 21351
+WARNING 2025-05-15 14:36:54,561 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:54,584 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 14:36:54,811 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:55,175 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:55,324 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:36:55,359 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:55,644 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:55,664 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:36:55,665 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:36:59,276 basehttp "GET /profile/ HTTP/1.1" 200 18977
+WARNING 2025-05-15 14:36:59,624 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:36:59,643 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:37:00,530 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:37:00,849 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:37:01,020 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:37:01,021 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:37:02,968 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:37:03,376 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:37:03,377 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 14:37:03,867 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 14:37:04,305 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:37:04,527 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 14:37:04,785 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 14:37:05,173 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:37:05,488 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 14:37:05,714 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+WARNING 2025-05-15 14:37:05,960 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+INFO 2025-05-15 14:37:05,965 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-15 14:37:06,014 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-05-15 14:37:06,374 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 14:37:06,618 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 14:37:06,791 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+WARNING 2025-05-15 14:37:07,163 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:37:07,169 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+WARNING 2025-05-15 14:37:07,191 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:42:27,577 basehttp "GET /about/ HTTP/1.1" 200 17783
+WARNING 2025-05-15 14:42:27,750 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:42:27,767 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:42:27,934 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:42:27,935 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:42:28,214 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:42:28,361 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:48:08,247 basehttp "GET /about/ HTTP/1.1" 200 25875
+WARNING 2025-05-15 14:48:09,240 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:09,269 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:48:09,651 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:09,651 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:48:09,935 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:48:09,935 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:48:35,859 basehttp "GET /contact/ HTTP/1.1" 200 17961
+WARNING 2025-05-15 14:48:36,070 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:48:36,071 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:36,345 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:48:36,346 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:37,327 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:48:37,644 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:48:51,996 basehttp "GET /about/ HTTP/1.1" 200 25875
+WARNING 2025-05-15 14:48:52,812 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:52,814 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:48:53,234 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:48:53,234 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:48:53,517 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:48:53,662 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:49:10,698 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:49:10,866 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:10,866 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:12,049 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:12,049 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:12,285 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:49:12,286 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:49:17,448 basehttp "GET /buy/ HTTP/1.1" 200 41140
+WARNING 2025-05-15 14:49:17,769 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:17,769 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 14:49:18,325 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:18,500 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:18,628 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:18,670 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:18,878 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:18,917 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:18,946 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:49:23,884 basehttp "GET /sell/ HTTP/1.1" 200 19831
+WARNING 2025-05-15 14:49:24,068 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:24,106 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:24,336 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:24,364 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:24,649 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:49:24,673 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:49:27,389 basehttp "GET /about/ HTTP/1.1" 200 25875
+WARNING 2025-05-15 14:49:27,628 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:27,629 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:28,000 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:28,116 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:28,357 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:49:28,834 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:49:37,147 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:49:37,344 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:37,361 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:49:38,318 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:49:38,332 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:49:38,445 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:49:38,551 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:50:06,004 basehttp "GET /?page=2 HTTP/1.1" 200 19550
+WARNING 2025-05-15 14:50:06,272 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:06,273 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:50:06,983 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:50:06,984 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:07,124 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:50:07,124 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:50:10,060 basehttp "GET /?page=1 HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:50:10,191 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:10,214 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:50:11,038 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:50:11,039 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:11,295 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:50:11,295 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:50:15,586 basehttp "GET /?page=1 HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:50:15,692 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:15,710 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:50:16,448 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:50:16,588 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:50:16,710 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:50:16,734 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 14:54:44,201 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 14:55:02,989 basehttp "GET / HTTP/1.1" 200 26110
+WARNING 2025-05-15 14:55:04,861 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:55:04,861 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:55:05,195 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:55:05,196 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:55:05,443 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:55:05,443 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 14:55:05,564 basehttp "GET /buy/ HTTP/1.1" 200 41140
+WARNING 2025-05-15 14:55:05,920 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:55:06,201 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:55:06,595 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 14:55:06,710 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:55:06,822 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 14:55:06,963 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 14:55:07,081 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 14:55:07,271 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 14:55:07,272 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+INFO 2025-05-15 15:03:49,001 autoreload H:\resell_prj-main\proj\payment_views.py changed, reloading.
+INFO 2025-05-15 15:04:00,955 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 15:04:58,698 autoreload H:\resell_prj-main\proj\payment_views.py changed, reloading.
+INFO 2025-05-15 15:05:04,720 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 15:05:42,353 autoreload H:\resell_prj-main\proj\payment_views.py changed, reloading.
+INFO 2025-05-15 15:05:46,750 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 15:10:46,574 basehttp "GET /my-orders/ HTTP/1.1" 200 12705
+WARNING 2025-05-15 15:10:46,843 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:10:46,862 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:47,061 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:47,179 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:10:47,180 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:10:47,699 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 15:10:51,831 basehttp "GET /profile/ HTTP/1.1" 200 18977
+WARNING 2025-05-15 15:10:52,055 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:10:52,055 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:52,542 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:52,569 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:10:52,786 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:10:52,886 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:10:53,345 basehttp "GET /wishlist/ HTTP/1.1" 200 21351
+WARNING 2025-05-15 15:10:53,504 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:53,537 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 15:10:53,773 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:10:53,887 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:10:54,048 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:10:54,126 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:54,233 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:10:54,608 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:54,768 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:10:57,902 basehttp "GET /my-orders/ HTTP/1.1" 200 12705
+WARNING 2025-05-15 15:10:58,244 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:10:58,265 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:58,488 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:10:58,509 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:10:59,230 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:10:59,384 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:11:07,433 basehttp "GET /contact/ HTTP/1.1" 200 17961
+WARNING 2025-05-15 15:11:07,775 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:11:07,776 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:08,430 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:08,453 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:11:08,825 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:11:08,856 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 15:11:09,391 basehttp "GET /about/ HTTP/1.1" 200 25875
+WARNING 2025-05-15 15:11:10,375 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:10,704 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:11:11,145 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:11:11,292 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:11,388 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:11:11,566 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:11:11,697 basehttp "GET /sell/ HTTP/1.1" 200 19831
+WARNING 2025-05-15 15:11:11,942 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:12,148 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:11:12,652 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:11:12,793 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:12,924 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:11:12,986 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:11:13,329 basehttp "GET /buy/ HTTP/1.1" 200 41140
+WARNING 2025-05-15 15:11:13,612 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:13,715 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 15:11:13,874 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:11:14,462 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:11:14,476 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:11:14,624 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:14,812 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:11:14,963 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:14,983 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:11:28,490 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-15 15:11:31,330 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 15:11:43,107 basehttp "GET /admin/products/create/ HTTP/1.1" 200 12324
+INFO 2025-05-15 15:11:58,123 basehttp "GET /sell/ HTTP/1.1" 200 19831
+WARNING 2025-05-15 15:11:58,720 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:11:58,721 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:12:00,374 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:12:00,401 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:12:00,601 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:12:00,625 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:12:20,469 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:12:23,444 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 15:12:24,933 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 15:12:41,307 basehttp "GET /admin/sellers/11/update/ HTTP/1.1" 200 15647
+INFO 2025-05-15 15:12:50,835 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:13:28,539 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 13091
+INFO 2025-05-15 15:13:37,215 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:13:39,436 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 9476
+INFO 2025-05-15 15:13:42,732 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:21:52,985 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 15:21:59,046 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:22:02,608 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 9476
+INFO 2025-05-15 15:22:05,532 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:22:22,718 basehttp "GET /profile/ HTTP/1.1" 200 18977
+WARNING 2025-05-15 15:22:22,825 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:22:22,840 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 15:22:23,031 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 15:22:23,052 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 15:22:23,130 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 15:22:23,228 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 15:25:30,012 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:46:45,902 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 13091
+INFO 2025-05-15 15:46:59,125 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:47:08,138 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 15:47:14,617 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 9476
+INFO 2025-05-15 15:59:50,124 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:00:08,645 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:00:44,620 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 16:00:50,064 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:01:17,132 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-05-15 16:01:22,385 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:03:38,061 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-15 16:03:41,871 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:06:46,594 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:06:52,778 basehttp "GET /profile/ HTTP/1.1" 200 20133
+WARNING 2025-05-15 16:06:53,189 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:06:53,189 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:06:53,729 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:06:53,847 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:06:53,878 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:06:53,985 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 16:07:25,591 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 9476
+INFO 2025-05-15 16:07:28,116 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 9476
+INFO 2025-05-15 16:07:30,119 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 16:07:33,190 basehttp "GET /admin/customers/ HTTP/1.1" 200 24331
+INFO 2025-05-15 16:08:44,614 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:08:47,736 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:08:54,693 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:08:57,876 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:09:07,932 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:09:12,828 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:09:20,521 basehttp "GET /profile/ HTTP/1.1" 200 20133
+WARNING 2025-05-15 16:09:20,784 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:09:20,785 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:09:21,534 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:09:21,609 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:09:21,782 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:09:21,804 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 16:09:32,258 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:09:37,132 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:09:45,021 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:09:50,377 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:10:01,413 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:10:06,720 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:10:18,893 basehttp "GET /profile/ HTTP/1.1" 200 20187
+WARNING 2025-05-15 16:10:19,053 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:10:19,110 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:10:19,284 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:10:19,502 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:10:19,635 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:10:19,778 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:10:55,790 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:10:58,413 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:11:04,644 basehttp "GET /profile/ HTTP/1.1" 200 20196
+WARNING 2025-05-15 16:11:04,995 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:11:04,995 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:11:05,216 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:11:05,379 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:11:05,642 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:11:05,976 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:11:27,327 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:11:32,771 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:11:38,738 basehttp "GET /profile/ HTTP/1.1" 200 20170
+WARNING 2025-05-15 16:11:39,016 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:11:39,062 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:11:39,240 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:11:39,268 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:11:39,467 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:11:39,468 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:11:50,208 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-05-15 16:11:54,161 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:12:02,752 basehttp "GET /profile/ HTTP/1.1" 200 20152
+WARNING 2025-05-15 16:12:03,156 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:12:03,156 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:12:03,544 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:12:03,547 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:12:03,720 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:12:03,784 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:12:30,579 basehttp "POST /profile/ HTTP/1.1" 200 20856
+WARNING 2025-05-15 16:12:30,968 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:12:30,968 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:12:31,253 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:12:31,325 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:12:31,599 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:12:31,612 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 16:12:36,387 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:13:30,959 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:13:32,335 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 13110
+INFO 2025-05-15 16:18:58,413 basehttp "POST /profile/ HTTP/1.1" 200 20856
+WARNING 2025-05-15 16:18:58,913 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:18:59,655 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:19:00,013 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:19:00,167 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:19:00,466 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:19:00,495 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 16:19:07,278 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-15 16:19:17,043 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:19:54,228 basehttp "GET /address/ HTTP/1.1" 200 17904
+WARNING 2025-05-15 16:19:55,158 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:19:55,178 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:19:55,420 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:19:55,424 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+INFO 2025-05-15 16:20:00,650 autoreload H:\resell_prj-main\proj\forms.py changed, reloading.
+INFO 2025-05-15 16:20:10,651 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:20:30,702 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:20:40,644 basehttp "GET /address/ HTTP/1.1" 200 17904
+WARNING 2025-05-15 16:20:40,860 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:20:40,860 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:20:42,035 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:20:42,223 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:20:42,459 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:20:42,462 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 16:20:42,776 basehttp "GET /profile/ HTTP/1.1" 200 20211
+WARNING 2025-05-15 16:20:43,517 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:20:43,702 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:20:44,008 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:20:44,197 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:20:44,417 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:20:44,468 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:20:52,307 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 14696
+INFO 2025-05-15 16:21:33,044 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:21:36,062 basehttp "GET /admin/customers/17/update/ HTTP/1.1" 200 10699
+INFO 2025-05-15 16:21:39,949 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:21:46,947 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 14696
+INFO 2025-05-15 16:22:16,458 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:22:18,122 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 10706
+INFO 2025-05-15 16:22:25,057 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:22:30,749 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 14696
+INFO 2025-05-15 16:23:38,282 basehttp "GET /admin/customers/ HTTP/1.1" 200 24400
+INFO 2025-05-15 16:25:36,533 autoreload H:\resell_prj-main\proj\admin_views.py changed, reloading.
+INFO 2025-05-15 16:25:41,856 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:25:54,456 autoreload H:\resell_prj-main\proj\admin_views.py changed, reloading.
+INFO 2025-05-15 16:25:59,734 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:26:35,950 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:26:36,467 autoreload H:\resell_prj-main\proj\admin_views.py changed, reloading.
+INFO 2025-05-15 16:26:42,019 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:26:48,229 basehttp "GET /admin/customers/ HTTP/1.1" 200 25220
+INFO 2025-05-15 16:26:57,087 basehttp "GET /admin/customers/11/update/ HTTP/1.1" 200 12213
+INFO 2025-05-15 16:27:01,680 basehttp "GET /admin/customers/ HTTP/1.1" 200 25220
+INFO 2025-05-15 16:27:04,127 basehttp "GET /admin/customers/6/update/ HTTP/1.1" 200 12190
+INFO 2025-05-15 16:27:15,120 basehttp "POST /admin/customers/6/update/ HTTP/1.1" 302 0
+INFO 2025-05-15 16:27:15,290 basehttp "GET /admin/customers/ HTTP/1.1" 200 25611
+INFO 2025-05-15 16:27:35,032 basehttp "GET /profile/ HTTP/1.1" 200 20211
+WARNING 2025-05-15 16:27:35,426 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:27:36,400 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:27:36,748 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:27:36,808 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:27:37,095 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:27:37,133 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:27:50,547 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 14696
+INFO 2025-05-15 16:30:20,268 autoreload Watching for file changes with StatReloader
+INFO 2025-05-15 16:30:33,905 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 15168
+INFO 2025-05-15 16:31:04,753 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:31:07,799 basehttp "GET /admin/customers/create/ HTTP/1.1" 200 15168
+INFO 2025-05-15 16:31:11,563 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:45:04,597 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-15 16:45:16,746 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 16:45:25,111 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:45:26,953 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:45:28,222 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:45:29,290 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:45:37,915 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9984
+INFO 2025-05-15 16:46:09,424 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:46:22,728 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:46:23,963 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:46:25,405 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:46:27,247 basehttp "POST /wishlist/remove/19/ HTTP/1.1" 302 0
+INFO 2025-05-15 16:46:27,368 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:46:29,389 basehttp "POST /wishlist/remove/26/ HTTP/1.1" 302 0
+INFO 2025-05-15 16:46:29,540 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:46:31,585 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:46:32,768 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 16:46:34,281 basehttp "GET /admin/ HTTP/1.1" 200 14629
+INFO 2025-05-15 16:47:10,992 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:47:22,905 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:47:24,397 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:47:25,805 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9984
+INFO 2025-05-15 16:47:29,467 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:47:30,754 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:47:31,698 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:47:33,041 basehttp "GET /admin/sellers/create/ HTTP/1.1" 200 14798
+INFO 2025-05-15 16:48:15,033 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 16:48:16,715 basehttp "GET /admin/products/create/ HTTP/1.1" 200 12324
+INFO 2025-05-15 16:50:06,187 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 16:50:08,815 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:50:20,392 basehttp "GET /admin/sellers/11/update/ HTTP/1.1" 200 15647
+INFO 2025-05-15 16:50:25,158 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:50:35,168 basehttp "GET /admin/products/ HTTP/1.1" 200 24090
+INFO 2025-05-15 16:50:50,688 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:50:51,656 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:50:53,998 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 16:50:56,150 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 12132
+INFO 2025-05-15 16:51:06,608 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 16:51:07,925 basehttp "GET /admin/purchases/ HTTP/1.1" 200 9984
+INFO 2025-05-15 16:51:16,750 basehttp "GET /buy/ HTTP/1.1" 200 41145
+WARNING 2025-05-15 16:51:17,248 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 16:51:17,376 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:17,934 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:51:18,227 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:51:18,309 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:51:18,343 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:18,635 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:18,737 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:51:18,762 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:51:19,622 basehttp "GET /product-detail/26 HTTP/1.1" 200 17435
+WARNING 2025-05-15 16:51:20,147 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:20,148 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 16:51:20,190 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:51:21,040 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:51:21,166 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:51:21,295 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:21,484 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:51:21,702 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:51:21,870 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:51:24,926 payment_views Initiating payment for product 26 with amount 5000 paisa
+INFO 2025-05-15 16:51:27,101 payment_views Khalti initiate response: 200
+INFO 2025-05-15 16:51:27,102 payment_views Payment initiated with pidx: n2omY6CLikUCoyC6gehJhJ
+INFO 2025-05-15 16:51:27,416 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-05-15 16:52:09,760 basehttp "GET /payment/callback?pidx=n2omY6CLikUCoyC6gehJhJ&transaction_id=2evZosnBV9b43DqyrEL3rD&tidx=2evZosnBV9b43DqyrEL3rD&txnId=2evZosnBV9b43DqyrEL3rD&amount=5000&total_amount=5000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-efd65a87-df56-4203-aa63-c2e47453fbf3&purchase_order_name=Bike%3A+2020+Hero+Hunk+150R HTTP/1.1" 301 0
+INFO 2025-05-15 16:52:09,765 payment_views Payment callback received: <QueryDict: {'pidx': ['n2omY6CLikUCoyC6gehJhJ'], 'transaction_id': ['2evZosnBV9b43DqyrEL3rD'], 'tidx': ['2evZosnBV9b43DqyrEL3rD'], 'txnId': ['2evZosnBV9b43DqyrEL3rD'], 'amount': ['5000'], 'total_amount': ['5000'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-efd65a87-df56-4203-aa63-c2e47453fbf3'], 'purchase_order_name': ['Bike: 2020 Hero Hunk 150R']}>
+INFO 2025-05-15 16:52:09,772 payment_views Session data: product_id=26, purchase_order_id=BIKE-efd65a87-df56-4203-aa63-c2e47453fbf3, pidx=n2omY6CLikUCoyC6gehJhJ
+INFO 2025-05-15 16:52:09,871 payment_views Payment status: Completed, transaction_id: 2evZosnBV9b43DqyrEL3rD
+INFO 2025-05-15 16:52:11,648 payment_views Khalti lookup response: 200
+INFO 2025-05-15 16:52:11,650 payment_views Payment verified as Completed for pidx: n2omY6CLikUCoyC6gehJhJ
+INFO 2025-05-15 16:52:11,991 payment_views Created BikePaymentTransaction record for pidx: n2omY6CLikUCoyC6gehJhJ
+INFO 2025-05-15 16:52:12,164 basehttp "GET /payment/callback/?pidx=n2omY6CLikUCoyC6gehJhJ&transaction_id=2evZosnBV9b43DqyrEL3rD&tidx=2evZosnBV9b43DqyrEL3rD&txnId=2evZosnBV9b43DqyrEL3rD&amount=5000&total_amount=5000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-efd65a87-df56-4203-aa63-c2e47453fbf3&purchase_order_name=Bike%3A+2020+Hero+Hunk+150R HTTP/1.1" 200 15398
+WARNING 2025-05-15 16:52:12,958 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:52:13,205 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 16:52:13,571 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 16:52:13,796 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 16:52:14,063 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 16:52:14,202 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 16:52:24,700 basehttp "GET /payment/sales-report/BIKE-efd65a87-df56-4203-aa63-c2e47453fbf3/ HTTP/1.1" 200 5711
+INFO 2025-05-15 17:00:30,643 basehttp "GET /my-orders/ HTTP/1.1" 200 14393
+WARNING 2025-05-15 17:00:31,499 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:00:31,691 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:00:31,960 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:00:31,961 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:00:32,292 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:00:32,432 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 17:00:32,456 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 17:17:00,284 basehttp "GET /admin/purchases/ HTTP/1.1" 200 11182
+INFO 2025-05-15 17:17:04,213 basehttp "GET /admin/purchases/ HTTP/1.1" 200 10829
+INFO 2025-05-15 17:17:11,300 basehttp "GET /admin/products/ HTTP/1.1" 200 24084
+INFO 2025-05-15 17:17:11,543 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 17:17:16,814 basehttp "GET /admin/products/26/update/ HTTP/1.1" 200 13213
+INFO 2025-05-15 17:17:17,283 basehttp "GET /media/bluebook_images/9_bnXkmeI.jpg HTTP/1.1" 200 663421
+INFO 2025-05-15 17:17:17,477 basehttp "GET /media/bluebook_images/pg2_582dsKk.jpg HTTP/1.1" 200 618367
+INFO 2025-05-15 17:17:30,794 basehttp "GET /admin/customers/ HTTP/1.1" 200 25258
+INFO 2025-05-15 17:17:33,961 basehttp "GET /admin/products/ HTTP/1.1" 200 24084
+INFO 2025-05-15 17:17:38,429 basehttp "GET /buy/ HTTP/1.1" 200 41145
+WARNING 2025-05-15 17:17:39,139 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:17:39,163 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:17:39,623 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 17:17:40,104 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:17:40,220 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:17:40,392 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:17:40,838 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:17:41,028 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:17:41,165 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+INFO 2025-05-15 17:17:43,510 basehttp "GET /product-detail/20 HTTP/1.1" 200 17404
+WARNING 2025-05-15 17:17:43,906 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:17:43,937 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 17:17:44,126 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:17:44,572 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:17:44,594 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:17:44,726 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:17:45,211 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:17:45,327 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:17:45,369 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 17:17:56,890 basehttp "GET /admin/products/20/update/ HTTP/1.1" 200 12673
+INFO 2025-05-15 17:18:18,580 basehttp "POST /admin/products/20/update/ HTTP/1.1" 302 0
+INFO 2025-05-15 17:18:18,836 basehttp "GET /admin/products/ HTTP/1.1" 200 24420
+INFO 2025-05-15 17:18:27,838 basehttp "GET /product-detail/20 HTTP/1.1" 200 17396
+WARNING 2025-05-15 17:18:28,735 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:18:28,764 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 17:18:28,983 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:18:29,280 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:18:29,281 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:18:29,421 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:18:29,749 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:18:29,809 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:18:29,876 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 17:18:30,484 payment_views Initiating payment for product 20 with amount 500 paisa
+INFO 2025-05-15 17:18:35,252 payment_views Khalti initiate response: 200
+INFO 2025-05-15 17:18:35,253 payment_views Payment initiated with pidx: TSuRSKqE9KkHmHP83QrC95
+INFO 2025-05-15 17:18:35,790 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-05-15 17:19:05,057 basehttp "GET /payment/callback?pidx=TSuRSKqE9KkHmHP83QrC95&transaction_id=vC63FXp49tpGt548em9CKY&tidx=vC63FXp49tpGt548em9CKY&txnId=vC63FXp49tpGt548em9CKY&amount=500&total_amount=500&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-44e6c443-7c01-4653-86c7-e678675864cb&purchase_order_name=Bike%3A+2016+Hero+Xtreme HTTP/1.1" 301 0
+INFO 2025-05-15 17:19:05,065 payment_views Payment callback received: <QueryDict: {'pidx': ['TSuRSKqE9KkHmHP83QrC95'], 'transaction_id': ['vC63FXp49tpGt548em9CKY'], 'tidx': ['vC63FXp49tpGt548em9CKY'], 'txnId': ['vC63FXp49tpGt548em9CKY'], 'amount': ['500'], 'total_amount': ['500'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-44e6c443-7c01-4653-86c7-e678675864cb'], 'purchase_order_name': ['Bike: 2016 Hero Xtreme']}>
+INFO 2025-05-15 17:19:05,078 payment_views Session data: product_id=20, purchase_order_id=BIKE-44e6c443-7c01-4653-86c7-e678675864cb, pidx=TSuRSKqE9KkHmHP83QrC95
+INFO 2025-05-15 17:19:05,082 payment_views Payment status: Completed, transaction_id: vC63FXp49tpGt548em9CKY
+INFO 2025-05-15 17:19:08,778 payment_views Khalti lookup response: 200
+INFO 2025-05-15 17:19:08,780 payment_views Payment verified as Completed for pidx: TSuRSKqE9KkHmHP83QrC95
+INFO 2025-05-15 17:19:09,225 payment_views Created BikePaymentTransaction record for pidx: TSuRSKqE9KkHmHP83QrC95
+INFO 2025-05-15 17:19:09,415 basehttp "GET /payment/callback/?pidx=TSuRSKqE9KkHmHP83QrC95&transaction_id=vC63FXp49tpGt548em9CKY&tidx=vC63FXp49tpGt548em9CKY&txnId=vC63FXp49tpGt548em9CKY&amount=500&total_amount=500&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-44e6c443-7c01-4653-86c7-e678675864cb&purchase_order_name=Bike%3A+2016+Hero+Xtreme HTTP/1.1" 200 15394
+WARNING 2025-05-15 17:19:11,026 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:19:11,159 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:19:11,429 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:19:11,550 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:19:11,735 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:19:11,984 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 17:19:14,221 basehttp "GET /payment/sales-report/BIKE-44e6c443-7c01-4653-86c7-e678675864cb/ HTTP/1.1" 200 5199
+INFO 2025-05-15 17:40:01,263 basehttp "GET / HTTP/1.1" 200 26111
+WARNING 2025-05-15 17:40:02,135 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:40:02,362 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 17:40:02,967 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 17:40:03,818 basehttp "GET /media/product/7c7c1d6c-1708-410d_GNzAKfq.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 17:40:04,595 basehttp "GET /media/product/bike-1702395836055_d14JEm5.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 17:40:05,666 basehttp "GET /media/product/74ab7dab_INYq6bq.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 17:40:05,883 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 17:40:06,450 basehttp "GET /media/product/74ab7dab_ZP56cer.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 17:40:06,810 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 17:40:07,363 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 17:40:07,867 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 17:40:08,014 basehttp "GET / HTTP/1.1" 200 26111
+INFO 2025-05-15 17:40:09,460 basehttp - Broken pipe from ('127.0.0.1', 56438)
+INFO 2025-05-15 17:40:10,095 basehttp - Broken pipe from ('127.0.0.1', 56440)
+WARNING 2025-05-15 17:40:10,402 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+INFO 2025-05-15 17:40:10,660 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+WARNING 2025-05-15 17:40:10,699 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+INFO 2025-05-15 17:40:11,119 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+WARNING 2025-05-15 17:40:11,382 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:40:11,383 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-05-15 17:40:11,417 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 17:40:11,826 basehttp - Broken pipe from ('127.0.0.1', 56435)
+WARNING 2025-05-15 17:40:14,152 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:40:14,355 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 17:40:24,222 basehttp "GET /admin/purchases/ HTTP/1.1" 200 11797
+INFO 2025-05-15 17:40:45,086 basehttp "GET /admin/sellers/ HTTP/1.1" 200 41368
+INFO 2025-05-15 17:42:32,111 basehttp "GET /admin/products/ HTTP/1.1" 200 24074
+INFO 2025-05-15 17:42:32,329 basehttp "GET /media/product_images/bike-1746980778178_EVDFBJW.jpg HTTP/1.1" 200 187328
+INFO 2025-05-15 17:42:32,535 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-05-15 17:42:32,706 basehttp "GET /media/product/7c7c1d6c-1708-410d_EnB3e68.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 17:42:32,946 basehttp "GET /media/product/74ab7dab.jpeg HTTP/1.1" 200 60811
+INFO 2025-05-15 17:42:33,050 basehttp "GET /media/product/f605d176-0a31-471a_ka8xkUk.jpeg HTTP/1.1" 200 175943
+INFO 2025-05-15 17:42:33,199 basehttp "GET /media/product/bike-1702395836055.jpeg HTTP/1.1" 200 120327
+INFO 2025-05-15 17:42:33,335 basehttp "GET /media/product/b4db98d1-8d03-42e1.webp HTTP/1.1" 200 56530
+INFO 2025-05-15 17:42:33,470 basehttp "GET /media/product/7c7c1d6c-1708-410d_t3P4Vqs.jpeg HTTP/1.1" 200 86828
+INFO 2025-05-15 17:42:48,465 basehttp "GET /admin/products/19/update/ HTTP/1.1" 200 12698
+INFO 2025-05-15 17:43:05,243 basehttp "POST /admin/products/19/update/ HTTP/1.1" 302 0
+INFO 2025-05-15 17:43:05,498 basehttp "GET /admin/products/ HTTP/1.1" 200 24410
+INFO 2025-05-15 17:43:09,453 basehttp "GET /buy/ HTTP/1.1" 200 41138
+WARNING 2025-05-15 17:43:09,925 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:09,926 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:43:10,313 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 17:43:10,760 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:43:10,902 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:11,188 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:43:11,212 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:43:11,346 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:43:11,635 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+INFO 2025-05-15 17:43:13,956 basehttp "GET /product-detail/19 HTTP/1.1" 200 17419
+WARNING 2025-05-15 17:43:14,580 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:14,820 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 404 2029
+WARNING 2025-05-15 17:43:15,000 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:43:15,135 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:43:15,190 basehttp "GET /static/proj/webfonts/fa-regular-400.woff HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:43:15,357 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:15,399 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+WARNING 2025-05-15 17:43:15,552 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:15,832 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-15 17:43:16,351 payment_views Initiating payment for product 19 with amount 100 paisa
+INFO 2025-05-15 17:43:18,102 payment_views Khalti initiate response: 200
+INFO 2025-05-15 17:43:18,103 payment_views Payment initiated with pidx: MoJVFqoqM35EiYk7Nhf6wk
+INFO 2025-05-15 17:43:18,412 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-05-15 17:43:42,498 basehttp "GET /payment/callback?pidx=MoJVFqoqM35EiYk7Nhf6wk&transaction_id=dXmtR52jWgxPkrd8uK5NLF&tidx=dXmtR52jWgxPkrd8uK5NLF&txnId=dXmtR52jWgxPkrd8uK5NLF&amount=100&total_amount=100&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-b747d7f0-6b5d-4971-add8-d5e9a068c754&purchase_order_name=Bike%3A+2022+Yamaha+MT15 HTTP/1.1" 301 0
+INFO 2025-05-15 17:43:42,510 payment_views Payment callback received: <QueryDict: {'pidx': ['MoJVFqoqM35EiYk7Nhf6wk'], 'transaction_id': ['dXmtR52jWgxPkrd8uK5NLF'], 'tidx': ['dXmtR52jWgxPkrd8uK5NLF'], 'txnId': ['dXmtR52jWgxPkrd8uK5NLF'], 'amount': ['100'], 'total_amount': ['100'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-b747d7f0-6b5d-4971-add8-d5e9a068c754'], 'purchase_order_name': ['Bike: 2022 Yamaha MT15']}>
+INFO 2025-05-15 17:43:42,531 payment_views Session data: product_id=19, purchase_order_id=BIKE-b747d7f0-6b5d-4971-add8-d5e9a068c754, pidx=MoJVFqoqM35EiYk7Nhf6wk
+INFO 2025-05-15 17:43:42,685 payment_views Payment status: Completed, transaction_id: dXmtR52jWgxPkrd8uK5NLF
+INFO 2025-05-15 17:43:44,667 payment_views Khalti lookup response: 200
+INFO 2025-05-15 17:43:44,668 payment_views Payment verified as Completed for pidx: MoJVFqoqM35EiYk7Nhf6wk
+INFO 2025-05-15 17:43:45,054 payment_views Created BikePaymentTransaction record for pidx: MoJVFqoqM35EiYk7Nhf6wk
+INFO 2025-05-15 17:43:45,221 basehttp "GET /payment/callback/?pidx=MoJVFqoqM35EiYk7Nhf6wk&transaction_id=dXmtR52jWgxPkrd8uK5NLF&tidx=dXmtR52jWgxPkrd8uK5NLF&txnId=dXmtR52jWgxPkrd8uK5NLF&amount=100&total_amount=100&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-b747d7f0-6b5d-4971-add8-d5e9a068c754&purchase_order_name=Bike%3A+2022+Yamaha+MT15 HTTP/1.1" 200 15394
+WARNING 2025-05-15 17:43:46,217 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 2026
+WARNING 2025-05-15 17:43:46,363 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:46,393 basehttp "GET /static/proj/webfonts/fa-brands-400.woff HTTP/1.1" 404 2023
+WARNING 2025-05-15 17:43:46,582 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:43:46,615 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+WARNING 2025-05-15 17:43:46,826 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
+INFO 2025-05-15 17:43:49,792 basehttp "GET /payment/sales-report/BIKE-b747d7f0-6b5d-4971-add8-d5e9a068c754/ HTTP/1.1" 200 4465

@@ -137,7 +137,17 @@ LOGOUT_REDIRECT_URL = 'main:login'  # Redirect to login page after logout
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Email configuration for account confirmation
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'prabinacharya573@gmail.com'
+EMAIL_HOST_PASSWORD = 'qoms wzrk qpnu zbhx'  # Enter your new app password here (without spaces)
+DEFAULT_FROM_EMAIL = 'prabinacharya573@gmail.com'
+
+# Password reset token timeout (in seconds)
+PASSWORD_RESET_TIMEOUT = 86400  # 24 hours
 
 # Session configuration
 SESSION_COOKIE_NAME = 'sessionid'  # Default session cookie name

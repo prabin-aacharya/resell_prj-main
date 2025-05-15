@@ -19,13 +19,20 @@ BRAND_CHOICES=(
 
 STATE_CHOICES = (
     ('', 'Select Province'),
-    ('Province No. 1', 'Province No. 1'),
-    ('Madhesh Province', 'Madhesh Province'),
-    ('Bagmati Province', 'Bagmati Province'),
-    ('Gandaki', 'Gandaki'),
-    ('Lumbini', 'Lumbini'),
-    ('Karnali', 'Karnali'),
-    ('Sudurpashchim', 'Sudurpashchim'),  # Corrected spelling
+    ('Koshi Province', 'Koshi'),
+    ('Madhesh Province', 'Madhesh'),
+    ('Bagmati Province', 'Bagmati'),
+    ('Gandaki Province', 'Gandaki'),
+    ('Lumbini Province', 'Lumbini'),
+    ('Karnali Province', 'Karnali'),
+    ('Sudurpashchim Province', 'Sudurpashchim'),  # Corrected spelling
+)
+
+GENDER_CHOICES = (
+    ('', 'Select Gender'),
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Other', 'Other'),
 )
 
 def bluebook_upload_path(instance, filename):
@@ -83,6 +90,12 @@ class Customer(models.Model):
     name = models.CharField(
         max_length=200,
         verbose_name='Full Name'
+    )
+    gender = models.CharField(
+        max_length=10,
+        choices=GENDER_CHOICES,
+        default='',
+        verbose_name='Gender'
     )
     city = models.CharField(
         max_length=50,

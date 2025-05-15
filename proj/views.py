@@ -11,8 +11,17 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.contrib.auth.views import LoginView
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 import uuid
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model, login
+from .tokens import account_activation_token
+import logging
+from django.conf import settings
 # Create your views here.
 def home(request):
     from .models import Product
@@ -120,8 +129,10 @@ class CustomerRegistrationView(View):
     def post(self,request):
         form= CustomerRegistrationForm(request.POST)
         if form.is_valid():
-            # Save the user first
-            user = form.save()
+            # Save the user first, but don't activate yet
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
             
             # Create a Customer record linked to the user
             # Set default values for required fields
@@ -129,12 +140,36 @@ class CustomerRegistrationView(View):
                 user=user,
                 name=user.username,  # Default name to username
                 city='',             # Empty default
-                state='Bagmati',     # Default province
+                state='Bagmati Province',  # Default province
                 mobile='',           # Empty default
-                zipcode=''           # Empty default
+                zipcode='',          # Empty default
+                gender=''            # Empty default gender
             )
             
-            messages.success(request,"Congratulations! User Registered Successfully")
+            # Get email from form
+            user_email = form.cleaned_data.get('email')
+            print(f"DEBUG: Sending activation email to {user_email}")
+            
+            try:
+                # Send activation email
+                send_result = send_activation_email(request, user, user_email)
+                print(f"DEBUG: Activation email send result: {send_result}")
+                
+                if not send_result and settings.DEBUG:
+                    # If email sending failed and we're in debug mode, activate the user anyway
+                    user.is_active = True
+                    user.save()
+                    print(f"DEBUG: Activated user {user.username} despite email failure (DEBUG mode)")
+                    messages.warning(request, "Email could not be sent, but your account has been activated for testing purposes.")
+            except Exception as e:
+                print(f"DEBUG: Exception during email sending: {str(e)}")
+                if settings.DEBUG:
+                    # If exception occurred and we're in debug mode, activate the user anyway
+                    user.is_active = True
+                    user.save()
+                    print(f"DEBUG: Activated user {user.username} despite exception (DEBUG mode)")
+                    messages.warning(request, f"Email sending error: {str(e)}. Your account has been activated for testing purposes.")
+            
             return redirect('main:login')
         else:
             messages.warning(request,"Invalid Input Data")
@@ -155,7 +190,10 @@ class ProfileView(View):
             has_profile = True
         else:
             # Empty form for new profile
-            form = CustomerProfileForm(initial={'name': request.user.username})
+            form = CustomerProfileForm(initial={
+                'name': request.user.get_full_name() or request.user.username,
+                'email': request.user.email
+            })
             has_profile = False
             
         return render(request, 'proj/profile.html', {'form': form, 'has_profile': has_profile})
@@ -712,3 +750,127 @@ def admin_lookup_customer(request):
 
 brands = Product.objects.values_list('brand', flat=True).distinct()
 models = Product.objects.values_list('title', flat=True).distinct()
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+        
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        messages.success(request, "Your account has been activated successfully!")
+        return redirect('main:home')
+    else:
+        messages.error(request, "Activation link is invalid or has expired!")
+        return redirect('main:home')
+
+def send_activation_email(request, user, to_email):
+    from django.conf import settings
+    import sys
+    
+    try:
+        # Prepare email subject and content
+        mail_subject = 'Activate your BikeResell account'
+        
+        # Prepare token data
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        token = account_activation_token.make_token(user)
+        domain = get_current_site(request).domain
+        protocol = 'https' if request.is_secure() else 'http'
+        
+        # Render email message from template
+        message = render_to_string('email_activation.html', {
+            'user': user,
+            'domain': domain,
+            'uid': uid,
+            'token': token,
+            'protocol': protocol
+        })
+        
+        # Get sender email - use a fallback if DEFAULT_FROM_EMAIL is empty
+        from_email = settings.DEFAULT_FROM_EMAIL
+        if not from_email:
+            from_email = 'noreply@bikeresell.com'  # Use a fallback email if settings.DEFAULT_FROM_EMAIL is empty
+            print(f"WARNING: Using fallback email address: {from_email}")
+        
+        # Create and send email
+        email = EmailMessage(
+            mail_subject,
+            message,
+            from_email,  # From address
+            [to_email]   # To address(es)
+        )
+        
+        # Try to send email
+        send_result = email.send(fail_silently=False)
+        
+        if send_result > 0:
+            messages.success(request, 
+                f"Dear {user.username}, please check your email {to_email} to complete registration. "
+                f"Note: Check your spam folder if you don't see the email.")
+            return True
+        else:
+            messages.error(request, f"Problem sending confirmation email to {to_email}. Email system returned {send_result}.")
+            return False
+            
+    except Exception as e:
+        print(f"Email Error: {str(e)}")
+        print(f"Exception type: {type(e)}")
+        messages.error(request, f"Email could not be sent. Error: {str(e)}")
+        
+        # Auto-activate user in DEBUG mode
+        if settings.DEBUG:
+            user.is_active = True
+            user.save()
+            messages.info(request, "DEBUG: User has been auto-activated due to email sending failure in DEBUG mode.")
+        
+        return False
+
+def test_email(request):
+    """
+    Test view to debug email sending
+    """
+    from django.core.mail import send_mail
+    from django.conf import settings
+    import sys
+    
+    test_email_to = request.GET.get('email', 'test@example.com')
+    
+    result = {
+        'success': False,
+        'errors': [],
+        'config': {
+            'backend': settings.EMAIL_BACKEND,
+            'host': settings.EMAIL_HOST,
+            'port': settings.EMAIL_PORT,
+            'user': settings.EMAIL_HOST_USER,
+            'from_email': settings.DEFAULT_FROM_EMAIL,
+            'tls': settings.EMAIL_USE_TLS,
+        }
+    }
+    
+    try:
+        # Try simple send_mail function
+        send_result = send_mail(
+            'Test Email from BikeResell',
+            'This is a test email to debug email sending functionality.',
+            settings.DEFAULT_FROM_EMAIL,
+            [test_email_to],
+            fail_silently=False,
+        )
+        
+        result['send_result'] = send_result
+        result['success'] = send_result > 0
+        
+    except Exception as e:
+        result['errors'].append(str(e))
+        result['exception_type'] = str(type(e))
+        result['traceback'] = str(sys.exc_info())
+    
+    # Return as JSON for easier debugging
+    from django.http import JsonResponse
+    return JsonResponse(result)

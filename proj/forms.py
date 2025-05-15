@@ -93,16 +93,30 @@ class ContactForm(forms.Form):
 from .models import Customer
 
 class CustomerProfileForm(forms.ModelForm):
+    email = forms.EmailField(
+        required=False, 
+        disabled=True,
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
+    
     class Meta:
         model = Customer
-        fields = ['name', 'city', 'state', 'mobile', 'zipcode']
+        fields = ['name', 'gender', 'city', 'state', 'mobile', 'zipcode']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'gender': forms.Select(attrs={'class': 'form-select'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-select'}),
             'mobile': forms.TextInput(attrs={'class': 'form-control'}),
             'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # If instance is provided (editing mode) and it has a user
+        if self.instance and hasattr(self.instance, 'user') and self.instance.user:
+            # Set initial value for email from the associated user
+            self.fields['email'].initial = self.instance.user.email
 
     def clean_mobile(self):
         mobile = self.cleaned_data['mobile']
@@ -251,3 +265,85 @@ class ProductForm(forms.ModelForm):
         if year < 1900 or year > current_year:
             raise forms.ValidationError(f"Year must be between 1900 and {current_year}.")
         return year
+
+class AdminCustomerCreateForm(forms.ModelForm):
+    """Form for admin to create a customer with associated user account"""
+    # User account fields
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        help_text="The customer will use this password to log in."
+    )
+    password2 = forms.CharField(
+        label='Confirm Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    
+    # Override the name field to make it required and more prominent
+    name = forms.CharField(
+        label='Full Name',
+        max_length=200,
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+
+    class Meta:
+        model = Customer
+        fields = ['name', 'gender', 'city', 'state', 'mobile', 'zipcode']
+        widgets = {
+            'gender': forms.Select(attrs={'class': 'form-select'}),
+            'city': forms.TextInput(attrs={'class': 'form-control'}),
+            'state': forms.Select(attrs={'class': 'form-select'}),
+            'mobile': forms.TextInput(attrs={'class': 'form-control'}),
+            'zipcode': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError('This username is already taken.')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email:
+            email = email.lower()  # Convert to lowercase
+            # Check if email already exists
+            if User.objects.filter(email=email).exists():
+                raise forms.ValidationError('This email is already registered.')
+        return email
+
+    def clean_mobile(self):
+        mobile = self.cleaned_data['mobile']
+        if len(mobile) != 10:
+            raise forms.ValidationError("Mobile number must be 10 digits")
+        return mobile
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        password1 = cleaned_data.get('password1')
+        password2 = cleaned_data.get('password2')
+        
+        if password1 and password2 and password1 != password2:
+            self.add_error('password2', "Passwords don't match")
+            
+        return cleaned_data
+    
+    def save(self, commit=True):
+        # Create the User instance
+        user = User.objects.create_user(
+            username=self.cleaned_data['username'],
+            email=self.cleaned_data['email'],
+            password=self.cleaned_data['password1']
+        )
+        
+        # Create the Customer instance
+        customer = super().save(commit=False)
+        customer.user = user
+        
+        if commit:
+            customer.save()
+            
+        return customer

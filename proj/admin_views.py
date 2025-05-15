@@ -8,9 +8,9 @@ from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import Product, Order, Customer, Wishlist, SellerInfo
+from .models import Product, Order, Customer, Wishlist, SellerInfo, BikePaymentTransaction
 from django.contrib.auth.models import User
-from .forms import ProductForm, SellerInfoForm
+from .forms import ProductForm, SellerInfoForm, AdminCustomerCreateForm
 
 def is_admin(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser)
@@ -150,20 +150,10 @@ class CustomerListView(AdminRequiredMixin, ListView):
     ordering = ['name']
     paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        for customer in context['customers']:
-            customer.order_count = Order.objects.filter(customer=customer).count()
-            customer.total_spent = Order.objects.filter(
-                customer=customer, 
-                status='completed'
-            ).aggregate(total=Sum('amount'))['total'] or 0
-        return context
-
 class CustomerUpdateView(AdminRequiredMixin, UpdateView):
     model = Customer
     template_name = 'proj/admin/customer_form.html'
-    fields = ['name', 'city', 'state', 'mobile', 'zipcode']
+    fields = ['name', 'gender', 'city', 'state', 'mobile', 'zipcode']
     success_url = reverse_lazy('admin:admin_customer_list')
     
     def form_valid(self, form):
@@ -192,13 +182,23 @@ class CustomerDeleteView(AdminRequiredMixin, DeleteView):
 
 class CustomerCreateView(AdminRequiredMixin, CreateView):
     model = Customer
+    form_class = AdminCustomerCreateForm
     template_name = 'proj/admin/customer_form.html'
-    fields = ['name', 'city', 'state', 'mobile', 'zipcode', 'user']
     success_url = reverse_lazy('admin:admin_customer_list')
 
     def form_valid(self, form):
-        messages.success(self.request, "Customer created successfully!")
-        return super().form_valid(form)
+        try:
+            customer = form.save()
+            messages.success(self.request, f"Customer '{customer.name}' created successfully with user account.")
+            return super(CreateView, self).form_valid(form)
+        except Exception as e:
+            messages.error(self.request, f"Error creating customer: {str(e)}")
+            return self.form_invalid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_create'] = True
+        return context
 
 # Wishlist Views
 class WishlistListView(AdminRequiredMixin, ListView):
