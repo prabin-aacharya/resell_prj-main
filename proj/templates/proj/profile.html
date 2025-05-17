@@ -33,6 +33,20 @@
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
                                     <i class="fas fa-heart me-2"></i> My Wishlist
                                 </a>
+                                <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:my_deals' %}">
+                                    <i class="fas fa-handshake me-2"></i> My Deals
+                                </a>
+                                <div class="mt-auto border-top pt-3 mt-3">
+                                    <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
+                                        <i class="fas fa-key me-2"></i> Change Password
+                                    </a>
+                                    <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
+                                        {% csrf_token %}
+                                        <button type="submit" class="nav-link text-danger border-0 bg-transparent w-100 text-start d-flex align-items-center">
+                                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         

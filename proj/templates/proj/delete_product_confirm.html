@@ -1,0 +1,54 @@
+{% extends 'proj/base.html' %}
+{% load static %}
+
+{% block title %}Confirm Delete Listing{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0"><i class="fas fa-exclamation-triangle me-2"></i>Confirm Deletion</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            {% if product.product_image %}
+                                <img src="{{ product.product_image.url }}" class="img-fluid rounded" alt="{{ product.title }}">
+                            {% else %}
+                                <div class="bg-light p-5 rounded text-center">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <h5>{{ product.title }}</h5>
+                            <p><strong>Brand:</strong> {{ product.brand }}</p>
+                            <p><strong>Year:</strong> {{ product.made_year }}</p>
+                            <p><strong>Price:</strong> Rs. {{ product.price|floatformat:2 }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <p><i class="fas fa-exclamation-circle me-2"></i><strong>Warning:</strong> You are about to permanently delete this listing. This action cannot be undone.</p>
+                        <p>All information associated with this listing will be removed from our system.</p>
+                    </div>
+                    
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{% url 'main:my_deals' %}" class="btn btn-secondary">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Delete Permanently
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

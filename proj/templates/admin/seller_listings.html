@@ -1,0 +1,708 @@
+{% extends 'proj/admin/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+<!-- Page title definition -->
+{% block title %}Seller Listings{% endblock %}
+
+{% block content %}
+<!-- Header section with page title -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Seller Listings Management</h2>
+</div>
+
+<!-- 
+  Statistics Cards Section
+  - Shows the counts of listings in different states
+  - Each card is clickable and filters the listings by status 
+-->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Pending Verification</h3>
+                    <p>{{ pending_count|default:0 }}</p>
+                </div>
+                <div>
+                    <i class="fas fa-hourglass-half fa-2x text-warning"></i>
+                </div>
+            </div>
+            <a href="?verification_status=pending" class="stretched-link"></a>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Approved Listings</h3>
+                    <p>{{ approved_count|default:0 }}</p>
+                </div>
+                <div>
+                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                </div>
+            </div>
+            <a href="?verification_status=approved" class="stretched-link"></a>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>Rejected Listings</h3>
+                    <p>{{ rejected_count|default:0 }}</p>
+                </div>
+                <div>
+                    <i class="fas fa-ban fa-2x text-danger"></i>
+                </div>
+            </div>
+            <a href="?verification_status=rejected" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+
+<!-- 
+  Main Listings Section
+  - Card-based grid layout (3 per row on desktop)
+  - Each card shows basic info and has action buttons
+  - Cards link to detailed view in modal
+-->    
+{% if listings %}
+<div class="row">
+    {% for listing in listings %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+            <!-- Product Image with Status Badge -->
+            <div class="position-relative">
+                {% if listing.product.product_image %}
+                <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <i class="fas fa-motorcycle fa-3x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="position-absolute top-0 end-0 m-2">
+                    {% if listing.product.verification_status == 'pending' %}
+                    <span class="badge bg-warning text-dark">Pending Verification</span>
+                    {% elif listing.product.verification_status == 'approved' %}
+                    <span class="badge bg-success">Approved</span>
+                    {% elif listing.product.verification_status == 'rejected' %}
+                    <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="card-body">
+                <h5 class="card-title">{{ listing.product.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ listing.bike_brand }}</h6>
+                
+                <div class="d-flex justify-content-between align-items-center my-3">
+                    <span class="fs-4 fw-bold">₹{{ listing.product.price|floatformat:2 }}</span>
+                    <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
+                        {{ listing.product.status|title }}
+                    </span>
+                </div>
+                
+                <!-- Seller Contact Information -->
+                <div class="seller-info mb-3">
+                    <p class="mb-1"><i class="fas fa-user me-2"></i> {{ listing.full_name }}</p>
+                    <p class="mb-1"><i class="fas fa-phone me-2"></i> {{ listing.phone }}</p>
+                    <p class="mb-1"><i class="fas fa-envelope me-2"></i> {{ listing.email }}</p>
+                    <p class="mb-1"><i class="fas fa-calendar-alt me-2"></i> Listed: {{ listing.created_at|date:"M d, Y" }}</p>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="card-footer bg-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
+                        <i class="fas fa-eye me-1"></i> View Details
+                    </button>
+                    
+                    <div>
+                        {% if listing.product.verification_status == 'pending' %}
+                        <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                            <i class="fas fa-check me-1"></i> Approve
+                        </button>
+                        <button type="button" class="btn btn-danger action-btn" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
+                            <i class="fas fa-times me-1"></i> Reject
+                        </button>
+                        {% endif %}
+                        
+                        {% if listing.product.verification_status == 'rejected' %}
+                        <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                            <i class="fas fa-check me-1"></i> Approve
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 
+      Details Modal
+      Shows comprehensive information about the listing
+      including product details, seller info, and bluebook images
+    -->
+    <div class="modal fade" id="detailsModal{{ listing.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ listing.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="detailsModalLabel{{ listing.id }}">
+                        <i class="fas fa-motorcycle me-2"></i> {{ listing.product.title }}
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="product-image mb-3">
+                                {% if listing.product.product_image %}
+                                <img src="{{ listing.product.product_image.url }}" class="img-fluid rounded shadow" alt="{{ listing.product.title }}">
+                                {% else %}
+                                <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                                    <i class="fas fa-motorcycle fa-5x text-muted"></i>
+                                </div>
+                                {% endif %}
+                            </div>
+                            
+                            <!-- Bluebook Images -->
+                            {% if listing.product.bluebook_page2 or listing.product.bluebook_page9 %}
+                            <div class="bluebook-images mt-3">
+                                <h5 class="border-bottom pb-2"><i class="fas fa-id-card me-2"></i>Bluebook Images</h5>
+                                <div class="row">
+                                    {% if listing.product.bluebook_page2 %}
+                                    <div class="col-6">
+                                        <div class="card h-100">
+                                            <div class="card-header py-2">
+                                                <small class="m-0">Bluebook Page 2</small>
+                                            </div>
+                                            <a href="{{ listing.product.bluebook_page2.url }}" target="_blank" class="bluebook-image">
+                                                <img src="{{ listing.product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid card-img-bottom">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    
+                                    {% if listing.product.bluebook_page9 %}
+                                    <div class="col-6">
+                                        <div class="card h-100">
+                                            <div class="card-header py-2">
+                                                <small class="m-0">Bluebook Page 9</small>
+                                            </div>
+                                            <a href="{{ listing.product.bluebook_page9.url }}" target="_blank" class="bluebook-image">
+                                                <img src="{{ listing.product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid card-img-bottom">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="border-bottom pb-2">Product Details</h4>
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Brand:</strong></p>
+                                    <p class="text-muted">{{ listing.bike_brand }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Model:</strong></p>
+                                    <p class="text-muted">{{ listing.bike_model }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Year:</strong></p>
+                                    <p class="text-muted">{{ listing.product.made_year }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Price:</strong></p>
+                                    <p class="text-muted">₹{{ listing.product.price|floatformat:2 }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Kilometers:</strong></p>
+                                    <p class="text-muted">{{ listing.product.kilometers }} km</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Engine Size:</strong></p>
+                                    <p class="text-muted">{{ listing.product.engine_size }} cc</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Condition:</strong></p>
+                                    <p class="text-muted">{{ listing.product.condition }}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><strong>Location:</strong></p>
+                                    <p class="text-muted">{{ listing.product.location }}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Status:</strong></p>
+                                    <p>
+                                        <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
+                                            {{ listing.product.status|title }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Verification Status:</strong></p>
+                                    <p>
+                                        <span class="badge {% if listing.product.verification_status == 'approved' %}bg-success{% elif listing.product.verification_status == 'rejected' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+                                            {{ listing.product.verification_status|title }}
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Description:</strong></p>
+                                    <p class="text-muted">{{ listing.product.description|default:"No description provided." }}</p>
+                                </div>
+                            </div>
+                            
+                            <h4 class="border-bottom pb-2 mt-4">Seller Details</h4>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Full Name:</strong></p>
+                                    <p class="text-muted">{{ listing.full_name }}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Email:</strong></p>
+                                    <p class="text-muted">{{ listing.email }}</p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-1"><strong>Phone:</strong></p>
+                                    <p class="text-muted">{{ listing.phone }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    
+                    {% if listing.product.verification_status == 'pending' %}
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                        <i class="fas fa-check-circle me-1"></i> Approve
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
+                        <i class="fas fa-ban me-1"></i> Reject
+                    </button>
+                    {% endif %}
+                    
+                    {% if listing.product.verification_status == 'rejected' %}
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                        <i class="fas fa-check-circle me-1"></i> Approve
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 
+      Approve Modal
+      Contains form to approve listing with optional admin notes
+    -->
+    <div class="modal fade" id="approveModal{{ listing.id }}" tabindex="-1" aria-labelledby="approveModalLabel{{ listing.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="approveModalLabel{{ listing.id }}">
+                        <i class="fas fa-check-circle me-2"></i> Approve Listing
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'admin:approve_listing' listing.id %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <div class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-check-circle text-success fa-3x pulse-success"></i>
+                            </div>
+                            <h4>Approve this listing?</h4>
+                            <p class="text-muted">This will publish the bike for sale on the marketplace.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin_notes_{{ listing.id }}" class="form-label fw-bold">Admin Notes (Optional)</label>
+                            <textarea id="admin_notes_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Add any notes or comments about this listing..."></textarea>
+                            <small class="form-text text-muted">These notes will be added to the product description.</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success action-btn">
+                            <i class="fas fa-check me-1"></i> Confirm Approval
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 
+      Reject Modal
+      Contains form to reject listing with required rejection reason
+    -->
+    <div class="modal fade" id="rejectModal{{ listing.id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ listing.id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="rejectModalLabel{{ listing.id }}">
+                        <i class="fas fa-times-circle me-2"></i> Reject Listing
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'admin:reject_listing' listing.id %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            <div class="icon-container bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                <i class="fas fa-times-circle text-danger fa-3x pulse-danger"></i>
+                            </div>
+                            <h4>Reject this listing?</h4>
+                            <p class="text-muted">This listing will not be visible on the marketplace.</p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="admin_notes_reject_{{ listing.id }}" class="form-label fw-bold">Reason for Rejection <span class="text-danger">*</span></label>
+                            <textarea id="admin_notes_reject_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Explain why this listing is being rejected..." required></textarea>
+                            <small class="form-text text-muted">This information will be stored with the product.</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-top-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger action-btn">
+                            <i class="fas fa-times me-1"></i> Confirm Rejection
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- 
+  Pagination Controls
+  Shows page navigation with first/prev/page numbers/next/last links
+  Preserves any active filters when changing pages
+-->
+{% if is_paginated %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1{% if request.GET.verification_status %}&verification_status={{ request.GET.verification_status }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.verification_status %}&verification_status={{ request.GET.verification_status }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ num }}{% if request.GET.verification_status %}&verification_status={{ request.GET.verification_status }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">{{ num }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.verification_status %}&verification_status={{ request.GET.verification_status }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.verification_status %}&verification_status={{ request.GET.verification_status }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}" aria-label="Last">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% else %}
+<!-- No Results Message -->
+<div class="alert alert-info text-center my-5">
+    <i class="fas fa-info-circle fa-2x mb-3"></i>
+    <h4>No listings found</h4>
+    <p>There are no seller listings matching your criteria.</p>
+</div>
+{% endif %}
+
+<!-- 
+  Custom CSS Styles
+  - Enhances the visual appearance of the admin interface
+  - Provides animations and hover effects for interactive elements
+  - Organized by component type for easier maintenance
+-->
+<style>
+/* =============================================
+   SECTION: Base Modal Styling
+   - Removes default borders for cleaner look
+============================================= */
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+/* =============================================
+   SECTION: Icon Container Animation
+   - Creates pulsing effects for status icons
+============================================= */
+.icon-container {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pulse animation for icons */
+@keyframes pulse-success {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+@keyframes pulse-danger {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+.pulse-success {
+    animation: pulse-success 2s infinite;
+    border-radius: 50%;
+}
+
+.pulse-danger {
+    animation: pulse-danger 2s infinite;
+    border-radius: 50%;
+}
+
+/* =============================================
+   SECTION: Card Styling
+   - Creates elevation effects and hover animations
+============================================= */
+.card {
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.card-footer {
+    border-top: none;
+    background-color: transparent;
+}
+
+/* =============================================
+   SECTION: Button Styling  
+   - Creates consistent, modern button styles
+   - Adds hover and active state animations
+============================================= */
+.btn {
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.action-btn {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.action-btn:active {
+    transform: translateY(1px);
+}
+
+.btn-success {
+    background-color: #10b981;
+    border-color: #10b981;
+}
+
+.btn-success:hover {
+    background-color: #059669;
+    border-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    border-color: #ef4444;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.btn-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+}
+
+.btn-primary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.view-details-btn {
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.view-details-btn:hover {
+    background-color: #3a56d4;
+    border-color: #3a56d4;
+}
+
+/* =============================================
+   SECTION: Badge Styling
+   - Enhances status badges with consistent styling
+============================================= */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+    border-radius: 4px;
+}
+
+/* =============================================
+   SECTION: Modal Styling
+   - Creates modern, clean modal appearance 
+============================================= */
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 1.25rem 1.5rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1.25rem 1.5rem;
+}
+
+/* =============================================
+   SECTION: Form Control Styling
+   - Enhances form fields with modern styling
+   - Adds subtle animations on focus
+============================================= */
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.custom-textarea {
+    resize: none; /* Prevents resizing */
+    transition: height 0.2s ease;
+    min-height: 100px;
+}
+
+.custom-textarea:focus {
+    height: 120px; /* Grow slightly when focused */
+}
+
+/* =============================================
+   SECTION: Stats Card Styling
+   - Creates modern card style for statistics
+   - Adds hover effects and animations
+============================================= */
+.stat-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.stat-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+.stat-card p {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #111827;
+}
+
+/* =============================================
+   SECTION: Body Background
+   - Adds subtle pattern to the background
+============================================= */
+body {
+    background-color: #f9fafb;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+</style>
+{% endblock %} 

@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm,MyPasswordResetForm,MyPasswordChangeForm,MySetResetForm
 from .views import CustomLoginView
+from django.urls import reverse_lazy
 
 # Import our custom admin site
 from proj.admin import admin_site
@@ -29,23 +30,37 @@ urlpatterns = [
 
     path('profile/',views.ProfileView.as_view(),name='profile'),
     path('address/',views.address,name='address'),
-    path('my-orders/',views.my_orders, name='my_orders'),
+    path('my-deals/',views.my_deals, name='my_deals'),
 
     #login authentication
     path('registration/',views.CustomerRegistrationView.as_view(), name='customerregistration'),
     path('activate/<uidb64>/<token>/', views.activate_account, name='activate'),
     path('accounts/login/', CustomLoginView.as_view(template_name='proj/login.html', authentication_form=LoginForm), name='login'),
     path('passwordchange/', auth_views.PasswordChangeView.as_view(template_name='proj/changepassword.html', form_class=MyPasswordChangeForm, success_url='/passwordchange?success=true'),name='passwordchange'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='main:login'), name='logout'),
+    path('logout/', views.custom_logout, name='logout'),
 
-    path('password-reset/', auth_views.PasswordResetView.as_view (template_name='proj/password_reset.html', form_class=MyPasswordResetForm),name='password_reset'),
-    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view (template_name='proj/password_reset_done.html'),name='password_reset_done'),
-    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view (template_name='proj/password_reset_confirm.html', form_class=MySetResetForm),name='password_reset_confirm'),
-    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view (template_name='proj/password_reset_complete.html'),name='password_reset_complete'),
+    path('password-reset/', auth_views.PasswordResetView.as_view(
+        template_name='proj/password_reset.html', 
+        form_class=MyPasswordResetForm,
+        email_template_name='registration/password_reset_email.html',
+        subject_template_name='registration/password_reset_subject.txt',
+        success_url=reverse_lazy('main:password_reset_done')
+    ), name='password_reset'),
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='proj/password_reset_done.html'),name='password_reset_done'),
+    path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name='proj/password_reset_confirm.html', 
+        form_class=MySetResetForm,
+        success_url=reverse_lazy('main:password_reset_complete')
+    ),name='password_reset_confirm'),
+    path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='proj/password_reset_complete.html'),name='password_reset_complete'),
 
     path('sell/', views.sell_bike, name='sell_bike'),
     path('sell/success/', views.sell_success, name='sell_success'),
     path('buy/', views.buy_bikes, name='buy_bikes'),
+    
+    # My Deals management URLs
+    path('my-deals/update/<int:pk>/', views.update_product, name='update_product'),
+    path('my-deals/delete/<int:pk>/', views.delete_product, name='delete_product'),
 
     path('wishlist/', views.wishlist, name='wishlist'),
     path('wishlist/add/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'proj',
+    'proj.templatetags',
     'widget_tweaks',
 ]
 
@@ -143,7 +144,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'prabinacharya573@gmail.com'
-EMAIL_HOST_PASSWORD = 'qoms wzrk qpnu zbhx'  # Enter your new app password here (without spaces)
+EMAIL_HOST_PASSWORD = 'qomswzrkqpnuzbhx'  # Enter your new app password here (without spaces)
 DEFAULT_FROM_EMAIL = 'prabinacharya573@gmail.com'
 
 # Password reset token timeout (in seconds)
@@ -204,4 +205,10 @@ LOGGING = {
             'propagate': True,
         },
     },
+}
+
+# Custom password reset templates
+PASSWORD_RESET_TEMPLATES = {
+    'email_template_name': 'registration/password_reset_email.html',
+    'subject_template_name': 'registration/password_reset_subject.txt',
 }

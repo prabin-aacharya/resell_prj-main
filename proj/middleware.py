@@ -79,32 +79,12 @@ class AdminSessionMiddleware(SessionMiddleware):
         is_form_redirect = '/sell/success/' in request.path and hasattr(request, 'session')
         
         if is_form_submission or is_form_redirect:
-            # For form submissions, ensure we preserve the session cookie
+            # For form submissions, use only the regular session cookie
             session_cookie_name = settings.SESSION_COOKIE_NAME
             self.original_cookie_name = session_cookie_name
             
             # Call parent method
             response = super().process_response(request, response)
-            
-            # Ensure the session cookie has a long expiry
-            if hasattr(request, 'session') and request.session.modified:
-                max_age = settings.SESSION_COOKIE_AGE
-                expires_time = max_age + int(time.time())
-                expires = http_date(expires_time)
-                
-                # Set both session cookies to ensure login state is preserved
-                for cookie_name in [settings.SESSION_COOKIE_NAME, getattr(settings, 'ADMIN_SESSION_COOKIE_NAME', 'admin_sessionid')]:
-                    response.set_cookie(
-                        cookie_name,
-                        request.session.session_key,
-                        max_age=max_age,
-                        expires=expires,
-                        domain=settings.SESSION_COOKIE_DOMAIN,
-                        path=settings.SESSION_COOKIE_PATH,
-                        secure=settings.SESSION_COOKIE_SECURE or None,
-                        httponly=settings.SESSION_COOKIE_HTTPONLY or None,
-                        samesite=settings.SESSION_COOKIE_SAMESITE or 'Lax',
-                    )
             
             # Add Vary header to prevent caching issues
             patch_vary_headers(response, ('Cookie',))

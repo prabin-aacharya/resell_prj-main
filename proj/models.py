@@ -58,6 +58,12 @@ class Product(models.Model):
         ('Poor', 'Poor'),
     )
     
+    VERIFICATION_STATUS_CHOICES = (
+        ('pending', 'Pending Verification'),
+        ('approved', 'Approved'),
+        ('rejected', 'Rejected'),
+    )
+    
     title = models.CharField(max_length=150)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField()
@@ -73,7 +79,8 @@ class Product(models.Model):
     bluebook_page9 = models.ImageField(upload_to='bluebook_images/', null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='available')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    verification_status = models.CharField(max_length=20, choices=VERIFICATION_STATUS_CHOICES, default='pending')
     
     def __str__(self):
         return self.title

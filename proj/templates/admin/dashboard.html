@@ -127,6 +127,13 @@
                         <small class="text-muted">Create a new bike listing</small>
                     </div>
                 </a>
+                <a href="{% url 'admin:seller_listings' %}" class="list-group-item list-group-item-action d-flex align-items-center">
+                    <i class="fas fa-clipboard-list text-info me-3 fs-4"></i>
+                    <div>
+                        <h5 class="mb-1">Seller Listings</h5>
+                        <small class="text-muted">Verify and manage bike listings</small>
+                    </div>
+                </a>
                 <a href="{% url 'admin:admin_seller_list' %}" class="list-group-item list-group-item-action d-flex align-items-center">
                     <i class="fas fa-user-tie text-primary me-3 fs-4"></i>
                     <div>
@@ -145,6 +152,130 @@
         </div>
     </div>
   </div>
+
+<!-- Seller Listings Section -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="table-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3 class="mb-0">Seller Listings</h3>
+                <a href="{% url 'admin:seller_listings' %}" class="btn btn-sm btn-outline-info">View All</a>
+            </div>
+            
+            <!-- Pending Verification Count Cards -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-warning text-dark">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Pending Verification</h5>
+                                <h3 class="mt-2 mb-0">{{ pending_verification_count|default:0 }}</h3>
+                            </div>
+                            <i class="fas fa-clock fa-2x opacity-50"></i>
+                        </div>
+                        <a href="{% url 'admin:seller_listings' %}?verification_status=pending" class="card-footer bg-warning-subtle text-center text-dark text-decoration-none">
+                            View Pending <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card bg-success text-white">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Approved</h5>
+                                <h3 class="mt-2 mb-0">{{ approved_count|default:0 }}</h3>
+                            </div>
+                            <i class="fas fa-check-circle fa-2x opacity-50"></i>
+                        </div>
+                        <a href="{% url 'admin:seller_listings' %}?verification_status=approved" class="card-footer bg-success-subtle text-center text-success text-decoration-none">
+                            View Approved <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-0">Rejected</h5>
+                                <h3 class="mt-2 mb-0">{{ rejected_count|default:0 }}</h3>
+                            </div>
+                            <i class="fas fa-times-circle fa-2x opacity-50"></i>
+                        </div>
+                        <a href="{% url 'admin:seller_listings' %}?verification_status=rejected" class="card-footer bg-danger-subtle text-center text-danger text-decoration-none">
+                            View Rejected <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            {% if recent_listings %}
+            <div class="row">
+                {% for listing in recent_listings %}
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            {% if listing.product.product_image %}
+                            <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 180px; object-fit: cover;">
+                            {% else %}
+                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                                <i class="fas fa-motorcycle fa-3x text-muted"></i>
+                            </div>
+                            {% endif %}
+                            <div class="position-absolute top-0 end-0 p-2">
+                                {% if listing.product.verification_status == 'pending' %}
+                                <span class="badge bg-warning text-dark">Pending Verification</span>
+                                {% elif listing.product.verification_status == 'approved' %}
+                                <span class="badge bg-success">Approved</span>
+                                {% elif listing.product.verification_status == 'rejected' %}
+                                <span class="badge bg-danger">Rejected</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">{{ listing.product.title }}</h5>
+                            <p class="card-text text-muted mb-2">{{ listing.product.brand }}</p>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fw-bold">₹{{ listing.product.price }}</span>
+                                <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-primary{% else %}bg-secondary{% endif %}">
+                                    {{ listing.product.status|title }}
+                                </span>
+                            </div>
+                            <p class="card-text small mb-1"><i class="fas fa-user me-2"></i>{{ listing.full_name }}</p>
+                            <p class="card-text small mb-1"><i class="fas fa-phone me-2"></i>{{ listing.phone }}</p>
+                            <p class="card-text small"><i class="fas fa-calendar me-2"></i>{{ listing.created_at|date:"M d, Y" }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent d-flex justify-content-between">
+                            <a href="{% url 'admin:proj_product_change' listing.product.id %}" class="btn btn-sm btn-outline-primary">Details</a>
+                            
+                            {% if listing.product.verification_status == 'pending' %}
+                            <div>
+                                <form method="post" action="{% url 'admin:approve_listing' listing.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                </form>
+                                <form method="post" action="{% url 'admin:reject_listing' listing.id %}" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                </form>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-clipboard-list fa-4x text-muted mb-3"></i>
+                <h5>No seller listings yet</h5>
+                <p class="text-muted">New seller listings will appear here</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 <!-- Recent Purchases -->
 <div class="row mt-4">

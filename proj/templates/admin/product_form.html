@@ -1,0 +1,495 @@
+{% extends 'admin/base_site.html' %}
+{% load static %}
+
+{% block title %}{% if form.instance.id %}Edit{% else %}Add{% endif %} Product{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    /* Admin styling */
+    .content-main {
+        margin: 2rem auto;
+        max-width: 1200px;
+    }
+    
+    .card {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        border: none;
+        margin-bottom: 2rem;
+    }
+    
+    .card-header {
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        padding: 1rem 1.5rem;
+    }
+    
+    .section-title {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #343a40;
+    }
+    
+    .section-icon {
+        margin-right: 0.5rem;
+        color: #4763e4;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-control, .form-select {
+        border-radius: 0.375rem;
+    }
+    
+    .required-field {
+        color: #dc3545;
+    }
+    
+    .form-text {
+        color: #6c757d;
+        font-size: 0.875rem;
+    }
+    
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+    
+    .image-preview {
+        width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem;
+        padding: 0.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Bootstrap overrides */
+    .btn-primary {
+        background-color: #4763e4;
+        border-color: #4763e4;
+    }
+    
+    .btn-primary:hover {
+        background-color: #3a51c6;
+        border-color: #3a51c6;
+    }
+    
+    .btn-outline-secondary {
+        color: #6c757d;
+        border-color: #6c757d;
+    }
+    
+    .btn-outline-secondary:hover {
+        color: #fff;
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main" class="container-fluid content-main">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>{% if form.instance.id %}Edit{% else %}Add{% endif %} Product</h1>
+                <a href="javascript:history.back()" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+            {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Basic Information Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-info-circle section-icon"></i>Basic Information
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">
+                                Title <span class="required-field">*</span>
+                            </label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.title.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="form-text">Enter a descriptive title for the bike.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.price.id_for_label }}" class="form-label">
+                                Price (₹) <span class="required-field">*</span>
+                            </label>
+                            {{ form.price }}
+                            {% if form.price.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.price.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="form-text">Enter the price in rupees.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Specifications Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-cogs section-icon"></i>Specifications
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.brand.id_for_label }}" class="form-label">
+                                Brand <span class="required-field">*</span>
+                            </label>
+                            {{ form.brand }}
+                            {% if form.brand.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.brand.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.made_year.id_for_label }}" class="form-label">
+                                Year <span class="required-field">*</span>
+                            </label>
+                            {{ form.made_year }}
+                            {% if form.made_year.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.made_year.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.condition.id_for_label }}" class="form-label">
+                                Condition <span class="required-field">*</span>
+                            </label>
+                            {{ form.condition }}
+                            {% if form.condition.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.condition.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.kilometers.id_for_label }}" class="form-label">
+                                Kilometers <span class="required-field">*</span>
+                            </label>
+                            {{ form.kilometers }}
+                            {% if form.kilometers.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.kilometers.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.engine_size.id_for_label }}" class="form-label">
+                                Engine Size (cc) <span class="required-field">*</span>
+                            </label>
+                            {{ form.engine_size }}
+                            {% if form.engine_size.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.engine_size.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seller Information Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-user section-icon"></i>Seller Information
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.location.id_for_label }}" class="form-label">
+                                Location <span class="required-field">*</span>
+                            </label>
+                            {{ form.location }}
+                            {% if form.location.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.location.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            <div class="form-text">City, State</div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.seller_name.id_for_label }}" class="form-label">
+                                Seller Name <span class="required-field">*</span>
+                            </label>
+                            {{ form.seller_name }}
+                            {% if form.seller_name.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.seller_name.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-align-left section-icon"></i>Description
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">
+                        Description <span class="required-field">*</span>
+                    </label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                    <div class="invalid-feedback d-block">
+                        {% for error in form.description.errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <div class="form-text">Provide a detailed description of the bike.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Images Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-images section-icon"></i>Images
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.product_image.id_for_label }}" class="form-label">
+                                Product Image <span class="required-field">*</span>
+                            </label>
+                            {% if form.instance.product_image %}
+                            <div>
+                                <img src="{{ form.instance.product_image.url }}" alt="Current Image" class="image-preview">
+                            </div>
+                            {% endif %}
+                            {{ form.product_image }}
+                            {% if form.product_image.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.product_image.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.bluebook_page2.id_for_label }}" class="form-label">
+                                Bluebook Page 2
+                            </label>
+                            {% if form.instance.bluebook_page2 %}
+                            <div>
+                                <img src="{{ form.instance.bluebook_page2.url }}" alt="Current Bluebook Page 2" class="image-preview">
+                            </div>
+                            {% endif %}
+                            {{ form.bluebook_page2 }}
+                            {% if form.bluebook_page2.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.bluebook_page2.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.bluebook_page9.id_for_label }}" class="form-label">
+                                Bluebook Page 9
+                            </label>
+                            {% if form.instance.bluebook_page9 %}
+                            <div>
+                                <img src="{{ form.instance.bluebook_page9.url }}" alt="Current Bluebook Page 9" class="image-preview">
+                            </div>
+                            {% endif %}
+                            {{ form.bluebook_page9 }}
+                            {% if form.bluebook_page9.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.bluebook_page9.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Card -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="section-title">
+                    <i class="fas fa-tag section-icon"></i>Status
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.status.id_for_label }}" class="form-label">
+                                Listing Status
+                            </label>
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.status.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="{{ form.verification_status.id_for_label }}" class="form-label">
+                                Verification Status
+                            </label>
+                            {{ form.verification_status }}
+                            {% if form.verification_status.errors %}
+                            <div class="invalid-feedback d-block">
+                                {% for error in form.verification_status.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fas fa-save me-2"></i>Save Product
+            </button>
+            
+            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-lg">
+                <i class="fas fa-times me-2"></i>Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add file name display for file inputs
+        const fileInputs = document.querySelectorAll('input[type="file"]');
+        fileInputs.forEach(input => {
+            input.addEventListener('change', function(e) {
+                if (e.target.files[0]) {
+                    const fileNameDiv = document.createElement('div');
+                    fileNameDiv.className = 'mt-2 text-secondary';
+                    fileNameDiv.textContent = 'Selected file: ' + e.target.files[0].name;
+                    
+                    // Remove previous file name display if exists
+                    const previousFileName = input.parentNode.querySelector('.text-secondary');
+                    if (previousFileName) {
+                        previousFileName.remove();
+                    }
+                    
+                    input.parentNode.appendChild(fileNameDiv);
+                }
+            });
+        });
+    });
+</script>
+{% endblock %} 

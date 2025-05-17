@@ -188,6 +188,11 @@ class SellBikeForm(forms.Form):
         max_length=100, label="Owner Name",
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+    description = forms.CharField(
+        required=False,
+        label="Description",
+        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 5})
+    )
     product_image = forms.ImageField(
         label="Bike Image",
         widget=forms.ClearableFileInput(attrs={'class': 'form-control'})

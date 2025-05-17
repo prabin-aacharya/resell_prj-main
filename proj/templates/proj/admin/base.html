@@ -95,6 +95,9 @@
             <a href="{% url 'admin:admin_seller_list' %}" class="sidebar-link {% if '/admin/sellers/' in request.path %}active{% endif %}">
                 <i class="fas fa-user-tie me-2"></i> Seller Info
             </a>
+            <a href="{% url 'admin:seller_listings' %}" class="sidebar-link {% if '/admin/seller-listings/' in request.path %}active{% endif %}">
+                <i class="fas fa-clipboard-check me-2"></i> Seller Listings
+            </a>
             <a href="{% url 'admin:admin_bike_purchases' %}" class="sidebar-link {% if '/admin/purchases/' in request.path %}active{% endif %}">
                 <i class="fas fa-shopping-basket me-2"></i> Bike Purchases
             </a>

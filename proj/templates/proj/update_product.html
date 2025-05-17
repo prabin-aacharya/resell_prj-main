@@ -1,0 +1,169 @@
+{% extends 'proj/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Update Listing{% endblock title %}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <h2 class="mb-4">Update Your Bike Listing</h2>
+            
+            <!-- Current product image display -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Current Product Image
+                        </div>
+                        <div class="card-body text-center">
+                            {% if product.product_image %}
+                                <img src="{{ product.product_image.url }}" class="img-fluid" style="max-height: 200px;" alt="{{ product.title }}">
+                            {% else %}
+                                <div class="bg-light p-5 text-center">
+                                    <i class="fas fa-image fa-3x text-muted"></i>
+                                    <p class="mt-2">No image available</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                {% if product.bluebook_page2 or product.bluebook_page9 %}
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Current Documents
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                {% if product.bluebook_page2 %}
+                                <div class="col-6">
+                                    <p>Bluebook Page 2:</p>
+                                    <img src="{{ product.bluebook_page2.url }}" class="img-fluid" style="max-height: 100px;" alt="Bluebook Page 2">
+                                </div>
+                                {% endif %}
+                                
+                                {% if product.bluebook_page9 %}
+                                <div class="col-6">
+                                    <p>Bluebook Page 9:</p>
+                                    <img src="{{ product.bluebook_page9.url }}" class="img-fluid" style="max-height: 100px;" alt="Bluebook Page 9">
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Update form -->
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="{{ form.brand.id_for_label }}" class="form-label">Brand</label>
+                            {% render_field form.brand class="form-control" placeholder="e.g., Honda, Yamaha, etc." %}
+                            <small class="text-muted">Select the brand of your bike</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.model.id_for_label }}" class="form-label">Model</label>
+                            {% render_field form.model class="form-control" placeholder="e.g., CB Hornet, MT-15, etc." %}
+                            <small class="text-muted">Enter the exact model of your bike</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.made_year.id_for_label }}" class="form-label">Manufacture Year</label>
+                            {% render_field form.made_year class="form-control" placeholder="e.g., 2018" %}
+                            <small class="text-muted">The year when your bike was manufactured</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.kilometers.id_for_label }}" class="form-label">Kilometers Driven</label>
+                            {% render_field form.kilometers class="form-control" placeholder="e.g., 15000" %}
+                            <small class="text-muted">Total kilometers your bike has been driven</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.engine_size.id_for_label }}" class="form-label">Engine Size</label>
+                            {% render_field form.engine_size class="form-control" placeholder="e.g., 150cc, 200cc, etc." %}
+                            <small class="text-muted">Size of your bike's engine (in cc)</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="form-group mb-3">
+                            <label for="{{ form.condition.id_for_label }}" class="form-label">Condition</label>
+                            {% render_field form.condition class="form-control" %}
+                            <small class="text-muted">Select the current condition of your bike</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.price.id_for_label }}" class="form-label">Price (Rs.)</label>
+                            {% render_field form.price class="form-control" placeholder="e.g., 150000" %}
+                            <small class="text-muted">Your asking price in Rupees</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.city.id_for_label }}" class="form-label">City</label>
+                            {% render_field form.city class="form-control" placeholder="e.g., Kathmandu" %}
+                            <small class="text-muted">Where the bike is currently located</small>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label for="{{ form.seller_name.id_for_label }}" class="form-label">Seller Name</label>
+                            {% render_field form.seller_name class="form-control" placeholder="Your full name" %}
+                            <small class="text-muted">Your full name as it appears on the bike's documents</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+                    {% render_field form.description class="form-control" rows="5" placeholder="Provide detailed information about your bike including features, condition, any modifications, etc." %}
+                    <small class="text-muted">Detailed description of your bike to help buyers make decisions</small>
+                </div>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.product_image.id_for_label }}" class="form-label">Product Image (Optional to replace)</label>
+                            {% render_field form.product_image class="form-control" %}
+                            <small class="text-muted">Upload a clear, high-quality image of your bike</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.bluebook_page2.id_for_label }}" class="form-label">Bluebook Page 2 (Optional to replace)</label>
+                            {% render_field form.bluebook_page2 class="form-control" %}
+                            <small class="text-muted">Upload a scan/photo of page 2 of your bluebook</small>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="{{ form.bluebook_page9.id_for_label }}" class="form-label">Bluebook Page 9 (Optional to replace)</label>
+                            {% render_field form.bluebook_page9 class="form-control" %}
+                            <small class="text-muted">Upload a scan/photo of page 9 of your bluebook</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'main:my_deals' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Update Listing
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main-content %} 

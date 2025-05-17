@@ -1,0 +1,248 @@
+/* Custom Admin CSS for Product Form */
+
+/* Hide Django admin default elements */
+.form-row, fieldset, .submit-row, .aligned label, .help, 
+.aligned p.help, .aligned div.help, .aligned .field-box, 
+.aligned .field, .breadcrumbs {
+    display: none !important;
+}
+
+/* Make sure our content is shown */
+.content-wrapper {
+    display: block !important;
+    width: 100% !important;
+}
+
+/* Custom styling for our form */
+.page-title {
+    color: #344767;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.page-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 4px;
+    background: linear-gradient(45deg, #5e72e4, #825ee4);
+    border-radius: 2px;
+}
+
+.card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px);
+}
+
+.form-section {
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    opacity: 1;
+    margin-bottom: 1.5rem;
+}
+
+.form-section:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.section-heading {
+    color: #344767;
+    font-weight: 600;
+    position: relative;
+}
+
+.section-heading:after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #5e72e4 0%, rgba(94, 114, 228, 0.1) 100%);
+}
+
+.form-control, .form-select {
+    height: 50px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e9ecef;
+    box-shadow: none;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #5e72e4;
+    box-shadow: 0 0 0 0.25rem rgba(94, 114, 228, 0.15);
+}
+
+.form-floating > .form-control, 
+.form-floating > .form-select {
+    height: 58px;
+    line-height: 1.5;
+}
+
+.form-floating > label {
+    padding: 0.75rem 1rem;
+}
+
+.form-text {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+textarea.form-control {
+    min-height: 150px;
+    border-radius: 0.5rem;
+}
+
+.select-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.select-wrapper:after {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(10px);
+    color: #6c757d;
+    pointer-events: none;
+}
+
+.invalid-feedback {
+    font-weight: 500;
+    font-size: 0.825rem;
+}
+
+.image-upload-container {
+    margin-bottom: 1.5rem;
+}
+
+.image-preview-container {
+    height: 150px;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #eaeaea;
+    position: relative;
+}
+
+.image-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.image-preview:hover {
+    transform: scale(1.05);
+}
+
+.custom-file-input {
+    position: relative;
+}
+
+.custom-file-input input[type="file"] {
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.file-info {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.btn {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #5e72e4, #825ee4);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(94, 114, 228, 0.3);
+    background: linear-gradient(45deg, #4c5ec7, #6a4bc7);
+}
+
+.btn-outline-secondary {
+    border: 2px solid #8392ab;
+    color: #8392ab;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #8392ab;
+    color: white;
+}
+
+.save-button, .cancel-button {
+    transition: all 0.3s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+.btn-pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Animation classes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate__fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 0.8s;
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+    animation-duration: 0.8s;
+} 

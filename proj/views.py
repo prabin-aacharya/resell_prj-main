@@ -1,4 +1,4 @@
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Min, Max
 from urllib import request
 from django.shortcuts import render,redirect
 from django.views import View
@@ -27,8 +27,8 @@ def home(request):
     from .models import Product
     from django.core.paginator import Paginator
     
-    # Get all products ordered by most recent first
-    all_products = Product.objects.all().order_by('-id')
+    # Get all verified and available products ordered by most recent first
+    all_products = Product.objects.filter(verification_status='approved', status='available').order_by('-id')
     
     # Set up pagination
     paginator = Paginator(all_products, 12)  # Show 12 products per page
@@ -61,11 +61,12 @@ def contact(req):
     
 class BrandView(View):
     def get(self, request, val):
-        product = Product.objects.filter(brand=val)
+        # Only show verified and available products
+        product = Product.objects.filter(brand=val, verification_status='approved', status='available')
         # Get all unique models (titles) for this brand, with count
-        title = Product.objects.filter(brand=val).values('title').annotate(count=Count('id'))
+        title = Product.objects.filter(brand=val, verification_status='approved', status='available').values('title').annotate(count=Count('id'))
         # For sidebar: get all unique brands
-        brands = Product.objects.values('brand').annotate(count=Count('id'))
+        brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
         return render(request, "proj/brand.html", {
             'product': product,
             'title': title,
@@ -76,13 +77,14 @@ class BrandView(View):
 
 class BrandTitle(View):
     def get(self, request, val):
-        product = Product.objects.filter(title=val)
+        # Only show verified and available products
+        product = Product.objects.filter(title=val, verification_status='approved', status='available')
         if product.exists():
             brand_val = product[0].brand
             # All models for this brand
-            title = Product.objects.filter(brand=brand_val).values('title').annotate(count=Count('id'))
+            title = Product.objects.filter(brand=brand_val, verification_status='approved', status='available').values('title').annotate(count=Count('id'))
             # For sidebar: get all unique brands
-            brands = Product.objects.values('brand').annotate(count=Count('id'))
+            brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
             return render(request, "proj/brand.html", {
                 'product': product,
                 'title': title,
@@ -101,24 +103,43 @@ class BrandTitle(View):
 
 class ProductDetail(View):
     def get(self,request,pk):
-        product = Product.objects.get(pk=pk)
-        user_wishlist = []
-        in_wishlist = False
-        
-        if request.user.is_authenticated:
-            # Get all wishlist items for the user
-            user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
-            # Check if current product is in wishlist
-            in_wishlist = pk in user_wishlist
-        
-        # Create context dictionary with all variables
-        context = {
-            'product': product,
-            'user_wishlist': user_wishlist,
-            'in_wishlist': in_wishlist,
-        }
-        
-        return render(request, "proj/productdetail.html", context)
+        try:
+            product = Product.objects.get(pk=pk)
+            
+            # For non-staff users, ensure the product is both approved and available
+            if not request.user.is_staff:
+                if product.verification_status != 'approved':
+                    messages.error(request, "This product is not available for viewing.")
+                    return redirect('main:home')
+                
+                # If the product is sold, show a message but still let them view it
+                if product.status != 'available' and product.status == 'sold':
+                    messages.info(request, "This bike has been sold and is no longer available for purchase.")
+                # If the product has any other status, don't let them view it
+                elif product.status != 'available':
+                    messages.error(request, "This product is not available for viewing.")
+                    return redirect('main:home')
+                
+            user_wishlist = []
+            in_wishlist = False
+            
+            if request.user.is_authenticated:
+                # Get all wishlist items for the user
+                user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
+                # Check if current product is in wishlist
+                in_wishlist = pk in user_wishlist
+            
+            # Create context dictionary with all variables
+            context = {
+                'product': product,
+                'user_wishlist': user_wishlist,
+                'in_wishlist': in_wishlist,
+            }
+            
+            return render(request, "proj/productdetail.html", context)
+        except Product.DoesNotExist:
+            messages.error(request, "Product not found.")
+            return redirect('main:home')
     
     
 
@@ -324,6 +345,7 @@ def sell_bike(request):
                 engine_size=cd['engine_size'],
                 seller_name=cd['seller_name'],
                 product_image=cd['product_image'],
+                description=cd.get('description', ''),  # Add description field
             )
             
             # Add bluebook images if provided
@@ -395,7 +417,7 @@ def sell_bike(request):
                 phone=phone_number,
                 bike_brand=cd['brand'],
                 bike_model=cd['model'],
-                product=product
+                product=product  # Make sure to associate with the product
             )
             
             # Log the created seller info for debugging
@@ -455,20 +477,67 @@ def sell_success(request):
 def buy_bikes(request):
     query = request.GET.get('q', '')
     sort = request.GET.get('sort', 'relevance')
+    brand_filter = request.GET.get('brand', '')
+    condition_filter = request.GET.get('condition', '')
+    min_price = request.GET.get('min_price', '')
+    max_price = request.GET.get('max_price', '')
+    year_filter = request.GET.get('year', '')
 
-    bikes = Product.objects.all()
+    # Only show products that have been verified/approved and are available
+    bikes = Product.objects.filter(verification_status='approved', status='available')
     user_wishlist = []
     
     # Get user's wishlist items if authenticated
     if request.user.is_authenticated:
         user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
 
+    # Apply search query if provided
     if query:
         bikes = bikes.filter(
             Q(title__icontains=query) |
             Q(brand__icontains=query) |
-            Q(location__icontains=query)
+            Q(location__icontains=query) |
+            Q(description__icontains=query)
         )
+    
+    # Apply filters if provided
+    if brand_filter:
+        bikes = bikes.filter(brand=brand_filter)
+    
+    if condition_filter:
+        bikes = bikes.filter(condition=condition_filter)
+    
+    if min_price:
+        try:
+            bikes = bikes.filter(price__gte=float(min_price))
+        except ValueError:
+            pass
+    
+    if max_price:
+        try:
+            bikes = bikes.filter(price__lte=float(max_price))
+        except ValueError:
+            pass
+    
+    if year_filter:
+        try:
+            bikes = bikes.filter(made_year=int(year_filter))
+        except ValueError:
+            pass
+
+    # Get brand counts for the sidebar
+    brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
+    
+    # Get unique brands, conditions, and years for filters
+    all_brands = Product.objects.filter(verification_status='approved', status='available').values_list('brand', flat=True).distinct().order_by('brand')
+    all_conditions = Product.objects.filter(verification_status='approved', status='available').values_list('condition', flat=True).distinct().order_by('condition')
+    all_years = Product.objects.filter(verification_status='approved', status='available').values_list('made_year', flat=True).distinct().order_by('-made_year')
+    
+    # Get price range for the filter
+    price_range = Product.objects.filter(verification_status='approved', status='available').aggregate(
+        min_price=Min('price'),
+        max_price=Max('price')
+    )
 
     # Sorting logic
     if sort == 'price_asc':
@@ -477,12 +546,39 @@ def buy_bikes(request):
         bikes = bikes.order_by('-price')
     elif sort == 'latest':
         bikes = bikes.order_by('-id')
+    elif sort == 'oldest':
+        bikes = bikes.order_by('id')
+    elif sort == 'year_desc':
+        bikes = bikes.order_by('-made_year')
+    elif sort == 'year_asc':
+        bikes = bikes.order_by('made_year')
+    
+    # Count total bikes that match the criteria
+    total_count = bikes.count()
+    
+    # Pagination
+    from django.core.paginator import Paginator
+    paginator = Paginator(bikes, 9)  # Show 9 products per page (3x3 grid)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_number)
 
     return render(request, 'proj/buy_bikes.html', {
-        'bikes': bikes,
+        'bikes': page_obj,
         'query': query,
         'sort': sort,
-        'user_wishlist': user_wishlist
+        'user_wishlist': user_wishlist,
+        'brand': brand_filter,
+        'condition_filter': condition_filter,
+        'min_price': min_price,
+        'max_price': max_price,
+        'year_filter': year_filter,
+        'brands': brands,
+        'all_brands': all_brands,
+        'all_conditions': all_conditions,
+        'all_years': all_years,
+        'price_range': price_range,
+        'total_count': total_count,
+        'page_obj': page_obj,
     })
 
 def check_uploaded_files(request):
@@ -496,27 +592,6 @@ def check_uploaded_files(request):
     }
     
     return render(request, 'proj/uploaded_files.html', context)
-
-    if query:
-        bikes = bikes.filter(
-            Q(title__icontains=query) |
-            Q(brand__icontains=query) |
-            Q(location__icontains=query)
-        )
-
-    if sort == 'price_asc':
-        bikes = bikes.order_by('price')
-    elif sort == 'price_desc':
-        bikes = bikes.order_by('-price')
-    elif sort == 'latest':
-        bikes = bikes.order_by('-id')
-
-    return render(request, 'proj/buy_bikes.html', {
-        'bikes': bikes,
-        'query': query,
-        'sort': sort,
-        'user_wishlist': user_wishlist,
-    })
 
 @login_required
 def add_to_wishlist(request, product_id):
@@ -626,26 +701,29 @@ def privacy(request):
     return render(request, "proj/privacy.html")
 
 @login_required
-def my_orders(request):
-    """Display all bikes purchased by the user"""
+def my_deals(request):
+    """Display all bikes purchased by the user and bikes listed for sale by the user"""
+    # Get the user info
+    user = request.user
+    
+    # 1. Get purchased bikes (bikes the user has bought)
     purchased_bikes = []
     
     try:
-        # 1. Get all completed payments for this user from BikePaymentTransaction
-        from .models import BikePaymentTransaction, Product
+        # Get all completed payments for this user from BikePaymentTransaction
+        from .models import BikePaymentTransaction, Product, SellerInfo
         completed_transactions = BikePaymentTransaction.objects.filter(
-            buyer=request.user,
+            buyer=user,
             status='Completed'
         ).order_by('-created_at')
         
         purchased_bikes = list(completed_transactions)
         
-        # 2. As a backup, also check for bikes with 'sold' status 
+        # As a backup, also check for bikes with 'sold' status 
         # that might not have transactions but belong to the user
-        # This is a fallback in case transaction records don't exist
         sold_products = Product.objects.filter(
             status='sold',
-            bikepaymenttransaction__buyer=request.user
+            bikepaymenttransaction__buyer=user
         ).exclude(
             bikepaymenttransaction__in=completed_transactions
         )
@@ -655,7 +733,7 @@ def my_orders(request):
             # Create a temporary transaction object for display purposes
             transaction = BikePaymentTransaction(
                 product=product,
-                buyer=request.user,
+                buyer=user,
                 amount=product.price,
                 status='Completed',
                 purchase_order_id=f"ORDER-{product.id}",
@@ -665,11 +743,189 @@ def my_orders(request):
             purchased_bikes.append(transaction)
     
     except Exception as e:
-        messages.error(request, f"Error retrieving your orders: {str(e)}")
+        messages.error(request, f"Error retrieving your purchased bikes: {str(e)}")
     
-    return render(request, 'proj/my_orders.html', {
-        'purchased_bikes': purchased_bikes
+    # 2. Get bikes listed for sale by the user (by email association)
+    listed_bikes = []
+    
+    try:
+        # Find all SellerInfo records that match the user's email
+        seller_infos = SellerInfo.objects.filter(email=user.email).order_by('-created_at')
+        
+        # For each SellerInfo, get the associated product
+        for seller_info in seller_infos:
+            if seller_info.product:
+                # Add verification status info for the UI
+                verification_status = seller_info.product.verification_status
+                verification_badge = ""
+                
+                if verification_status == 'pending':
+                    verification_badge = '<span class="badge bg-warning text-dark">Pending Verification</span>'
+                elif verification_status == 'approved':
+                    verification_badge = '<span class="badge bg-success">Verified</span>'
+                elif verification_status == 'rejected':
+                    verification_badge = '<span class="badge bg-danger">Rejected</span>'
+                
+                # Add status info for the UI
+                status = seller_info.product.status
+                status_badge = ""
+                
+                if status == 'available':
+                    status_badge = '<span class="badge bg-success">Available</span>'
+                elif status == 'sold':
+                    status_badge = '<span class="badge bg-primary">Sold</span>'
+                elif status == 'pending':
+                    status_badge = '<span class="badge bg-warning text-dark">Pending</span>'
+                elif status == 'reserved':
+                    status_badge = '<span class="badge bg-info">Reserved</span>'
+                
+                listed_bikes.append({
+                    'seller_info': seller_info,
+                    'product': seller_info.product,
+                    'is_active': seller_info.product.status == 'available',
+                    'status': seller_info.product.status,
+                    'verification_status': verification_status,
+                    'verification_badge': verification_badge,
+                    'status_badge': status_badge
+                })
+    
+    except Exception as e:
+        messages.error(request, f"Error retrieving your listed bikes: {str(e)}")
+    
+    return render(request, 'proj/my_deals.html', {
+        'purchased_bikes': purchased_bikes,
+        'listed_bikes': listed_bikes,
+        'user': user
     })
+
+@login_required
+def update_product(request, pk):
+    """Allow users to update their product listings"""
+    try:
+        # Find the product
+        from django.shortcuts import get_object_or_404
+        product = get_object_or_404(Product, pk=pk)
+        
+        # Find the associated seller info
+        seller_info = SellerInfo.objects.filter(product=product, email=request.user.email).first()
+        
+        # If no seller info found or doesn't belong to this user, deny access
+        if not seller_info:
+            messages.error(request, "You don't have permission to update this listing.")
+            return redirect('main:my_deals')
+        
+        # If product is already sold, don't allow editing
+        if product.status == 'sold':
+            messages.error(request, "This listing has already been sold and cannot be edited.")
+            return redirect('main:my_deals')
+        
+        # Handle form submission
+        if request.method == 'POST':
+            # Since SellBikeForm is not a ModelForm, we can't use the instance parameter
+            form = SellBikeForm(request.POST, request.FILES)
+            if form.is_valid():
+                # Update the product manually with form data
+                product.title = form.cleaned_data['model']
+                product.brand = form.cleaned_data['brand']
+                product.price = form.cleaned_data['price']
+                product.condition = form.cleaned_data['condition']
+                product.made_year = form.cleaned_data['made_year']
+                product.kilometers = form.cleaned_data['kilometers']
+                product.engine_size = form.cleaned_data['engine_size']
+                product.location = form.cleaned_data['city']
+                product.seller_name = form.cleaned_data['seller_name']
+                product.description = form.cleaned_data.get('description', '')
+                
+                # Handle file uploads if new ones provided
+                if 'product_image' in request.FILES:
+                    product.product_image = request.FILES['product_image']
+                if 'bluebook_page2' in request.FILES:
+                    product.bluebook_page2 = request.FILES['bluebook_page2']
+                if 'bluebook_page9' in request.FILES:
+                    product.bluebook_page9 = request.FILES['bluebook_page9']
+                
+                # Reset verification status to pending since it was edited
+                if product.verification_status == 'approved' or product.verification_status == 'rejected':
+                    product.verification_status = 'pending'
+                    product.status = 'pending'
+                    messages.info(request, "Your updated listing will need to be verified again before it appears in the marketplace.")
+                
+                product.save()
+                
+                # Update the seller info
+                seller_info.bike_brand = product.brand
+                seller_info.bike_model = product.title
+                seller_info.verification_status = 'pending'
+                seller_info.save()
+                
+                messages.success(request, "Your listing has been updated successfully.")
+                return redirect('main:my_deals')
+            else:
+                # If the form is invalid, show the form again with errors
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"Error in {field}: {error}")
+        else:
+            # Pre-fill form with existing product data
+            initial_data = {
+                'brand': product.brand,
+                'model': product.title,
+                'made_year': product.made_year,
+                'kilometers': product.kilometers,
+                'city': product.location,
+                'price': product.price,
+                'condition': product.condition,
+                'engine_size': product.engine_size,
+                'seller_name': product.seller_name,
+                'description': product.description,
+            }
+            form = SellBikeForm(initial=initial_data)
+            
+            # Make image fields not required for update
+            form.fields['product_image'].required = False
+            form.fields['bluebook_page2'].required = False
+            form.fields['bluebook_page9'].required = False
+        
+        return render(request, 'proj/update_product.html', {
+            'form': form,
+            'product': product
+        })
+        
+    except Exception as e:
+        messages.error(request, f"Error updating listing: {str(e)}")
+        return redirect('main:my_deals')
+
+@login_required
+def delete_product(request, pk):
+    """Allow users to delete their product listings"""
+    try:
+        # Find the product
+        from django.shortcuts import get_object_or_404
+        product = get_object_or_404(Product, pk=pk)
+        
+        # Find the associated seller info
+        seller_info = SellerInfo.objects.filter(product=product, email=request.user.email).first()
+        
+        # If no seller info found or doesn't belong to this user, deny access
+        if not seller_info:
+            messages.error(request, "You don't have permission to delete this listing.")
+            return redirect('main:my_deals')
+        
+        # Handle confirmation
+        if request.method == 'POST':
+            # Delete the product (this will cascade to the seller_info due to ForeignKey)
+            product.delete()
+            messages.success(request, "Your listing has been deleted successfully.")
+            return redirect('main:my_deals')
+        
+        # Show confirmation page
+        return render(request, 'proj/delete_product_confirm.html', {
+            'product': product
+        })
+        
+    except Exception as e:
+        messages.error(request, f"Error deleting listing: {str(e)}")
+        return redirect('main:my_deals')
 
 @login_required
 def create_test_transaction(request):
@@ -705,7 +961,7 @@ def create_test_transaction(request):
         product.save()
         
         messages.success(request, f"Test transaction created successfully. Order ID: {transaction.purchase_order_id}")
-        return redirect('main:my_orders')
+        return redirect('main:my_deals')
     
     except Exception as e:
         messages.error(request, f"Error creating test transaction: {str(e)}")
@@ -874,3 +1130,27 @@ def test_email(request):
     # Return as JSON for easier debugging
     from django.http import JsonResponse
     return JsonResponse(result)
+
+# Custom logout view to clear only frontend session
+def custom_logout(request):
+    """
+    Custom logout view that only clears the frontend session cookie
+    while preserving the admin session if it exists.
+    """
+    from django.contrib.auth import logout
+    from django.shortcuts import redirect
+    from django.conf import settings
+    
+    # Store the session cookie name
+    session_cookie_name = settings.SESSION_COOKIE_NAME
+    
+    # Perform logout
+    logout(request)
+    
+    # Create response that redirects to login page
+    response = redirect('main:login')
+    
+    # Explicitly delete only the frontend session cookie
+    response.delete_cookie(session_cookie_name)
+    
+    return response
