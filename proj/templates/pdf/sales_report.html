@@ -2,166 +2,224 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Bike Sales Transaction Report</title>
+    <title>Sales Report</title>
     <style>
-        @page {
-            size: A4;
-            margin: 1cm;
-        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.4;
-            background-color: #fff;
-            color: #000;
+            background: #fff;
+            color: #222;
             margin: 0;
+            padding: 0;
         }
         .container {
-            width: 100%;
-            max-width: 780px;
-            margin: auto;
-            padding: 20px;
+            width: 900px;
+            margin: 30px auto;
+            padding: 20px 30px 30px 30px;
+            background: #fff;
         }
         .header {
             text-align: center;
-            border-bottom: 2px solid #198754;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
         .header h1 {
-            font-size: 20px;
-            margin: 5px 0;
-        }
-        .header p {
-            margin: 2px 0;
-            font-size: 12px;
-            color: #444;
-        }
-        .section {
-            margin-bottom: 15px;
-        }
-        .section-title {
-            font-size: 14px;
+            margin: 0;
+            font-size: 22px;
             font-weight: bold;
-            color: #198754;
-            border-left: 4px solid #198754;
-            padding-left: 8px;
+            letter-spacing: 1px;
+        }
+        .header h2 {
+            margin: 5px 0 0 0;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 28px 36px;
+            margin-bottom: 38px;
+        }
+        .box {
+            border: 2px solid #222;
+            border-radius: 6px;
+            min-height: 170px;
+            padding: 12px 18px;
+            background: #fafafa;
+            box-sizing: border-box;
+        }
+        .box-title {
+            font-size: 15px;
+            font-weight: bold;
             margin-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 3px;
         }
         .info-table {
             width: 100%;
-            border-collapse: collapse;
             font-size: 13px;
+            border-collapse: collapse;
         }
         .info-table td {
-            padding: 4px 6px;
+            padding: 2px 8px 2px 0;
             vertical-align: top;
         }
         .info-table td.label {
-            width: 35%;
-            font-weight: bold;
             color: #333;
+            font-weight: 500;
+            width: 38%;
         }
         .info-table td.value {
-            width: 65%;
-            color: #000;
+            color: #222;
+            width: 62%;
         }
-        .notes {
-            background-color: #f6fff8;
-            padding: 10px;
-            font-size: 12px;
-            border-left: 3px solid #198754;
-        }
-        .completed {
-            color: #198754;
-            font-weight: bold;
-        }
-        .signature-block {
-            margin-top: 20px;
-            font-size: 13px;
+        .authorization {
+            margin-top: 25px;
+            font-size: 14px;
         }
         .signature-line {
-            border-top: 1px solid #333;
-            width: 200px;
-            margin-top: 30px;
+            border-top: 1.5px solid #333;
+            width: 180px;
+            margin: 28px 0 8px 0;
         }
         .footer {
             text-align: center;
             font-size: 11px;
-            color: #666;
-            border-top: 1px solid #ccc;
-            margin-top: 20px;
+            color: #888;
+            margin-top: 25px;
+            border-top: 1px solid #e0e0e0;
             padding-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container">
 
-        <!-- Header -->
-        <div class="header">
-            <h1>Bike Sales Transaction Report</h1>
-            <p>Transaction ID: {{ transaction.purchase_order_id|default:"TXN-20250515-0001" }}</p>
-            <p>Date of Sale: {{ transaction.created_at|date:"jS F Y"|default:"15th May 2025" }}</p>
-            <p>Sales Executive: Prabin Acharya</p>
-        </div>
+    <!-- Header -->
+    <div class="header">
+        <h1>{{ company_name|default:"Company Name" }}</h1>
+        <h2>Sales Report</h2>
+    </div>
 
-        <!-- Bike Details -->
-        <div class="section">
-            <div class="section-title">Bike Details</div>
+    <!-- 2x2 Grid for Details -->
+    <div class="grid-2x2">
+        <!-- Seller Details -->
+        <div class="box">
+            <div class="box-title">Seller details</div>
             <table class="info-table">
-                <tr><td class="label">Make & Model:</td><td class="value">{{ product.brand }} {{ product.title }}</td></tr>
-                <tr><td class="label">Year of Manufacture:</td><td class="value">{{ product.made_year }}</td></tr>
-                <tr><td class="label">Engine Capacity:</td><td class="value">{{ product.engine_size }} cc</td></tr>
-                <tr><td class="label">Condition:</td><td class="value">{{ product.condition }}</td></tr>
-                <tr><td class="label">Odometer Reading:</td><td class="value">{{ product.kilometers }} km</td></tr>
+                <tr>
+                    <td class="label">Name:</td>
+                    <td class="value">{{ seller.full_name }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Email:</td>
+                    <td class="value">{{ seller.email }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Phone:</td>
+                    <td class="value">{{ seller.phone }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Bike Brand:</td>
+                    <td class="value">{{ seller.bike_brand }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Bike Model:</td>
+                    <td class="value">{{ seller.bike_model }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Account Status:</td>
+                    <td class="value">{{ seller.status|title }}</td>
+                </tr>
             </table>
         </div>
 
         <!-- Buyer Details -->
-        <div class="section">
-            <div class="section-title">Buyer Details</div>
+        <div class="box">
+            <div class="box-title">Buyer details</div>
             <table class="info-table">
-                <tr><td class="label">Name:</td><td class="value">{{ buyer.get_full_name|default:buyer.username }}</td></tr>
-                <tr><td class="label">Email:</td><td class="value">{{ buyer.email }}</td></tr>
-                <tr><td class="label">Contact:</td><td class="value">{{ buyer_profile.mobile }}</td></tr>
-                <tr><td class="label">Address:</td><td class="value">{{ buyer_profile.city }}, {{ buyer_profile.state }}</td></tr>
+                <tr>
+                    <td class="label">Name:</td>
+                    <td class="value">{{ buyer.get_full_name|default:buyer.username }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Email:</td>
+                    <td class="value">{{ buyer.email }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Contact:</td>
+                    <td class="value">{{ buyer_profile.mobile }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Address:</td>
+                    <td class="value">{{ buyer_profile.city }}, {{ buyer_profile.state }}</td>
+                </tr>
             </table>
         </div>
 
         <!-- Transaction Details -->
-        <div class="section">
-            <div class="section-title">Transaction Details</div>
+        <div class="box">
+            <div class="box-title">Transaction details</div>
             <table class="info-table">
-                <tr><td class="label">Listed Price:</td><td class="value">NPR {{ product.price|floatformat:2 }}</td></tr>
-                <tr><td class="label">Final Sale Price:</td><td class="value">NPR {{ transaction.amount|floatformat:2 }}</td></tr>
-                <tr><td class="label">Payment Method:</td><td class="value">{{ transaction.payment_method|default:"Online Payment" }}</td></tr>
-                <tr><td class="label">Transaction Status:</td><td class="value completed">✅ {{ transaction.status|default:"Completed" }}</td></tr>
+                <tr>
+                    <td class="label">Listed Price:</td>
+                    <td class="value">NPR {{ product.price|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Final Sale Price:</td>
+                    <td class="value">NPR {{ transaction.amount|floatformat:2 }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Payment Method:</td>
+                    <td class="value">{{ transaction.payment_method|default:"Online Payment" }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Status:</td>
+                    <td class="value">{{ transaction.status|default:"Completed" }}</td>
+                </tr>
             </table>
         </div>
 
-        <!-- Notes -->
-        <div class="section">
-            <div class="section-title">Additional Notes</div>
-            <div class="notes">
-                <p>Bike handed over on {{ transaction.created_at|date:"jS F Y" }} at {{ transaction.created_at|time:"g:i A" }}.</p>
-                <p>All sales are final unless warranty terms are breached.</p>
-            </div>
-        </div>
-
-        <!-- Authorization -->
-        <div class="section signature-block">
-            <div class="section-title">Authorized By</div>
-            <p>Prabin Acharya<br>Sales Department<br>BikeResell Platform</p>
-            <p>Signature:</p>
-            <div class="signature-line"></div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>BikeResell — Where Quality Bikes Find New Riders</p>
-            <p>Generated on {{ now|date:"jS F Y" }} at {{ now|time:"g:i A" }}</p>
-            <p>This is a system-generated document. No signature is required.</p>
+        <!-- Bike Details -->
+        <div class="box">
+            <div class="box-title">Bike details</div>
+            <table class="info-table">
+                <tr>
+                    <td class="label">Make & Model:</td>
+                    <td class="value">{{ product.brand }} {{ product.title }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Year:</td>
+                    <td class="value">{{ product.made_year }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Engine Capacity:</td>
+                    <td class="value">{{ product.engine_size }} cc</td>
+                </tr>
+                <tr>
+                    <td class="label">Condition:</td>
+                    <td class="value">{{ product.condition }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Odometer:</td>
+                    <td class="value">{{ product.kilometers }} km</td>
+                </tr>
+            </table>
         </div>
     </div>
+
+    <!-- Authorization Section -->
+    <div class="authorization">
+        <strong>Authorization</strong>
+        <div class="signature-line"></div>
+        <p>Authorized By: <strong>Prabin Acharya</strong></p>
+        <p>Sales Department, BikeResell Platform</p>
+    </div>
+
+    <div class="footer">
+        <p>Generated on {{ now|date:"jS F Y" }} at {{ now|time:"g:i A" }}</p>
+        <p>This is a system-generated document. No signature is required.</p>
+    </div>
+</div>
 </body>
 </html>
