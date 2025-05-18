@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card-body p-0">
           <div class="row g-0">
             <!-- Sidebar Navigation -->
@@ -41,59 +41,45 @@
                   <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
                     <i class="fas fa-key me-2"></i> Change Password
                   </a>
-                  <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
+                  <form method="post" action="{% url 'main:logout' %}" style="display: inline;">
                     {% csrf_token %}
-                    <button type="submit" class="nav-link text-danger border-0 bg-transparent w-100 text-start d-flex align-items-center">
+                    <button type="submit"
+                      class="nav-link text-danger border-0 bg-transparent w-100 text-start d-flex align-items-center">
                       <i class="fas fa-sign-out-alt me-2"></i> Logout
                     </button>
                   </form>
                 </div>
               </div>
-              
-              <!-- Customer Information Card -->
-              {% if customer %}
-              <div class="p-4 border-top">
-                <h5 class="mb-3"><i class="fas fa-user-circle me-2"></i>Your Details</h5>
-                <div class="card bg-light">
-                  <div class="card-body">
-                    <p class="mb-1"><strong>Name:</strong> {{ customer.name }}</p>
-                    <p class="mb-1"><strong>Mobile:</strong> {{ customer.mobile }}</p>
-                    <p class="mb-1"><strong>Location:</strong> {{ customer.city }}, {{ customer.state }}</p>
-                    <a href="{% url 'main:profile' %}" class="btn btn-sm btn-outline-success mt-2">
-                      <i class="fas fa-edit me-1"></i> Edit Profile
-                    </a>
-                  </div>
-                </div>
-              </div>
-              {% endif %}
+
+
             </div>
-            
+
             <!-- Wishlist Content -->
             <div class="col-md-9">
               <div class="p-4">
                 <h4 class="mb-4 border-bottom pb-3">
                   <i class="fas fa-heart me-2"></i>Saved Bikes ({{ products|length }})
                 </h4>
-                
+
                 {% if products %}
                 <div class="row g-4">
                   {% for product in products %}
                   <div class="col-lg-12 product-card" data-product-id="{{ product.id }}">
                     <div class="card shadow-sm mb-4 position-relative">
-                      <div class="wishlist-btn position-absolute end-0 top-0 m-3 bg-white rounded-circle p-2 shadow-sm" 
-                           data-product-id="{{ product.id }}" 
-                           title="Remove from Wishlist">
+                      <div class="wishlist-btn position-absolute end-0 top-0 m-3 bg-white rounded-circle p-2 shadow-sm"
+                        data-product-id="{{ product.id }}" title="Remove from Wishlist">
                         <i class="fas fa-heart text-danger"></i>
                       </div>
-                      
+
                       <div class="row g-0">
                         <!-- Product Image -->
                         <div class="col-md-5">
                           <div class="product-img-container">
-                            <img src="{{ product.product_image.url }}" class="img-fluid rounded-start product-img" alt="{{ product.title }}">
+                            <img src="{{ product.product_image.url }}" class="img-fluid rounded-start product-img"
+                              alt="{{ product.title }}">
                           </div>
                         </div>
-                        
+
                         <!-- Product Details -->
                         <div class="col-md-7">
                           <div class="card-body">
@@ -101,7 +87,7 @@
                               <h5 class="card-title fw-bold">{{ product.title }}</h5>
                               <span class="badge bg-{{ product.status|lower }}">{{ product.status|capfirst }}</span>
                             </div>
-                            
+
                             <div class="product-details mt-3">
                               <div class="row">
                                 <div class="col-6 mb-2">
@@ -141,17 +127,18 @@
                                   </div>
                                 </div>
                               </div>
-                              
+
                               <div class="price-section mt-3 mb-3">
                                 <h4 class="text-danger fw-bold">Rs. {{ product.price }}</h4>
                                 <small class="text-muted">Listed on {{ product.created_at|date:"M d, Y" }}</small>
                               </div>
-                              
+
                               <div class="action-buttons">
                                 <a href="{% url 'main:product-detail' product.id %}" class="btn btn-success">
                                   <i class="fas fa-eye me-2"></i>View Details
                                 </a>
-                                <button class="btn btn-outline-danger ms-2 remove-wishlist-btn" data-product-id="{{ product.id }}">
+                                <button class="btn btn-outline-danger ms-2 remove-wishlist-btn"
+                                  data-product-id="{{ product.id }}">
                                   <i class="fas fa-trash-alt me-1"></i>Remove
                                 </button>
                               </div>
@@ -179,7 +166,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="card-footer bg-light py-3 text-center">
           <img src="{% static 'proj/images/logo.png' %}" alt="Resale Logo" height="40">
           <p class="text-muted mb-0 small mt-2">Save bikes you're interested in to your wishlist for easy access</p>
@@ -197,31 +184,32 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .product-img {
     object-fit: cover;
     width: 100%;
     height: 100%;
   }
-  
+
   .card {
     transition: transform 0.3s;
   }
-  
+
   .product-card {
     transition: opacity 0.3s, transform 0.3s;
   }
-  
+
   .nav-link {
     transition: all 0.3s;
     border-radius: 8px;
   }
-  
-  .nav-link:hover, .nav-link.active {
+
+  .nav-link:hover,
+  .nav-link.active {
     background-color: #198754;
     color: white;
   }
-  
+
   /* Wishlist button styles */
   .wishlist-btn {
     cursor: pointer;
@@ -234,83 +222,83 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .wishlist-btn:hover {
     opacity: 1;
     transform: scale(1.1);
   }
-  
+
   .empty-state {
     padding: 2rem;
     color: #6c757d;
   }
-  
+
   /* Add badges for status */
   .badge.bg-available {
     background-color: #28a745;
   }
-  
+
   .badge.bg-sold {
     background-color: #dc3545;
   }
-  
+
   .badge.bg-pending {
     background-color: #ffc107;
     color: #212529;
   }
-  
+
   .badge.bg-reserved {
     background-color: #17a2b8;
   }
 </style>
 
 <script>
-// Wishlist functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Handle wishlist icon button
-  document.querySelectorAll('.wishlist-btn, .remove-wishlist-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      var productId = this.getAttribute('data-product-id');
-      var card = document.querySelector('.product-card[data-product-id="' + productId + '"]');
-      var csrftoken = getCookie('csrftoken');
-      
-      // Add a small animation
-      if (this.querySelector('i')) {
-        this.querySelector('i').classList.add('fa-beat');
-      }
-      
-      fetch("{% url 'main:toggle_wishlist' %}", {
-        method: 'POST',
-        headers: {
-          'X-CSRFToken': csrftoken,
-          'Accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        credentials: 'same-origin',
-        body: 'product_id=' + productId
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+  // Wishlist functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    // Handle wishlist icon button
+    document.querySelectorAll('.wishlist-btn, .remove-wishlist-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var productId = this.getAttribute('data-product-id');
+        var card = document.querySelector('.product-card[data-product-id="' + productId + '"]');
+        var csrftoken = getCookie('csrftoken');
+
+        // Add a small animation
+        if (this.querySelector('i')) {
+          this.querySelector('i').classList.add('fa-beat');
         }
-        return response.json();
-      })
-      .then((data) => {
-        // Check if the response indicates success
-        if (data.success) {
-          // Remove the card with animation
-          card.style.opacity = '0';
-          card.style.transform = 'scale(0.8)';
-          
-          setTimeout(function() {
-            card.remove();
-            
-            // If no more items, show empty state
-            if (document.querySelectorAll('.product-card').length === 0) {
-              var emptyState = `
+
+        fetch("{% url 'main:toggle_wishlist' %}", {
+          method: 'POST',
+          headers: {
+            'X-CSRFToken': csrftoken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          credentials: 'same-origin',
+          body: 'product_id=' + productId
+        })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Check if the response indicates success
+            if (data.success) {
+              // Remove the card with animation
+              card.style.opacity = '0';
+              card.style.transform = 'scale(0.8)';
+
+              setTimeout(function () {
+                card.remove();
+
+                // If no more items, show empty state
+                if (document.querySelectorAll('.product-card').length === 0) {
+                  var emptyState = `
                 <div class="text-center py-5">
                   <div class="empty-state">
                     <i class="far fa-heart fa-5x text-muted mb-3"></i>
@@ -322,58 +310,58 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 </div>
               `;
-              document.querySelector('.row.g-4').innerHTML = emptyState;
-            }
-            
-            // Update header count
-            document.querySelector('h4.mb-4.border-bottom').innerHTML = 
-              `<i class="fas fa-heart me-2"></i>Saved Bikes (${data.count})`;
-            
-            // Update wishlist count in navbar
-            var wishlistCountSpan = document.querySelector('.nav-link .badge');
-            if (wishlistCountSpan) {
-              wishlistCountSpan.textContent = data.count;
-              if (data.count > 0) {
-                wishlistCountSpan.style.display = '';
-              } else {
-                wishlistCountSpan.style.display = 'none';
+                  document.querySelector('.row.g-4').innerHTML = emptyState;
+                }
+
+                // Update header count
+                document.querySelector('h4.mb-4.border-bottom').innerHTML =
+                  `<i class="fas fa-heart me-2"></i>Saved Bikes (${data.count})`;
+
+                // Update wishlist count in navbar
+                var wishlistCountSpan = document.querySelector('.nav-link .badge');
+                if (wishlistCountSpan) {
+                  wishlistCountSpan.textContent = data.count;
+                  if (data.count > 0) {
+                    wishlistCountSpan.style.display = '';
+                  } else {
+                    wishlistCountSpan.style.display = 'none';
+                  }
+                }
+              }, 300);
+            } else if (!data.authenticated) {
+              // User is not authenticated, redirect to login
+              window.location.href = '{% url "main:login" %}?next=' + encodeURIComponent(window.location.pathname);
+            } else {
+              // Other error occurred, just remove the animation
+              if (this.querySelector('i')) {
+                this.querySelector('i').classList.remove('fa-beat');
               }
             }
-          }, 300);
-        } else if (!data.authenticated) {
-          // User is not authenticated, redirect to login
-          window.location.href = '{% url "main:login" %}?next=' + encodeURIComponent(window.location.pathname);
-        } else {
-          // Other error occurred, just remove the animation
-          if (this.querySelector('i')) {
-            this.querySelector('i').classList.remove('fa-beat');
-          }
-        }
-      })
-      .catch((error) => {
-        console.error('Wishlist error:', error);
-        // Just update the UI to show it's still in the wishlist
-        if (this.querySelector('i')) {
-          this.querySelector('i').classList.remove('fa-beat');
-        }
+          })
+          .catch((error) => {
+            console.error('Wishlist error:', error);
+            // Just update the UI to show it's still in the wishlist
+            if (this.querySelector('i')) {
+              this.querySelector('i').classList.remove('fa-beat');
+            }
+          });
       });
     });
   });
-});
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === (name + '=')) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+          break;
+        }
       }
     }
+    return cookieValue;
   }
-  return cookieValue;
-}
 </script>
 {% endblock %}

@@ -12,6 +12,10 @@ class LoginForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'autocompete': 'current-password' ,'class':'form-control'}))
 
 
+# Regex patterns
+USERNAME_PATTERN = r'^[a-zA-Z0-9_]{4,20}$'  # 4-20 characters, alphanumeric and underscore
+EMAIL_PATTERN = r'^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'  # Must start with a letter
+PASSWORD_PATTERN = r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$'  # At least 8 chars, 1 letter, 1 number, 1 special char
 
 def validate_email_domain(value):
     """Custom validator for email domains"""
@@ -44,17 +48,65 @@ def validate_email_domain(value):
     return value
 
 class CustomerRegistrationForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'autofocus' : 'True', 'class':'form-control'}))
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'class':'form-control'}),
-        validators=[validate_email_domain]
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'autofocus': 'True', 
+            'class': 'form-control',
+            'pattern': USERNAME_PATTERN,
+            'title': 'Username must be 4-20 characters and contain only letters, numbers, and underscores.',
+            'oninput': 'this.setCustomValidity(""); if(!this.checkValidity()) this.setCustomValidity(this.title);'
+        }),
+        validators=[
+            RegexValidator(
+                regex=USERNAME_PATTERN,
+                message='Username must be 4-20 characters and contain only letters, numbers, and underscores.',
+                code='invalid_username'
+            )
+        ]
     )
-    password1 = forms.CharField(label='Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    password2 = forms.CharField(label='Confirm Password',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'pattern': EMAIL_PATTERN,
+            'title': 'Email must start with a letter and be a valid email address.',
+            'oninput': 'this.setCustomValidity(""); if(!this.checkValidity()) this.setCustomValidity(this.title);'
+        }),
+        validators=[
+            validate_email_domain,
+            RegexValidator(
+                regex=EMAIL_PATTERN,
+                message='Email must start with a letter and be a valid email address.',
+                code='invalid_email'
+            )
+        ]
+    )
+    password1 = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'pattern': PASSWORD_PATTERN,
+            'title': 'Password must be at least 8 characters and include a letter, a number, and a special character.',
+            'oninput': 'this.setCustomValidity(""); if(!this.checkValidity()) this.setCustomValidity(this.title);'
+        }),
+        validators=[
+            RegexValidator(
+                regex=PASSWORD_PATTERN,
+                message='Password must be at least 8 characters and include a letter, a number, and a special character.',
+                code='invalid_password'
+            )
+        ]
+    )
+    password2 = forms.CharField(
+        label='Confirm Password', 
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'oninput': 'this.setCustomValidity(""); if(this.value !== document.getElementById("id_password1").value) this.setCustomValidity("Passwords do not match.");'
+        })
+    )
 
     class Meta:
         model = User
-        fields = ['username','email','password1','password2']
+        fields = ['username', 'email', 'password1', 'password2']
         
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -64,6 +116,23 @@ class CustomerRegistrationForm(UserCreationForm):
             if User.objects.filter(email=email).exists():
                 raise forms.ValidationError('This email is already registered.')
         return email
+    
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        # Additional custom validation if needed
+        if username and len(username) < 4:
+            raise forms.ValidationError('Username must be at least 4 characters long.')
+        return username
+    
+    def clean_password1(self):
+        password = self.cleaned_data.get('password1')
+        # Additional custom validation
+        if password:
+            # Check for common passwords
+            common_passwords = ['password', 'admin', '12345678', 'qwerty', 'letmein']
+            if password.lower() in common_passwords:
+                raise forms.ValidationError('This password is too common. Please choose a stronger password.')
+        return password
 
 
 

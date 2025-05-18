@@ -25,7 +25,7 @@ STATE_CHOICES = (
     ('Gandaki Province', 'Gandaki'),
     ('Lumbini Province', 'Lumbini'),
     ('Karnali Province', 'Karnali'),
-    ('Sudurpashchim Province', 'Sudurpashchim'),  # Corrected spelling
+    ('Sudurpashchim Province', 'Sudurpashchim'),
 )
 
 GENDER_CHOICES = (

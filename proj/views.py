@@ -10,6 +10,7 @@ from . forms import CustomerRegistrationForm,CustomerProfileForm,Customer,SellBi
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail, EmailMessage
 import uuid
@@ -56,8 +57,50 @@ def home(request):
 def about(req):
     return render(req, "proj/about.html")
 
+from django.views.decorators.csrf import csrf_protect
+
+@csrf_protect
 def contact(req):
-    return render(req, "proj/contact.html")
+    from django.contrib import messages
+    from django.middleware.csrf import get_token
+    
+    # Explicitly set CSRF token
+    csrf_token = get_token(req)
+    
+    if req.method == 'POST':
+        name = req.POST.get('name')
+        email = req.POST.get('email')
+        subject = req.POST.get('subject')
+        message = req.POST.get('message')
+        
+        # Prepare email
+        email_subject = f"Contact Form: {subject}"
+        email_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+        
+        try:
+            # Send email
+            from django.core.mail import send_mail
+            from django.conf import settings
+            from django.middleware.csrf import get_token
+            
+            # Ensure CSRF token is set
+            get_token(req)
+            
+            send_mail(
+                email_subject,
+                email_message,
+                settings.DEFAULT_FROM_EMAIL,  # From email (system email)
+                ['prabinacharya573@gmail.com'],  # To email (your email)
+                fail_silently=False,
+            )
+            messages.success(req, "Your message has been sent successfully. We'll get back to you soon!")
+        except Exception as e:
+            messages.error(req, "There was an error sending your message. Please try again later.")
+            print(f"Email Error: {str(e)}")
+            
+        return redirect('main:contact')
+        
+    return render(req, "proj/contact.html", {'csrf_token': csrf_token})
     
 class BrandView(View):
     def get(self, request, val):
@@ -626,10 +669,9 @@ def wishlist(request):
     })
 
 @require_POST
-@login_required
 def toggle_wishlist(request):
-    # Always return a successful response to avoid error messages
-    # If user is not authenticated, the template will handle it with the modal
+    """Toggle a product in the user's wishlist with improved error handling"""
+    # Check if user is authenticated
     if not request.user.is_authenticated:
         return JsonResponse({
             'success': False,
@@ -641,7 +683,7 @@ def toggle_wishlist(request):
         product_id = request.POST.get('product_id')
         if not product_id:
             return JsonResponse({
-                'success': True,  # Still return success to avoid error popup
+                'success': False,
                 'authenticated': True,
                 'message': 'Missing product ID',
                 'count': Wishlist.objects.filter(user=request.user).count()
@@ -672,20 +714,20 @@ def toggle_wishlist(request):
         })
     except Product.DoesNotExist:
         return JsonResponse({
-            'success': True,  # Still return success to avoid error popup
+            'success': False,
             'authenticated': True,
             'message': 'Product not found',
             'count': Wishlist.objects.filter(user=request.user).count()
         })
     except Exception as e:
-        # Log the error but return a success response to avoid error popup
+        # Log the error for debugging
         print(f"Wishlist error: {str(e)}")
         return JsonResponse({
-            'success': True,
+            'success': False,
             'authenticated': True,
-            'message': 'An error occurred, but your request was processed',
+            'message': f'An error occurred: {str(e)}',
             'count': Wishlist.objects.filter(user=request.user).count()
-        })
+        }, status=500)
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
@@ -1030,7 +1072,7 @@ def send_activation_email(request, user, to_email):
     
     try:
         # Prepare email subject and content
-        mail_subject = 'Activate your BikeResell account'
+        mail_subject = 'Activate your BikeResale account'
         
         # Prepare token data
         uid = urlsafe_base64_encode(force_bytes(user.pk))

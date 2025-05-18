@@ -247,7 +247,7 @@
                             <p class="card-text small"><i class="fas fa-calendar me-2"></i>{{ listing.created_at|date:"M d, Y" }}</p>
                         </div>
                         <div class="card-footer bg-transparent d-flex justify-content-between">
-                            <a href="{% url 'admin:proj_product_change' listing.product.id %}" class="btn btn-sm btn-outline-primary">Details</a>
+                            <!-- Details button removed -->
                             
                             {% if listing.product.verification_status == 'pending' %}
                             <div>
@@ -283,7 +283,9 @@
         <div class="table-container">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h3 class="mb-0">Recent Bike Purchases</h3>
-                <a href="{% url 'admin:proj_bikepaymenttransaction_changelist' %}" class="btn btn-sm btn-outline-success">View All</a>
+                <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-success px-4 shadow-sm">
+                    <i class="fas fa-motorcycle me-2"></i> View All Purchases
+                </a>
             </div>
             
             {% if recent_bike_payments %}
@@ -330,6 +332,39 @@
 {% endblock %}
 
 {% block extra_js %}
+<style>
+  /* Animated View All button for purchases */
+  .btn-success.px-4.shadow-sm {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+  
+  .btn-success.px-4.shadow-sm:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4) !important;
+  }
+  
+  .btn-success.px-4.shadow-sm:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+  }
+  
+  .btn-success.px-4.shadow-sm:hover:before {
+    left: 100%;
+  }
+</style>
+
 <script>
   // You can add dashboard-specific JavaScript here
   document.addEventListener('DOMContentLoaded', function() {

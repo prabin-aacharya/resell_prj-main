@@ -147,17 +147,17 @@
         </div>
         <div class="col-md-4 text-md-end">
           <ul class="list-inline mb-2">
-            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-youtube fa-lg"></i></a></li>
-            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-instagram fa-lg"></i></a></li>
-            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-facebook-f fa-lg"></i></a></li>
-            <li class="list-inline-item mx-1"><a href="#" class="footer-social"><i class="fab fa-tiktok fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="https://www.youtube.com/" target="_blank" class="footer-social"><i class="fab fa-youtube fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="https://www.instagram.com/" target="_blank" class="footer-social"><i class="fab fa-instagram fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="https://www.facebook.com/" target="_blank" class="footer-social"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+            <li class="list-inline-item mx-1"><a href="https://www.tiktok.com/" target="_blank" class="footer-social"><i class="fab fa-tiktok fa-lg"></i></a></li>
           </ul>
         </div>
       </div>
       <hr style="border-color: #157347;">
       <div class="row">
         <div class="col-12 text-center">
-          <small>&copy;2025 Resale. All rights reserved</small>
+          <small>&copy;2025 Resale. All rights reserved | Current Time: {{ nepal_time|date:"F j, Y" }} {{ nepal_time|time:"g:i A" }} {{ timezone_short }}</small>
         </div>
       </div>
     </div>
@@ -279,64 +279,8 @@
 <script src="{% static 'proj/js/myscript.js'%}"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.wishlist-btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            var productId = this.getAttribute('data-product-id');
-            var csrftoken = getCookie('csrftoken');
-            fetch("{% url 'main:toggle_wishlist' %}", {
-                method: 'POST',
-                headers: {
-                    'X-CSRFToken': csrftoken,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: 'product_id=' + productId
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                var icon = this.querySelector('i');
-                if (data.in_wishlist) {
-                    icon.classList.remove('far');
-                    icon.classList.add('fas');
-                    this.setAttribute('title', 'Remove from Wishlist');
-                } else {
-                    icon.classList.remove('fas');
-                    icon.classList.add('far');
-                    this.setAttribute('title', 'Add to Wishlist');
-                }
-                var wishlistCount = document.getElementById('wishlist-count');
-                if (wishlistCount) {
-                    wishlistCount.textContent = data.count;
-                }
-            })
-            .catch((error) => {
-                alert("You must be logged in to use the wishlist, or there was a server error.");
-                console.error('Wishlist error:', error);
-            });
-        });
-    });
-});
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+// Previous wishlist functionality has been replaced with direct links
+// to improve reliability and prevent AJAX-related errors
 </script>
 
 </body>

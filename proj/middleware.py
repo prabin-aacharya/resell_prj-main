@@ -3,6 +3,26 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.utils.http import http_date
 from django.utils.cache import patch_vary_headers
 import time
+import pytz
+from django.utils import timezone
+
+
+class TimezoneMiddleware:
+    """
+    Middleware to set the timezone to Nepal Standard Time for all requests
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __process_request(self, request):
+        # Use Nepal Standard Time
+        tzname = settings.TIME_ZONE
+        timezone.activate(pytz.timezone(tzname))
+
+    def __call__(self, request):
+        self.__process_request(request)
+        response = self.get_response(request)
+        return response
 
 
 class AdminSessionMiddleware(SessionMiddleware):
@@ -18,12 +38,30 @@ class AdminSessionMiddleware(SessionMiddleware):
         """Check if the path is for an admin section"""
         return path.startswith('/admin/')
     
+    def is_contact_path(self, path):
+        """Check if the path is the contact page"""
+        return path == '/contact/'
+    
     def process_request(self, request):
         # Check if this is an admin URL
         is_admin_url = self.is_admin_path(request.path)
+        is_contact_url = self.is_contact_path(request.path)
+        
+        # Special handling for contact page
+        if is_contact_url:
+            # For contact page always use the regular session cookie
+            settings.SESSION_COOKIE_NAME = 'sessionid'
+            # Save the original cookie name for later
+            self.original_cookie_name = settings.SESSION_COOKIE_NAME
+            # Call the parent method
+            super().process_request(request)
+            # Make sure CSRF token is included in the response
+            from django.middleware.csrf import get_token
+            get_token(request)
+            return
         
         # Special handling for form submissions to prevent session loss
-        is_form_submission = request.method == 'POST' and ('/sell/' in request.path or '/sell/success/' in request.path)
+        is_form_submission = request.method == 'POST' and ('/sell/' in request.path or '/sell/success/' in request.path or '/contact/' in request.path)
         
         # For form submissions, we need to check both session cookies
         if is_form_submission:
@@ -71,12 +109,32 @@ class AdminSessionMiddleware(SessionMiddleware):
         settings.SESSION_COOKIE_NAME = self.original_cookie_name
     
     def process_response(self, request, response):
+        # Check if this is the contact page
+        is_contact_url = self.is_contact_path(request.path)
+        
+        # Special handling for contact page
+        if is_contact_url:
+            # Get the session id cookie name
+            session_cookie_name = 'sessionid'
+            self.original_cookie_name = session_cookie_name
+            
+            # Set up the session cookie name
+            settings.SESSION_COOKIE_NAME = session_cookie_name
+            
+            # Process the response
+            response = super().process_response(request, response)
+            
+            # Add Vary header to prevent caching issues
+            patch_vary_headers(response, ('Cookie',))
+            
+            return response
+        
         # Check if this is an admin URL
         is_admin_url = self.is_admin_path(request.path)
         
         # Special handling for form submissions to prevent session loss
-        is_form_submission = request.method == 'POST' and ('/sell/' in request.path or '/sell/success/' in request.path)
-        is_form_redirect = '/sell/success/' in request.path and hasattr(request, 'session')
+        is_form_submission = request.method == 'POST' and ('/sell/' in request.path or '/sell/success/' in request.path or '/contact/' in request.path)
+        is_form_redirect = ('/sell/success/' in request.path or '/contact/' in request.path) and hasattr(request, 'session')
         
         if is_form_submission or is_form_redirect:
             # For form submissions, use only the regular session cookie

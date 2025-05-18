@@ -8,9 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --sidebar-width: 250px;
+            <style>        :root {            --sidebar-width: 250px;            --primary-color: #1e3c72;            --secondary-color: #2a5298;            --success-color: #28a745;            --info-color: #17a2b8;            --warning-color: #ffc107;            --danger-color: #dc3545;            --indigo-color: #6610f2;            --light-color: #f8f9fa;            --dark-color: #343a40;            --transition-speed: 0.3s;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --indigo-color: #6610f2;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --transition-speed: 0.3s;
         }
         
         .sidebar {
@@ -47,31 +53,374 @@
             background: rgba(255, 255, 255, 0.2);
         }
         
+        /* Enhanced Card Styles */
         .stat-card {
             background: white;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            opacity: 0.9;
         }
         
-        .stat-card h3 {
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            opacity: 1;
+        }
+        
+        .stat-card.show {
+            opacity: 1;
+        }
+        
+        .stat-card .stat-icon {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 35px;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover .stat-icon {
+            transform: scale(1.2);
+            opacity: 0.3;
+        }
+        
+        .stat-card .stat-content h3 {
+            font-size: 16px;
+            font-weight: 500;
             margin: 0;
-            color: #333;
+            color: #6c757d;
         }
         
-        .stat-card p {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 10px 0 0;
-            color: #1e3c72;
+        .stat-card .stat-content p.counter {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 10px 0;
+            color: #343a40;
         }
         
+        .stat-card .stat-footer {
+            margin-top: 10px;
+        }
+        
+        /* Card Types */
+        .primary-card .stat-icon {
+            color: var(--primary-color);
+        }
+        
+        .success-card .stat-icon {
+            color: var(--success-color);
+        }
+        
+        .info-card .stat-icon {
+            color: var(--info-color);
+        }
+        
+        .warning-card .stat-icon {
+            color: var(--warning-color);
+        }
+        
+        .danger-card .stat-icon {
+            color: var(--danger-color);
+        }
+        
+        /* Table Container */
         .table-container {
             background: white;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            opacity: 0.95;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .table-container.show {
+            opacity: 1;
+        }
+        
+        .card-hover:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card-header-custom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .card-header-custom h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            color: #343a40;
+        }
+        
+        .card-actions button {
+            transition: all 0.2s;
+        }
+        
+        /* Table Styles */
+        .custom-table {
+            margin-bottom: 0;
+        }
+        
+        .custom-table thead th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            padding: 12px 15px;
+            border-bottom: 2px solid #eee;
+            color: #495057;
+        }
+        
+        .custom-table tbody td {
+            vertical-align: middle;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .transaction-table tr {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .transaction-table tr:hover {
+            background-color: rgba(30, 60, 114, 0.02);
+        }
+        
+        /* Status badges */
+        .status-badge {
+            padding: 6px 10px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        
+        /* Avatar */
+        .avatar-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        /* Action Buttons */
+        .action-btn {
+            margin-right: 5px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-light-primary {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--primary-color);
+            border: none;
+        }
+        
+        .btn-light-primary:hover {
+            background-color: rgba(30, 60, 114, 0.2);
+            color: var(--primary-color);
+        }
+        
+        .btn-light-success {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+            border: none;
+        }
+        
+        .btn-light-success:hover {
+            background-color: rgba(40, 167, 69, 0.2);
+            color: var(--success-color);
+        }
+        
+        .bg-soft-primary {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--primary-color);
+        }
+        
+        /* Analytics Section */
+        .analytics-container {
+            padding: 15px;
+        }
+        
+        .payment-method-card {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            height: 100%;
+        }
+        
+        .payment-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .payment-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .payment-icon.credit {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .payment-icon.paypal {
+            background-color: rgba(23, 162, 184, 0.1);
+            color: #0070ba;
+        }
+        
+        .payment-icon.bank {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+        
+        .payment-icon.wallet {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+        
+        .sale-progression {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            height: 100%;
+        }
+        
+        .quick-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            padding: 0 10px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #343a40;
+        }
+        
+        /* Empty States */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .empty-state-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #adb5bd;
+        }
+        
+        /* Search Container */
+        .search-container {
+            position: relative;
+            min-width: 250px;
+        }
+        
+        .search-container input {
+            padding-right: 35px;
+            border-radius: 5px;
+        }
+        
+        .search-container .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #adb5bd;
+        }
+        
+        /* Page title */
+        .page-title {
+            font-weight: 600;
+            color: #343a40;
+            margin: 0;
+        }
+        
+        /* Pagination styling */
+        .pagination-container {
+            border-top: 1px solid #eee;
+        }
+        
+        .showing-entries {
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        /* Order ID */
+        .order-id {
+            font-family: monospace;
+            font-size: 13px;
+            color: #495057;
+        }
+        
+        /* Payment Method */
+        .payment-method {
+            display: flex;
+            align-items: center;
+            color: #495057;
+            font-size: 14px;
         }
     </style>
 </head>

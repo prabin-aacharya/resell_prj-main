@@ -11,14 +11,14 @@
                     <h3 class="mb-0"><i class="fas fa-user-plus me-2"></i>Create Your Account</h3>
                 </div>
                 <div class="card-body p-4 p-md-5">
-                    <form action="" method="post" id="registrationForm" novalidate>
+                    <form action="" method="post" id="registrationForm">
                         {% csrf_token %}
                         
                         <div class="mb-4">
                           <label for="id_username" class="form-label fw-bold"><i class="fas fa-user me-2"></i>Username</label>
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-user"></i></span>
-                            <input type="text" name="username" id="id_username" class="form-control border-success" placeholder="Choose a unique username" required>
+                            {{ form.username }}
                           </div>
                           <div id="usernameError" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.username.errors|striptags}}</small>
@@ -28,7 +28,7 @@
                           <label for="id_email" class="form-label fw-bold"><i class="fas fa-envelope me-2"></i>Email</label>
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-envelope"></i></span>
-                            <input type="email" name="email" id="id_email" class="form-control border-success" placeholder="Your email address" required>
+                            {{ form.email }}
                           </div>
                           <div id="emailError" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.email.errors|striptags}}</small>
@@ -38,8 +38,9 @@
                           <label for="id_password1" class="form-label fw-bold"><i class="fas fa-lock me-2"></i>Password</label>
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="password1" id="id_password1" class="form-control border-success" placeholder="Create a strong password" required>
+                            {{ form.password1 }}
                           </div>
+                          <div id="passwordError" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.password1.errors|striptags}}</small>
                         </div>
                         
@@ -47,8 +48,9 @@
                           <label for="id_password2" class="form-label fw-bold"><i class="fas fa-check-circle me-2"></i>Confirm Password</label>
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-check-circle"></i></span>
-                            <input type="password" name="password2" id="id_password2" class="form-control border-success" placeholder="Confirm your password" required>
+                            {{ form.password2 }}
                           </div>
+                          <div id="password2Error" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.password2.errors|striptags}}</small>
                         </div>
                         
@@ -108,168 +110,122 @@
     .form-control:focus {
         box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
     }
+    .invalid-feedback {
+        display: block;
+    }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('registrationForm');
+document.addEventListener('DOMContentLoaded', function() {
+    // Get form elements
     const usernameInput = document.getElementById('id_username');
     const emailInput = document.getElementById('id_email');
+    const passwordInput = document.getElementById('id_password1');
+    const password2Input = document.getElementById('id_password2');
+    
+    // Get error elements
     const usernameError = document.getElementById('usernameError');
     const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const password2Error = document.getElementById('password2Error');
+    
+    // Regex patterns (must match those in forms.py)
+    const USERNAME_PATTERN = /^[a-zA-Z0-9_]{4,20}$/;
+    const EMAIL_PATTERN = /^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     
     // Username validation
     usernameInput.addEventListener('input', function() {
-      const username = this.value.trim();
-      
-      // Clear previous errors
-      usernameError.textContent = '';
-      
-      // Check username length
-      if (username.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long';
-        return;
-      }
-      
-      // Check for valid characters (letters, numbers, and some special chars)
-      if (!/^[\w.@+-]+$/.test(username)) {
-        usernameError.textContent = 'Username can only contain letters, numbers, and @/./+/-/_ characters';
-        return;
-      }
-      
-      // Check if username is not entirely numeric
-      if (/^\d+$/.test(username)) {
-        usernameError.textContent = 'Username cannot be entirely numeric';
-        return;
-      }
+        const username = this.value.trim();
+        usernameError.textContent = '';
+        
+        if (username === '') return;
+        
+        if (!USERNAME_PATTERN.test(username)) {
+            usernameError.textContent = 'Username must be 4-20 characters and contain only letters, numbers, and underscores.';
+            this.classList.add('is-invalid');
+        } else {
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        }
     });
     
     // Email validation
-    emailInput.addEventListener('input', validateEmail);
-    
-    // Add blur event to ensure validation happens when focus leaves the field
-    emailInput.addEventListener('blur', validateEmail);
-    
-    function validateEmail() {
-      const email = emailInput.value.trim();
-      
-      // Clear previous errors
-      emailError.textContent = '';
-      emailInput.classList.remove('is-invalid');
-      
-      if (email === '') return; // Skip validation if empty
-      
-      // Basic email format validation
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailError.textContent = 'Please enter a valid email address';
-        emailInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Extract domain part
-      const parts = email.split('@');
-      if (parts.length !== 2) return false;
-      
-      const domain = parts[1];
-      const localPart = parts[0];
-      
-      // Check email domain is not numeric-only
-      const domainParts = domain.split('.');
-      const mainDomain = domainParts[0]; // The part before the TLD
-      
-      if (/^\d+$/.test(mainDomain)) {
-        emailError.textContent = 'Email domain cannot be numeric-only (like 123.com)';
-        emailInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Check for valid TLD
-      if (!/\.(com|org|net|edu|gov|mil|io|co|in|info|biz|np)$/i.test(domain)) {
-        emailError.textContent = 'Email must use a valid top-level domain (.com, .org, etc.)';
-        emailInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Check local part length
-      if (localPart.length < 3) {
-        emailError.textContent = 'Username part of email must be at least 3 characters';
-        emailInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Check for disposable email domains
-      const disposableDomains = [
-        'mailinator.com', 'tempmail.com', 'temp-mail.org', 'guerrillamail.com',
-        'throwawaymail.com', 'yopmail.com', 'getnada.com', 'mailnesia.com',
-        'dispostable.com', '10minutemail.com', 'trashmail.com', 'emailondeck.com'
-      ];
-      
-      if (disposableDomains.includes(domain.toLowerCase())) {
-        emailError.textContent = 'Disposable email addresses are not allowed';
-        emailInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      return true;
-    }
-    
-    // Username validation function
-    function validateUsername() {
-      const username = usernameInput.value.trim();
-      
-      // Clear previous errors
-      usernameError.textContent = '';
-      usernameInput.classList.remove('is-invalid');
-      
-      if (username === '') return false; // Skip validation if empty
-      
-      // Check username length
-      if (username.length < 3) {
-        usernameError.textContent = 'Username must be at least 3 characters long';
-        usernameInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Check for valid characters (letters, numbers, and some special chars)
-      if (!/^[\w.@+-]+$/.test(username)) {
-        usernameError.textContent = 'Username can only contain letters, numbers, and @/./+/-/_ characters';
-        usernameInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      // Check if username is not entirely numeric
-      if (/^\d+$/.test(username)) {
-        usernameError.textContent = 'Username cannot be entirely numeric';
-        usernameInput.classList.add('is-invalid');
-        return false;
-      }
-      
-      return true;
-    }
-    
-    // Update username validation to use the function
-    usernameInput.addEventListener('input', validateUsername);
-    usernameInput.addEventListener('blur', validateUsername);
-    
-    // Form submission validation
-    form.addEventListener('submit', function(event) {
-      // Run both validations
-      const usernameValid = validateUsername();
-      const emailValid = validateEmail();
-      
-      // If either validation fails, prevent form submission
-      if (!usernameValid || !emailValid) {
-        event.preventDefault();
+    emailInput.addEventListener('input', function() {
+        const email = this.value.trim();
+        emailError.textContent = '';
         
-        // Focus the first invalid field
-        if (!usernameValid) {
-          usernameInput.focus();
-        } else if (!emailValid) {
-          emailInput.focus();
+        if (email === '') return;
+        
+        if (!EMAIL_PATTERN.test(email)) {
+            emailError.textContent = 'Email must start with a letter and be a valid email address.';
+            this.classList.add('is-invalid');
+        } else {
+            // Check for disposable email domains
+            const domain = email.split('@')[1];
+            const disposableDomains = [
+                'mailinator.com', 'tempmail.com', 'temp-mail.org', 'guerrillamail.com',
+                'throwawaymail.com', 'yopmail.com', 'getnada.com', 'mailnesia.com',
+                'dispostable.com', '10minutemail.com', 'trashmail.com', 'emailondeck.com'
+            ];
+            
+            if (domain && disposableDomains.includes(domain.toLowerCase())) {
+                emailError.textContent = 'Disposable email addresses are not allowed.';
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            }
         }
-      }
     });
-  });
+    
+    // Password validation
+    passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        passwordError.textContent = '';
+        
+        if (password === '') return;
+        
+        if (!PASSWORD_PATTERN.test(password)) {
+            passwordError.textContent = 'Password must be at least 8 characters and include a letter, a number, and a special character.';
+            this.classList.add('is-invalid');
+        } else {
+            // Check for common passwords
+            const commonPasswords = ['password', 'admin', '12345678', 'qwerty', 'letmein'];
+            if (commonPasswords.includes(password.toLowerCase())) {
+                passwordError.textContent = 'This password is too common. Please choose a stronger password.';
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+                
+                // Also validate password2 if it has a value
+                if (password2Input.value) {
+                    validatePassword2();
+                }
+            }
+        }
+    });
+    
+    // Confirm Password validation
+    function validatePassword2() {
+        const password = passwordInput.value;
+        const password2 = password2Input.value;
+        password2Error.textContent = '';
+        
+        if (password2 === '') return;
+        
+        if (password !== password2) {
+            password2Error.textContent = 'Passwords do not match.';
+            password2Input.classList.add('is-invalid');
+        } else {
+            password2Input.classList.remove('is-invalid');
+            password2Input.classList.add('is-valid');
+        }
+    }
+    
+    password2Input.addEventListener('input', validatePassword2);
+});
 </script>
 
 {% endblock main-content %}

@@ -28,20 +28,32 @@
                 </ul>
                 <div class="d-flex flex-wrap gap-3 mt-4 align-items-center">
                     
-                    {% if request.user.is_authenticated %}
-                    <button class="btn btn-outline-danger btn-lg px-4 shadow-sm wishlist-btn" 
-                            data-product-id="{{ product.id }}"
-                            title="{% if product.id in user_wishlist %}Remove from Wishlist{% else %}Add to Wishlist{% endif %}">
-                        <i class="fa{% if product.id in user_wishlist %}s{% else %}r{% endif %} fa-heart me-2"></i>
-                        Wishlist
-                    </button>
+                    {% if request.user.is_authenticated and product.status == 'available' %}
+                      {% if product.id in user_wishlist %}
+                        <!-- Already in wishlist, show remove link -->
+                        <a href="{% url 'main:remove_from_wishlist' product.id %}" class="btn btn-outline-danger btn-lg px-4 shadow-sm">
+                          <i class="fas fa-heart me-2"></i>
+                          Remove from Wishlist
+                        </a>
+                      {% else %}
+                        <!-- Not in wishlist, show add link -->
+                        <a href="{% url 'main:add_to_wishlist' product.id %}" class="btn btn-outline-danger btn-lg px-4 shadow-sm">
+                          <i class="far fa-heart me-2"></i>
+                          Add to Wishlist
+                        </a>
+                      {% endif %}
+                    {% elif request.user.is_authenticated and product.status != 'available' %}
+                      <!-- Don't show wishlist button for sold/pending bikes -->
                     {% else %}
-                    <button class="btn btn-outline-danger btn-lg px-4 shadow-sm" 
-                            data-bs-toggle="modal" data-bs-target="#loginRequiredModal"
-                            title="Login to add to wishlist">
-                        <i class="far fa-heart me-2"></i>
-                        Wishlist
-                    </button>
+                      <!-- Only show for non-authenticated users if bike is available -->
+                      {% if product.status == 'available' %}
+                        <button class="btn btn-outline-danger btn-lg px-4 shadow-sm" 
+                                data-bs-toggle="modal" data-bs-target="#loginRequiredModal"
+                                title="Login to add to wishlist">
+                            <i class="far fa-heart me-2"></i>
+                            Wishlist
+                        </button>
+                      {% endif %}
                     {% endif %}
                 </div>
                 
@@ -55,7 +67,7 @@
                         <input type="hidden" name="sale_price" value="{{ product.price }}">
                         <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-sm d-flex align-items-center justify-content-center">
                             <span class="me-2">Pay with</span>
-                            <img src="https://khalti.com/static/images/logo/khalti-logo.svg" alt="Khalti" height="24" class="me-2">
+                            <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" height="24" class="me-2">
                         </button>
                     </form>
                     {% else %}

@@ -72,316 +72,317 @@
 {% if listings %}
 <div class="row">
     {% for listing in listings %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            <!-- Product Image with Status Badge -->
-            <div class="position-relative">
-                {% if listing.product.product_image %}
-                <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;">
-                {% else %}
-                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <i class="fas fa-motorcycle fa-3x text-muted"></i>
-                </div>
-                {% endif %}
-                <div class="position-absolute top-0 end-0 m-2">
-                    {% if listing.product.verification_status == 'pending' %}
-                    <span class="badge bg-warning text-dark">Pending Verification</span>
-                    {% elif listing.product.verification_status == 'approved' %}
-                    <span class="badge bg-success">Approved</span>
-                    {% elif listing.product.verification_status == 'rejected' %}
-                    <span class="badge bg-danger">Rejected</span>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <!-- Product Image with Status Badge -->
+                <div class="position-relative">
+                    {% if listing.product.product_image %}
+                    <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-motorcycle fa-3x text-muted"></i>
+                    </div>
                     {% endif %}
-                </div>
-            </div>
-            
-            <!-- Product Details -->
-            <div class="card-body">
-                <h5 class="card-title">{{ listing.product.title }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ listing.bike_brand }}</h6>
-                
-                <div class="d-flex justify-content-between align-items-center my-3">
-                    <span class="fs-4 fw-bold">₹{{ listing.product.price|floatformat:2 }}</span>
-                    <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
-                        {{ listing.product.status|title }}
-                    </span>
-                </div>
-                
-                <!-- Seller Contact Information -->
-                <div class="seller-info mb-3">
-                    <p class="mb-1"><i class="fas fa-user me-2"></i> {{ listing.full_name }}</p>
-                    <p class="mb-1"><i class="fas fa-phone me-2"></i> {{ listing.phone }}</p>
-                    <p class="mb-1"><i class="fas fa-envelope me-2"></i> {{ listing.email }}</p>
-                    <p class="mb-1"><i class="fas fa-calendar-alt me-2"></i> Listed: {{ listing.created_at|date:"M d, Y" }}</p>
-                </div>
-            </div>
-            
-            <!-- Action Buttons -->
-            <div class="card-footer bg-white">
-                <div class="d-flex justify-content-between align-items-center">
-                    <button type="button" class="btn btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
-                        <i class="fas fa-eye me-1"></i> View Details
-                    </button>
-                    
-                    <div>
+                    <div class="position-absolute top-0 end-0 m-2">
                         {% if listing.product.verification_status == 'pending' %}
-                        <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                            <i class="fas fa-check me-1"></i> Approve
+                        <span class="badge bg-warning text-dark">Pending Verification</span>
+                        {% elif listing.product.verification_status == 'approved' %}
+                        <span class="badge bg-success">Approved</span>
+                        {% elif listing.product.verification_status == 'rejected' %}
+                        <span class="badge bg-danger">Rejected</span>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Product Details -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ listing.product.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ listing.bike_brand }}</h6>
+                    
+                    <div class="d-flex justify-content-between align-items-center my-3">
+                        <span class="fs-4 fw-bold">₹{{ listing.product.price|floatformat:2 }}</span>
+                        <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
+                            {{ listing.product.status|title }}
+                        </span>
+                    </div>
+                    
+                    
+                    <!-- Seller Contact Information -->
+                    <div class="seller-info mb-3">
+                        <p class="mb-1"><i class="fas fa-user me-2"></i> {{ listing.full_name }}</p>
+                        <p class="mb-1"><i class="fas fa-phone me-2"></i> {{ listing.phone }}</p>
+                        <p class="mb-1"><i class="fas fa-envelope me-2"></i> {{ listing.email }}</p>
+                        <p class="mb-1"><i class="fas fa-calendar-alt me-2"></i> Listed: {{ listing.created_at|date:"M d, Y" }}</p>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="card-footer bg-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
+                            <i class="fas fa-eye me-1"></i> View Details
                         </button>
-                        <button type="button" class="btn btn-danger action-btn" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
-                            <i class="fas fa-times me-1"></i> Reject
+                        
+                        <div>
+                            {% if listing.product.verification_status == 'pending' %}
+                            <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                                <i class="fas fa-check me-1"></i> Approve
+                            </button>
+                            <button type="button" class="btn btn-danger action-btn" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
+                                <i class="fas fa-times me-1"></i> Reject
+                            </button>
+                            {% endif %}
+                            
+                            {% if listing.product.verification_status == 'rejected' %}
+                            <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                                <i class="fas fa-check me-1"></i> Approve
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 
+          Details Modal
+          Shows comprehensive information about the listing
+          including product details, seller info, and bluebook images
+        -->
+        <div class="modal fade" id="detailsModal{{ listing.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ listing.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="detailsModalLabel{{ listing.id }}">
+                            <i class="fas fa-motorcycle me-2"></i> {{ listing.product.title }}
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-image mb-3">
+                                    {% if listing.product.product_image %}
+                                    <img src="{{ listing.product.product_image.url }}" class="img-fluid rounded shadow" alt="{{ listing.product.title }}">
+                                    {% else %}
+                                    <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 300px;">
+                                        <i class="fas fa-motorcycle fa-5x text-muted"></i>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Bluebook Images -->
+                                {% if listing.product.bluebook_page2 or listing.product.bluebook_page9 %}
+                                <div class="bluebook-images mt-3">
+                                    <h5 class="border-bottom pb-2"><i class="fas fa-id-card me-2"></i>Bluebook Images</h5>
+                                    <div class="row">
+                                        {% if listing.product.bluebook_page2 %}
+                                        <div class="col-6">
+                                            <div class="card h-100">
+                                                <div class="card-header py-2">
+                                                    <small class="m-0">Bluebook Page 2</small>
+                                                </div>
+                                                <a href="{{ listing.product.bluebook_page2.url }}" target="_blank" class="bluebook-image">
+                                                    <img src="{{ listing.product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid card-img-bottom">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        
+                                        {% if listing.product.bluebook_page9 %}
+                                        <div class="col-6">
+                                            <div class="card h-100">
+                                                <div class="card-header py-2">
+                                                    <small class="m-0">Bluebook Page 9</small>
+                                                </div>
+                                                <a href="{{ listing.product.bluebook_page9.url }}" target="_blank" class="bluebook-image">
+                                                    <img src="{{ listing.product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid card-img-bottom">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="border-bottom pb-2">Product Details</h4>
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Brand:</strong></p>
+                                        <p class="text-muted">{{ listing.bike_brand }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Model:</strong></p>
+                                        <p class="text-muted">{{ listing.bike_model }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Year:</strong></p>
+                                        <p class="text-muted">{{ listing.product.made_year }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Price:</strong></p>
+                                        <p class="text-muted">₹{{ listing.product.price|floatformat:2 }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Kilometers:</strong></p>
+                                        <p class="text-muted">{{ listing.product.kilometers }} km</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Engine Size:</strong></p>
+                                        <p class="text-muted">{{ listing.product.engine_size }} cc</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Condition:</strong></p>
+                                        <p class="text-muted">{{ listing.product.condition }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Location:</strong></p>
+                                        <p class="text-muted">{{ listing.product.location }}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Status:</strong></p>
+                                        <p>
+                                            <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
+                                                {{ listing.product.status|title }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Verification Status:</strong></p>
+                                        <p>
+                                            <span class="badge {% if listing.product.verification_status == 'approved' %}bg-success{% elif listing.product.verification_status == 'rejected' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
+                                                {{ listing.product.verification_status|title }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Description:</strong></p>
+                                        <p class="text-muted">{{ listing.product.description|default:"No description provided." }}</p>
+                                    </div>
+                                </div>
+                                
+                                <h4 class="border-bottom pb-2 mt-4">Seller Details</h4>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Full Name:</strong></p>
+                                        <p class="text-muted">{{ listing.full_name }}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Email:</strong></p>
+                                        <p class="text-muted">{{ listing.email }}</p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p class="mb-1"><strong>Phone:</strong></p>
+                                        <p class="text-muted">{{ listing.phone }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        
+                        {% if listing.product.verification_status == 'pending' %}
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                            <i class="fas fa-check-circle me-1"></i> Approve
+                        </button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
+                            <i class="fas fa-ban me-1"></i> Reject
                         </button>
                         {% endif %}
                         
                         {% if listing.product.verification_status == 'rejected' %}
-                        <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                            <i class="fas fa-check me-1"></i> Approve
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                            <i class="fas fa-check-circle me-1"></i> Approve
                         </button>
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- 
-      Details Modal
-      Shows comprehensive information about the listing
-      including product details, seller info, and bluebook images
-    -->
-    <div class="modal fade" id="detailsModal{{ listing.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ listing.id }}" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="detailsModalLabel{{ listing.id }}">
-                        <i class="fas fa-motorcycle me-2"></i> {{ listing.product.title }}
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="product-image mb-3">
-                                {% if listing.product.product_image %}
-                                <img src="{{ listing.product.product_image.url }}" class="img-fluid rounded shadow" alt="{{ listing.product.title }}">
-                                {% else %}
-                                <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 300px;">
-                                    <i class="fas fa-motorcycle fa-5x text-muted"></i>
+        
+        <!-- 
+          Approve Modal
+          Contains form to approve listing with optional admin notes
+        -->
+        <div class="modal fade" id="approveModal{{ listing.id }}" tabindex="-1" aria-labelledby="approveModalLabel{{ listing.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="approveModalLabel{{ listing.id }}">
+                            <i class="fas fa-check-circle me-2"></i> Approve Listing
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="{% url 'admin:approve_listing' listing.id %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="text-center mb-4">
+                                <div class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-check-circle text-success fa-3x pulse-success"></i>
                                 </div>
-                                {% endif %}
+                                <h4>Approve this listing?</h4>
+                                <p class="text-muted">This will publish the bike for sale on the marketplace.</p>
                             </div>
                             
-                            <!-- Bluebook Images -->
-                            {% if listing.product.bluebook_page2 or listing.product.bluebook_page9 %}
-                            <div class="bluebook-images mt-3">
-                                <h5 class="border-bottom pb-2"><i class="fas fa-id-card me-2"></i>Bluebook Images</h5>
-                                <div class="row">
-                                    {% if listing.product.bluebook_page2 %}
-                                    <div class="col-6">
-                                        <div class="card h-100">
-                                            <div class="card-header py-2">
-                                                <small class="m-0">Bluebook Page 2</small>
-                                            </div>
-                                            <a href="{{ listing.product.bluebook_page2.url }}" target="_blank" class="bluebook-image">
-                                                <img src="{{ listing.product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid card-img-bottom">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                    
-                                    {% if listing.product.bluebook_page9 %}
-                                    <div class="col-6">
-                                        <div class="card h-100">
-                                            <div class="card-header py-2">
-                                                <small class="m-0">Bluebook Page 9</small>
-                                            </div>
-                                            <a href="{{ listing.product.bluebook_page9.url }}" target="_blank" class="bluebook-image">
-                                                <img src="{{ listing.product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid card-img-bottom">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                </div>
+                            <div class="form-group">
+                                <label for="admin_notes_{{ listing.id }}" class="form-label fw-bold">Admin Notes (Optional)</label>
+                                <textarea id="admin_notes_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Add any notes or comments about this listing..."></textarea>
+                                <small class="form-text text-muted">These notes will be added to the product description.</small>
                             </div>
-                            {% endif %}
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="border-bottom pb-2">Product Details</h4>
-                            <div class="row mb-4">
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Brand:</strong></p>
-                                    <p class="text-muted">{{ listing.bike_brand }}</p>
+                        <div class="modal-footer border-top-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success action-btn">
+                                <i class="fas fa-check me-1"></i> Confirm Approval
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 
+          Reject Modal
+          Contains form to reject listing with required rejection reason
+        -->
+        <div class="modal fade" id="rejectModal{{ listing.id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ listing.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="rejectModalLabel{{ listing.id }}">
+                            <i class="fas fa-times-circle me-2"></i> Reject Listing
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="{% url 'admin:reject_listing' listing.id %}">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <div class="text-center mb-4">
+                                <div class="icon-container bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                                    <i class="fas fa-times-circle text-danger fa-3x pulse-danger"></i>
                                 </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Model:</strong></p>
-                                    <p class="text-muted">{{ listing.bike_model }}</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Year:</strong></p>
-                                    <p class="text-muted">{{ listing.product.made_year }}</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Price:</strong></p>
-                                    <p class="text-muted">₹{{ listing.product.price|floatformat:2 }}</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Kilometers:</strong></p>
-                                    <p class="text-muted">{{ listing.product.kilometers }} km</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Engine Size:</strong></p>
-                                    <p class="text-muted">{{ listing.product.engine_size }} cc</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Condition:</strong></p>
-                                    <p class="text-muted">{{ listing.product.condition }}</p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="mb-1"><strong>Location:</strong></p>
-                                    <p class="text-muted">{{ listing.product.location }}</p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Status:</strong></p>
-                                    <p>
-                                        <span class="badge {% if listing.product.status == 'available' %}bg-success{% elif listing.product.status == 'sold' %}bg-danger{% elif listing.product.status == 'pending' %}bg-warning text-dark{% else %}bg-info text-dark{% endif %}">
-                                            {{ listing.product.status|title }}
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Verification Status:</strong></p>
-                                    <p>
-                                        <span class="badge {% if listing.product.verification_status == 'approved' %}bg-success{% elif listing.product.verification_status == 'rejected' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
-                                            {{ listing.product.verification_status|title }}
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Description:</strong></p>
-                                    <p class="text-muted">{{ listing.product.description|default:"No description provided." }}</p>
-                                </div>
+                                <h4>Reject this listing?</h4>
+                                <p class="text-muted">This listing will not be visible on the marketplace.</p>
                             </div>
                             
-                            <h4 class="border-bottom pb-2 mt-4">Seller Details</h4>
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Full Name:</strong></p>
-                                    <p class="text-muted">{{ listing.full_name }}</p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Email:</strong></p>
-                                    <p class="text-muted">{{ listing.email }}</p>
-                                </div>
-                                <div class="col-12">
-                                    <p class="mb-1"><strong>Phone:</strong></p>
-                                    <p class="text-muted">{{ listing.phone }}</p>
-                                </div>
+                            <div class="form-group">
+                                <label for="admin_notes_reject_{{ listing.id }}" class="form-label fw-bold">Reason for Rejection <span class="text-danger">*</span></label>
+                                <textarea id="admin_notes_reject_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Explain why this listing is being rejected..." required></textarea>
+                                <small class="form-text text-muted">This information will be stored with the product.</small>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    
-                    {% if listing.product.verification_status == 'pending' %}
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                        <i class="fas fa-check-circle me-1"></i> Approve
-                    </button>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
-                        <i class="fas fa-ban me-1"></i> Reject
-                    </button>
-                    {% endif %}
-                    
-                    {% if listing.product.verification_status == 'rejected' %}
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                        <i class="fas fa-check-circle me-1"></i> Approve
-                    </button>
-                    {% endif %}
+                        <div class="modal-footer border-top-0">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger action-btn">
+                                <i class="fas fa-times me-1"></i> Confirm Rejection
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- 
-      Approve Modal
-      Contains form to approve listing with optional admin notes
-    -->
-    <div class="modal fade" id="approveModal{{ listing.id }}" tabindex="-1" aria-labelledby="approveModalLabel{{ listing.id }}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="approveModalLabel{{ listing.id }}">
-                        <i class="fas fa-check-circle me-2"></i> Approve Listing
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" action="{% url 'admin:approve_listing' listing.id %}">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="text-center mb-4">
-                            <div class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-check-circle text-success fa-3x pulse-success"></i>
-                            </div>
-                            <h4>Approve this listing?</h4>
-                            <p class="text-muted">This will publish the bike for sale on the marketplace.</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="admin_notes_{{ listing.id }}" class="form-label fw-bold">Admin Notes (Optional)</label>
-                            <textarea id="admin_notes_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Add any notes or comments about this listing..."></textarea>
-                            <small class="form-text text-muted">These notes will be added to the product description.</small>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-top-0">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success action-btn">
-                            <i class="fas fa-check me-1"></i> Confirm Approval
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 
-      Reject Modal
-      Contains form to reject listing with required rejection reason
-    -->
-    <div class="modal fade" id="rejectModal{{ listing.id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ listing.id }}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="rejectModalLabel{{ listing.id }}">
-                        <i class="fas fa-times-circle me-2"></i> Reject Listing
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" action="{% url 'admin:reject_listing' listing.id %}">
-                    {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="text-center mb-4">
-                            <div class="icon-container bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                                <i class="fas fa-times-circle text-danger fa-3x pulse-danger"></i>
-                            </div>
-                            <h4>Reject this listing?</h4>
-                            <p class="text-muted">This listing will not be visible on the marketplace.</p>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="admin_notes_reject_{{ listing.id }}" class="form-label fw-bold">Reason for Rejection <span class="text-danger">*</span></label>
-                            <textarea id="admin_notes_reject_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Explain why this listing is being rejected..." required></textarea>
-                            <small class="form-text text-muted">This information will be stored with the product.</small>
-                        </div>
-                    </div>
-                    <div class="modal-footer border-top-0">
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger action-btn">
-                            <i class="fas fa-times me-1"></i> Confirm Rejection
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     {% endfor %}
 </div>
 
