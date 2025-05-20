@@ -6,6 +6,7 @@ from .models import Customer, Product, SellerInfo
 import re
 import dns.resolver
 from django.utils import timezone
+from datetime import datetime
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(widget=forms.TextInput(attrs={'autofocus' : 'True', 'class':'form-control'}))
@@ -206,8 +207,11 @@ BRAND_CHOICES = [
 
 CONDITION_CHOICES = [
     ('', 'Select Condition'),  # Add blank first option
-    ('USED', 'USED'),  # Changed to uppercase
-    ('NEW', 'NEW'),  # Changed to uppercase
+    ('LIKE_NEW', 'Like New'),
+    ('EXCELLENT', 'Excellent'),
+    ('GOOD', 'Good'),
+    ('FAIR', 'Fair'),
+    ('POOR', 'Poor'),
 ]
 
 CURRENT_YEAR = datetime.now().year
@@ -249,8 +253,34 @@ class SellBikeForm(forms.Form):
         label="Condition",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+    number_plate = forms.CharField(
+        max_length=50, 
+        label="Number Plate",
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    previous_owners = forms.IntegerField(
+        label="Number of Previous Owners",
+        min_value=0,
+        widget=forms.NumberInput(attrs={'class': 'form-control'})
+    )
     engine_size = forms.CharField(
         max_length=20, label="Engine Size",
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    engine_number = forms.CharField(
+        max_length=50, label="Engine Number",
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    chassis_number = forms.CharField(
+        max_length=50, label="Chassis Number",
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    color = forms.CharField(
+        max_length=30, label="Vehicle Color",
+        required=True,
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     seller_name = forms.CharField(
@@ -311,7 +341,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'price', 'description', 'condition', 'made_year', 
-                  'kilometers', 'engine_size', 'brand', 'location', 'seller_name', 
+                  'kilometers', 'engine_size', 'engine_number', 'chassis_number', 'color',
+                  'brand', 'location', 'seller_name', 
                   'product_image', 'bluebook_page2', 'bluebook_page9', 'status']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -321,6 +352,9 @@ class ProductForm(forms.ModelForm):
             'made_year': forms.NumberInput(attrs={'class': 'form-control'}),
             'kilometers': forms.NumberInput(attrs={'class': 'form-control'}),
             'engine_size': forms.TextInput(attrs={'class': 'form-control'}),
+            'engine_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'chassis_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'color': forms.TextInput(attrs={'class': 'form-control'}),
             'brand': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'seller_name': forms.TextInput(attrs={'class': 'form-control'}),

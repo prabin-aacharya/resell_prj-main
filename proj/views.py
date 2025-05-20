@@ -386,6 +386,11 @@ def sell_bike(request):
                 price=cd['price'],
                 condition=cd['condition'],
                 engine_size=cd['engine_size'],
+                engine_number=cd['engine_number'],
+                chassis_number=cd['chassis_number'],
+                color=cd['color'],
+                number_plate=cd['number_plate'],
+                previous_owners=cd['previous_owners'],
                 seller_name=cd['seller_name'],
                 product_image=cd['product_image'],
                 description=cd.get('description', ''),  # Add description field
@@ -874,6 +879,11 @@ def update_product(request, pk):
                 product.made_year = form.cleaned_data['made_year']
                 product.kilometers = form.cleaned_data['kilometers']
                 product.engine_size = form.cleaned_data['engine_size']
+                product.engine_number = form.cleaned_data.get('engine_number', '')
+                product.chassis_number = form.cleaned_data.get('chassis_number', '')
+                product.color = form.cleaned_data.get('color', '')
+                product.number_plate = form.cleaned_data.get('number_plate', '')
+                product.previous_owners = form.cleaned_data.get('previous_owners', 0)
                 product.location = form.cleaned_data['city']
                 product.seller_name = form.cleaned_data['seller_name']
                 product.description = form.cleaned_data.get('description', '')
@@ -901,7 +911,7 @@ def update_product(request, pk):
                 seller_info.save()
                 
                 messages.success(request, "Your listing has been updated successfully.")
-                return redirect('main:my_deals')
+                return redirect('main:my_deals' + '?updated=true#selling')
             else:
                 # If the form is invalid, show the form again with errors
                 for field, errors in form.errors.items():
@@ -918,6 +928,11 @@ def update_product(request, pk):
                 'price': product.price,
                 'condition': product.condition,
                 'engine_size': product.engine_size,
+                'engine_number': product.engine_number,
+                'chassis_number': product.chassis_number,
+                'color': product.color,
+                'number_plate': product.number_plate,
+                'previous_owners': product.previous_owners,
                 'seller_name': product.seller_name,
                 'description': product.description,
             }

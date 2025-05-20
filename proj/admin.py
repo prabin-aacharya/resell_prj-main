@@ -327,8 +327,11 @@ class ProductAdminForm(forms.ModelForm):
     
     CONDITION_CHOICES = [
         ('', 'Select Condition'),
-        ('USED', 'USED'),
-        ('NEW', 'NEW'),
+        ('Like New', 'Like New'),
+        ('Excellent', 'Excellent'),
+        ('Good', 'Good'),
+        ('Fair', 'Fair'),
+        ('Poor', 'Poor'),
     ]
     
     CURRENT_YEAR = datetime.datetime.now().year
@@ -347,6 +350,14 @@ class ProductAdminForm(forms.ModelForm):
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # If we have an instance (editing existing product), ensure condition is properly set
+        if 'instance' in kwargs and kwargs['instance']:
+            instance = kwargs['instance']
+            if instance.condition:
+                self.initial['condition'] = instance.condition
+    
     made_year = forms.IntegerField(
         label="Year of manufacturing",
         required=True,
@@ -356,17 +367,73 @@ class ProductAdminForm(forms.ModelForm):
         )
     )
     
+    # Add missing fields from the sell bike form
+    number_plate = forms.CharField(
+        max_length=50,
+        label="Number Plate",
+        required=True,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., BA 12 PA 3456'})
+    )
+    
+    previous_owners = forms.IntegerField(
+        label="Number of Previous Owners",
+        min_value=0,
+        required=True,
+        widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'e.g., 1'})
+    )
+    
+    engine_number = forms.CharField(
+        max_length=50,
+        label="Engine Number",
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter engine number'})
+    )
+    
+    chassis_number = forms.CharField(
+        max_length=50,
+        label="Chassis Number",
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter chassis number'})
+    )
+    
+    color = forms.CharField(
+        max_length=30,
+        label="Vehicle Color",
+        required=False,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Red, Black, Blue'})
+    )
+    
+    # Override price field to add Rs prefix
+    price = forms.DecimalField(
+        max_digits=10, 
+        decimal_places=2,
+        label="Price",
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control', 
+            'placeholder': 'Expected price',
+            'min': '0'
+        })
+    )
+    
+    # Override engine_size field to add cc suffix
+    engine_size = forms.CharField(
+        max_length=50,
+        label="Engine Size",
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Engine size (e.g., 150)'})
+    )
+    
     class Meta:
         model = Product
-        fields = ['title', 'brand', 'price', 'condition', 'made_year', 'kilometers', 'engine_size', 'location', 'seller_name', 'description', 'product_image', 'bluebook_page2', 'bluebook_page9']
+        fields = ['title', 'brand', 'price', 'condition', 'made_year', 'kilometers', 'engine_size', 
+                 'engine_number', 'chassis_number', 'color', 'number_plate', 'previous_owners',
+                 'location', 'seller_name', 'product_image', 'bluebook_page2', 'bluebook_page9']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g., Honda CB Shine 125cc'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Expected price'}),
             'kilometers': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Kilometers ridden'}),
-            'engine_size': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Engine size in cc'}),
+            'engine_size': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Engine size in cc'}),
             'location': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City or area'}),
             'seller_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Owner name'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4, 'placeholder': 'Additional details about the bike'}),
             'product_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'bluebook_page2': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'bluebook_page9': forms.ClearableFileInput(attrs={'class': 'form-control'}),
@@ -377,7 +444,7 @@ class ProductModelAdmin(admin.ModelAdmin):
     form = ProductAdminForm
     list_display = ['id', 'title', 'brand', 'price', 'condition', 'made_year', 'location', 'seller_name', 'display_image', 'status', 'verification_status']
     list_filter = ['brand', 'condition', 'made_year', 'location', 'status', 'verification_status']
-    search_fields = ['title', 'brand', 'seller_name', 'description']
+    search_fields = ['title', 'brand', 'seller_name']
     list_per_page = 20
     ordering = ['-id']
     readonly_fields = ['display_large_image', 'display_bluebook_images']
@@ -419,16 +486,16 @@ class ProductModelAdmin(admin.ModelAdmin):
             'description': 'Enter the basic details of the bike',
         }),
         ('Specifications', {
-            'fields': ['made_year', 'kilometers', 'engine_size'],
+            'fields': ['made_year', 'kilometers', 'engine_size', 'engine_number', 'chassis_number', 'color'],
             'description': 'Enter the technical specifications of the bike',
+        }),
+        ('Vehicle Details', {
+            'fields': ['number_plate', 'previous_owners'],
+            'description': 'Enter vehicle registration and ownership details',
         }),
         ('Seller Information', {
             'fields': ['seller_name', 'location'],
             'description': 'Enter the owner name and location',
-        }),
-        ('Description', {
-            'fields': ['description'],
-            'description': 'Provide additional details about the bike',
         }),
         ('Bike Image', {
             'fields': ['product_image', 'display_large_image'],
@@ -602,7 +669,6 @@ class SellerInfoAdminForm(forms.ModelForm):
     
     CONDITION_CHOICES = [
         ('', 'Select Condition'),
-        ('New', 'New'),
         ('Like New', 'Like New'),
         ('Excellent', 'Excellent'),
         ('Good', 'Good'),
@@ -763,10 +829,15 @@ class SellerInfoAdminForm(forms.ModelForm):
 class SellerInfoAdmin(admin.ModelAdmin):
     form = SellerInfoAdminForm
     # List display shows product owner, customer details, and product details
-    list_display = ['id', 'full_name', 'customer_email', 'customer_phone', 'bike_brand', 'bike_model', 
+    list_display = ['id', 'full_name', 'customer_email', 'customer_phone', 'bike_brand', 
+                    'get_product_title', 'get_product_made_year', 'get_product_kilometers', 
+                    'get_product_engine_size', 'get_product_engine_number', 'get_product_chassis_number', 
+                    'get_product_color', 'get_product_condition', 'get_product_location', 
+                    'get_product_price', 'get_product_seller_name', 
+                    'display_number_plate', 'display_previous_owners', 
                     'linked_product_image', 'linked_bluebook_image', 'product_verification_status', 'product_status', 'created_at']
-    list_filter = ['bike_brand', 'verification_status', 'status', 'created_at', 'product__verification_status', 'product__status']
-    search_fields = ['full_name', 'email', 'phone', 'bike_model', 'bike_brand', 'product__title']
+    list_filter = ['bike_brand', 'verification_status', 'status', 'created_at', 'product__verification_status', 'product__status', 'product__made_year', 'product__condition', 'product__location']
+    search_fields = ['full_name', 'email', 'phone', 'bike_model', 'bike_brand', 'product__title', 'product__engine_number', 'product__chassis_number', 'product__color', 'product__location', 'product__seller_name', 'product__number_plate']
     list_per_page = 20
     readonly_fields = ['customer_details', 'product_preview', 'bluebook_preview', 'created_at']
     actions = ['verify_and_publish_products', 'reject_products', 'mark_products_as_sold']
@@ -823,6 +894,18 @@ class SellerInfoAdmin(admin.ModelAdmin):
                 return format_html('<span style="color: orange; font-weight: bold;">Pending</span>')
         return 'No product linked'
     product_verification_status.short_description = 'Verification Status'
+    
+    def display_number_plate(self, obj):
+        if obj.product:
+            return obj.product.number_plate
+        return "N/A"
+    display_number_plate.short_description = 'Number Plate'
+
+    def display_previous_owners(self, obj):
+        if obj.product is not None:
+            return obj.product.previous_owners
+        return "N/A"
+    display_previous_owners.short_description = 'Previous Owners'
     
     def verify_and_publish_products(self, request, queryset):
         for seller_info in queryset:
@@ -1008,6 +1091,73 @@ class SellerInfoAdmin(admin.ModelAdmin):
                               obj.product.bluebook_page9.url, obj.product.bluebook_page9.url)
         return 'No Image'
     linked_bluebook_image.short_description = 'Bluebook Image'
+    
+    # Methods to get product attributes for list_display
+    def get_product_title(self, obj):
+        if obj.product:
+            return obj.product.title
+        return "N/A"
+    get_product_title.short_description = 'Title'
+    
+    def get_product_made_year(self, obj):
+        if obj.product:
+            return obj.product.made_year
+        return "N/A"
+    get_product_made_year.short_description = 'Year'
+    
+    def get_product_kilometers(self, obj):
+        if obj.product:
+            return obj.product.kilometers
+        return "N/A"
+    get_product_kilometers.short_description = 'Kilometers'
+    
+    def get_product_engine_size(self, obj):
+        if obj.product:
+            return obj.product.engine_size
+        return "N/A"
+    get_product_engine_size.short_description = 'Engine Size'
+    
+    def get_product_engine_number(self, obj):
+        if obj.product:
+            return obj.product.engine_number
+        return "N/A"
+    get_product_engine_number.short_description = 'Engine Number'
+    
+    def get_product_chassis_number(self, obj):
+        if obj.product:
+            return obj.product.chassis_number
+        return "N/A"
+    get_product_chassis_number.short_description = 'Chassis Number'
+    
+    def get_product_color(self, obj):
+        if obj.product:
+            return obj.product.color
+        return "N/A"
+    get_product_color.short_description = 'Color'
+    
+    def get_product_condition(self, obj):
+        if obj.product:
+            return obj.product.condition
+        return "N/A"
+    get_product_condition.short_description = 'Condition'
+    
+    def get_product_location(self, obj):
+        if obj.product:
+            return obj.product.location
+        return "N/A"
+    get_product_location.short_description = 'Location'
+    
+    def get_product_price(self, obj):
+        if obj.product:
+            return obj.product.price
+        return "N/A"
+    get_product_price.short_description = 'Price'
+    
+    def get_product_seller_name(self, obj):
+        if obj.product:
+            return obj.product.seller_name
+        return "N/A"
+    get_product_seller_name.short_description = 'Seller Name'
     
     def customer_details(self, obj):
         # Try to find a matching customer

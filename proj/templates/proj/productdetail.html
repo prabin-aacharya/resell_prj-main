@@ -19,7 +19,11 @@
                 <h3 class="text-danger fw-bold mb-4">Rs.{{product.price}}/-</h3>
                 <h4 class="mb-3">General Details</h4>
                 <ul class="list-unstyled fs-5 mb-4">
+                    <li class="mb-2"><i class="fas fa-motorcycle text-primary me-2"></i><strong>Brand:</strong> {{product.brand}}</li>
                     <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Condition:</strong> {{product.condition}}</li>
+                    <li class="mb-2"><i class="fas fa-palette text-warning me-2"></i><strong>Color:</strong> {% if product.color %}{{product.color}}{% else %}Not specified{% endif %}</li>
+                    <li class="mb-2"><i class="fas fa-id-card text-info me-2"></i><strong>Number Plate:</strong> {% if product.number_plate %}{{product.number_plate}}{% else %}Not specified{% endif %}</li>
+                    <li class="mb-2"><i class="fas fa-users text-secondary me-2"></i><strong>Previous Owners:</strong> {% if product.previous_owners %}{{product.previous_owners}}{% else %}0{% endif %}</li>
                     <li class="mb-2"><i class="fas fa-calendar-alt text-primary me-2"></i><strong>Make Year:</strong> {{product.made_year}}</li>
                     <li class="mb-2"><i class="fas fa-tachometer-alt text-info me-2"></i><strong>Kilometers:</strong> {{product.kilometers}} km</li>
                     <li class="mb-2"><i class="fas fa-cogs text-warning me-2"></i><strong>Engine Size:</strong> {{product.engine_size}} cc</li>

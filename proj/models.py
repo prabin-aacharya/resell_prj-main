@@ -50,7 +50,6 @@ class Product(models.Model):
     )
     
     CONDITION_CHOICES = (
-        ('New', 'New'),
         ('Like New', 'Like New'),
         ('Excellent', 'Excellent'),
         ('Good', 'Good'),
@@ -71,6 +70,11 @@ class Product(models.Model):
     made_year = models.IntegerField()
     kilometers = models.IntegerField()
     engine_size = models.CharField(max_length=50)
+    engine_number = models.CharField(max_length=50, blank=True, null=True)
+    chassis_number = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=30, blank=True, null=True)
+    number_plate = models.CharField(max_length=50, blank=True, null=True)
+    previous_owners = models.IntegerField(default=0, blank=True, null=True)
     brand = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     seller_name = models.CharField(max_length=100)

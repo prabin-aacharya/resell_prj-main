@@ -18,7 +18,7 @@
                     <th>Name</th>
                     <th>Contact</th>
                     <th>Bike Details</th>
-                   
+                  
                     <th>Created</th>
                     <th>Actions</th>
                 </tr>
@@ -35,7 +35,16 @@
                         <div>{{ seller.bike_brand }}</div>
                         <small class="text-muted">{{ seller.bike_model }}</small>
                     </td>
-                   
+                    <td>
+                        <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.status|title }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.verification_status|title }}
+                        </span>
+                    </td>
                     <td>{{ seller.created_at|date:"M d, Y" }}</td>
                     <td>
                         <div class="btn-group">

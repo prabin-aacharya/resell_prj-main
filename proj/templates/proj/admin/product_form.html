@@ -42,8 +42,11 @@
                 
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="{{ form.price.id_for_label }}" class="form-label">Price (₹) <span class="text-danger">*</span></label>
-                        {{ form.price }}
+                        <label for="{{ form.price.id_for_label }}" class="form-label">Price <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rs</span>
+                            {{ form.price }}
+                        </div>
                         {% if form.price.errors %}
                         <div class="text-danger mt-1">
                             {% for error in form.price.errors %}
@@ -87,8 +90,16 @@
                 
                 <div class="col-md-4">
                     <div class="mb-3">
-                        <label for="{{ form.condition.id_for_label }}" class="form-label">Condition <span class="text-danger">*</span></label>
-                        {{ form.condition }}
+                        <label for="id_condition" class="form-label">Condition <span class="text-danger">*</span></label>
+                        <!-- Debug: Current condition is: {{ form.instance.condition }} -->
+                        <select name="condition" id="id_condition" class="form-select">
+                            <option value="">Select Condition</option>
+                            <option value="Like New" {% if form.instance.condition == 'Like New' %}selected="selected"{% endif %}>Like New</option>
+                            <option value="Excellent" {% if form.instance.condition == 'Excellent' %}selected="selected"{% endif %}>Excellent</option>
+                            <option value="Good" {% if form.instance.condition == 'Good' %}selected="selected"{% endif %}>Good</option>
+                            <option value="Fair" {% if form.instance.condition == 'Fair' %}selected="selected"{% endif %}>Fair</option>
+                            <option value="Poor" {% if form.instance.condition == 'Poor' %}selected="selected"{% endif %}>Poor</option>
+                        </select>
                         {% if form.condition.errors %}
                         <div class="text-danger mt-1">
                             {% for error in form.condition.errors %}
@@ -96,6 +107,7 @@
                             {% endfor %}
                         </div>
                         {% endif %}
+                        <div class="form-text">Seller selected: {{ form.instance.condition }}</div>
                     </div>
                 </div>
             </div>
@@ -118,7 +130,10 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="{{ form.engine_size.id_for_label }}" class="form-label">Engine Size <span class="text-danger">*</span></label>
-                        {{ form.engine_size }}
+                        <div class="input-group">
+                            {{ form.engine_size }}
+                            <span class="input-group-text">cc</span>
+                        </div>
                         {% if form.engine_size.errors %}
                         <div class="text-danger mt-1">
                             {% for error in form.engine_size.errors %}
@@ -126,7 +141,82 @@
                             {% endfor %}
                         </div>
                         {% endif %}
-                        <div class="form-text">e.g. 150cc, 250cc, 350cc</div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="{{ form.color.id_for_label }}" class="form-label">Vehicle Color <span class="text-danger">*</span></label>
+                        {{ form.color }}
+                        {% if form.color.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.color.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="{{ form.engine_number.id_for_label }}" class="form-label">Engine Number <span class="text-danger">*</span></label>
+                        {{ form.engine_number }}
+                        {% if form.engine_number.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.engine_number.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="{{ form.chassis_number.id_for_label }}" class="form-label">Chassis Number <span class="text-danger">*</span></label>
+                        {{ form.chassis_number }}
+                        {% if form.chassis_number.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.chassis_number.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="id_number_plate" class="form-label">Number Plate <span class="text-danger">*</span></label>
+                        <input type="text" name="number_plate" id="id_number_plate" class="form-control" placeholder="e.g., BA 12 PA 3456" value="{% if form.instance.number_plate %}{{ form.instance.number_plate }}{% endif %}">
+                        {% if form.number_plate.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.number_plate.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                       
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="mb-3">
+                        <label for="id_previous_owners" class="form-label">Previous Owners <span class="text-danger">*</span></label>
+                        <input type="number" name="previous_owners" id="id_previous_owners" class="form-control" min="0" placeholder="e.g., 1" value="{% if form.instance.previous_owners %}{{ form.instance.previous_owners }}{% else %}0{% endif %}">
+                        {% if form.previous_owners.errors %}
+                        <div class="text-danger mt-1">
+                            {% for error in form.previous_owners.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
                     </div>
                 </div>
                 
@@ -176,18 +266,7 @@
                 </div>
             </div>
             
-            <div class="mb-3">
-                <label for="{{ form.description.id_for_label }}" class="form-label">Description <span class="text-danger">*</span></label>
-                {{ form.description }}
-                {% if form.description.errors %}
-                <div class="text-danger mt-1">
-                    {% for error in form.description.errors %}
-                    {{ error }}
-                    {% endfor %}
-                </div>
-                {% endif %}
-                <div class="form-text">Provide a detailed description of the bike.</div>
-            </div>
+
             
             <div class="row">
                 <div class="col-md-4">
