@@ -9,10 +9,24 @@
         <h2 class="fw-bold">Sell Your Used Bike</h2>
         <p class="text-muted">Complete the form below to list your bike for sale</p>
       </div>
-      
+
+      <div id="validation-errors" class="alert alert-danger mb-4" style="display: none;">
+        <div class="d-flex">
+          <div class="me-3">
+            <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+          </div>
+          <div>
+            <h5 class="alert-heading">Unable to Register Your Bike</h5>
+            <p>We found the following issues with your submission:</p>
+            <ul id="error-list"></ul>
+            <p class="mb-0">Please update the highlighted fields to continue.</p>
+          </div>
+        </div>
+      </div>
+
       <form method="post" enctype="multipart/form-data" class="bg-white p-4 p-md-5 rounded-lg shadow-sm sell-bike-form">
         {% csrf_token %}
-        
+
         <div class="form-section mb-4">
           <h4 class="section-title mb-3"><i class="bi bi-info-circle-fill me-2"></i>Bike Details</h4>
           <div class="row g-4">
@@ -49,12 +63,22 @@
             <div class="col-md-6">
               <label class="form-label">{{ form.engine_number.label }}</label>
               {{ form.engine_number }}
-             
+              {% if form.engine_number.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.engine_number.errors }}
+              </div>
+              {% endif %}
+              <div id="engine_number_error" class="invalid-feedback d-block" style="display: none;"></div>
             </div>
             <div class="col-md-6">
               <label class="form-label">{{ form.chassis_number.label }}</label>
               {{ form.chassis_number }}
-              
+              {% if form.chassis_number.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.chassis_number.errors }}
+              </div>
+              {% endif %}
+              <div id="chassis_number_error" class="invalid-feedback d-block" style="display: none;"></div>
             </div>
             <div class="col-md-4">
               <label class="form-label">{{ form.condition.label }}</label>
@@ -63,6 +87,12 @@
             <div class="col-md-4">
               <label class="form-label">{{ form.number_plate.label }}</label>
               {{ form.number_plate }}
+              {% if form.number_plate.errors %}
+              <div class="invalid-feedback d-block">
+                {{ form.number_plate.errors }}
+              </div>
+              {% endif %}
+              <div id="number_plate_error" class="invalid-feedback d-block" style="display: none;"></div>
             </div>
             <div class="col-md-4">
               <label class="form-label">{{ form.previous_owners.label }}</label>
@@ -70,7 +100,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="form-section mb-4">
           <h4 class="section-title mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Location & Price</h4>
           <div class="row g-4">
@@ -87,7 +117,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="form-section mb-4">
           <h4 class="section-title mb-3"><i class="bi bi-person-fill me-2"></i>Seller Information</h4>
           <div class="row g-4">
@@ -97,7 +127,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="form-section mb-4">
           <h4 class="section-title mb-3"><i class="bi bi-card-image me-2"></i>Images & Documents</h4>
           <div class="row g-4">
@@ -121,7 +151,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="alert alert-info mb-4" role="alert">
           <div class="d-flex">
             <div class="me-3">
@@ -132,7 +162,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="text-center">
           <button type="submit" class="btn btn-danger mt-2 px-5 py-2 fw-bold">
             <i class="bi bi-check2-circle me-2"></i>Save Bike Listing
@@ -144,7 +174,6 @@
 </div>
 
 <style>
-/* Import Bootstrap Icons if not already included in base.html */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
 .sell-bike-form {
@@ -155,188 +184,131 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
 }
-
 .form-header h2 {
   color: #333;
   font-size: 2.2rem;
-  margin-bottom: 0.5rem;
 }
-
 .form-section {
   border-bottom: 1px solid #f0f0f0;
   padding-bottom: 1.5rem;
 }
-
-.form-section:last-child {
-  border-bottom: none;
-}
-
 .section-title {
-  font-size: 1.25rem;
-  color: #333;
+  font-size: 1.2rem;
   font-weight: 600;
 }
-
-.sell-bike-form label {
-  font-weight: 600;
-  margin-bottom: 8px;
+.form-label {
+  font-weight: 500;
   color: #555;
 }
-
-.sell-bike-form .form-control, 
-.sell-bike-form .form-select {
+.form-control, .form-select {
   border-radius: 8px;
-  min-height: 48px;
-  font-size: 1rem;
+  padding: 0.6rem 1rem;
   border: 1px solid #ddd;
-  box-shadow: none;
-  transition: all 0.3s;
-  padding: 0.5rem 1rem;
 }
-
-.sell-bike-form .form-control:focus, 
-.sell-bike-form .form-select:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.15);
+.form-control:focus, .form-select:focus {
+  border-color: #6c757d;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.15);
 }
-
-.sell-bike-form .input-group-text {
-  border-radius: 0 8px 8px 0;
-  background: #f8f9fa;
-  font-weight: 600;
-  color: #555;
-  border: 1px solid #ddd;
-  border-left: none;
-}
-
-.sell-bike-form button[type="submit"] {
-  font-size: 1.1rem;
-  border-radius: 8px;
-  padding: 12px 40px;
-  min-width: 220px;
-  transition: all 0.3s;
-  box-shadow: 0 4px 10px rgba(220,53,69,0.2);
-}
-
-.sell-bike-form button[type="submit"]:hover {
-  background-color: #b02a37;
-  box-shadow: 0 6px 15px rgba(220,53,69,0.3);
-  transform: translateY(-2px);
-}
-
 .custom-file-upload {
-  position: relative;
-  overflow: hidden;
-  background: #f9f9f9;
   border: 1px dashed #ddd;
   border-radius: 8px;
-  padding: 0.5rem;
-  transition: all 0.3s;
+  padding: 1rem;
+  text-align: center;
+  background: #f9f9f9;
 }
-
 .custom-file-upload:hover {
-  background: #f3f3f3;
-  border-color: #ccc;
+  border-color: #aaa;
+  background: #f5f5f5;
 }
-
+.btn-danger {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+.btn-danger:hover {
+  background-color: #c0392b;
+  border-color: #c0392b;
+}
 .alert-info {
-  background-color: #e8f4fd;
-  border-color: #b8daff;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
   color: #0c5460;
-  border-radius: 10px;
 }
-
-/* Responsive styles */
 @media (max-width: 768px) {
+  .form-section {
+    padding-bottom: 1rem;
+  }
   .sell-bike-form {
     padding: 1.5rem !important;
-  }
-  
-  .form-header h2 {
-    font-size: 1.8rem;
-  }
-  
-  .section-title {
-    font-size: 1.1rem;
-  }
-  
-  .sell-bike-form .row > div {
-    margin-bottom: 1rem;
   }
 }
 </style>
 {% endblock %}
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Color field validation
-  const colorField = document.querySelector('input[name="color"]');
-  colorField.addEventListener('input', function() {
-    if (this.value.trim() === '') {
-      this.setCustomValidity('Please enter the vehicle color');
-    } else {
-      this.setCustomValidity('');
-    }
-  });
-  
-  // Engine number and Chassis number validation
-  const engineNumberField = document.querySelector('input[name="engine_number"]');
-  const chassisNumberField = document.querySelector('input[name="chassis_number"]');
-  
-  engineNumberField.addEventListener('input', function() {
-    if (this.value.trim() === '') {
-      this.setCustomValidity('Please enter the engine number for verification');
-    } else {
-      this.setCustomValidity('');
-    }
-  });
-  
-  chassisNumberField.addEventListener('input', function() {
-    if (this.value.trim() === '') {
-      this.setCustomValidity('Please enter the chassis number for verification');
-    } else {
-      this.setCustomValidity('');
-    }
-  });
-  
-  // Form submission handler
-  const form = document.querySelector('form');
-  form.addEventListener('submit', function(e) {
-    // Make sure color is provided
-    if (colorField.value.trim() === '') {
-      colorField.setCustomValidity('Please enter the vehicle color');
-      e.preventDefault();
-      return false;
-    }
-    
-    // Validate engine and chassis numbers
-    if (engineNumberField.value.trim() === '') {
-      engineNumberField.setCustomValidity('Please enter the engine number for verification');
-      e.preventDefault();
-      return false;
-    }
-    
-    if (chassisNumberField.value.trim() === '') {
-      chassisNumberField.setCustomValidity('Please enter the chassis number for verification');
-      e.preventDefault();
-      return false;
-    }
-    
-    return true;
-  });
-  
-  // File input styling
-  const fileInputs = document.querySelectorAll('input[type="file"]');
-  fileInputs.forEach(input => {
-    input.addEventListener('change', function() {
-      const fileName = this.files[0]?.name;
-      if (fileName) {
-        const parent = this.closest('.custom-file-upload');
-        if (parent) {
-          parent.style.borderColor = '#28a745';
-          parent.style.background = '#f8fff8';
-        }
+  const engineNumberField = document.getElementById('id_engine_number');
+  const chassisNumberField = document.getElementById('id_chassis_number');
+  const numberPlateField = document.getElementById('id_number_plate');
+
+  const engineError = document.getElementById('engine_number_error');
+  const chassisError = document.getElementById('chassis_number_error');
+  const plateError = document.getElementById('number_plate_error');
+
+  function checkUnique(field, fieldName, errorElement) {
+    const value = field.value.trim();
+    if (!value || !errorElement) return;
+
+    fetch('/check-unique-field/?field=' + fieldName + '&value=' + encodeURIComponent(value), {
+      method: 'GET',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.exists) {
+        errorElement.textContent = 'This ' + fieldName.replace('_', ' ') + ' is already registered!';
+        errorElement.style.display = 'block';
+        field.classList.add('is-invalid');
+        field.classList.remove('is-valid');
+      } else {
+        errorElement.style.display = 'none';
+        field.classList.remove('is-invalid');
+        field.classList.add('is-valid');
+      }
+    })
+    .catch(error => {
+      console.error('Error checking uniqueness:', error);
+    });
+  }
+
+  function setupValidation(field, fieldName, errorElement) {
+    if (!field || !errorElement) return;
+
+    field.addEventListener('blur', () => {
+      checkUnique(field, fieldName, errorElement);
+    });
+
+    field.addEventListener('input', () => {
+      errorElement.style.display = 'none';
+      field.classList.remove('is-invalid');
+      field.classList.remove('is-valid');
+    });
+  }
+
+  setupValidation(engineNumberField, 'engine_number', engineError);
+  setupValidation(chassisNumberField, 'chassis_number', chassisError);
+  setupValidation(numberPlateField, 'number_plate', plateError);
+
+  const form = document.querySelector('.sell-bike-form');
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      const visibleErrors = document.querySelectorAll('.invalid-feedback[style*="display: block"]');
+      if (visibleErrors.length > 0) {
+        event.preventDefault();
+        const fieldId = visibleErrors[0].id.replace('_error', '');
+        const field = document.getElementById('id_' + fieldId);
+        if (field) field.focus();
       }
     });
-  });
+  }
 });
 </script>

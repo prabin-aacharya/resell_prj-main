@@ -340,29 +340,126 @@
 
 {% block extra_js %}
 <script>
-    // Preview image before upload
-    document.querySelectorAll('input[type="file"]').forEach(function(input) {
-        input.addEventListener('change', function(e) {
-            if (this.files && this.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var preview = document.createElement('img');
-                    preview.src = e.target.result;
-                    preview.style.maxWidth = '200px';
-                    preview.style.height = 'auto';
-                    preview.style.marginTop = '10px';
+    document.addEventListener('DOMContentLoaded', function(e) {
+        // Show/hide image preview when file input changes
+        document.querySelectorAll('input[type="file"]').forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    var preview = document.getElementById(this.id + '_preview');
                     
-                    // Remove existing preview if any
-                    var existingPreview = input.parentElement.querySelector('img');
-                    if (existingPreview) {
-                        existingPreview.remove();
+                    if (preview) {
+                        reader.onload = function(e) {
+                            preview.src = e.target.result;
+                            preview.style.display = 'block';
+                        }
+                        
+                        reader.readAsDataURL(this.files[0]);
                     }
-                    
-                    input.parentElement.insertBefore(preview, input.nextSibling);
                 }
-                reader.readAsDataURL(this.files[0]);
+            });
+        });
+        
+        // Fields that need uniqueness validation
+        const uniqueFields = [
+            { id: 'id_engine_number', name: 'engine_number', label: 'Engine Number' },
+            { id: 'id_chassis_number', name: 'chassis_number', label: 'Chassis Number' },
+            { id: 'id_number_plate', name: 'number_plate', label: 'Number Plate' }
+        ];
+
+        // Current product ID for excluding from uniqueness check (if editing)
+        const currentProductId = "{{ form.instance.id|default:'0' }}";
+
+        // Add event listeners to each field with uniqueness requirements
+        uniqueFields.forEach(field => {
+            const inputElement = document.getElementById(field.id);
+            if (inputElement) {
+                // Add validation on blur (when user leaves the field)
+                inputElement.addEventListener('blur', function() {
+                    validateUniqueField(inputElement, field.name, field.label);
+                });
+            }
+        });
+
+        // Function to validate uniqueness via AJAX
+        function validateUniqueField(inputElement, fieldName, fieldLabel) {
+            const value = inputElement.value.trim();
+            if (!value) return; // Skip empty values
+
+            // Find or create feedback element
+            let feedbackId = `${inputElement.id}_feedback`;
+            let feedbackElement = document.getElementById(feedbackId);
+            
+            if (!feedbackElement) {
+                // Create new feedback element
+                feedbackElement = document.createElement('div');
+                feedbackElement.id = feedbackId;
+                feedbackElement.classList.add('unique-feedback', 'mt-2');
+                
+                // Insert after the input element
+                if (inputElement.parentNode) {
+                    inputElement.parentNode.insertBefore(feedbackElement, inputElement.nextSibling);
+                }
+            }
+
+            // Show loading indicator
+            feedbackElement.innerHTML = '<div class="text-muted"><i class="fas fa-spinner fa-spin"></i> Checking...</div>';
+
+            // Make AJAX request to check uniqueness
+            fetch(`/check-unique-field/?field=${fieldName}&value=${encodeURIComponent(value)}&exclude_id=${currentProductId}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.exists) {
+                    // Field value already exists
+                    const productInfo = data.product_info;
+                    
+                    // Create error message with Bootstrap styling and highlight it
+                    const errorMessage = `
+                        <div class="alert alert-danger mt-1 p-2">
+                            <strong>This ${fieldLabel.toLowerCase()} is already registered!</strong><br>
+                            A bike with brand '${productInfo.brand}' and model '${productInfo.model}' 
+                            is already using this ${fieldLabel.toLowerCase()}.<br>
+                            Each bike must have a unique ${fieldLabel.toLowerCase()}.
+                        </div>`;
+                    
+                    feedbackElement.innerHTML = errorMessage;
+                    inputElement.classList.add('is-invalid');
+                    inputElement.style.borderColor = '#dc3545';
+                    inputElement.style.boxShadow = '0 0 0 0.2rem rgba(220, 53, 69, 0.25)';
+                    
+                    // Make sure the error is visible
+                    feedbackElement.style.display = 'block';
+                } else {
+                    // Field value is unique
+                    feedbackElement.innerHTML = `<div class="alert alert-success mt-1 p-2">✓ ${fieldLabel} is available and valid</div>`;
+                    inputElement.classList.remove('is-invalid');
+                    inputElement.classList.add('is-valid');
+                    inputElement.style.borderColor = '#28a745';
+                    inputElement.style.boxShadow = '0 0 0 0.2rem rgba(40, 167, 69, 0.25)';
+                }
+            })
+            .catch(error => {
+                console.error('Error checking uniqueness:', error);
+                feedbackElement.innerHTML = '<small class="text-warning">Could not verify uniqueness</small>';
+            });
+        }
+
+        // Form submission validation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            // Check if any fields have the is-invalid class
+            const invalidFields = form.querySelectorAll('.is-invalid');
+            if (invalidFields.length > 0) {
+                event.preventDefault();
+                alert('Please fix the errors in the form before submitting.');
+                invalidFields[0].focus();
             }
         });
     });
 </script>
-{% endblock %} 
+{% endblock %}

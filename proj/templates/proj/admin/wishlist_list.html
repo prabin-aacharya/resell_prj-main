@@ -21,8 +21,10 @@
                 {% for wishlist in wishlists %}
                 <tr>
                     <td>
-                        <div>{{ wishlist.user.get_full_name|default:wishlist.user.username }}</div>
+                        {% with customer=wishlist.user.customers.first %}
+                        <div>{{ customer.name }}</div>
                         <small class="text-muted">{{ wishlist.user.email }}</small>
+                        {% endwith %}
                     </td>
                     <td>
                         <div>{{ wishlist.product.title }}</div>
@@ -58,7 +60,9 @@
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <h6>Customer Information</h6>
-                                            <p><strong>Name:</strong> {{ wishlist.user.get_full_name|default:wishlist.user.username }}</p>
+                                            {% with customer=wishlist.user.customers.first %}
+                                            <p><strong>Name:</strong> {{ customer.name }}</p>
+                                            {% endwith %}
                                             <p><strong>Email:</strong> {{ wishlist.user.email }}</p>
                                         </div>
                                         <div class="mb-3">

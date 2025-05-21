@@ -68,6 +68,7 @@ urlpatterns = [
 
     path('ajax/toggle-wishlist/', views.toggle_wishlist, name='toggle_wishlist'),
     path('check-uploaded-files/', views.check_uploaded_files, name='check_uploaded_files'),
+    path('check-unique-field/', views.check_unique_field, name='check_unique_field'),
     
     # Payment URLs
     path('payment/initiate/', payment_views.initiate_bike_payment, name='initiate_bike_payment'),

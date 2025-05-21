@@ -28,8 +28,11 @@ def home(request):
     from .models import Product
     from django.core.paginator import Paginator
     
-    # Get all verified and available products ordered by most recent first
-    all_products = Product.objects.filter(verification_status='approved', status='available').order_by('-id')
+    # Get all verified products (both available and sold) ordered by most recent first
+    all_products = Product.objects.filter(
+        verification_status='approved',
+        status__in=['available', 'sold']
+    ).order_by('-id')
     
     # Set up pagination
     paginator = Paginator(all_products, 12)  # Show 12 products per page
@@ -104,35 +107,49 @@ def contact(req):
     
 class BrandView(View):
     def get(self, request, val):
-        # Only show verified and available products
-        product = Product.objects.filter(brand=val, verification_status='approved', status='available')
+        # Show verified products that are either available or sold
+        product = Product.objects.filter(brand=val, verification_status='approved', status__in=['available', 'sold'])
         # Get all unique models (titles) for this brand, with count
-        title = Product.objects.filter(brand=val, verification_status='approved', status='available').values('title').annotate(count=Count('id'))
+        title = Product.objects.filter(brand=val, verification_status='approved', status__in=['available', 'sold']).values('title').annotate(count=Count('id'))
         # For sidebar: get all unique brands
-        brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
+        brands = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).values('brand').annotate(count=Count('id'))
+        
+        # Get user's wishlist items if authenticated
+        user_wishlist = []
+        if request.user.is_authenticated:
+            user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
+            
         return render(request, "proj/brand.html", {
             'product': product,
             'title': title,
             'brands': brands,
             'brand': val,
+            'user_wishlist': user_wishlist,
         })
     
 
 class BrandTitle(View):
     def get(self, request, val):
-        # Only show verified and available products
-        product = Product.objects.filter(title=val, verification_status='approved', status='available')
+        # Show verified products that are either available or sold
+        product = Product.objects.filter(title=val, verification_status='approved', status__in=['available', 'sold'])
         if product.exists():
             brand_val = product[0].brand
             # All models for this brand
-            title = Product.objects.filter(brand=brand_val, verification_status='approved', status='available').values('title').annotate(count=Count('id'))
+            title = Product.objects.filter(brand=brand_val, verification_status='approved', status__in=['available', 'sold']).values('title').annotate(count=Count('id'))
             # For sidebar: get all unique brands
-            brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
+            brands = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).values('brand').annotate(count=Count('id'))
+            
+            # Get user's wishlist items if authenticated
+            user_wishlist = []
+            if request.user.is_authenticated:
+                user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
+                
             return render(request, "proj/brand.html", {
                 'product': product,
                 'title': title,
                 'brands': brands,
                 'brand': brand_val,
+                'user_wishlist': user_wishlist,
             })
         else:
             # fallback if no product found
@@ -531,8 +548,8 @@ def buy_bikes(request):
     max_price = request.GET.get('max_price', '')
     year_filter = request.GET.get('year', '')
 
-    # Only show products that have been verified/approved and are available
-    bikes = Product.objects.filter(verification_status='approved', status='available')
+    # Show products that have been verified/approved and are either available or sold
+    bikes = Product.objects.filter(verification_status='approved', status__in=['available', 'sold'])
     user_wishlist = []
     
     # Get user's wishlist items if authenticated
@@ -1187,6 +1204,58 @@ def test_email(request):
     # Return as JSON for easier debugging
     from django.http import JsonResponse
     return JsonResponse(result)
+
+# View to check if a field value is unique for AJAX validation
+def check_unique_field(request):
+    """Check if a field value already exists in the database.
+    Used for AJAX validation in forms.
+    """
+    if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+        
+    field_name = request.GET.get('field')
+    value = request.GET.get('value')
+    exclude_id = request.GET.get('exclude_id')
+    
+    if not field_name or not value:
+        return JsonResponse({'error': 'Missing parameters'}, status=400)
+        
+    # Only allow checking specific fields for security
+    allowed_fields = ['engine_number', 'chassis_number', 'number_plate']
+    if field_name not in allowed_fields:
+        return JsonResponse({'error': 'Invalid field'}, status=400)
+    
+    # Check if the value exists in the database
+    query = {field_name: value}
+    queryset = Product.objects.filter(**query)
+    
+    # If we're updating an existing product, exclude it from the check
+    if exclude_id:
+        queryset = queryset.exclude(pk=exclude_id)
+    
+    existing_product = queryset.first()
+    exists = existing_product is not None
+    
+    response_data = {'exists': exists}
+    
+    # If the value exists, include details about the existing product
+    if exists:
+        # Make sure we have valid data for the response
+        brand = existing_product.brand if existing_product.brand else 'Unknown'
+        model = existing_product.title if existing_product.title else 'Unknown'
+        
+        response_data['product_info'] = {
+            'brand': brand,
+            'model': model,
+            'field_name': field_name.replace('_', ' ').title(),
+            'value': value
+        }
+        
+        print(f"Found duplicate {field_name}: {value} - Used by product {existing_product.id} ({brand} {model})")
+    else:
+        print(f"Checked {field_name}: {value} - No duplicates found")
+    
+    return JsonResponse(response_data)
 
 # Custom logout view to clear only frontend session
 def custom_logout(request):

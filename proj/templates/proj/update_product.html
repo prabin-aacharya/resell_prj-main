@@ -10,6 +10,21 @@
         <div class="col-lg-12">
             <h2 class="mb-4">Update Your Bike Listing</h2>
             
+            <!-- Validation errors notification area -->
+            <div id="validation-errors" class="alert alert-danger mb-4" style="display: none;">
+                <div class="d-flex">
+                    <div class="me-3">
+                        <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+                    </div>
+                    <div>
+                        <h5 class="alert-heading">Unable to Update Your Bike Listing</h5>
+                        <p>We found the following issues with your submission:</p>
+                        <ul id="error-list"></ul>
+                        <p class="mb-0">Please update the highlighted fields to continue.</p>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Current product image display -->
             <div class="row mb-4">
                 <div class="col-md-6">
@@ -59,81 +74,99 @@
             </div>
             
             <!-- Update form -->
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" id="updateProductForm" action="{% url 'main:update_product' product.id %}">
                 {% csrf_token %}
                 
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="form-group mb-3">
                             <label for="{{ form.brand.id_for_label }}" class="form-label">Brand <span class="text-danger">*</span></label>
-                            {% render_field form.brand class="form-control" placeholder="e.g., Honda, Yamaha, etc." %}
+                            {% render_field form.brand class="form-control" placeholder="e.g., Honda, Yamaha, etc." required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.model.id_for_label }}" class="form-label">Model <span class="text-danger">*</span></label>
-                            {% render_field form.model class="form-control" placeholder="e.g., CB Hornet, MT-15, etc." %}
+                            {% render_field form.model class="form-control" placeholder="e.g., CB Hornet, MT-15, etc." required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.made_year.id_for_label }}" class="form-label">Manufacture Year <span class="text-danger">*</span></label>
-                            {% render_field form.made_year class="form-control" placeholder="e.g., 2018" %}
+                            {% render_field form.made_year class="form-control" placeholder="e.g., 2018" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.kilometers.id_for_label }}" class="form-label">Kilometers Driven <span class="text-danger">*</span></label>
-                            {% render_field form.kilometers class="form-control" placeholder="e.g., 15000" %}
+                            {% render_field form.kilometers class="form-control" placeholder="e.g., 15000" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.engine_size.id_for_label }}" class="form-label">Engine Size <span class="text-danger">*</span></label>
-                            {% render_field form.engine_size class="form-control" placeholder="e.g., 150cc, 200cc, etc." %}
+                            {% render_field form.engine_size class="form-control" placeholder="e.g., 150cc, 200cc, etc." required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.engine_number.id_for_label }}" class="form-label">Engine Number</label>
-                            {% render_field form.engine_number class="form-control" placeholder="e.g., EN12345678" %}
+                            <label for="{{ form.engine_number.id_for_label }}" class="form-label">Engine Number <span class="text-danger">*</span></label>
+                            {% render_field form.engine_number class="form-control" placeholder="e.g., EN12345678" required="required" %}
+                            {% if form.engine_number.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.engine_number.errors }}
+                            </div>
+                            {% endif %}
+                            <div id="engine_number_error" class="invalid-feedback d-block" style="display: none;"></div>
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.chassis_number.id_for_label }}" class="form-label">Chassis Number</label>
-                            {% render_field form.chassis_number class="form-control" placeholder="e.g., CH12345678" %}
+                            <label for="{{ form.chassis_number.id_for_label }}" class="form-label">Chassis Number <span class="text-danger">*</span></label>
+                            {% render_field form.chassis_number class="form-control" placeholder="e.g., CH12345678" required="required" %}
+                            {% if form.chassis_number.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.chassis_number.errors }}
+                            </div>
+                            {% endif %}
+                            <div id="chassis_number_error" class="invalid-feedback d-block" style="display: none;"></div>
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.color.id_for_label }}" class="form-label">Vehicle Color</label>
-                            {% render_field form.color class="form-control" placeholder="e.g., Red, Black, Blue" %}
+                            <label for="{{ form.color.id_for_label }}" class="form-label">Vehicle Color <span class="text-danger">*</span></label>
+                            {% render_field form.color class="form-control" placeholder="e.g., Red, Black, Blue" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.number_plate.id_for_label }}" class="form-label">Number Plate <span class="text-danger">*</span></label>
-                            {% render_field form.number_plate class="form-control" placeholder="e.g., BA 12 PA 1234" %}
+                            {% render_field form.number_plate class="form-control" placeholder="e.g., BA 12 PA 1234" required="required" %}
+                            {% if form.number_plate.errors %}
+                            <div class="invalid-feedback d-block">
+                                {{ form.number_plate.errors }}
+                            </div>
+                            {% endif %}
+                            <div id="number_plate_error" class="invalid-feedback d-block" style="display: none;"></div>
                         </div>
                         
                         <div class="form-group mb-3">
-                            <label for="{{ form.previous_owners.id_for_label }}" class="form-label">Number of Previous Owners</label>
-                            {% render_field form.previous_owners class="form-control" placeholder="e.g., 1" min="0" %}
+                            <label for="{{ form.previous_owners.id_for_label }}" class="form-label">Number of Previous Owners <span class="text-danger">*</span></label>
+                            {% render_field form.previous_owners class="form-control" placeholder="e.g., 1" min="0" required="required" %}
                         </div>
                     </div>
                     
                     <div class="col-md-6">
                         <div class="form-group mb-3">
                             <label for="{{ form.condition.id_for_label }}" class="form-label">Condition <span class="text-danger">*</span></label>
-                            {% render_field form.condition class="form-control" %}
+                            {% render_field form.condition class="form-control" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.price.id_for_label }}" class="form-label">Price (Rs.) <span class="text-danger">*</span></label>
-                            {% render_field form.price class="form-control" placeholder="e.g., 150000" %}
+                            {% render_field form.price class="form-control" placeholder="e.g., 150000" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.city.id_for_label }}" class="form-label">City <span class="text-danger">*</span></label>
-                            {% render_field form.city class="form-control" placeholder="e.g., Kathmandu" %}
+                            {% render_field form.city class="form-control" placeholder="e.g., Kathmandu" required="required" %}
                         </div>
                         
                         <div class="form-group mb-3">
                             <label for="{{ form.seller_name.id_for_label }}" class="form-label">Seller Name <span class="text-danger">*</span></label>
-                            {% render_field form.seller_name class="form-control" placeholder="Your full name" %}
+                            {% render_field form.seller_name class="form-control" placeholder="Your full name" required="required" %}
                         </div>
                     </div>
                 </div>
@@ -178,4 +211,83 @@
         </div>
     </div>
 </div>
-{% endblock main-content %} 
+{% endblock main-content %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const engineNumberField = document.getElementById('id_engine_number');
+  const chassisNumberField = document.getElementById('id_chassis_number');
+  const numberPlateField = document.getElementById('id_number_plate');
+
+  const engineError = document.getElementById('engine_number_error');
+  const chassisError = document.getElementById('chassis_number_error');
+  const plateError = document.getElementById('number_plate_error');
+
+  // Current product ID for excluding from uniqueness check
+  const currentProductId = "{{ product.id }}";
+
+  function checkUnique(field, fieldName, errorElement) {
+    const value = field.value.trim();
+    if (!value || !errorElement) return;
+
+    // Make AJAX request with the current product ID to exclude it from the check
+    fetch('/check-unique-field/?field=' + fieldName + '&value=' + encodeURIComponent(value) + '&exclude_id=' + currentProductId, {
+      method: 'GET',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.exists) {
+        errorElement.textContent = 'This ' + fieldName.replace('_', ' ') + ' is already registered!';
+        errorElement.style.display = 'block';
+        field.classList.add('is-invalid');
+        field.classList.remove('is-valid');
+      } else {
+        errorElement.style.display = 'none';
+        field.classList.remove('is-invalid');
+        field.classList.add('is-valid');
+      }
+    })
+    .catch(error => {
+      console.error('Error checking uniqueness:', error);
+    });
+  }
+
+  function setupValidation(field, fieldName, errorElement) {
+    if (!field || !errorElement) return;
+
+    field.addEventListener('blur', () => {
+      checkUnique(field, fieldName, errorElement);
+    });
+
+    field.addEventListener('input', () => {
+      errorElement.style.display = 'none';
+      field.classList.remove('is-invalid');
+      field.classList.remove('is-valid');
+    });
+  }
+
+  const form = document.getElementById('updateProductForm');
+  
+  setupValidation(engineNumberField, 'engine_number', engineError);
+  setupValidation(chassisNumberField, 'chassis_number', chassisError);
+  setupValidation(numberPlateField, 'number_plate', plateError);
+
+  // Debug form submission
+  console.log('Form action:', form ? form.getAttribute('action') : 'Form not found');
+  console.log('Form method:', form ? form.getAttribute('method') : 'Form not found');
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      const visibleErrors = document.querySelectorAll('.invalid-feedback[style*="display: block"]');
+      if (visibleErrors.length > 0) {
+        event.preventDefault();
+        const fieldId = visibleErrors[0].id.replace('_error', '');
+        const field = document.getElementById('id_' + fieldId);
+        if (field) field.focus();
+      }
+    });
+  }
+});
+</script>
+{% endblock %}

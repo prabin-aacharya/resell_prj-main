@@ -47,6 +47,7 @@ class BikeResellAdminSite(AdminSite):
             path('customers/<int:pk>/update/', self.admin_view(admin_views.CustomerUpdateView.as_view()), name='admin_customer_update'),
             path('customers/<int:pk>/delete/', self.admin_view(admin_views.CustomerDeleteView.as_view()), name='admin_customer_delete'),
             path('customers/create/', self.admin_view(admin_views.CustomerCreateView.as_view()), name='admin_customer_create'),
+            path('customers/<int:pk>/view/', self.admin_view(admin_views.CustomerDetailView.as_view()), name='admin_customer_detail'),
             path('wishlists/', self.admin_view(admin_views.WishlistListView.as_view()), name='admin_wishlist_list'),
             path('sellers/', self.admin_view(admin_views.SellerInfoListView.as_view()), name='admin_seller_list'),
             path('sellers/create/', self.admin_view(admin_views.SellerInfoCreateView.as_view()), name='admin_seller_create'),

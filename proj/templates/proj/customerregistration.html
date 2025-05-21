@@ -39,6 +39,9 @@
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
                             {{ form.password1 }}
+                            <button class="btn btn-outline-success password-toggle" type="button" onclick="togglePasswordVisibility('id_password1')">
+                              <i class="fas fa-eye" id="id_password1_icon"></i>
+                            </button>
                           </div>
                           <div id="passwordError" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.password1.errors|striptags}}</small>
@@ -49,6 +52,9 @@
                           <div class="input-group">
                             <span class="input-group-text bg-success text-white"><i class="fas fa-check-circle"></i></span>
                             {{ form.password2 }}
+                            <button class="btn btn-outline-success password-toggle" type="button" onclick="togglePasswordVisibility('id_password2')">
+                              <i class="fas fa-eye" id="id_password2_icon"></i>
+                            </button>
                           </div>
                           <div id="password2Error" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{form.password2.errors|striptags}}</small>
@@ -226,6 +232,24 @@ document.addEventListener('DOMContentLoaded', function() {
     
     password2Input.addEventListener('input', validatePassword2);
 });
+</script>
+
+<!-- Password visibility toggle script -->
+<script>
+function togglePasswordVisibility(inputId) {
+  const passwordInput = document.getElementById(inputId);
+  const icon = document.getElementById(inputId + '_icon');
+  
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
+  } else {
+    passwordInput.type = 'password';
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
+  }
+}
 </script>
 
 {% endblock main-content %}

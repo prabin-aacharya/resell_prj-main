@@ -1,0 +1,165 @@
+{% extends 'proj/admin/base.html' %}
+
+{% block title %}Customer Details{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Customer Details</h1>
+        <div>
+            <a href="{% url 'admin:admin_customer_list' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-1"></i> Back to Customers
+            </a>
+            <a href="{% url 'admin:admin_customer_update' customer.id %}" class="btn btn-primary">
+                <i class="fas fa-edit me-1"></i> Edit Customer
+            </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <!-- Customer Profile Card -->
+        <div class="col-lg-8 mb-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Customer Profile</h5>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar-circle mx-auto mb-3">
+                            <span class="initials">{{ customer.name|slice:":1" }}</span>
+                        </div>
+                        <h4>{{ customer.name }}</h4>
+                        <p class="text-muted">Member since {{ customer.user.date_joined|date:"M d, Y" }}</p>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="customer-info">
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Email</small>
+                                        <span>{{ customer.user.email }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Phone</small>
+                                        <span>{{ customer.mobile }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-venus-mars"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Gender</small>
+                                        <span>{{ customer.gender }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="customer-info">
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Location</small>
+                                        <span>{{ customer.city }}, {{ customer.state }} {{ customer.zipcode }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Username</small>
+                                        <span>{{ customer.user.username }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-center mb-3">
+                                    <div class="icon-box me-3 bg-light text-primary">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <small class="text-muted d-block">Last Login</small>
+                                        <span>{{ customer.user.last_login|date:"M d, Y H:i" }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .avatar-circle {
+        width: 100px;
+        height: 100px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .initials {
+        font-size: 42px;
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .icon-box {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .product-img-small {
+        width: 40px;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 4px;
+    }
+    
+    .product-img-small img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .no-image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+        color: #6c757d;
+        font-size: 10px;
+    }
+    
+    .object-fit-cover {
+        object-fit: cover;
+    }
+</style>
+{% endblock %}

@@ -2,8 +2,66 @@
 {% load static %}
 {% load custom_filters %}
 
-<!-- Page title definition -->
-{% block title %}Seller Listings{% endblock %}
+{% block extra_css %}
+<style>
+    /* Image zoom effect on hover */
+    .zoomable-image {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .zoomable-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Image popup/lightbox styles */
+    .image-lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .lightbox-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+    }
+    
+    .lightbox-image {
+        display: block;
+        max-width: 100%;
+        max-height: 90vh;
+        margin: auto;
+        box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+    
+    .lightbox-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    .lightbox-caption {
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        font-size: 16px;
+    }
+</style>
+{% endblock extra_css %}
 
 {% block content %}
 <!-- Header section with page title -->
@@ -11,11 +69,7 @@
     <h2>Seller Listings Management</h2>
 </div>
 
-<!-- 
-  Statistics Cards Section
-  - Shows the counts of listings in different states
-  - Each card is clickable and filters the listings by status 
--->
+<!-- Statistics Cards Section -->
 <div class="row mb-4">
     <div class="col-md-4">
         <div class="stat-card">
@@ -63,12 +117,7 @@
     </div>
 </div>
 
-<!-- 
-  Main Listings Section
-  - Card-based grid layout (3 per row on desktop)
-  - Each card shows basic info and has action buttons
-  - Cards link to detailed view in modal
--->    
+<!-- Main Listings Section -->
 {% if listings %}
 <div class="row">
     {% for listing in listings %}
@@ -77,7 +126,7 @@
                 <!-- Product Image with Status Badge -->
                 <div class="position-relative">
                     {% if listing.product.product_image %}
-                    <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;">
+                    <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;" onclick="window.open(this.src, '_blank')">
                     {% else %}
                     <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="fas fa-motorcycle fa-3x text-muted"></i>
@@ -106,7 +155,6 @@
                         </span>
                     </div>
                     
-                    
                     <!-- Seller Contact Information -->
                     <div class="seller-info mb-3">
                         <p class="mb-1"><i class="fas fa-user me-2"></i> {{ listing.full_name }}</p>
@@ -118,37 +166,16 @@
                 
                 <!-- Action Buttons -->
                 <div class="card-footer bg-white">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-primary view-details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <button type="button" class="btn btn-primary view-details-btn rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
                             <i class="fas fa-eye me-1"></i> View Details
                         </button>
-                        
-                        <div>
-                            {% if listing.product.verification_status == 'pending' %}
-                            <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                                <i class="fas fa-check me-1"></i> Approve
-                            </button>
-                            <button type="button" class="btn btn-danger action-btn" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
-                                <i class="fas fa-times me-1"></i> Reject
-                            </button>
-                            {% endif %}
-                            
-                            {% if listing.product.verification_status == 'rejected' %}
-                            <button type="button" class="btn btn-success action-btn" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
-                                <i class="fas fa-check me-1"></i> Approve
-                            </button>
-                            {% endif %}
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- 
-          Details Modal
-          Shows comprehensive information about the listing
-          including product details, seller info, and bluebook images
-        -->
+        <!-- Details Modal -->
         <div class="modal fade" id="detailsModal{{ listing.id }}" tabindex="-1" aria-labelledby="detailsModalLabel{{ listing.id }}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -163,7 +190,7 @@
                             <div class="col-md-6">
                                 <div class="product-image mb-3">
                                     {% if listing.product.product_image %}
-                                    <img src="{{ listing.product.product_image.url }}" class="img-fluid rounded shadow" alt="{{ listing.product.title }}">
+                                    <img src="{{ listing.product.product_image.url }}" class="img-fluid rounded shadow" alt="{{ listing.product.title }}" onclick="window.open(this.src, '_blank')">
                                     {% else %}
                                     <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 300px;">
                                         <i class="fas fa-motorcycle fa-5x text-muted"></i>
@@ -182,9 +209,9 @@
                                                 <div class="card-header py-2">
                                                     <small class="m-0">Bluebook Page 2</small>
                                                 </div>
-                                                <a href="{{ listing.product.bluebook_page2.url }}" target="_blank" class="bluebook-image">
-                                                    <img src="{{ listing.product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid card-img-bottom">
-                                                </a>
+                                                <div class="bluebook-image">
+                                                    <img src="{{ listing.product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid card-img-bottom" onclick="window.open(this.src, '_blank')">
+                                                </div>
                                             </div>
                                         </div>
                                         {% endif %}
@@ -195,9 +222,9 @@
                                                 <div class="card-header py-2">
                                                     <small class="m-0">Bluebook Page 9</small>
                                                 </div>
-                                                <a href="{{ listing.product.bluebook_page9.url }}" target="_blank" class="bluebook-image">
-                                                    <img src="{{ listing.product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid card-img-bottom">
-                                                </a>
+                                                <div class="bluebook-image">
+                                                    <img src="{{ listing.product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid card-img-bottom" onclick="window.open(this.src, '_blank')">
+                                                </div>
                                             </div>
                                         </div>
                                         {% endif %}
@@ -240,6 +267,30 @@
                                         <p class="mb-1"><strong>Location:</strong></p>
                                         <p class="text-muted">{{ listing.product.location }}</p>
                                     </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Engine Number:</strong></p>
+                                        <p class="text-muted">{{ listing.product.engine_number|default:"Not provided" }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Chassis Number:</strong></p>
+                                        <p class="text-muted">{{ listing.product.chassis_number|default:"Not provided" }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Color:</strong></p>
+                                        <p class="text-muted">{{ listing.product.color|default:"Not specified" }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Number Plate:</strong></p>
+                                        <p class="text-muted">{{ listing.product.number_plate|default:"Not provided" }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Previous Owners:</strong></p>
+                                        <p class="text-muted">{{ listing.product.previous_owners|default:"0" }}</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="mb-1"><strong>Listed Date:</strong></p>
+                                        <p class="text-muted">{{ listing.product.created_at|date:"F d, Y" }}</p>
+                                    </div>
                                     <div class="col-12">
                                         <p class="mb-1"><strong>Status:</strong></p>
                                         <p>
@@ -281,19 +332,21 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="fas fa-times me-1"></i> Close
+                        </button>
                         
                         {% if listing.product.verification_status == 'pending' %}
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                        <button type="button" class="btn btn-success rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
                             <i class="fas fa-check-circle me-1"></i> Approve
                         </button>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
+                        <button type="button" class="btn btn-danger rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#rejectModal{{ listing.id }}">
                             <i class="fas fa-ban me-1"></i> Reject
                         </button>
                         {% endif %}
                         
                         {% if listing.product.verification_status == 'rejected' %}
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
+                        <button type="button" class="btn btn-success rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#approveModal{{ listing.id }}">
                             <i class="fas fa-check-circle me-1"></i> Approve
                         </button>
                         {% endif %}
@@ -302,14 +355,11 @@
             </div>
         </div>
         
-        <!-- 
-          Approve Modal
-          Contains form to approve listing with optional admin notes
-        -->
+        <!-- Approve Modal -->
         <div class="modal fade" id="approveModal{{ listing.id }}" tabindex="-1" aria-labelledby="approveModalLabel{{ listing.id }}" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-success text-white">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-success text-white border-0">
                         <h5 class="modal-title" id="approveModalLabel{{ listing.id }}">
                             <i class="fas fa-check-circle me-2"></i> Approve Listing
                         </h5>
@@ -317,25 +367,27 @@
                     </div>
                     <form method="post" action="{% url 'admin:approve_listing' listing.id %}">
                         {% csrf_token %}
-                        <div class="modal-body">
+                        <div class="modal-body px-4 py-4">
                             <div class="text-center mb-4">
                                 <div class="icon-container bg-success bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-check-circle text-success fa-3x pulse-success"></i>
+                                    <i class="fas fa-check-circle text-success fa-3x"></i>
                                 </div>
-                                <h4>Approve this listing?</h4>
+                                <h4 class="fw-bold">Approve this listing?</h4>
                                 <p class="text-muted">This will publish the bike for sale on the marketplace.</p>
                             </div>
                             
                             <div class="form-group">
-                                <label for="admin_notes_{{ listing.id }}" class="form-label fw-bold">Admin Notes (Optional)</label>
-                                <textarea id="admin_notes_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Add any notes or comments about this listing..."></textarea>
-                                <small class="form-text text-muted">These notes will be added to the product description.</small>
+                                <label for="admin_notes_{{ listing.id }}" class="form-label fw-bold mb-2">Admin Notes (Optional)</label>
+                                <textarea id="admin_notes_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea border" rows="3" placeholder="Add any notes or comments about this listing..."></textarea>
+                                <small class="form-text text-muted mt-2">These notes will be added to the product description.</small>
                             </div>
                         </div>
-                        <div class="modal-footer border-top-0">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-success action-btn">
-                                <i class="fas fa-check me-1"></i> Confirm Approval
+                        <div class="modal-footer border-0 px-4 pb-4">
+                            <button type="button" class="btn btn-light rounded" data-bs-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-success rounded text-white px-4">
+                                <i class="fas fa-check me-1"></i> Confirm
                             </button>
                         </div>
                     </form>
@@ -343,14 +395,11 @@
             </div>
         </div>
         
-        <!-- 
-          Reject Modal
-          Contains form to reject listing with required rejection reason
-        -->
+        <!-- Reject Modal -->
         <div class="modal fade" id="rejectModal{{ listing.id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ listing.id }}" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-danger text-white">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-danger text-white border-0">
                         <h5 class="modal-title" id="rejectModalLabel{{ listing.id }}">
                             <i class="fas fa-times-circle me-2"></i> Reject Listing
                         </h5>
@@ -358,25 +407,27 @@
                     </div>
                     <form method="post" action="{% url 'admin:reject_listing' listing.id %}">
                         {% csrf_token %}
-                        <div class="modal-body">
+                        <div class="modal-body px-4 py-4">
                             <div class="text-center mb-4">
                                 <div class="icon-container bg-danger bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
-                                    <i class="fas fa-times-circle text-danger fa-3x pulse-danger"></i>
+                                    <i class="fas fa-times-circle text-danger fa-3x"></i>
                                 </div>
-                                <h4>Reject this listing?</h4>
+                                <h4 class="fw-bold">Reject this listing?</h4>
                                 <p class="text-muted">This listing will not be visible on the marketplace.</p>
                             </div>
                             
                             <div class="form-group">
-                                <label for="admin_notes_reject_{{ listing.id }}" class="form-label fw-bold">Reason for Rejection <span class="text-danger">*</span></label>
-                                <textarea id="admin_notes_reject_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea" rows="3" placeholder="Explain why this listing is being rejected..." required></textarea>
-                                <small class="form-text text-muted">This information will be stored with the product.</small>
+                                <label for="admin_notes_reject_{{ listing.id }}" class="form-label fw-bold mb-2">Reason for Rejection <span class="text-danger">*</span></label>
+                                <textarea id="admin_notes_reject_{{ listing.id }}" name="admin_notes" class="form-control custom-textarea border" rows="3" placeholder="Explain why this listing is being rejected..." required></textarea>
+                                <small class="form-text text-muted mt-2">This information will be stored with the product.</small>
                             </div>
                         </div>
-                        <div class="modal-footer border-top-0">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger action-btn">
-                                <i class="fas fa-times me-1"></i> Confirm Rejection
+                        <div class="modal-footer border-0 px-4 pb-4">
+                            <button type="button" class="btn btn-light rounded" data-bs-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-danger rounded text-white px-4">
+                                <i class="fas fa-ban me-1"></i> Confirm
                             </button>
                         </div>
                     </form>
@@ -386,11 +437,7 @@
     {% endfor %}
 </div>
 
-<!-- 
-  Pagination Controls
-  Shows page navigation with first/prev/page numbers/next/last links
-  Preserves any active filters when changing pages
--->
+<!-- Pagination Controls -->
 {% if is_paginated %}
 <nav aria-label="Page navigation" class="mt-4">
     <ul class="pagination justify-content-center">
@@ -432,7 +479,6 @@
     </ul>
 </nav>
 {% endif %}
-
 {% else %}
 <!-- No Results Message -->
 <div class="alert alert-info text-center my-5">
@@ -442,12 +488,16 @@
 </div>
 {% endif %}
 
-<!-- 
-  Custom CSS Styles
-  - Enhances the visual appearance of the admin interface
-  - Provides animations and hover effects for interactive elements
-  - Organized by component type for easier maintenance
--->
+<!-- Images open in new tab when clicked -->
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    // Images now open in a new tab when clicked via the onclick attribute
+    // No additional JavaScript needed for this functionality
+</script>
+{% endblock extra_js %}
+
 <style>
 /* =============================================
    SECTION: Base Modal Styling
@@ -466,93 +516,34 @@
    - Creates pulsing effects for status icons
 ============================================= */
 .icon-container {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: pulse 2s infinite;
 }
 
-/* Pulse animation for icons */
-@keyframes pulse-success {
+@keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
     }
     70% {
-        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
     }
-}
-
-@keyframes pulse-danger {
-    0% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-    }
-}
-
-.pulse-success {
-    animation: pulse-success 2s infinite;
-    border-radius: 50%;
-}
-
-.pulse-danger {
-    animation: pulse-danger 2s infinite;
-    border-radius: 50%;
 }
 
 /* =============================================
-   SECTION: Card Styling
-   - Creates elevation effects and hover animations
-============================================= */
-.card {
-    transition: all 0.3s ease;
-    border: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
-}
-
-.card-footer {
-    border-top: none;
-    background-color: transparent;
-}
-
-/* =============================================
-   SECTION: Button Styling  
-   - Creates consistent, modern button styles
-   - Adds hover and active state animations
+   SECTION: Button Styling
+   - Enhances buttons with modern styling
+   - Adds hover effects and animations
 ============================================= */
 .btn {
-    border-radius: 5px;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    transition: all 0.2s ease;
-}
-
-.action-btn {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transform-origin: center;
     transition: all 0.3s ease;
-}
-
-.action-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-}
-
-.action-btn:active {
-    transform: translateY(1px);
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 0.5rem 1.25rem;
 }
 
 .btn-success {
@@ -706,4 +697,3 @@ body {
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 </style>
-{% endblock %} 

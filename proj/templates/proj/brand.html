@@ -26,7 +26,27 @@
             <div class="row">
                 {% for prod in product %}
                 <div class="col-md-4 mb-4">
-                    <div class="product-card shadow-sm rounded overflow-hidden h-100">
+                    <div class="product-card shadow-sm rounded overflow-hidden h-100 position-relative">
+                        {% if prod.status == 'sold' %}
+                        <div class="sold-badge">
+                            <span>SOLD</span>
+                        </div>
+                        {% endif %}
+                        
+                        {% if request.user.is_authenticated and prod.status != 'sold' %}
+                        <div class="wishlist-button position-absolute top-0 end-0 m-2 z-index-10">
+                            {% if prod.id in user_wishlist %}
+                            <a href="{% url 'main:remove_from_wishlist' prod.id %}" class="btn btn-sm btn-light rounded-circle">
+                                <i class="fas fa-heart text-danger"></i>
+                            </a>
+                            {% else %}
+                            <a href="{% url 'main:add_to_wishlist' prod.id %}" class="btn btn-sm btn-light rounded-circle">
+                                <i class="far fa-heart"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        
                         <a href="{% url 'main:product-detail' prod.id %}" class="text-decoration-none text-dark">
                             <div class="product-image-container">
                                 <img src="{{prod.product_image.url}}" 
@@ -79,6 +99,56 @@
 .product-image-container {
     height: 200px;
     overflow: hidden;
+}
+
+/* Professional SOLD badge styles */
+.sold-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sold-badge span {
+    position: absolute;
+    top: 30px;
+    right: -30px;
+    display: block;
+    width: 160px;
+    padding: 8px 0;
+    background-color: #dc3545;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    letter-spacing: 1px;
+}
+
+/* Wishlist button styles */
+.wishlist-button {
+    z-index: 10;
+}
+
+.wishlist-button .btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.wishlist-button .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
 
 .product-image {

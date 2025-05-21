@@ -160,6 +160,31 @@ class CustomerUpdateView(AdminRequiredMixin, UpdateView):
         messages.success(self.request, "Customer information updated successfully!")
         return super().form_valid(form)
 
+class CustomerDetailView(AdminRequiredMixin, UpdateView):
+    model = Customer
+    template_name = 'proj/admin/customer_detail.html'
+    fields = ['name', 'gender', 'city', 'state', 'mobile', 'zipcode']
+    context_object_name = 'customer'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        customer = self.get_object()
+        
+        # Get customer's orders
+        from .models import Order
+        context['orders'] = Order.objects.filter(customer=customer).order_by('-order_date')
+        
+        # Get customer's wishlist
+        context['wishlist_items'] = Wishlist.objects.filter(user=customer.user).select_related('product')
+        
+        # Get customer's purchase transactions
+        context['purchases'] = BikePaymentTransaction.objects.filter(buyer=customer.user).select_related('product')
+        
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
 class CustomerDeleteView(AdminRequiredMixin, DeleteView):
     model = Customer
     template_name = 'admin/proj/customer/delete_confirmation.html'
