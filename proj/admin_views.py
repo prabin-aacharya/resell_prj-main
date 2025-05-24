@@ -112,8 +112,52 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
     success_url = reverse_lazy('admin:admin_product_list')
     
     def form_valid(self, form):
-        messages.success(self.request, "Product updated successfully!")
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        # Update associated SellerInfo records if they exist
+        product = self.object
+        seller_infos = SellerInfo.objects.filter(product=product)
+        
+        if seller_infos.exists():
+            for seller_info in seller_infos:
+                # Update SellerInfo fields based on product
+                seller_info.bike_brand = product.brand
+                seller_info.bike_model = product.title
+                
+                # Update verification status to match product
+                if product.verification_status == 'approved':
+                    seller_info.verification_status = 'verified'
+                elif product.verification_status == 'rejected':
+                    seller_info.verification_status = 'rejected'
+                
+                # Update status to match product
+                if product.status == 'sold':
+                    seller_info.status = 'completed'
+                elif product.status == 'available':
+                    seller_info.status = 'completed'  # Completed means listing process is done
+                
+                seller_info.save()
+            
+            messages.success(self.request, f"Product and {seller_infos.count()} associated seller listing(s) updated successfully!")
+        else:
+            messages.success(self.request, "Product updated successfully!")
+            
+        return response
+    
+    def form_invalid(self, form):
+        # Log detailed form errors
+        error_msg = "Product update failed. Please check the following errors:\n"
+        for field, errors in form.errors.items():
+            error_msg += f"- {field}: {', '.join(errors)}\n"
+        messages.error(self.request, error_msg)
+        return super().form_invalid(form)
+        
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        # Ensure the form knows it's for an existing instance
+        if self.object and self.object.pk:
+            form.instance = self.object
+        return form
 
 class ProductDeleteView(AdminRequiredMixin, DeleteView):
     model = Product

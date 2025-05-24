@@ -1,3 +1,4 @@
+{% load static %}
 {% if product.status == 'available' %}
 <div class="khalti-buy-now mt-4">
     <form method="post" action="{% url 'main:initiate_bike_payment' %}">

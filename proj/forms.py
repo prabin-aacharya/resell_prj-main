@@ -376,14 +376,14 @@ class SellerInfoForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'price', 'description', 'condition', 'made_year', 
+        fields = ['title', 'price', 'condition', 'made_year', 
                   'kilometers', 'engine_size', 'engine_number', 'chassis_number', 'color',
                   'brand', 'location', 'seller_name', 
                   'product_image', 'bluebook_page2', 'bluebook_page9', 'status']
+        
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
             'condition': forms.Select(attrs={'class': 'form-select'}),
             'made_year': forms.NumberInput(attrs={'class': 'form-control'}),
             'kilometers': forms.NumberInput(attrs={'class': 'form-control'}),
