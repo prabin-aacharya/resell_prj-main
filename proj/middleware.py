@@ -5,6 +5,11 @@ from django.utils.cache import patch_vary_headers
 import time
 import pytz
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+from django.contrib.sessions.models import Session
+from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth import login
+from django.utils.deprecation import MiddlewareMixin
 
 
 class TimezoneMiddleware:
@@ -72,3 +77,26 @@ class AdminSessionMiddleware(SessionMiddleware):
         patch_vary_headers(response, ('Cookie',))
         
         return response
+
+
+class AllowAdminSessionForPDFMiddleware(MiddlewareMixin):
+    """
+    For /payment/sales-report/ URLs, if the user is not authenticated or not staff,
+    try to authenticate using the admin_sessionid cookie. If that user is staff,
+    set request.user to the admin user for this request.
+    """
+    def process_request(self, request):
+        if request.path.startswith('/payment/sales-report/'):
+            if not request.user.is_authenticated or not request.user.is_staff:
+                admin_session_key = request.COOKIES.get('admin_sessionid')
+                if admin_session_key:
+                    try:
+                        session = Session.objects.get(session_key=admin_session_key)
+                        session_data = session.get_decoded()
+                        user_id = session_data.get('_auth_user_id')
+                        User = get_user_model()
+                        user = User.objects.get(pk=user_id)
+                        if user.is_staff:
+                            request.user = user
+                    except Exception:
+                        pass

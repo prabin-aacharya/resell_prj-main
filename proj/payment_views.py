@@ -13,6 +13,7 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from io import BytesIO
 from django.utils import timezone
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Product, Customer, BikePaymentTransaction
 
@@ -350,15 +351,20 @@ def generate_pdf_sales_report(request, transaction_id):
     # Get the transaction
     transaction = get_object_or_404(BikePaymentTransaction, purchase_order_id=transaction_id)
     
-    # Check if user is authorized (either the buyer or staff)
-    if request.user != transaction.buyer and not request.user.is_staff:
-        return HttpResponse("Unauthorized", status=401)
+    # Allow staff or superuser to download any invoice
+    if not (request.user.is_staff or request.user.is_superuser):
+        # For non-staff, only allow the buyer
+        if request.user != transaction.buyer:
+            return HttpResponse("Unauthorized", status=401)
     
     # Get the related product
     product = transaction.product
     
     # Get buyer profile
     buyer_profile = Customer.objects.filter(user=transaction.buyer).first()
+
+    # Get seller info if exists
+    seller_info = product.sellerinfo_set.first() if product else None
     
     # Prepare context for template
     context = {
@@ -366,6 +372,7 @@ def generate_pdf_sales_report(request, transaction_id):
         'product': product,
         'buyer': transaction.buyer,
         'buyer_profile': buyer_profile,
+        'seller_info': seller_info,
         'now': timezone.now(),
     }
     
@@ -384,4 +391,29 @@ def generate_pdf_sales_report(request, transaction_id):
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
         return response
     
+    return HttpResponse("Error generating PDF", status=500)
+
+@staff_member_required
+def generate_pdf_sales_report_admin(request, transaction_id):
+    transaction = get_object_or_404(BikePaymentTransaction, purchase_order_id=transaction_id)
+    product = transaction.product
+    buyer_profile = Customer.objects.filter(user=transaction.buyer).first()
+    seller_info = product.sellerinfo_set.first() if product else None
+    context = {
+        'transaction': transaction,
+        'product': product,
+        'buyer': transaction.buyer,
+        'buyer_profile': buyer_profile,
+        'seller_info': seller_info,
+        'now': timezone.now(),
+    }
+    template = get_template('pdf/sales_report.html')
+    html = template.render(context)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode('UTF-8')), result)
+    if not pdf.err:
+        response = HttpResponse(result.getvalue(), content_type='application/pdf')
+        filename = f'bike_sales_report_{transaction.purchase_order_id}.pdf'
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        return response
     return HttpResponse("Error generating PDF", status=500) 

@@ -257,11 +257,11 @@ class SellBikeForm(forms.Form):
         max_length=50, 
         label="Number Plate",
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'data-unique': 'true'})
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     previous_owners = forms.IntegerField(
         label="Number of Previous Owners",
-        min_value=0,
+        min_value=1,
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
     engine_size = forms.CharField(
@@ -271,12 +271,12 @@ class SellBikeForm(forms.Form):
     engine_number = forms.CharField(
         max_length=50, label="Engine Number",
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'data-unique': 'true'})
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     chassis_number = forms.CharField(
         max_length=50, label="Chassis Number",
         required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'data-unique': 'true'})
+        widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     color = forms.CharField(
         max_length=30, label="Vehicle Color",
@@ -304,42 +304,6 @@ class SellBikeForm(forms.Form):
         label="Bluebook Page 9 Image",
         widget=forms.ClearableFileInput(attrs={'class': 'form-control'})
     )
-    
-    def clean_engine_number(self):
-        engine_number = self.cleaned_data.get('engine_number')
-        if not engine_number:
-            return engine_number
-            
-        # Check if this engine number exists in another product
-        existing_product = Product.objects.filter(engine_number=engine_number).first()
-        if existing_product:
-            error_msg = "This engine number is already registered in our system."
-            raise forms.ValidationError(error_msg)
-        return engine_number
-    
-    def clean_chassis_number(self):
-        chassis_number = self.cleaned_data.get('chassis_number')
-        if not chassis_number:
-            return chassis_number
-            
-        # Check if this chassis number exists in another product
-        existing_product = Product.objects.filter(chassis_number=chassis_number).first()
-        if existing_product:
-            error_msg = "This chassis number is already registered in our system."
-            raise forms.ValidationError(error_msg)
-        return chassis_number
-    
-    def clean_number_plate(self):
-        number_plate = self.cleaned_data.get('number_plate')
-        if not number_plate:
-            return number_plate
-            
-        # Check if this number plate exists in another product
-        existing_product = Product.objects.filter(number_plate=number_plate).first()
-        if existing_product:
-            error_msg = "This number plate is already registered in our system."
-            raise forms.ValidationError(error_msg)
-        return number_plate
 
 from django.utils.safestring import mark_safe
 
@@ -379,8 +343,8 @@ class ProductForm(forms.ModelForm):
         fields = ['title', 'price', 'condition', 'made_year', 
                   'kilometers', 'engine_size', 'engine_number', 'chassis_number', 'color',
                   'brand', 'location', 'seller_name', 
-                  'product_image', 'bluebook_page2', 'bluebook_page9', 'status']
-        
+                  'product_image', 'bluebook_page2', 'bluebook_page9', 'status',
+                  'number_plate', 'previous_owners']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'price': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -388,13 +352,15 @@ class ProductForm(forms.ModelForm):
             'made_year': forms.NumberInput(attrs={'class': 'form-control'}),
             'kilometers': forms.NumberInput(attrs={'class': 'form-control'}),
             'engine_size': forms.TextInput(attrs={'class': 'form-control'}),
-            'engine_number': forms.TextInput(attrs={'class': 'form-control', 'data-unique': 'true'}),
-            'chassis_number': forms.TextInput(attrs={'class': 'form-control', 'data-unique': 'true'}),
+            'engine_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'chassis_number': forms.TextInput(attrs={'class': 'form-control'}),
             'color': forms.TextInput(attrs={'class': 'form-control'}),
             'brand': forms.TextInput(attrs={'class': 'form-control'}),
             'location': forms.TextInput(attrs={'class': 'form-control'}),
             'seller_name': forms.TextInput(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-select'}),
+            'number_plate': forms.TextInput(attrs={'class': 'form-control'}),
+            'previous_owners': forms.NumberInput(attrs={'class': 'form-control'}),
         }
         
     def clean_price(self):
@@ -409,69 +375,6 @@ class ProductForm(forms.ModelForm):
         if year < 1900 or year > current_year:
             raise forms.ValidationError(f"Year must be between 1900 and {current_year}.")
         return year
-    
-    def clean_engine_number(self):
-        engine_number = self.cleaned_data.get('engine_number')
-        if not engine_number:
-            return engine_number
-            
-        # Check if this engine number exists in another product
-        existing = Product.objects.filter(engine_number=engine_number)
-        if self.instance and self.instance.pk:
-            existing = existing.exclude(pk=self.instance.pk)
-            
-        existing_product = existing.first()
-        if existing_product:
-            error_msg = (
-                "This engine number is already registered in our system. "
-                "Each bike must have a unique engine number. "
-                f"A bike with brand '{existing_product.brand}' and model '{existing_product.title}' "
-                f"is already using this engine number."
-            )
-            raise forms.ValidationError(error_msg)
-        return engine_number
-    
-    def clean_chassis_number(self):
-        chassis_number = self.cleaned_data.get('chassis_number')
-        if not chassis_number:
-            return chassis_number
-            
-        # Check if this chassis number exists in another product
-        existing = Product.objects.filter(chassis_number=chassis_number)
-        if self.instance and self.instance.pk:
-            existing = existing.exclude(pk=self.instance.pk)
-            
-        existing_product = existing.first()
-        if existing_product:
-            error_msg = (
-                "This chassis number is already registered in our system. "
-                "Each bike must have a unique chassis number. "
-                f"A bike with brand '{existing_product.brand}' and model '{existing_product.title}' "
-                f"is already using this chassis number."
-            )
-            raise forms.ValidationError(error_msg)
-        return chassis_number
-    
-    def clean_number_plate(self):
-        number_plate = self.cleaned_data.get('number_plate')
-        if not number_plate:
-            return number_plate
-            
-        # Check if this number plate exists in another product
-        existing = Product.objects.filter(number_plate=number_plate)
-        if self.instance and self.instance.pk:
-            existing = existing.exclude(pk=self.instance.pk)
-            
-        existing_product = existing.first()
-        if existing_product:
-            error_msg = (
-                "This number plate is already registered in our system. "
-                "Each bike must have a unique number plate. "
-                f"A bike with brand '{existing_product.brand}' and model '{existing_product.title}' "
-                f"is already using this number plate."
-            )
-            raise forms.ValidationError(error_msg)
-        return number_plate
 
 class AdminCustomerCreateForm(forms.ModelForm):
     """Form for admin to create a customer with associated user account"""

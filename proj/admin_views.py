@@ -102,8 +102,26 @@ class ProductCreateView(AdminRequiredMixin, CreateView):
     success_url = reverse_lazy('admin:admin_product_list')
     
     def form_valid(self, form):
+        # Set admin info as seller if not provided
+        product = form.save(commit=False)
+        if not product.seller_name:
+            product.seller_name = self.request.user.username
+        product.save()
+        # Create SellerInfo for admin if not exists
+        from .models import SellerInfo
+        if not SellerInfo.objects.filter(product=product).exists():
+            SellerInfo.objects.create(
+                full_name=self.request.user.get_full_name() or self.request.user.username,
+                email=self.request.user.email,
+                phone='9840587573',
+                bike_brand=product.brand,
+                bike_model=product.title,
+                product=product,
+                status='completed',
+                verification_status='verified',
+            )
         messages.success(self.request, "Product created successfully!")
-        return super().form_valid(form)
+        return redirect(self.success_url)
 
 class ProductUpdateView(AdminRequiredMixin, UpdateView):
     model = Product
@@ -113,35 +131,38 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
     
     def form_valid(self, form):
         response = super().form_valid(form)
-        
-        # Update associated SellerInfo records if they exist
         product = self.object
         seller_infos = SellerInfo.objects.filter(product=product)
-        
         if seller_infos.exists():
             for seller_info in seller_infos:
                 # Update SellerInfo fields based on product
                 seller_info.bike_brand = product.brand
                 seller_info.bike_model = product.title
-                
+                # Update number plate and previous owners
+                seller_info_number_plate = getattr(product, 'number_plate', None)
+                if seller_info_number_plate is not None:
+                    seller_info.number_plate = seller_info_number_plate
+                seller_info_previous_owners = getattr(product, 'previous_owners', None)
+                if seller_info_previous_owners is not None:
+                    seller_info.previous_owners = seller_info_previous_owners
                 # Update verification status to match product
                 if product.verification_status == 'approved':
                     seller_info.verification_status = 'verified'
                 elif product.verification_status == 'rejected':
                     seller_info.verification_status = 'rejected'
-                
                 # Update status to match product
                 if product.status == 'sold':
                     seller_info.status = 'completed'
                 elif product.status == 'available':
                     seller_info.status = 'completed'  # Completed means listing process is done
-                
                 seller_info.save()
-            
             messages.success(self.request, f"Product and {seller_infos.count()} associated seller listing(s) updated successfully!")
         else:
             messages.success(self.request, "Product updated successfully!")
-            
+        # Ensure available products are approved
+        if product.status == 'available' and product.verification_status != 'approved':
+            product.verification_status = 'approved'
+            product.save()
         return response
     
     def form_invalid(self, form):

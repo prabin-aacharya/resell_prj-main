@@ -14,6 +14,7 @@ from django.contrib.auth import logout
 from django.contrib.admin import AdminSite
 from django.core.paginator import Paginator
 from django.conf import settings
+from .payment_views import generate_pdf_sales_report_admin
 
 # Customize admin site
 admin.site.site_header = 'Bike Resell Admin'
@@ -59,6 +60,7 @@ class BikeResellAdminSite(AdminSite):
             path('seller-listings/reject/<int:pk>/', self.admin_view(self.reject_listing), name='reject_listing'),
             path('seller-listings/mark-sold/<int:pk>/', self.admin_view(self.mark_listing_sold), name='mark_sold'),
             path('logout/', self.logout_view, name='logout'),
+            path('download-invoice/<str:transaction_id>/', self.admin_view(generate_pdf_sales_report_admin), name='admin_download_invoice'),
         ]
         
         # Insert our custom URLs before the default admin URLs
@@ -1212,7 +1214,17 @@ class BikePaymentTransactionAdmin(admin.ModelAdmin):
     readonly_fields = ['purchase_order_id', 'pidx', 'transaction_id', 'created_at', 'updated_at']
     list_per_page = 20
     ordering = ['-created_at']
-    
+
+    actions = ['download_invoice']
+
+    def download_invoice(self, request, queryset):
+        if queryset.count() == 1:
+            obj = queryset.first()
+            return redirect(f'./download-invoice/{obj.purchase_order_id}/')
+        else:
+            self.message_user(request, "Please select exactly one transaction to download the invoice.", level='error')
+    download_invoice.short_description = "Download Invoice PDF"
+
     def get_product_title(self, obj):
         return obj.product.title
     get_product_title.short_description = 'Product'
