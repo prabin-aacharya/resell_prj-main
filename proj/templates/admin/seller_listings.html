@@ -69,50 +69,44 @@
     <h2>Seller Listings Management</h2>
 </div>
 
-<!-- Statistics Cards Section -->
-<div class="row mb-4">
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Pending Verification</h3>
-                    <p>{{ pending_count|default:0 }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-hourglass-half fa-2x text-warning"></i>
-                </div>
+<!-- Verification Status Counts -->
+<div class="row mb-4 g-4">
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+            <div class="stat-icon mb-3 mx-auto bg-warning bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+                <i class="fas fa-hourglass-half"></i>
             </div>
-            <a href="?verification_status=pending" class="stretched-link"></a>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Pending Verification</h5>
+                <div class="fs-3 fw-bold text-dark">{{ pending_count|default:0 }}</div>
+            </div>
+            <a href="?verification_status=pending" class="btn btn-warning w-100 mt-auto text-dark">View Pending</a>
         </div>
     </div>
     
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Approved Listings</h3>
-                    <p>{{ approved_count|default:0 }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-check-circle fa-2x text-success"></i>
-                </div>
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+             <div class="stat-icon mb-3 mx-auto bg-success bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+                <i class="fas fa-check-circle"></i>
             </div>
-            <a href="?verification_status=approved" class="stretched-link"></a>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Approved Listings</h5>
+                <div class="fs-3 fw-bold text-dark">{{ approved_count|default:0 }}</div>
+            </div>
+            <a href="?verification_status=approved" class="btn btn-success w-100 mt-auto">View Approved</a>
         </div>
     </div>
     
-    <div class="col-md-4">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Rejected Listings</h3>
-                    <p>{{ rejected_count|default:0 }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-ban fa-2x text-danger"></i>
-                </div>
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+             <div class="stat-icon mb-3 mx-auto bg-danger bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+                <i class="fas fa-ban"></i>
             </div>
-            <a href="?verification_status=rejected" class="stretched-link"></a>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Rejected Listings</h5>
+                <div class="fs-3 fw-bold text-dark">{{ rejected_count|default:0 }}</div>
+            </div>
+            <a href="?verification_status=rejected" class="btn btn-danger w-100 mt-auto">View Rejected</a>
         </div>
     </div>
 </div>
@@ -659,33 +653,46 @@
    - Adds hover effects and animations
 ============================================= */
 .stat-card {
+    min-width: 0;
+    min-height: 180px; /* Adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 24px rgba(67,97,238,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
     position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: none;
+    border: 1.5px solid #f0f0f0;
 }
-
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+    transform: translateY(-4px) scale(1.03);
+    border-color: #4361ee33;
 }
-
-.stat-card h3 {
+.stat-icon {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.stat-content h5 {
     font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #4b5563;
+    color: #222;
+}
+.stat-content .fs-3 {
+    font-size: 2.2rem !important;
+}
+.stat-card .btn {
+    font-weight: 500;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    margin-top: auto;
 }
 
-.stat-card p {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0;
-    color: #111827;
+@media (max-width: 991px) {
+    .stat-card { min-height: 160px; }
+}
+@media (max-width: 767px) {
+    .stat-card { min-height: 140px; }
 }
 
 /* =============================================

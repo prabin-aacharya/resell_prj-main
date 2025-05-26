@@ -38,51 +38,15 @@
                     </td>
                     <td>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#wishlistModal{{ wishlist.id }}">
+                            <button type="button" class="btn btn-sm btn-outline-info wishlist-info-btn" data-modal-id="wishlistModal{{ wishlist.id }}">
                                 <i class="fas fa-info-circle"></i>
-                            </a>
+                            </button>
                             <form method="post" action="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="d-inline">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-sm btn-outline-danger">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
-                        </div>
-
-                        <!-- Wishlist Details Modal -->
-                        <div class="modal fade" id="wishlistModal{{ wishlist.id }}" tabindex="-1" aria-labelledby="wishlistModalLabel{{ wishlist.id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="wishlistModalLabel{{ wishlist.id }}">Wishlist Item Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <h6>Customer Information</h6>
-                                            {% with customer=wishlist.user.customers.first %}
-                                            <p><strong>Name:</strong> {{ customer.name }}</p>
-                                            {% endwith %}
-                                            <p><strong>Email:</strong> {{ wishlist.user.email }}</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <h6>Product Information</h6>
-                                            <p><strong>Title:</strong> {{ wishlist.product.title }}</p>
-                                            <p><strong>Brand:</strong> {{ wishlist.product.brand }}</p>
-                                            <p><strong>Price:</strong> ₹{{ wishlist.product.price|floatformat:2 }}</p>
-                                            <p><strong>Status:</strong> {{ wishlist.product.status|title }}</p>
-                                            <p><strong>Description:</strong> {{ wishlist.product.description|truncatewords:50 }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <form method="post" action="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="d-inline">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn btn-danger">Remove from Wishlist</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </td>
                 </tr>
@@ -119,4 +83,87 @@
     </nav>
     {% endif %}
 </div>
+
+<!-- Move all wishlist modals outside the table -->
+{% for wishlist in wishlists %}
+<div class="modal fade" id="wishlistModal{{ wishlist.id }}" tabindex="-1" aria-labelledby="wishlistModalLabel{{ wishlist.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="wishlistModalLabel{{ wishlist.id }}">Wishlist Item Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <h6>Customer Information</h6>
+                    {% with customer=wishlist.user.customers.first %}
+                    <p><strong>Name:</strong> {{ customer.name }}</p>
+                    {% endwith %}
+                    <p><strong>Email:</strong> {{ wishlist.user.email }}</p>
+                </div>
+                <div class="mb-3">
+                    <h6>Product Information</h6>
+                    <p><strong>Title:</strong> {{ wishlist.product.title }}</p>
+                    <p><strong>Brand:</strong> {{ wishlist.product.brand }}</p>
+                    <p><strong>Price:</strong> ₹{{ wishlist.product.price|floatformat:2 }}</p>
+                    <p><strong>Status:</strong> {{ wishlist.product.status|title }}</p>
+                    <p><strong>Description:</strong> {{ wishlist.product.description|truncatewords:50 }}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <form method="post" action="{% url 'main:remove_from_wishlist' wishlist.product.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove from Wishlist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Attach event listeners to all wishlist info buttons
+  document.querySelectorAll('.wishlist-info-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('data-modal-id');
+      var modalEl = document.getElementById(targetId);
+      if (modalEl) {
+        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+      }
+    });
+  });
+  // Ensure all close buttons in wishlist modals use Bootstrap's hide()
+  document.querySelectorAll('.modal[id^="wishlistModal"] .btn-close, .modal[id^="wishlistModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var modalEl = btn.closest('.modal');
+      if (modalEl) {
+        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.hide();
+      }
+    });
+  });
+});
+</script>
+<style>
+/* Ensure modal is always above the backdrop and clickable */
+.modal {
+  z-index: 2001055 !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+.modal-backdrop {
+  z-index: 2001050 !important;
+  pointer-events: none !important;
+}
+body.modal-open {
+  overflow: hidden !important;
+}
+</style>
+{% endblock %}
 {% endblock %} 

@@ -7,66 +7,57 @@
 <h2 class="mb-4">Dashboard Overview</h2>
 
 <!-- Stat Cards -->
-<div class="row">
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Total Products</h3>
-                    <p>{{ product_count }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-motorcycle fa-3x text-primary opacity-50"></i>
-                </div>
-            </div>
-            <a href="{% url 'admin:admin_product_list' %}" class="btn btn-sm btn-primary w-100 mt-3">View Products</a>
+<div class="container-fluid px-0">
+  <div class="row g-4 mb-4 justify-content-center align-items-stretch">
+    <div class="col-3 d-flex">
+      <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
+        <div class="stat-icon mb-3 mx-auto bg-primary bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+          <i class="fas fa-motorcycle"></i>
         </div>
-    </div>
-    
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Purchases</h3>
-                    <p>{{ purchase_count }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-shopping-basket fa-3x text-success opacity-50"></i>
-                </div>
-            </div>
-            <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-sm btn-success w-100 mt-3">View Purchases</a>
+        <div class="stat-content mb-3">
+          <h5 class="fw-bold mb-1">Total Products</h5>
+          <div class="fs-3 fw-bold text-dark">{{ product_count }}</div>
         </div>
+        <a href="{% url 'admin:admin_product_list' %}" class="btn btn-primary w-100 mt-auto">View Products</a>
+      </div>
     </div>
-    
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Customers</h3>
-                    <p>{{ customer_count }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-users fa-3x text-info opacity-50"></i>
-                </div>
-            </div>
-            <a href="{% url 'admin:admin_customer_list' %}" class="btn btn-sm btn-info w-100 mt-3">View Customers</a>
+    <div class="col-3 d-flex">
+      <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
+        <div class="stat-icon mb-3 mx-auto bg-success bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+          <i class="fas fa-shopping-basket"></i>
         </div>
-    </div>
-    
-    <div class="col-md-3">
-        <div class="stat-card">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <h3>Revenue</h3>
-                    <p>₹{{ total_revenue|floatformat:0 }}</p>
-                </div>
-                <div>
-                    <i class="fas fa-money-bill-wave fa-3x text-warning opacity-50"></i>
-                </div>
-            </div>
-            <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-sm btn-warning w-100 mt-3">View Details</a>
+        <div class="stat-content mb-3">
+          <h5 class="fw-bold mb-1">Purchases</h5>
+          <div class="fs-3 fw-bold text-dark">{{ purchase_count }}</div>
         </div>
+        <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-success w-100 mt-auto">View Purchases</a>
+      </div>
     </div>
+    <div class="col-3 d-flex">
+      <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
+        <div class="stat-icon mb-3 mx-auto bg-info bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-content mb-3">
+          <h5 class="fw-bold mb-1">Customers</h5>
+          <div class="fs-3 fw-bold text-dark">{{ customer_count }}</div>
+        </div>
+        <a href="{% url 'admin:admin_customer_list' %}" class="btn btn-info w-100 mt-auto">View Customers</a>
+      </div>
+    </div>
+    <div class="col-3 d-flex">
+      <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
+        <div class="stat-icon mb-3 mx-auto bg-warning bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+          <i class="fas fa-money-bill-wave"></i>
+        </div>
+        <div class="stat-content mb-3">
+          <h5 class="fw-bold mb-1">Revenue</h5>
+          <div class="fs-3 fw-bold text-dark">₹{{ total_revenue|floatformat:0 }}</div>
+        </div>
+        <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-warning w-100 mt-auto">View Details</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Recent Products -->
@@ -333,36 +324,47 @@
 
 {% block extra_js %}
 <style>
-  /* Animated View All button for purchases */
-  .btn-success.px-4.shadow-sm {
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    font-weight: 500;
-    border-radius: 6px;
-  }
-  
-  .btn-success.px-4.shadow-sm:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4) !important;
-  }
-  
-  .btn-success.px-4.shadow-sm:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: all 0.6s ease;
-    z-index: -1;
-  }
-  
-  .btn-success.px-4.shadow-sm:hover:before {
-    left: 100%;
-  }
+.stat-card {
+  min-width: 0;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(67,97,238,0.07);
+  transition: box-shadow 0.2s, transform 0.2s;
+  position: relative;
+  border: 1.5px solid #f0f0f0;
+}
+.stat-card:hover {
+  box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+  transform: translateY(-4px) scale(1.03);
+  border-color: #4361ee33;
+}
+.stat-icon {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.stat-content h5 {
+  font-size: 1.1rem;
+  color: #222;
+}
+.stat-content .fs-3 {
+  font-size: 2.2rem !important;
+}
+.btn {
+  font-weight: 500;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  margin-top: auto;
+}
+@media (max-width: 991px) {
+  .stat-card { min-height: 160px; }
+}
+@media (max-width: 767px) {
+  .stat-card { min-height: 140px; }
+}
 </style>
 
 <script>

@@ -48,56 +48,12 @@
                             <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#sellerModal{{ seller.id }}">
+                            <button type="button" class="btn btn-sm btn-outline-info seller-info-btn" data-modal-id="sellerModal{{ seller.id }}">
                                 <i class="fas fa-info-circle"></i>
                             </button>
                             <a href="{% url 'admin:admin_seller_delete' seller.id %}" class="btn btn-sm btn-outline-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
-                        </div>
-
-                        <!-- Seller Details Modal -->
-                        <div class="modal fade" id="sellerModal{{ seller.id }}" tabindex="-1" aria-labelledby="sellerModalLabel{{ seller.id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="sellerModalLabel{{ seller.id }}">Seller Details</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <h6>Personal Information</h6>
-                                            <p><strong>Name:</strong> {{ seller.full_name }}</p>
-                                            <p><strong>Email:</strong> {{ seller.email }}</p>
-                                            <p><strong>Phone:</strong> {{ seller.phone }}</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <h6>Bike Information</h6>
-                                            <p><strong>Brand:</strong> {{ seller.bike_brand }}</p>
-                                            <p><strong>Model:</strong> {{ seller.bike_model }}</p>
-                                        </div>
-                                        <div class="mb-3">
-                                            <h6>Status Information</h6>
-                                            <p><strong>Account Status:</strong> 
-                                                <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
-                                                    {{ seller.status|title }}
-                                                </span>
-                                            </p>
-                                            <p><strong>Verification Status:</strong>
-                                                <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
-                                                    {{ seller.verification_status|title }}
-                                                </span>
-                                            </p>
-                                            <p><strong>Created:</strong> {{ seller.created_at|date:"M d, Y H:i" }}</p>
-                                            <p><strong>Last Updated:</strong> {{ seller.updated_at|date:"M d, Y H:i" }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </td>
                 </tr>
@@ -134,4 +90,97 @@
     </nav>
     {% endif %}
 </div>
+
+<!-- Move all seller modals outside the table -->
+{% for seller in sellers %}
+<div class="modal fade" id="sellerModal{{ seller.id }}" tabindex="-1" aria-labelledby="sellerModalLabel{{ seller.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sellerModalLabel{{ seller.id }}">Seller Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <h6>Personal Information</h6>
+                    <p><strong>Name:</strong> {{ seller.full_name }}</p>
+                    <p><strong>Email:</strong> {{ seller.email }}</p>
+                    <p><strong>Phone:</strong> {{ seller.phone }}</p>
+                </div>
+                <div class="mb-3">
+                    <h6>Bike Information</h6>
+                    <p><strong>Brand:</strong> {{ seller.bike_brand }}</p>
+                    <p><strong>Model:</strong> {{ seller.bike_model }}</p>
+                </div>
+                <div class="mb-3">
+                    <h6>Status Information</h6>
+                    <p><strong>Account Status:</strong> 
+                        <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.status|title }}
+                        </span>
+                    </p>
+                    <p><strong>Verification Status:</strong>
+                        <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ seller.verification_status|title }}
+                        </span>
+                    </p>
+                    <p><strong>Created:</strong> {{ seller.created_at|date:"M d, Y H:i" }}</p>
+                    <p><strong>Last Updated:</strong> {{ seller.updated_at|date:"M d, Y H:i" }}</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<style>
+/* Ensure modal is always above the backdrop and clickable */
+.modal {
+  z-index: 2001055 !important;
+  pointer-events: auto !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+.modal-backdrop {
+  z-index: 2001050 !important;
+  pointer-events: none !important;
+}
+body.modal-open {
+  overflow: hidden !important;
+}
+</style>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Attach event listeners to all info buttons
+  document.querySelectorAll('.seller-info-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var targetId = btn.getAttribute('data-modal-id');
+      var modalEl = document.getElementById(targetId);
+      if (modalEl) {
+        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+      }
+    });
+  });
+  // Ensure all close buttons in seller modals use Bootstrap's hide()
+  document.querySelectorAll('.modal[id^="sellerModal"] .btn-close, .modal[id^="sellerModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var modalEl = btn.closest('.modal');
+      if (modalEl) {
+        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.hide();
+      }
+    });
+  });
+});
+</script>
 {% endblock %} 

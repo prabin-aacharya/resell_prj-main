@@ -1,5 +1,6 @@
 {% extends 'proj/admin/base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block title %}Bike Purchases{% endblock %}
 
@@ -264,173 +265,64 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h2 class="page-title"><i class="fas fa-shopping-cart me-2"></i>Bike Purchases</h2>
- 
-
 </div>
 
-<!-- Statistics Cards -->
-<div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="stat-card primary-card">
-            <div class="stat-icon">
+<!-- Combined Stat Cards -->
+<div class="row g-4 mb-4">
+    <!-- Total Purchases Card -->
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+            <div class="stat-icon mb-3 mx-auto bg-primary bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
                 <i class="fas fa-shopping-cart"></i>
             </div>
-            <div class="stat-content">
-                <h3>Total Purchases</h3>
-                <p class="counter">{{ total_purchases }}</p>
-                <div class="stat-footer">
-                  <span class="badge bg-light text-primary">All time</span>
-                </div>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Total Purchases</h5>
+                <div class="fs-3 fw-bold text-dark">{{ total_purchases }}</div>
             </div>
+            
         </div>
     </div>
-    
-    <div class="col-md-6 col-lg-3">
-        <div class="stat-card success-card">
-            <div class="stat-icon">
+
+    <!-- Total Revenue Card -->
+    <div class="col-lg-4 col-md-6 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+            <div class="stat-icon mb-3 mx-auto bg-success bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
                 <i class="fas fa-money-bill-wave"></i>
             </div>
-            <div class="stat-content">
-                <h3>Total Revenue</h3>
-                <p class="counter">Rs. {{ total_revenue|floatformat:2 }}</p>
-                <div class="stat-footer">
-                  <span class="badge bg-light text-success">+3.5% <i class="fas fa-arrow-up"></i></span>
-                </div>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Total Revenue</h5>
+                <div class="fs-3 fw-bold text-dark">Rs. {{ total_revenue|floatformat:2 }}</div>
             </div>
+            
         </div>
     </div>
-    
-    <div class="col-md-6 col-lg-3">
-        <div class="stat-card info-card">
-            <div class="stat-icon">
-                <i class="fas fa-exchange-alt"></i>
-            </div>
-            <div class="stat-content">
-                <h3>Avg. Transaction</h3>
-                <p class="counter">Rs. {{ total_revenue|default:0|floatformat:0|default:0|divisibleby:total_purchases|default:"0" }}</p>
-                <div class="stat-footer">
-                  <span class="badge bg-light text-info">Per purchase</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-6 col-lg-3">
-        <div class="stat-card warning-card">
-            <div class="stat-icon">
-                <i class="fas fa-chart-line"></i>
-            </div>
-            <div class="stat-content">
-                <h3>Monthly Growth</h3>
-                <p class="counter">12.4%</p>
-                <div class="stat-footer">
-                  <span class="badge bg-light text-warning">This month</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Top Buyers -->
-<div class="row mt-4">
-    <div class="col-md-12 col-lg-5">
-        <div class="table-container card-hover">
-            <div class="card-header-custom">
-                <h3><i class="fas fa-crown me-2 text-warning"></i>Top Buyers</h3>
-                <div class="card-actions">
-                    <button class="btn btn-sm btn-light-primary"><i class="fas fa-sync-alt"></i></button>
-                </div>
+    <!-- Payment Analytics Card -->
+    <div class="col-lg-4 col-md-12 col-12 d-flex">
+        <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
+             <div class="stat-icon mb-3 mx-auto bg-info bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
+                <i class="fas fa-chart-bar"></i>
             </div>
-            
-            {% if top_buyers %}
-            <div class="table-responsive">
-                <table class="table table-hover custom-table">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Email</th>
-                            <th>Purchases</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in top_buyers %}
-                        <tr>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="avatar-circle bg-primary text-white me-2">
-                                        {{ user.username|slice:":1"|upper }}
-                                    </div>
-                                    <span>{{ user.username }}</span>
-                                </div>
-                            </td>
-                            <td>{{ user.email }}</td>
-                            <td>
-                                <strong>{{ user.purchase_count }}</strong>
-                            </td>
-                            <td>
-                                <span class="badge bg-success">Active</span>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% else %}
-            <div class="empty-state">
-                <div class="empty-state-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h5>No buyers yet</h5>
-                <p>Buyer statistics will appear here</p>
-            </div>
-            {% endif %}
-        </div>
-    </div>
-    
-    <div class="col-md-12 col-lg-7">
-        <div class="table-container card-hover">
-            <div class="card-header-custom">
-                <h3><i class="fas fa-chart-pie me-2 text-primary"></i>Payment Analytics</h3>
-                <div class="card-actions">
-                    <span class="badge bg-soft-primary me-2">Last 30 days</span>
-                    <button class="btn btn-sm btn-light-primary"><i class="fas fa-ellipsis-v"></i></button>
-                </div>
-            </div>
-            
-            <div class="analytics-container p-3">
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="payment-method-card">
-                            <h5>Payment Methods</h5>
-                            <div class="payment-icons">
-                                <!-- Only showing Khalti as payment option -->
-                                <span class="payment-icon khalti">
-                                    <!-- Using local Khalti logo image -->
-                                    <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" width="90%" height="auto" style="max-width: 90%;">
-                                </span>
-                            </div>
-                            <div class="text-center mt-3">
-                                <span class="badge bg-primary">100% payments via Khalti</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="sale-progression">
-                            <h5>Completion Rate</h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 85%;" 
-                                     aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-                            </div>
-                            <div class="small text-muted mt-2">85% of transactions completed successfully</div>
-                        </div>
-                    </div>
+            <div class="stat-content mb-3">
+                <h5 class="fw-bold mb-1">Payment Analytics</h5>
+                <div class="payment-methods mt-3">
+                    <h6 class="text-muted">Payment Methods:</h6>
+                     <div class="d-flex justify-content-center align-items-center">
+                        <!-- Using local Khalti logo image -->
+                        <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" style="width: 40px; height: auto; margin-right: 10px;">
+                        <span class="fw-bold">Khalti</span>
+                     </div>
                 </div>
                 
-               </div>
+            </div>
+             
+        </div>
     </div>
 </div>
 
+
+    
+   
 <!-- All Purchases -->
 <div class="row mt-4" id="detailed-stats">
     <div class="col-12">
@@ -439,17 +331,7 @@
                 <h3><i class="fas fa-shopping-basket me-2 text-indigo"></i>All Bike Purchases</h3>
                 <div class="card-actions">
                     <span class="badge bg-soft-primary me-2">{{ bike_payments|length }} transactions</span>
-                    <div class="dropdown d-inline-block">
-                        <button class="btn btn-sm btn-light-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-sliders-h me-1"></i> Display
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2 text-primary"></i> All</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i> Completed</a></li>
-                            
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i> Failed</a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
             
