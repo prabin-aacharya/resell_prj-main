@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proj',
     'proj.templatetags',
+    'django_extensions',
     'widget_tweaks',
 ]
 

@@ -282,7 +282,7 @@
             
         </div>
     </div>
-
+    
     <!-- Total Revenue Card -->
     <div class="col-lg-4 col-md-6 col-12 d-flex">
         <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
@@ -296,7 +296,7 @@
             
         </div>
     </div>
-
+    
     <!-- Payment Analytics Card -->
     <div class="col-lg-4 col-md-12 col-12 d-flex">
         <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
@@ -308,21 +308,21 @@
                 <div class="payment-methods mt-3">
                     <h6 class="text-muted">Payment Methods:</h6>
                      <div class="d-flex justify-content-center align-items-center">
-                        <!-- Using local Khalti logo image -->
+                                    <!-- Using local Khalti logo image -->
                         <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" style="width: 40px; height: auto; margin-right: 10px;">
                         <span class="fw-bold">Khalti</span>
-                     </div>
+                    </div>
                 </div>
                 
-            </div>
-             
-        </div>
+                </div>
+                
+               </div>
     </div>
 </div>
 
 
     
-   
+
 <!-- All Purchases -->
 <div class="row mt-4" id="detailed-stats">
     <div class="col-12">
@@ -446,18 +446,20 @@
             
             <div class="pagination-container d-flex justify-content-between align-items-center p-3">
                 <div class="showing-entries">
-                    Showing <strong>1-{{ bike_payments|length }}</strong> of <strong>{{ bike_payments|length }}</strong> entries
+                    Showing <strong>{{ bike_payments.start_index }}-{{ bike_payments.end_index }}</strong> of <strong>{{ bike_payments.paginator.count }}</strong> entries
                 </div>
                 <nav aria-label="Transaction pagination">
                     <ul class="pagination pagination-sm mb-0">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+                        <li class="page-item{% if not bike_payments.has_previous %} disabled{% endif %}">
+                            <a class="page-link" {% if bike_payments.has_previous %}href="?page={{ bike_payments.previous_page_number }}"{% endif %} tabindex="-1" aria-disabled="{% if not bike_payments.has_previous %}true{% else %}false{% endif %}"><i class="fas fa-chevron-left"></i></a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                        {% for page_number in bike_payments.paginator.page_range %}
+                            <li class="page-item{% if page_number == bike_payments.number %} active{% endif %}" {% if page_number == bike_payments.number %}aria-current="page"{% endif %}>
+                                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                            </li>
+                        {% endfor %}
+                        <li class="page-item{% if not bike_payments.has_next %} disabled{% endif %}">
+                            <a class="page-link" {% if bike_payments.has_next %}href="?page={{ bike_payments.next_page_number }}"{% endif %} aria-disabled="{% if not bike_payments.has_next %}true{% else %}false{% endif %}"><i class="fas fa-chevron-right"></i></a>
                         </li>
                     </ul>
                 </nav>

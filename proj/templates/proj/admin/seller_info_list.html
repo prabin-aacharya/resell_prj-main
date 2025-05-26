@@ -89,53 +89,53 @@
         </ul>
     </nav>
     {% endif %}
-</div>
+                        </div>
 
 <!-- Move all seller modals outside the table -->
 {% for seller in sellers %}
-<div class="modal fade" id="sellerModal{{ seller.id }}" tabindex="-1" aria-labelledby="sellerModalLabel{{ seller.id }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="sellerModalLabel{{ seller.id }}">Seller Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <h6>Personal Information</h6>
-                    <p><strong>Name:</strong> {{ seller.full_name }}</p>
-                    <p><strong>Email:</strong> {{ seller.email }}</p>
-                    <p><strong>Phone:</strong> {{ seller.phone }}</p>
-                </div>
-                <div class="mb-3">
-                    <h6>Bike Information</h6>
-                    <p><strong>Brand:</strong> {{ seller.bike_brand }}</p>
-                    <p><strong>Model:</strong> {{ seller.bike_model }}</p>
-                </div>
-                <div class="mb-3">
-                    <h6>Status Information</h6>
-                    <p><strong>Account Status:</strong> 
-                        <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
-                            {{ seller.status|title }}
-                        </span>
-                    </p>
-                    <p><strong>Verification Status:</strong>
-                        <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
-                            {{ seller.verification_status|title }}
-                        </span>
-                    </p>
-                    <p><strong>Created:</strong> {{ seller.created_at|date:"M d, Y H:i" }}</p>
-                    <p><strong>Last Updated:</strong> {{ seller.updated_at|date:"M d, Y H:i" }}</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
-            </div>
-        </div>
-    </div>
-</div>
-{% endfor %}
+                        <div class="modal fade" id="sellerModal{{ seller.id }}" tabindex="-1" aria-labelledby="sellerModalLabel{{ seller.id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sellerModalLabel{{ seller.id }}">Seller Details</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <h6>Personal Information</h6>
+                                            <p><strong>Name:</strong> {{ seller.full_name }}</p>
+                                            <p><strong>Email:</strong> {{ seller.email }}</p>
+                                            <p><strong>Phone:</strong> {{ seller.phone }}</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6>Bike Information</h6>
+                                            <p><strong>Brand:</strong> {{ seller.bike_brand }}</p>
+                                            <p><strong>Model:</strong> {{ seller.bike_model }}</p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h6>Status Information</h6>
+                                            <p><strong>Account Status:</strong> 
+                                                <span class="badge {% if seller.status == 'active' %}bg-success{% elif seller.status == 'inactive' %}bg-warning{% else %}bg-danger{% endif %}">
+                                                    {{ seller.status|title }}
+                                                </span>
+                                            </p>
+                                            <p><strong>Verification Status:</strong>
+                                                <span class="badge {% if seller.verification_status == 'verified' %}bg-success{% elif seller.verification_status == 'pending' %}bg-warning{% else %}bg-danger{% endif %}">
+                                                    {{ seller.verification_status|title }}
+                                                </span>
+                                            </p>
+                                            <p><strong>Created:</strong> {{ seller.created_at|date:"M d, Y H:i" }}</p>
+                                            <p><strong>Last Updated:</strong> {{ seller.updated_at|date:"M d, Y H:i" }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            {% endfor %}
 
 <style>
 /* Ensure modal is always above the backdrop and clickable */

@@ -13,51 +13,51 @@
       <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
         <div class="stat-icon mb-3 mx-auto bg-primary bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
           <i class="fas fa-motorcycle"></i>
-        </div>
+                </div>
         <div class="stat-content mb-3">
           <h5 class="fw-bold mb-1">Total Products</h5>
           <div class="fs-3 fw-bold text-dark">{{ product_count }}</div>
-        </div>
+            </div>
         <a href="{% url 'admin:admin_product_list' %}" class="btn btn-primary w-100 mt-auto">View Products</a>
-      </div>
+        </div>
     </div>
     <div class="col-3 d-flex">
       <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
         <div class="stat-icon mb-3 mx-auto bg-success bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
           <i class="fas fa-shopping-basket"></i>
-        </div>
+                </div>
         <div class="stat-content mb-3">
           <h5 class="fw-bold mb-1">Purchases</h5>
           <div class="fs-3 fw-bold text-dark">{{ purchase_count }}</div>
-        </div>
+            </div>
         <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-success w-100 mt-auto">View Purchases</a>
-      </div>
+        </div>
     </div>
     <div class="col-3 d-flex">
       <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
         <div class="stat-icon mb-3 mx-auto bg-info bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
           <i class="fas fa-users"></i>
-        </div>
+                </div>
         <div class="stat-content mb-3">
           <h5 class="fw-bold mb-1">Customers</h5>
           <div class="fs-3 fw-bold text-dark">{{ customer_count }}</div>
-        </div>
+            </div>
         <a href="{% url 'admin:admin_customer_list' %}" class="btn btn-info w-100 mt-auto">View Customers</a>
-      </div>
+        </div>
     </div>
     <div class="col-3 d-flex">
       <div class="stat-card flex-fill text-center p-3 shadow-sm rounded-4 bg-white position-relative h-100">
         <div class="stat-icon mb-3 mx-auto bg-warning bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
           <i class="fas fa-money-bill-wave"></i>
-        </div>
+                </div>
         <div class="stat-content mb-3">
           <h5 class="fw-bold mb-1">Revenue</h5>
           <div class="fs-3 fw-bold text-dark">₹{{ total_revenue|floatformat:0 }}</div>
-        </div>
+            </div>
         <a href="{% url 'admin:admin_bike_purchases' %}" class="btn btn-warning w-100 mt-auto">View Details</a>
       </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Recent Products -->
@@ -335,7 +335,7 @@
   border-radius: 1.5rem;
   box-shadow: 0 4px 24px rgba(67,97,238,0.07);
   transition: box-shadow 0.2s, transform 0.2s;
-  position: relative;
+    position: relative;
   border: 1.5px solid #f0f0f0;
 }
 .stat-card:hover {
@@ -354,7 +354,7 @@
   font-size: 2.2rem !important;
 }
 .btn {
-  font-weight: 500;
+    font-weight: 500;
   border-radius: 0.75rem;
   padding: 0.5rem 1.25rem;
   margin-top: auto;
@@ -364,7 +364,7 @@
 }
 @media (max-width: 767px) {
   .stat-card { min-height: 140px; }
-}
+  }
 </style>
 
 <script>

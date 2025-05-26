@@ -250,29 +250,31 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     })
     .catch(error => {
-      console.error('Error checking uniqueness:', error);
+      console.error('Error during unique field check:', error);
+      // Optionally display a generic error message
+      if (errorElement) {
+         errorElement.textContent = 'Error checking uniqueness.';
+         errorElement.style.display = 'block';
+         field.classList.add('is-invalid');
+         field.classList.remove('is-valid');
+      }
     });
   }
 
-  function setupValidation(field, fieldName, errorElement) {
-    if (!field || !errorElement) return;
+  // Add event listeners to trigger the check on input and blur
+  engineNumberField.addEventListener('input', function() { checkUnique(this, 'engine_number', engineError); });
+  engineNumberField.addEventListener('blur', function() { checkUnique(this, 'engine_number', engineError); });
 
-    field.addEventListener('blur', () => {
-      checkUnique(field, fieldName, errorElement);
-    });
+  chassisNumberField.addEventListener('input', function() { checkUnique(this, 'chassis_number', chassisError); });
+  chassisNumberField.addEventListener('blur', function() { checkUnique(this, 'chassis_number', chassisError); });
 
-    field.addEventListener('input', () => {
-      errorElement.style.display = 'none';
-      field.classList.remove('is-invalid');
-      field.classList.remove('is-valid');
-    });
-  }
+  numberPlateField.addEventListener('input', function() { checkUnique(this, 'number_plate', plateError); });
+  numberPlateField.addEventListener('blur', function() { checkUnique(this, 'number_plate', plateError); });
 
-  const form = document.getElementById('updateProductForm');
-  
-  setupValidation(engineNumberField, 'engine_number', engineError);
-  setupValidation(chassisNumberField, 'chassis_number', chassisError);
-  setupValidation(numberPlateField, 'number_plate', plateError);
+  // Initial check on page load if fields are pre-filled (optional)
+  // checkUnique(engineNumberField, 'engine_number', engineError);
+  // checkUnique(chassisNumberField, 'chassis_number', chassisError);
+  // checkUnique(numberPlateField, 'number_plate', plateError);
 
   // Debug form submission
   console.log('Form action:', form ? form.getAttribute('action') : 'Form not found');
@@ -290,4 +292,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+{% endblock %}
+
+{% block extra_css %}
+<!-- Add any additional CSS here -->
 {% endblock %}

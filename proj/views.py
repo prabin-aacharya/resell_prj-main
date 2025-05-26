@@ -23,16 +23,17 @@ from django.contrib.auth import get_user_model, login
 from .tokens import account_activation_token
 import logging
 from django.conf import settings
+from django.urls import reverse
 # Create your views here.
 def home(request):
     from .models import Product
     from django.core.paginator import Paginator
     
-    # Get all verified products (both available and sold) ordered by most recent first
+    # Get all verified products (both available and sold) ordered by status and latest first
     all_products = Product.objects.filter(
         verification_status='approved',
         status__in=['available', 'sold']
-    ).order_by('-id')
+    ).order_by('status', '-created_at')
     
     # Set up pagination
     paginator = Paginator(all_products, 12)  # Show 12 products per page
@@ -107,12 +108,25 @@ def contact(req):
     
 class BrandView(View):
     def get(self, request, val):
-        # Show verified products that are either available or sold
-        product = Product.objects.filter(brand=val, verification_status='approved', status__in=['available', 'sold'])
+        # Show verified products that are either available or sold, sorted by status and latest first
+        product = Product.objects.filter(
+            brand=val, 
+            verification_status='approved', 
+            status__in=['available', 'sold']
+        ).order_by('status', '-created_at')
+        
         # Get all unique models (titles) for this brand, with count
-        title = Product.objects.filter(brand=val, verification_status='approved', status__in=['available', 'sold']).values('title').annotate(count=Count('id'))
+        title = Product.objects.filter(
+            brand=val, 
+            verification_status='approved', 
+            status__in=['available', 'sold']
+        ).values('title').annotate(count=Count('id'))
+        
         # For sidebar: get all unique brands
-        brands = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).values('brand').annotate(count=Count('id'))
+        brands = Product.objects.filter(
+            verification_status='approved', 
+            status__in=['available', 'sold']
+        ).values('brand').annotate(count=Count('id'))
         
         # Get user's wishlist items if authenticated
         user_wishlist = []
@@ -369,8 +383,6 @@ def sell_bike(request):
                     'seller_name': customer.name,
                     'city': customer.city,
                 }
-                print(f"DEBUG: Pre-filling form with data from customer profile: {customer.id}")
-                print(f"DEBUG: Total customer profiles found: {customer_profiles.count()}")
             else:
                 raise Customer.DoesNotExist()
             
@@ -384,15 +396,36 @@ def sell_bike(request):
                 # Only update fields that aren't already set from the customer profile
                 if 'seller_name' not in customer_data or not customer_data['seller_name']:
                     customer_data['seller_name'] = previous_listings.full_name
-                print(f"DEBUG: Found previous listings for this user: {previous_listings.id}")
         except Customer.DoesNotExist:
-            print("DEBUG: No customer profile found for authenticated user during form load")
             pass
     
     if request.method == 'POST':
         form = SellBikeForm(request.POST, request.FILES)
-        if form.is_valid():
+        # Do not check form.is_valid() yet, we will check errors after adding custom ones
+
+        # Perform uniqueness checks manually before checking overall validity
+        cd = form.data # Use form.data to access submitted data directly
+        errors_occurred = False
+
+        if 'number_plate' in cd and cd['number_plate'].strip():
+            if Product.objects.filter(number_plate=cd['number_plate']).exists():
+                form.add_error('number_plate', f'A bike with number plate {cd["number_plate"]} is already registered.')
+                errors_occurred = True
+
+        if 'engine_number' in cd and cd['engine_number'].strip():
+            if Product.objects.filter(engine_number=cd['engine_number']).exists():
+                form.add_error('engine_number', f'A bike with engine number {cd["engine_number"]} is already registered.')
+                errors_occurred = True
+
+        if 'chassis_number' in cd and cd['chassis_number'].strip():
+            if Product.objects.filter(chassis_number=cd['chassis_number']).exists():
+                form.add_error('chassis_number', f'A bike with chassis number {cd["chassis_number"]} is already registered.')
+                errors_occurred = True
+
+        # Now check if the form is valid (including errors added above and standard validation)
+        if form.is_valid() and not errors_occurred: # Ensure no errors were added manually
             cd = form.cleaned_data
+
             # Create the product with all details including images
             product = Product.objects.create(
                 brand=cd['brand'],
@@ -410,71 +443,39 @@ def sell_bike(request):
                 previous_owners=cd['previous_owners'],
                 seller_name=cd['seller_name'],
                 product_image=cd['product_image'],
-                description=cd.get('description', ''),  # Add description field
+                description=cd.get('description', ''),
             )
-            
+
             # Add bluebook images if provided
             if cd.get('bluebook_page2'):
                 product.bluebook_page2 = cd['bluebook_page2']
             if cd.get('bluebook_page9'):
                 product.bluebook_page9 = cd['bluebook_page9']
+
             product.save()
-            
-            # Get customer contact details - with debug logging
+
+            # Get customer contact details
             email = ''
             phone_number = ''
-            
-            print(f"DEBUG: User authenticated: {request.user.is_authenticated}")
-            if request.user.is_authenticated:
-                print(f"DEBUG: User email: {request.user.email}")
-            
-            # First try to get from authenticated user
+
             if request.user.is_authenticated:
                 email = request.user.email
-                print(f"DEBUG: Using authenticated user email: {email}")
-                
+
                 # Try to get phone from customer profile
                 try:
-                    # Use filter instead of get to handle multiple customer profiles
                     customer_profiles = Customer.objects.filter(user=request.user).order_by('-id')
                     if customer_profiles.exists():
-                        # Use the most recent customer profile
                         customer = customer_profiles.first()
                         phone_number = customer.mobile
-                        print(f"DEBUG: Found customer profile with phone: {phone_number}")
-                        print(f"DEBUG: Total customer profiles found: {customer_profiles.count()}")
-                    else:
-                        raise Customer.DoesNotExist()
                 except Customer.DoesNotExist:
-                    print("DEBUG: No customer profile found for authenticated user")
-                    # If no customer profile, try previous listings
+                    pass
+
+                # If no customer profile, try previous listings
+                if not phone_number:
                     previous_listings = SellerInfo.objects.filter(email=email).order_by('-id').first()
                     if previous_listings and previous_listings.phone:
                         phone_number = previous_listings.phone
-                        print(f"DEBUG: Using phone from previous listing: {phone_number}")
-            
-            # If we still don't have a phone number, check previous listings by name
-            if not phone_number:
-                print(f"DEBUG: Searching for listings by name: {cd['seller_name']}")
-                name_match_listings = SellerInfo.objects.filter(full_name=cd['seller_name']).order_by('-id')
-                if name_match_listings.exists():
-                    first_match = name_match_listings.first()
-                    print(f"DEBUG: Found listing by name match: {first_match.id}")
-                    if first_match.phone:
-                        phone_number = first_match.phone
-                        print(f"DEBUG: Using phone from name match: {phone_number}")
-                    # If we don't have an email yet, use the one from the name match
-                    if not email and first_match.email:
-                        email = first_match.email
-                        print(f"DEBUG: Using email from name match: {email}")
-            
-            # Final check - if we still don't have an email or phone, use default values
-            if not email and request.user.is_authenticated:
-                email = request.user.email
-                print(f"DEBUG: Using user email as fallback: {email}")
-            
-            print(f"DEBUG: Final email: {email}, Final phone: {phone_number}")
-            
+
             # Create SellerInfo with all available details
             seller_info = SellerInfo.objects.create(
                 full_name=cd['seller_name'],
@@ -482,44 +483,29 @@ def sell_bike(request):
                 phone=phone_number,
                 bike_brand=cd['brand'],
                 bike_model=cd['model'],
-                product=product  # Make sure to associate with the product
+                product=product
             )
-            
-            # Log the created seller info for debugging
-            print(f"Created SellerInfo: {seller_info.id}, Name: {seller_info.full_name}, Email: {seller_info.email}, Phone: {seller_info.phone}")
-            
-            # Store success message in session
-            from django.contrib import messages
+
             messages.success(request, 'Your bike has been successfully listed for sale!')
-            
+
             # Make sure the session key doesn't change
             if session_key != request.session.session_key:
                 request.session.cycle_key()
-            
+
             # Set CSRF cookie explicitly
             from django.middleware.csrf import get_token
             get_token(request)
-            
-            # Use redirect instead of render to avoid POST-refresh issues
-            from django.shortcuts import redirect
-            response = redirect('main:sell_success')
-            
-            # Ensure cookies are properly set in the response
-            if request.user.is_authenticated:
-                # Set a separate cookie to help maintain the session
-                response.set_cookie(
-                    'user_authenticated', 
-                    'true', 
-                    max_age=3600*24*14,  # 14 days
-                    httponly=True,
-                    samesite='Lax'
-                )
-            
-            return response
+
+            return redirect('main:sell_success')
+        else:
+            # If form is not valid (either initial validation or custom errors), render with errors
+            messages.warning(request, "Please correct the errors below.")
+            # Fall through to the render statement outside the if/else block
     else:
         # Pre-fill form with customer data for GET requests
         form = SellBikeForm(initial=customer_data)
-    
+
+    # This render statement handles both GET requests and POST requests with errors
     return render(request, 'proj/sell_bike_form.html', {
         'form': form,
         'customer': customer,
@@ -549,7 +535,8 @@ def buy_bikes(request):
     year_filter = request.GET.get('year', '')
 
     # Show products that have been verified/approved and are either available or sold
-    bikes = Product.objects.filter(verification_status='approved', status__in=['available', 'sold'])
+    # Sort by status (available first) and then by latest listed date
+    bikes = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).order_by('status', '-created_at')
     user_wishlist = []
     
     # Get user's wishlist items if authenticated
@@ -888,6 +875,31 @@ def update_product(request, pk):
             # Since SellBikeForm is not a ModelForm, we can't use the instance parameter
             form = SellBikeForm(request.POST, request.FILES)
             if form.is_valid():
+                cd = form.cleaned_data
+
+                # Server-side check for unique fields, excluding the current product
+                duplicate_product = Product.objects.filter(
+                    Q(number_plate=cd['number_plate']) |
+                    Q(engine_number=cd['engine_number']) |
+                    Q(chassis_number=cd['chassis_number'])
+                ).exclude(pk=product.pk).first()
+
+                if duplicate_product:
+                    if duplicate_product.number_plate == cd['number_plate']:
+                        form.add_error('number_plate', f'A bike with number plate {cd["number_plate"]} is already registered.')
+                    if duplicate_product.engine_number == cd['engine_number']:
+                        form.add_error('engine_number', f'A bike with engine number {cd["engine_number"]} is already registered.')
+                    if duplicate_product.chassis_number == cd['chassis_number']:
+                        form.add_error('chassis_number', f'A bike with chassis number {cd["chassis_number"]} is already registered.')
+
+                    # If there are errors, re-render the form with messages
+                    if form.errors:
+                        messages.warning(request, "Please correct the errors below.")
+                        return render(request, 'proj/update_product.html', {
+                            'form': form,
+                            'product': product # Pass the product to retain image/document URLs
+                        })
+
                 # Update the product manually with form data
                 product.title = form.cleaned_data['model']
                 product.brand = form.cleaned_data['brand']
@@ -928,7 +940,10 @@ def update_product(request, pk):
                 seller_info.save()
                 
                 messages.success(request, "Your listing has been updated successfully.")
-                return redirect('main:my_deals' + '?updated=true#selling')
+                # Construct the URL with query parameters and fragment identifier
+                my_deals_url = reverse('main:my_deals')
+                redirect_url = f'{my_deals_url}?updated=true#selling'
+                return redirect(redirect_url)
             else:
                 # If the form is invalid, show the form again with errors
                 for field, errors in form.errors.items():
