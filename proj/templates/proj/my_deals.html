@@ -8,7 +8,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                <div class="card-header bg-success text-white py-4">
+                <div class="card-header bg-primary text-white py-4">
                     <div class="d-flex align-items-center">
                         <div class="profile-icon me-3">
                             <i class="fas fa-handshake fa-3x"></i>
@@ -37,20 +37,20 @@
                         <div class="col-md-3 border-end">
                             <div class="nav flex-column nav-pills p-4" role="tablist">
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
-                                    <i class="fas fa-id-card me-2"></i> My Profile
+                                    <i class="fas fa-id-card text-info me-2"></i> My Profile
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
-                                    <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i> My Addresses
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
-                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                    <i class="fas fa-heart text-danger me-2"></i> My Wishlist
                                 </a>
                                 <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:my_deals' %}">
-                                    <i class="fas fa-handshake me-2"></i> My Deals
+                                    <i class="fas fa-handshake text-warning me-2"></i> My Deals
                                 </a>
                                 <div class="mt-auto border-top pt-3 mt-3">
                                     <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
-                                        <i class="fas fa-key me-2"></i> Change Password
+                                        <i class="fas fa-key text-secondary me-2"></i> Change Password
                                     </a>
                                     <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
                                         {% csrf_token %}
@@ -69,12 +69,12 @@
                                 <ul class="nav nav-tabs mb-4" id="dealsTabs" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="purchased-tab" data-bs-toggle="tab" data-bs-target="#purchased" type="button" role="tab" aria-controls="purchased" aria-selected="true">
-                                            <i class="fas fa-shopping-cart me-2"></i>Purchased Bikes
+                                            <i class="fas fa-shopping-cart text-primary me-2"></i>Purchased Bikes
                                         </button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="selling-tab" data-bs-toggle="tab" data-bs-target="#selling" type="button" role="tab" aria-controls="selling" aria-selected="false">
-                                            <i class="fas fa-store me-2"></i>My Listings
+                                            <i class="fas fa-store text-primary me-2"></i>My Listings
                                         </button>
                                     </li>
                                 </ul>
@@ -102,7 +102,7 @@
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">{{ transaction.product.title }}</h5>
                                                                         <p class="card-text">
-                                                                            <span class="badge bg-success">Purchased</span>
+                                                                            <span class="badge bg-primary">Purchased</span>
                                                                         </p>
                                                                         <p class="card-text">
                                                                             <small class="text-muted">Order Date: {{ transaction.created_at|date:"F j, Y" }}</small>
@@ -134,7 +134,7 @@
                                     <!-- Selling Bikes Tab -->
                                     <div class="tab-pane fade" id="selling" role="tabpanel" aria-labelledby="selling-tab">
                                         <div class="d-flex justify-content-end mb-3">
-                                            <a href="{% url 'main:sell_bike' %}" class="btn btn-success">
+                                            <a href="{% url 'main:sell_bike' %}" class="btn btn-primary">
                                                 <i class="fas fa-plus-circle me-2"></i>List a New Bike
                                             </a>
                                         </div>
@@ -231,7 +231,7 @@
         border-radius: 8px;
     }
     .nav-link:hover, .nav-link.active {
-        background-color: #198754;
+        background-color: var(--bs-primary);
         color: white;
     }
     .tab-content {
@@ -250,9 +250,9 @@
         border-color: #d1d1d1;
     }
     .nav-tabs .nav-link.active {
-        color: #198754;
-        border-color: #198754;
-        background-color: transparent;
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
+        background: none;
     }
 </style>
 

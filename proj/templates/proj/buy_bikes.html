@@ -67,7 +67,7 @@
           <p class="mb-1"><i class="fas fa-calendar-alt text-success me-1"></i> <b>Year:</b> {{ bike.made_year }} | <i class="fas fa-tachometer-alt text-success me-1"></i> <b>Kms:</b> {{ bike.kilometers }}</p>
           <p class="mb-1"><i class="fas fa-map-marker-alt text-success me-1"></i> <b>Location:</b> {{ bike.location }}</p>
           <div class="mt-auto pt-3 d-grid gap-2">
-            <a href="{% url 'main:product-detail' bike.id %}" class="btn btn-success"><i class="fas fa-eye me-2"></i>View Details</a>
+            <a href="{% url 'main:product-detail' bike.id %}" class="btn btn-primary"><i class="fas fa-eye me-2"></i>View Details</a>
           </div>
         </div>
       </div>
@@ -116,8 +116,8 @@
   
   .bike-card-hover:hover {
     transform: translateY(-10px);
-    border-color: #198754;
-    box-shadow: 0 10px 20px rgba(25, 135, 84, 0.15) !important;
+    border-color: var(--bs-primary);
+    box-shadow: 0 10px 20px rgba(var(--bs-primary-rgb), 0.15) !important;
   }
   
   /* Professional SOLD badge styles */

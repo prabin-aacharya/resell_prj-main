@@ -5,9 +5,9 @@
 {% block main-content %}
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                <div class="card-header bg-success text-white py-4">
+                <div class="card-header bg-primary text-white py-4">
                     <div class="d-flex align-items-center">
                         <div class="profile-icon me-3">
                             <i class="fas fa-user-circle fa-3x"></i>
@@ -25,20 +25,20 @@
                         <div class="col-md-3 border-end">
                             <div class="nav flex-column nav-pills p-4" role="tablist">
                                 <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
-                                    <i class="fas fa-id-card me-2"></i> My Profile
+                                    <i class="fas fa-id-card text-info me-2"></i> My Profile
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
-                                    <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i> My Addresses
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
-                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                    <i class="fas fa-heart text-danger me-2"></i> My Wishlist
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:my_deals' %}">
-                                    <i class="fas fa-handshake me-2"></i> My Deals
+                                    <i class="fas fa-handshake text-warning me-2"></i> My Deals
                                 </a>
                                 <div class="mt-auto border-top pt-3 mt-3">
                                     <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
-                                        <i class="fas fa-key me-2"></i> Change Password
+                                        <i class="fas fa-key text-secondary me-2"></i> Change Password
                                     </a>
                                     <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
                                         {% csrf_token %}
@@ -55,9 +55,9 @@
                             <div class="p-4 p-md-5">
                                 <h4 class="mb-4 border-bottom pb-3">
                                     {% if has_profile %}
-                                    <i class="fas fa-pen me-2"></i>Update Your Profile
+                                    <i class="fas fa-pen text-info me-2"></i>Update Your Profile
                                     {% else %}
-                                    <i class="fas fa-plus-circle me-2"></i>Create Your Profile
+                                    <i class="fas fa-plus-circle text-info me-2"></i>Create Your Profile
                                     {% endif %}
                                 </h4>
                                 
@@ -77,7 +77,7 @@
                                     {% csrf_token %}
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.name.id_for_label }}" class="form-label"><i class="fas fa-user me-2"></i>{{ form.name.label }}</label>
+                                        <label for="{{ form.name.id_for_label }}" class="form-label"><i class="fas fa-user text-primary me-2"></i>{{ form.name.label }}</label>
                                         {{ form.name }}
                                         {% if form.name.errors %}
                                         <div class="text-danger small mt-1">{{ form.name.errors|striptags }}</div>
@@ -85,13 +85,13 @@
                                     </div>
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.email.id_for_label }}" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                                        <label for="{{ form.email.id_for_label }}" class="form-label"><i class="fas fa-envelope text-primary me-2"></i>Email</label>
                                         {{ form.email }}
                                         <small class="form-text text-muted">Email address cannot be changed</small>
                                     </div>
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.mobile.id_for_label }}" class="form-label"><i class="fas fa-phone me-2"></i>{{ form.mobile.label }}</label>
+                                        <label for="{{ form.mobile.id_for_label }}" class="form-label"><i class="fas fa-phone text-primary me-2"></i>{{ form.mobile.label }}</label>
                                         {{ form.mobile }}
                                         {% if form.mobile.errors %}
                                         <div class="text-danger small mt-1">{{ form.mobile.errors|striptags }}</div>
@@ -99,7 +99,7 @@
                                     </div>
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.gender.id_for_label }}" class="form-label"><i class="fas fa-venus-mars me-2"></i>{{ form.gender.label }}</label>
+                                        <label for="{{ form.gender.id_for_label }}" class="form-label"><i class="fas fa-venus-mars text-primary me-2"></i>{{ form.gender.label }}</label>
                                         {{ form.gender }}
                                         {% if form.gender.errors %}
                                         <div class="text-danger small mt-1">{{ form.gender.errors|striptags }}</div>
@@ -107,7 +107,7 @@
                                     </div>
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.city.id_for_label }}" class="form-label"><i class="fas fa-city me-2"></i>{{ form.city.label }}</label>
+                                        <label for="{{ form.city.id_for_label }}" class="form-label"><i class="fas fa-city text-primary me-2"></i>{{ form.city.label }}</label>
                                         {{ form.city }}
                                         {% if form.city.errors %}
                                         <div class="text-danger small mt-1">{{ form.city.errors|striptags }}</div>
@@ -115,7 +115,7 @@
                                     </div>
                                     
                                     <div class="col-md-6">
-                                        <label for="{{ form.zipcode.id_for_label }}" class="form-label"><i class="fas fa-map-pin me-2"></i>{{ form.zipcode.label }}</label>
+                                        <label for="{{ form.zipcode.id_for_label }}" class="form-label"><i class="fas fa-map-pin text-primary me-2"></i>{{ form.zipcode.label }}</label>
                                         {{ form.zipcode }}
                                         {% if form.zipcode.errors %}
                                         <div class="text-danger small mt-1">{{ form.zipcode.errors|striptags }}</div>
@@ -123,7 +123,7 @@
                                     </div>
                                     
                                     <div class="col-md-12">
-                                        <label for="{{ form.state.id_for_label }}" class="form-label"><i class="fas fa-flag me-2"></i>{{ form.state.label }}</label>
+                                        <label for="{{ form.state.id_for_label }}" class="form-label"><i class="fas fa-flag text-primary me-2"></i>{{ form.state.label }}</label>
                                         {{ form.state }}
                                         {% if form.state.errors %}
                                         <div class="text-danger small mt-1">{{ form.state.errors|striptags }}</div>
@@ -139,7 +139,7 @@
                                     {% endif %}
                                     
                                     <div class="col-12 mt-4">
-                                        <button type="submit" class="btn btn-success py-2 px-4 fw-bold">
+                                        <button type="submit" class="btn btn-primary py-2 px-4 fw-bold">
                                             <i class="fas fa-save me-2"></i>
                                             {% if has_profile %}Update Profile{% else %}Save Profile{% endif %}
                                         </button>
@@ -171,7 +171,7 @@
         border-radius: 8px;
     }
     .nav-link:hover, .nav-link.active {
-        background-color: #198754;
+        background-color: var(--bs-primary);
         color: white;
     }
 </style>

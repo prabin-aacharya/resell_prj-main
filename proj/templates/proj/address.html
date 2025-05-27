@@ -5,9 +5,9 @@
 {% block main-content %}
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
             <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                <div class="card-header bg-success text-white py-4">
+                <div class="card-header bg-primary text-white py-4">
                     <div class="d-flex align-items-center">
                         <div class="profile-icon me-3">
                             <i class="fas fa-map-marked-alt fa-3x"></i>
@@ -25,20 +25,20 @@
                         <div class="col-md-3 border-end">
                             <div class="nav flex-column nav-pills p-4" role="tablist">
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
-                                    <i class="fas fa-id-card me-2"></i> My Profile
+                                    <i class="fas fa-id-card text-info me-2"></i> My Profile
                                 </a>
                                 <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
-                                    <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i> My Addresses
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
-                                    <i class="fas fa-heart me-2"></i> My Wishlist
+                                    <i class="fas fa-heart text-danger me-2"></i> My Wishlist
                                 </a>
                                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:my_deals' %}">
-                                    <i class="fas fa-handshake me-2"></i> My Deals
+                                    <i class="fas fa-handshake text-warning me-2"></i> My Deals
                                 </a>
                                 <div class="mt-auto border-top pt-3 mt-3">
                                     <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
-                                        <i class="fas fa-key me-2"></i> Change Password
+                                        <i class="fas fa-key text-secondary me-2"></i> Change Password
                                     </a>
                                     <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
                                         {% csrf_token %}
@@ -54,7 +54,7 @@
                         <div class="col-md-9">
                             <div class="p-4 p-md-5">
                                 <h4 class="mb-4 border-bottom pb-3">
-                                    <i class="fas fa-address-book me-2"></i>Your Saved Addresses
+                                    <i class="fas fa-address-book text-success me-2"></i>Your Saved Addresses
                                 </h4>
                                 
                                 {% if messages %}
@@ -75,18 +75,18 @@
                                         <div class="card h-100 border-0 shadow-sm hover-card">
                                             <div class="card-header bg-light py-3">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <h5 class="mb-0"><i class="fas fa-home me-2"></i>Address {{forloop.counter}}</h5>
-                                                    <span class="badge bg-success">Primary</span>
+                                                    <h5 class="mb-0"><i class="fas fa-home text-primary me-2"></i>Address {{forloop.counter}}</h5>
+                                                    <span class="badge bg-primary">Primary</span>
                                                 </div>
                                             </div>
                                             <div class="card-body">
                                                 <ul class="list-unstyled">
-                                                    <li class="mb-2"><i class="fas fa-user text-success me-2"></i><strong>Name:</strong> {{ad.name}}</li>
-                                                    <li class="mb-2"><i class="fas fa-envelope text-success me-2"></i><strong>Email:</strong> {{request.user.email}}</li>
-                                                    <li class="mb-2"><i class="fas fa-city text-success me-2"></i><strong>City:</strong> {{ad.city}}</li>
-                                                    <li class="mb-2"><i class="fas fa-flag text-success me-2"></i><strong>Province:</strong> {{ad.state}}</li>
-                                                    <li class="mb-2"><i class="fas fa-phone text-success me-2"></i><strong>Mobile:</strong> {{ad.mobile}}</li>
-                                                    <li class="mb-2"><i class="fas fa-map-pin text-success me-2"></i><strong>Postal Code:</strong> {{ad.zipcode}}</li>
+                                                    <li class="mb-2"><i class="fas fa-user text-primary me-2"></i><strong>Name:</strong> {{ad.name}}</li>
+                                                    <li class="mb-2"><i class="fas fa-envelope text-primary me-2"></i><strong>Email:</strong> {{request.user.email}}</li>
+                                                    <li class="mb-2"><i class="fas fa-city text-primary me-2"></i><strong>City:</strong> {{ad.city}}</li>
+                                                    <li class="mb-2"><i class="fas fa-flag text-primary me-2"></i><strong>Province:</strong> {{ad.state}}</li>
+                                                    <li class="mb-2"><i class="fas fa-phone text-primary me-2"></i><strong>Mobile:</strong> {{ad.mobile}}</li>
+                                                    <li class="mb-2"><i class="fas fa-map-pin text-primary me-2"></i><strong>Postal Code:</strong> {{ad.zipcode}}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@
                                             <i class="fas fa-map-marked fa-5x text-muted mb-3"></i>
                                             <h5>No Addresses Found</h5>
                                             <p class="text-muted">You haven't added any addresses yet. Please update your profile to add your address.</p>
-                                            <a href="{% url 'main:profile' %}" class="btn btn-success mt-3">
+                                            <a href="{% url 'main:profile' %}" class="btn btn-primary mt-3">
                                                 <i class="fas fa-plus-circle me-2"></i>Add Your Address
                                             </a>
                                         </div>
@@ -130,15 +130,15 @@
         border-radius: 8px;
     }
     .nav-link:hover, .nav-link.active {
-        background-color: #198754;
+        background-color: var(--bs-primary);
         color: white;
     }
     .hover-card {
         transition: all 0.3s ease;
     }
     .hover-card:hover {
-        border-color: #198754 !important;
-        box-shadow: 0 0.5rem 1rem rgba(25, 135, 84, 0.15) !important;
+        border-color: var(--bs-primary) !important;
+        box-shadow: 0 0.5rem 1rem rgba(var(--bs-primary-rgb), 0.15) !important;
     }
     .empty-state {
         padding: 2rem;

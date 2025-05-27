@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %}Contact{% endblock title %}
 
+{# Override the messages block from the base template to prevent it from displaying messages #}
+{% block messages %}{% endblock messages %}
+
 {% block main-content %}
 <div class="container mt-5">
     <div class="row">
@@ -41,14 +44,19 @@
                     {% csrf_token %}
                     <!-- Hidden field to ensure CSRF token is submitted -->
                     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+                    {# Removing the specific message display block here #}
+                    {# {% if messages %} ... {% endif %} #}
+
+                    {# Place the message display logic directly within the form card #}
                     {% if messages %}
-                    <div class="alert alert-info alert-dismissible fade show mb-4" role="alert">
                         {% for message in messages %}
-                        {{ message }}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
                         {% endfor %}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
                     {% endif %}
+
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">Full Name</label>
@@ -148,6 +156,31 @@
         margin-bottom: 20px;
     }
 }
+
+/* Custom styles for alert messages */
+.alert {
+    border-radius: 8px; /* Slightly rounded corners */
+    padding: 15px 20px; /* Adjust padding */
+    margin-bottom: 20px; /* Space below alert */
+    position: relative; /* Needed for absolute positioning of close button if modified */
+}
+
+.alert-info {
+    background-color: #e7f3ff; /* Lighter blue background */
+    color: #004085; /* Darker blue text */
+    border: 1px solid #b8daff; /* Light blue border */
+    border-left: 5px solid #007bff; /* Prominent blue left border */
+}
+
+.alert-info .btn-close {
+    font-size: 1rem; /* Adjust close button size */
+    padding: 0.75rem 1.25rem; /* Adjust padding for click area */
+}
+
+/* You can add similar rules for other alert types if needed */
+/* .alert-success { ... } */
+/* .alert-danger { ... } */
+/* .alert-warning { ... } */
 </style>
 
 <script>

@@ -19,10 +19,10 @@
                 <h3 class="text-danger fw-bold mb-4">Rs.{{product.price}}/-</h3>
                 <h4 class="mb-3">General Details</h4>
                 <ul class="list-unstyled fs-5 mb-4">
-                    <li class="mb-2"><i class="fas fa-motorcycle text-primary me-2"></i><strong>Brand:</strong> {{product.brand}}</li>
+                    <li class="mb-2"><i class="fas fa-motorcycle text-info me-2"></i><strong>Brand:</strong> {{product.brand}}</li>
                     <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Condition:</strong> {{product.condition}}</li>
                     <li class="mb-2"><i class="fas fa-palette text-warning me-2"></i><strong>Color:</strong> {% if product.color %}{{product.color}}{% else %}Not specified{% endif %}</li>
-                    <li class="mb-2"><i class="fas fa-id-card text-info me-2"></i><strong>Number Plate:</strong> {% if product.number_plate %}{{product.number_plate}}{% else %}Not specified{% endif %}</li>
+                    <li class="mb-2"><i class="fas fa-id-card text-secondary me-2"></i><strong>Number Plate:</strong> {% if product.number_plate %}{{product.number_plate}}{% else %}Not specified{% endif %}</li>
                     <li class="mb-2"><i class="fas fa-users text-secondary me-2"></i><strong>Previous Owners:</strong> {% if product.previous_owners %}{{product.previous_owners}}{% else %}0{% endif %}</li>
                     <li class="mb-2"><i class="fas fa-calendar-alt text-primary me-2"></i><strong>Make Year:</strong> {{product.made_year}}</li>
                     <li class="mb-2"><i class="fas fa-tachometer-alt text-info me-2"></i><strong>Kilometers:</strong> {{product.kilometers}} km</li>
@@ -69,13 +69,13 @@
                         {% csrf_token %}
                         <input type="hidden" name="bike_id" value="{{ product.id }}">
                         <input type="hidden" name="sale_price" value="{{ product.price }}">
-                        <button type="submit" class="btn btn-success btn-lg w-100 py-3 shadow-sm d-flex align-items-center justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 shadow-sm d-flex align-items-center justify-content-center">
                             <span class="me-2">Pay with</span>
                             <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" height="24" class="me-2">
                         </button>
                     </form>
                     {% else %}
-                    <button class="btn btn-success btn-lg w-100 py-3 shadow-sm"
+                    <button class="btn btn-primary btn-lg w-100 py-3 shadow-sm"
                             data-bs-toggle="modal" data-bs-target="#loginRequiredModal">
                         <i class="fas fa-shopping-cart me-2"></i>Buy Now
                     </button>
@@ -107,7 +107,7 @@
 <div class="modal fade" id="loginRequiredModal" tabindex="-1" aria-labelledby="loginRequiredModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0 shadow">
-      <div class="modal-header bg-success text-white">
+      <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="loginRequiredModalLabel"><i class="fas fa-lock me-2"></i>Login Required</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
             <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-                <div class="card-header bg-success text-white text-center py-4">
+                <div class="card-header bg-primary text-white text-center py-4">
                     <h3 class="mb-0"><i class="fas fa-sign-in-alt me-2"></i>Welcome Back</h3>
                 </div>
                 <div class="card-body p-4 p-md-5">
@@ -21,21 +21,21 @@
                         {% csrf_token %}
                         
                         <div class="mb-4">
-                          <label for="id_username" class="form-label fw-bold"><i class="fas fa-user me-2"></i>Username</label>
+                          <label for="id_username" class="form-label fw-bold"><i class="fas fa-user text-primary me-2"></i>Username</label>
                           <div class="input-group">
-                            <span class="input-group-text bg-success text-white"><i class="fas fa-user"></i></span>
-                            <input type="text" name="username" id="id_username" class="form-control border-success" placeholder="Enter your username" required>
+                            <span class="input-group-text bg-primary text-white"><i class="fas fa-user"></i></span>
+                            <input type="text" name="username" id="id_username" class="form-control border-primary" placeholder="Enter your username" required>
                           </div>
                           <div id="usernameError" class="text-danger small mt-1"></div>
                           <small class="text-danger">{{ form.username.errors|striptags }}</small>
                         </div>
                         
                         <div class="mb-4">
-                          <label for="id_password" class="form-label fw-bold"><i class="fas fa-lock me-2"></i>Password</label>
+                          <label for="id_password" class="form-label fw-bold"><i class="fas fa-lock text-primary me-2"></i>Password</label>
                           <div class="input-group">
-                            <span class="input-group-text bg-success text-white"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="password" id="id_password" class="form-control border-success" placeholder="Enter your password" required>
-                            <button class="btn btn-outline-success password-toggle" type="button" onclick="togglePasswordVisibility('id_password')">
+                            <span class="input-group-text bg-primary text-white"><i class="fas fa-lock"></i></span>
+                            <input type="password" name="password" id="id_password" class="form-control border-primary" placeholder="Enter your password" required>
+                            <button class="btn btn-outline-primary password-toggle" type="button" onclick="togglePasswordVisibility('id_password')">
                               <i class="fas fa-eye" id="id_password_icon"></i>
                             </button>
                           </div>
@@ -44,20 +44,20 @@
                         </div>
                         
                         <div class="text-end mb-4">
-                          <a href="{% url 'main:password_reset' %}" class="text-success fw-bold"><i class="fas fa-key me-1"></i>Forgot Password?</a>
+                          <a href="{% url 'main:password_reset' %}" class="text-primary fw-bold"><i class="fas fa-key me-1"></i>Forgot Password?</a>
                         </div>
                         
                         <div class="d-grid gap-2 mb-4">
-                          <button type="submit" class="btn btn-success btn-lg py-3 fw-bold"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
+                          <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
                         </div>
                         
                         <div class="text-center">
                           <span class="text-muted">Don't have an account?</span> 
-                          <a href="{% url 'main:customerregistration' %}" class="text-success fw-bold">Sign Up <i class="fas fa-user-plus ms-1"></i></a>
+                          <a href="{% url 'main:customerregistration' %}" class="text-primary fw-bold">Sign Up <i class="fas fa-user-plus ms-1"></i></a>
                         </div>
                         
                         <div class="text-center mt-3">
-                          <a href="{% url 'admin:login' %}" class="btn btn-outline-success btn-sm">
+                          <a href="{% url 'admin:login' %}" class="btn btn-outline-primary btn-sm">
                             <i class="fas fa-user-shield me-1"></i>Admin Login
                           </a>
                         </div>
@@ -93,18 +93,19 @@
         justify-content: center;
     }
     .form-control:focus {
-        box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+        box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+        border-color: var(--bs-primary);
     }
     .form-check-input:checked {
-        background-color: #198754;
-        border-color: #198754;
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
     }
     .invalid-feedback {
         display: block;
     }
     .is-valid {
-        border-color: #198754 !important;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        border-color: var(--bs-primary) !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%230d6efd' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e"); /* Primary blue checkmark */
         background-repeat: no-repeat;
         background-position: right calc(0.375em + 0.1875rem) center;
         background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);

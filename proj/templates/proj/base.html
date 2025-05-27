@@ -11,9 +11,53 @@
     <link rel="stylesheet" href="{% static 'proj/css/style.css'%}"/>
 
     <title>Resale | {% block title %}{% endblock title %}</title>
+
+    <style>
+      :root {
+        --bs-primary: #4682B4; /* Steel Blue */
+        --bs-primary-rgb: 70, 130, 180;
+      }
+
+      .bg-primary {
+        background-color: var(--bs-primary) !important;
+      }
+
+      .text-primary {
+        color: var(--bs-primary) !important;
+      }
+
+      .btn-primary {
+         background-color: var(--bs-primary);
+         border-color: var(--bs-primary);
+      }
+
+      .btn-primary:hover {
+         background-color: #396b91; /* Darker Steel Blue */
+         border-color: #366488; /* Darker Steel Blue */
+      }
+
+      /* Update custom styles that used green */
+      .dropdown-item:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+      }
+      
+      .user-icon {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+      }
+
+      .footer-green {
+        background: var(--bs-primary) !important;
+      }
+      
+      .footer-green hr {
+        border-color: #366488; /* Darker Steel Blue */
+      }
+
+    </style>
+
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="/">
         <img src="{%static 'proj/images/logo.png'%}" width="70" height="50" class="me-2"/>
@@ -39,13 +83,13 @@
               <i class="fas fa-list-alt me-1"></i> Brands
             </a>
             <ul class="dropdown-menu border-0 shadow-lg">
-              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HONDA' %}"><i class="fas fa-motorcycle text-success me-2"></i>Honda</a></li>
-              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'YAMAHA' %}"><i class="fas fa-motorcycle text-success me-2"></i>Yamaha</a></li>
-              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'BAJAJ' %}"><i class="fas fa-motorcycle text-success me-2"></i>Bajaj</a></li>
-              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HERO' %}"><i class="fas fa-motorcycle text-success me-2"></i>Hero</a></li>
-              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'TVS' %}"><i class="fas fa-motorcycle text-success me-2"></i>TVS</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HONDA' %}"><i class="fas fa-motorcycle text-primary me-2"></i>Honda</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'YAMAHA' %}"><i class="fas fa-motorcycle text-primary me-2"></i>Yamaha</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'BAJAJ' %}"><i class="fas fa-motorcycle text-primary me-2"></i>Bajaj</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'HERO' %}"><i class="fas fa-motorcycle text-primary me-2"></i>Hero</a></li>
+              <li><a class="dropdown-item py-2" href="{%url 'main:brand' 'TVS' %}"><i class="fas fa-motorcycle text-primary me-2"></i>TVS</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:buy_bikes' %}"><i class="fas fa-search text-success me-2"></i>All Bikes</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:buy_bikes' %}"><i class="fas fa-search text-primary me-2"></i>All Bikes</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -90,21 +134,21 @@
             <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" aria-labelledby="profileDropdown">
               <li class="dropdown-header text-center">
                 <div class="user-icon mb-2">
-                  <i class="fas fa-user-circle fa-3x text-success"></i>
+                  <i class="fas fa-user-circle fa-3x text-primary"></i>
                 </div>
                 <h6 class="mb-0">{{ request.user.email }}</h6>
                 <small class="text-muted">Member since {{ request.user.date_joined|date:"M Y" }}</small>
               </li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:profile' %}"><i class="fas fa-id-card text-success me-2"></i>My Profile</a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:address' %}"><i class="fas fa-map-marker-alt text-success me-2"></i>My Addresses</a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:wishlist' %}"><i class="fas fa-heart text-success me-2"></i>My Wishlist</a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:my_deals' %}"><i class="fas fa-handshake text-success me-2"></i>My Deals</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:profile' %}"><i class="fas fa-id-card text-primary me-2"></i>My Profile</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:address' %}"><i class="fas fa-map-marker-alt text-primary me-2"></i>My Addresses</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:wishlist' %}"><i class="fas fa-heart text-primary me-2"></i>My Wishlist</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:my_deals' %}"><i class="fas fa-handshake text-primary me-2"></i>My Deals</a></li>
               {% if request.user.is_staff %}
-              <li><a class="dropdown-item py-2" href="{% url 'admin:index' %}"><i class="fas fa-user-shield text-success me-2"></i>Admin Dashboard</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'admin:index' %}"><i class="fas fa-user-shield text-primary me-2"></i>Admin Dashboard</a></li>
               {% endif %}
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item py-2" href="{% url 'main:passwordchange' %}"><i class="fas fa-key text-success me-2"></i>Change Password</a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'main:passwordchange' %}"><i class="fas fa-key text-primary me-2"></i>Change Password</a></li>
               <li>
                 <form method="post" action="{% url 'main:logout' %}" style="display: inline;"> 
                   {% csrf_token %}
@@ -146,7 +190,7 @@
 
   {% block main-content %}{% endblock main-content %}
 
-  <footer class="footer-green mt-5 pt-4 pb-2 bg-success text-white">
+  <footer class="footer-green mt-5 pt-4 pb-2 bg-primary text-white">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-md-8 mb-3 mb-md-0">
@@ -164,7 +208,7 @@
           </ul>
         </div>
       </div>
-      <hr style="border-color: #157347;">
+      <hr style="border-color: #366488;">
       <div class="row">
         <div class="col-12 text-center">
           <small>&copy;2025 Resale. All rights reserved | Current Time: {{ nepal_time|date:"F j, Y" }} {{ nepal_time|time:"g:i A" }} {{ timezone_short }}</small>
@@ -172,6 +216,31 @@
       </div>
     </div>
     <style>
+      /* Define Bootstrap primary color variable */
+      :root {
+        --bs-primary: #4682B4; /* Steel Blue */
+        --bs-primary-rgb: 70, 130, 180;
+      }
+
+      /* Override Bootstrap classes to use the new primary color */
+      .btn-primary {
+         background-color: var(--bs-primary);
+         border-color: var(--bs-primary);
+      }
+
+      .btn-primary:hover {
+         background-color: #396b91; /* Darker Steel Blue */
+         border-color: #366488; /* Darker Steel Blue */
+      }
+
+      .bg-primary {
+        background-color: var(--bs-primary) !important;
+      }
+
+      .text-primary {
+        color: var(--bs-primary) !important;
+      }
+
       /* Navbar Styles */
       .navbar {
         padding-top: 0.7rem;
@@ -222,16 +291,18 @@
         transition: all 0.2s ease;
       }
       
+      /* Update dropdown item hover background */
       .dropdown-item:hover {
-        background-color: rgba(25, 135, 84, 0.1);
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
         transform: translateX(5px);
       }
       
+      /* Update user icon background */
       .user-icon {
         display: inline-block;
         border-radius: 50%;
         padding: 0.5rem;
-        background-color: rgba(25, 135, 84, 0.1);
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
       }
       
       @keyframes fadeIn {
@@ -241,37 +312,28 @@
       
       /* Footer Styles */
       .footer-green {
-        background: #198754 !important;
+        background: var(--bs-primary) !important; /* Use primary color for footer */
         color: #fff;
       }
       
       .footer-link {
         color: #fff;
         text-decoration: none;
-        margin-right: 20px;
-        font-size: 1.1rem;
-        transition: color 0.2s;
+        transition: color 0.2s ease;
       }
       
       .footer-link:hover {
-        color: #ffc107;
-        text-decoration: underline;
+        color: rgba(255, 255, 255, 0.8);
       }
       
-      .footer-social i {
-        color: #0f0f0f;
-        transition: color 0.2s;
+      .footer-social {
+        color: #fff;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
       }
       
-      .footer-social:hover i {
-        color: #ffc107;
-      }
-      
-      @media (max-width: 768px) {
-        .footer-link {
-          margin-right: 10px;
-          font-size: 1rem;
-        }
+      .footer-social:hover {
+        opacity: 1;
       }
     </style>
   </footer>
@@ -292,6 +354,14 @@
 // Previous wishlist functionality has been replaced with direct links
 // to improve reliability and prevent AJAX-related errors
 </script>
+
+<style>
+body {
+  background-color: #f0f8ff;
+}
+
+/* Navbar Styles */
+</style>
 
 </body>
 </html>

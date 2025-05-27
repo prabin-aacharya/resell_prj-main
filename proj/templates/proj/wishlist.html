@@ -8,7 +8,7 @@
   <div class="row justify-content-center">
     <div class="col-lg-12">
       <div class="card border-0 shadow-lg rounded-3 overflow-hidden">
-        <div class="card-header bg-success text-white py-4">
+        <div class="card-header bg-primary text-white py-4">
           <div class="d-flex align-items-center">
             <div class="profile-icon me-3">
               <i class="fas fa-heart fa-3x"></i>
@@ -26,20 +26,20 @@
             <div class="col-md-3 border-end">
               <div class="nav flex-column nav-pills p-4" role="tablist">
                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:profile' %}">
-                  <i class="fas fa-id-card me-2"></i> My Profile
+                  <i class="fas fa-id-card text-info me-2"></i> My Profile
                 </a>
                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:address' %}">
-                  <i class="fas fa-map-marker-alt me-2"></i> My Addresses
+                  <i class="fas fa-map-marker-alt text-success me-2"></i> My Addresses
                 </a>
                 <a class="nav-link active mb-3 d-flex align-items-center" href="{% url 'main:wishlist' %}">
-                  <i class="fas fa-heart me-2"></i> My Wishlist
+                  <i class="fas fa-heart text-danger me-2"></i> My Wishlist
                 </a>
                 <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:my_deals' %}">
-                  <i class="fas fa-handshake me-2"></i> My Deals
+                  <i class="fas fa-handshake text-warning me-2"></i> My Deals
                 </a>
                 <div class="mt-auto border-top pt-3 mt-3">
                   <a class="nav-link mb-3 d-flex align-items-center" href="{% url 'main:passwordchange' %}">
-                    <i class="fas fa-key me-2"></i> Change Password
+                    <i class="fas fa-key text-secondary me-2"></i> Change Password
                   </a>
                   <form method="post" action="{% url 'main:logout' %}" style="display: inline;">
                     {% csrf_token %}
@@ -50,15 +50,13 @@
                   </form>
                 </div>
               </div>
-
-
             </div>
 
             <!-- Wishlist Content -->
             <div class="col-md-9">
               <div class="p-4">
                 <h4 class="mb-4 border-bottom pb-3">
-                  <i class="fas fa-heart me-2"></i>Saved Bikes ({{ products|length }})
+                  <i class="fas fa-heart text-danger me-2"></i>Saved Bikes ({{ products|length }})
                 </h4>
 
                 {% if products %}
@@ -92,49 +90,49 @@
                               <div class="row">
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-tag text-success me-2"></i>
+                                    <i class="fas fa-tag text-primary me-2"></i>
                                     <span><strong>Brand:</strong> {{ product.brand }}</span>
                                   </div>
                                 </div>
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-calendar-alt text-success me-2"></i>
+                                    <i class="fas fa-calendar-alt text-primary me-2"></i>
                                     <span><strong>Year:</strong> {{ product.made_year }}</span>
                                   </div>
                                 </div>
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-tachometer-alt text-success me-2"></i>
+                                    <i class="fas fa-tachometer-alt text-primary me-2"></i>
                                     <span><strong>Kilometers:</strong> {{ product.kilometers }} km</span>
                                   </div>
                                 </div>
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-cog text-success me-2"></i>
+                                    <i class="fas fa-cog text-primary me-2"></i>
                                     <span><strong>Engine:</strong> {{ product.engine_size }}</span>
                                   </div>
                                 </div>
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-map-marker-alt text-success me-2"></i>
+                                    <i class="fas fa-map-marker-alt text-primary me-2"></i>
                                     <span><strong>Location:</strong> {{ product.location }}</span>
                                   </div>
                                 </div>
                                 <div class="col-6 mb-2">
                                   <div class="d-flex align-items-center">
-                                    <i class="fas fa-user text-success me-2"></i>
+                                    <i class="fas fa-user text-primary me-2"></i>
                                     <span><strong>Seller:</strong> {{ product.seller_name }}</span>
                                   </div>
                                 </div>
                               </div>
 
                               <div class="price-section mt-3 mb-3">
-                                <h4 class="text-danger fw-bold">Rs. {{ product.price }}</h4>
+                                <h4 class="text-primary fw-bold">Rs. {{ product.price }}</h4>
                                 <small class="text-muted">Listed on {{ product.created_at|date:"M d, Y" }}</small>
                               </div>
 
                               <div class="action-buttons">
-                                <a href="{% url 'main:product-detail' product.id %}" class="btn btn-success">
+                                <a href="{% url 'main:product-detail' product.id %}" class="btn btn-primary">
                                   <i class="fas fa-eye me-2"></i>View Details
                                 </a>
                                 <button class="btn btn-outline-danger ms-2 remove-wishlist-btn"
@@ -156,7 +154,7 @@
                     <i class="far fa-heart fa-5x text-muted mb-3"></i>
                     <h4>Your Wishlist is Empty</h4>
                     <p class="text-muted">You haven't added any bikes to your wishlist yet.</p>
-                    <a href="{% url 'main:buy_bikes' %}" class="btn btn-success mt-3">
+                    <a href="{% url 'main:buy_bikes' %}" class="btn btn-primary mt-3">
                       <i class="fas fa-motorcycle me-2"></i>Browse Bikes
                     </a>
                   </div>
@@ -206,7 +204,7 @@
 
   .nav-link:hover,
   .nav-link.active {
-    background-color: #198754;
+    background-color: var(--bs-primary);
     color: white;
   }
 
@@ -304,7 +302,7 @@
                     <i class="far fa-heart fa-5x text-muted mb-3"></i>
                     <h4>Your Wishlist is Empty</h4>
                     <p class="text-muted">You haven't added any bikes to your wishlist yet.</p>
-                    <a href="{% url 'main:buy_bikes' %}" class="btn btn-success mt-3">
+                    <a href="{% url 'main:buy_bikes' %}" class="btn btn-primary mt-3">
                       <i class="fas fa-motorcycle me-2"></i>Browse Bikes
                     </a>
                   </div>
@@ -315,7 +313,7 @@
 
                 // Update header count
                 document.querySelector('h4.mb-4.border-bottom').innerHTML =
-                  `<i class="fas fa-heart me-2"></i>Saved Bikes (${data.count})`;
+                  `<i class="fas fa-heart text-danger me-2"></i>Saved Bikes (${data.count})`;
 
                 // Update wishlist count in navbar
                 var wishlistCountSpan = document.querySelector('.nav-link .badge');

@@ -120,7 +120,7 @@ class BikeResellAdminSite(AdminSite):
     def bike_purchases_view(self, request):
         """Custom view for bike purchases"""
         context = self.each_context(request)
-
+        
         # Get all bike payment transactions
         transactions_list = BikePaymentTransaction.objects.select_related(
             'product', 'buyer'
@@ -132,19 +132,19 @@ class BikeResellAdminSite(AdminSite):
         page_obj = paginator.get_page(page_number)
 
         context['bike_payments'] = page_obj # Pass the paginated object to the template
-
+        
         # Get purchase statistics
         context['total_purchases'] = BikePaymentTransaction.objects.filter(status='Completed').count()
         context['total_revenue'] = BikePaymentTransaction.objects.filter(status='Completed').aggregate(
             total=Sum('amount')
         )['total'] or 0
-
+        
         # Get top buyers
         from django.db.models import Count
         context['top_buyers'] = User.objects.annotate(
             purchase_count=Count('bike_purchases', filter=Q(bike_purchases__status='Completed'))
         ).filter(purchase_count__gt=0).order_by('-purchase_count')[:5]
-
+        
         return render(request, 'admin/bike_purchases.html', context)
     
     def index(self, request, extra_context=None):
