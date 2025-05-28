@@ -5,7 +5,7 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Seller Information</h1>
-    <a href="{% url 'admin:admin_seller_create' %}" class="btn btn-primary">
+    <a href="{% url 'admin:admin_seller_add' %}" class="btn btn-primary">
         <i class="fas fa-plus me-2"></i>Add New Seller
     </a>
 </div>
@@ -45,7 +45,7 @@
                     <td>{{ seller.created_at|date:"M d, Y" }}</td>
                     <td>
                         <div class="btn-group">
-                            <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'admin:admin_seller_edit' seller.id %}" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <button type="button" class="btn btn-sm btn-outline-info seller-info-btn" data-modal-id="sellerModal{{ seller.id }}">
@@ -130,7 +130,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <a href="{% url 'admin:admin_seller_update' seller.id %}" class="btn btn-primary">Edit Seller</a>
+                                        <a href="{% url 'admin:admin_seller_edit' seller.id %}" class="btn btn-primary">Edit Seller</a>
                                     </div>
                                 </div>
                             </div>

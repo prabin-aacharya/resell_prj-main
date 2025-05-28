@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from datetime import timedelta
 
-from .models import Product, Order, Customer, Wishlist, SellerInfo, BikePaymentTransaction
+from .models import Product, Customer, Wishlist, SellerInfo, BikePaymentTransaction
 from django.contrib.auth.models import User
 from .forms import ProductForm, SellerInfoForm, AdminCustomerCreateForm
 
@@ -29,12 +29,8 @@ class AdminRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 def admin_dashboard(request):
     # Get statistics for the dashboard
     total_products = Product.objects.count()
-    total_orders = Order.objects.count()
     total_customers = Customer.objects.count()
     total_sellers = SellerInfo.objects.count()
-    
-    # Recent orders
-    recent_orders = Order.objects.select_related('customer', 'product').order_by('-order_date')[:5]
     
     # Recent products
     recent_products = Product.objects.order_by('-id')[:5]
@@ -59,7 +55,6 @@ def admin_dashboard(request):
         'customer_count': total_customers,
         'wishlist_count': Wishlist.objects.count(),
         'seller_count': total_sellers,
-        'recent_orders': recent_orders,
         'recent_products': recent_products,
         'monthly_sales': monthly_sales,
         'recent_actions': recent_actions,
@@ -189,23 +184,10 @@ class ProductDeleteView(AdminRequiredMixin, DeleteView):
         messages.success(self.request, "Product deleted successfully!")
         return super().delete(request, *args, **kwargs)
 
-# Orders Views
-class OrderListView(AdminRequiredMixin, ListView):
-    model = Order
-    template_name = 'proj/admin/order_list.html'
-    context_object_name = 'orders'
-    ordering = ['-order_date']
-    paginate_by = 10
-
-class OrderUpdateView(AdminRequiredMixin, UpdateView):
-    model = Order
-    template_name = 'proj/admin/order_form.html'
-    fields = ['status', 'payment_status', 'notes']
-    success_url = reverse_lazy('admin:admin_order_list')
-    
-    def form_valid(self, form):
-        messages.success(self.request, "Order updated successfully!")
-        return super().form_valid(form)
+class ProductDetailView(AdminRequiredMixin, DetailView):
+    model = Product
+    template_name = 'proj/admin/product_detail.html'
+    context_object_name = 'product'
 
 # Customers Views
 class CustomerListView(AdminRequiredMixin, ListView):
@@ -225,6 +207,11 @@ class CustomerUpdateView(AdminRequiredMixin, UpdateView):
         messages.success(self.request, "Customer information updated successfully!")
         return super().form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_create'] = False  # Indicate that this is an update form
+        return context
+
 class CustomerDetailView(AdminRequiredMixin, UpdateView):
     model = Customer
     template_name = 'proj/admin/customer_detail.html'
@@ -235,15 +222,11 @@ class CustomerDetailView(AdminRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         customer = self.get_object()
         
-        # Get customer's orders
-        from .models import Order
-        context['orders'] = Order.objects.filter(customer=customer).order_by('-order_date')
+        # Get customer's purchase transactions
+        context['purchases'] = BikePaymentTransaction.objects.filter(buyer=customer.user).select_related('product')
         
         # Get customer's wishlist
         context['wishlist_items'] = Wishlist.objects.filter(user=customer.user).select_related('product')
-        
-        # Get customer's purchase transactions
-        context['purchases'] = BikePaymentTransaction.objects.filter(buyer=customer.user).select_related('product')
         
         return context
     

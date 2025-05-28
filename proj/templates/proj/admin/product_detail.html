@@ -1,0 +1,214 @@
+{% extends 'proj/admin/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.title }} Details{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Product Details: {{ product.title }}</h2>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    {% if product.product_image %}
+                    <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="img-fluid rounded mb-3">
+                    {% else %}
+                    <div class="bg-secondary text-white rounded d-flex align-items-center justify-content-center" style="height: 300px;">
+                        <i class="fas fa-motorcycle fa-5x"></i>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mb-3">{{ product.title }}</h4>
+                    <div class="mb-3">
+                        <strong>Brand:</strong> {{ product.brand }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Price:</strong> ₹{{ product.price }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Year:</strong> {{ product.made_year }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Status:</strong>
+                        {% if product.status == 'available' %}
+                        <span class="badge bg-success">Available</span>
+                        {% elif product.status == 'sold' %}
+                        <span class="badge bg-danger">Sold</span>
+                        {% elif product.status == 'pending' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                        {% elif product.status == 'reserved' %}
+                        <span class="badge bg-info text-dark">Reserved</span>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Verification Status:</strong>
+                         {% if product.verification_status == 'approved' %}
+                        <span class="badge bg-success">Approved</span>
+                        {% elif product.verification_status == 'rejected' %}
+                        <span class="badge bg-danger">Rejected</span>
+                        {% else %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Location:</strong> {{ product.location }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Created:</strong> {{ product.created_at|date:"M d, Y H:i" }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Updated:</strong> {{ product.updated_at|date:"M d, Y H:i" }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Seller Name:</strong> {{ product.seller_name }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Number Plate:</strong> {{ product.number_plate }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Previous Owners:</strong> {{ product.previous_owners }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Engine Size:</strong> {{ product.engine_size }}cc
+                    </div>
+                    <div class="mb-3">
+                        <strong>Kilometers Ridden:</strong> {{ product.kilometers }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Engine Number:</strong> {{ product.engine_number }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Chassis Number:</strong> {{ product.chassis_number }}
+                    </div>
+                     <div class="mb-3">
+                        <strong>Color:</strong> {{ product.color }}
+                    </div>
+
+                    <div class="mb-3">
+                        <strong>Description:</strong>
+                        <p class="mt-2">{{ product.description }}</p>
+                    </div>
+
+                    <!-- Bluebook Images -->
+                    <div class="mb-3">
+                        <h6>Bluebook Images:</h6>
+                        <div class="row">
+                            {% if product.bluebook_page2 %}
+                            <div class="col-6">
+                                <strong>Page 2:</strong><br/>
+                                <img src="{{ product.bluebook_page2.url }}" alt="Bluebook Page 2" class="img-fluid rounded mt-2">
+                            </div>
+                            {% endif %}
+                            {% if product.bluebook_page9 %}
+                            <div class="col-6">
+                                <strong>Page 9:</strong><br/>
+                                <img src="{{ product.bluebook_page9.url }}" alt="Bluebook Page 9" class="img-fluid rounded mt-2">
+                            </div>
+                            {% endif %}
+                             {% if not product.bluebook_page2 and not product.bluebook_page9 %}
+                            <div class="col-12">
+                                <p>No bluebook images available.</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <a href="{% url 'admin:admin_product_edit' product.id %}" class="btn btn-primary me-2">
+                            <i class="fas fa-edit me-2"></i>Edit Product
+                        </a>
+                        <a href="{% url 'admin:admin_product_list' %}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.container.mt-4 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+h2.mb-4 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 1.5rem !important;
+    color: #343a40;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.row {
+    align-items: flex-start;
+}
+
+.col-md-6 img, .col-md-6 .bg-secondary {
+    border-radius: 8px;
+    max-width: 100%;
+    height: auto;
+}
+
+h4.mb-3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 1.5rem !important;
+}
+
+.mb-3 strong {
+    color: #555;
+    display: inline-block;
+    min-width: 120px; /* Align keys */
+}
+
+.mb-3 {
+    border-bottom: 1px dashed #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 15px !important;
+}
+
+.mb-3:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0 !important;
+}
+
+.badge {
+    font-size: 0.85em;
+    padding: 0.4em 0.6em;
+    vertical-align: middle;
+}
+
+.mt-4 .btn {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+.bg-secondary.text-white {
+    background-color: #6c757d !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+</style>
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %} 
