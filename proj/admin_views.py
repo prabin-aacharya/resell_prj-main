@@ -235,7 +235,7 @@ class CustomerDetailView(AdminRequiredMixin, UpdateView):
 
 class CustomerDeleteView(AdminRequiredMixin, DeleteView):
     model = Customer
-    template_name = 'admin/proj/customer/delete_confirmation.html'
+    template_name = 'proj/admin/customer_confirm_delete.html'
     success_url = reverse_lazy('admin:admin_customer_list')
 
     def get_context_data(self, **kwargs):

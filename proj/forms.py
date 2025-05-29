@@ -138,10 +138,56 @@ class CustomerRegistrationForm(UserCreationForm):
 
 
 class MyPasswordChangeForm(PasswordChangeForm):
-    old_password = forms.CharField(label='Old password',widget=forms.PasswordInput(attrs={'autofocus' : 'True', 'autocomplete':'current-password', 'class':'form-control'}))
-    new_password1 = forms.CharField(label='New password',widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class':'form-control'}))
-    new_password2 = forms.CharField(label='Confirm password',widget=forms.PasswordInput(attrs={'autocomplete':'current-password', 'class':'form-control'}))
-    
+    old_password = forms.CharField(
+        label='Old password',
+        widget=forms.PasswordInput(attrs={
+            'autofocus': 'True',
+            'autocomplete': 'current-password',
+            'class': 'form-control',
+            'oninput': 'validateOldPassword(this)',
+            'data-validate-url': '/validate-old-password/'  # Add URL for AJAX validation
+        })
+    )
+    new_password1 = forms.CharField(
+        label='New password',
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'current-password',
+            'class': 'form-control',
+            'pattern': PASSWORD_PATTERN,
+            'oninput': 'validateNewPassword(this)'
+        })
+    )
+    new_password2 = forms.CharField(
+        label='Confirm password',
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'current-password',
+            'class': 'form-control',
+            'oninput': 'validateConfirmPassword(this)'
+        })
+    )
+
+    def clean_old_password(self):
+        old_password = self.cleaned_data.get('old_password')
+        if not self.user.check_password(old_password):
+            raise forms.ValidationError(
+                "Your old password was entered incorrectly. Please enter it again."
+            )
+        return old_password
+
+    def clean(self):
+        cleaned_data = super().clean()
+        old_password = cleaned_data.get("old_password")
+        new_password1 = cleaned_data.get("new_password1")
+
+        if old_password and new_password1:
+            if old_password == new_password1:
+                raise forms.ValidationError(
+                    "New password must be different from the old password."
+                )
+        return cleaned_data
+
+    class Media:
+        js = ('proj/js/password_validation.js',)
 
 class MyPasswordResetForm(PasswordResetForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))

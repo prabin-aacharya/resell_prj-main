@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm,MyPasswordResetForm,MyPasswordChangeForm,MySetResetForm
-from .views import CustomLoginView
+from .views import CustomLoginView, validate_old_password
 from django.urls import reverse_lazy
 
 # Import our custom admin site
@@ -85,6 +85,8 @@ urlpatterns = [
     
     # Debug email sending
     path('test-email/', views.test_email, name='test_email'),
+
+    path('validate-old-password/', validate_old_password, name='validate_old_password'),
 ]
 
 # Add static and media URLs in development

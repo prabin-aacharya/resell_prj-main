@@ -24,6 +24,7 @@ from .tokens import account_activation_token
 import logging
 from django.conf import settings
 from django.urls import reverse
+import json
 # Create your views here.
 def home(request):
     from .models import Product
@@ -1102,16 +1103,22 @@ def activate_account(request, uidb64, token):
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
-        
-    if user is not None and account_activation_token.check_token(user, token):
+
+    # Check if user exists and token is valid, AND user is not already active
+    if user is not None and account_activation_token.check_token(user, token) and not user.is_active:
         user.is_active = True
         user.save()
+        # Login the user immediately after activation if you want them logged in right away
         login(request, user)
-        messages.success(request, "Your account has been activated successfully!")
-        return redirect('main:home')
+        messages.success(request, "Your account has been activated successfully! You are now logged in.")
+        return redirect('main:home') # Redirect to home after successful activation and login
+    elif user is not None and user.is_active:
+        # User is already active, maybe show a different message or just redirect
+        return redirect('main:home') # Redirect even if already active
     else:
+        # Invalid link or token
         messages.error(request, "Activation link is invalid or has expired!")
-        return redirect('main:home')
+        return redirect('main:home') # Redirect to home on failure
 
 def send_activation_email(request, user, to_email):
     from django.conf import settings
@@ -1295,3 +1302,21 @@ def custom_logout(request):
     response.delete_cookie(session_cookie_name)
     
     return response
+
+@login_required
+@require_POST
+def validate_old_password(request):
+    try:
+        data = json.loads(request.body)
+        old_password = data.get('old_password')
+        
+        if not old_password:
+            return JsonResponse({'valid': False, 'error': 'Password is required'})
+            
+        is_valid = request.user.check_password(old_password)
+        return JsonResponse({'valid': is_valid})
+        
+    except json.JSONDecodeError:
+        return JsonResponse({'valid': False, 'error': 'Invalid request data'})
+    except Exception as e:
+        return JsonResponse({'valid': False, 'error': str(e)})

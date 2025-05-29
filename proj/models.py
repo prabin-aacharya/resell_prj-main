@@ -78,7 +78,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     seller_name = models.CharField(max_length=100)
-    product_image = models.ImageField(upload_to='product_images/')
+    product_image = models.ImageField(upload_to='product_images/', blank=True, null=True)
     bluebook_page2 = models.ImageField(upload_to='bluebook_images/', null=True, blank=True)
     bluebook_page9 = models.ImageField(upload_to='bluebook_images/', null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
@@ -138,9 +138,11 @@ class Customer(models.Model):
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         unique_together = ('user', 'product')
+        ordering = ['-created_at']  # Most recent first
     
     def __str__(self):
         return f"{self.user.username}'s wishlist - {self.product.title}"
@@ -237,4 +239,26 @@ def update_seller_info_on_customer_update(sender, instance, **kwargs):
             if (not seller_info.email or seller_info.email == '') and instance.user and instance.user.email:
                 seller_info.email = instance.user.email
                 seller_info.save()
+
+@receiver(post_save, sender=Product)
+def update_seller_info_on_product_sold(sender, instance, created, **kwargs):
+    """
+    When a Product's status is set to 'sold', update the associated SellerInfo's status to 'completed'.
+    """
+    # Avoid infinite loops when saving SellerInfo
+    if kwargs.get('raw'):
+        return
+
+    if instance.status == 'sold':
+        try:
+            # Get the related SellerInfo instance
+            seller_info = instance.sellerinfo
+            
+            # Check if the status is already completed to avoid unnecessary saves
+            if seller_info.status != 'completed':
+                seller_info.status = 'completed'
+                seller_info.save()
+        except SellerInfo.DoesNotExist:
+            # No seller info associated, which is fine
+            pass
 

@@ -20,18 +20,7 @@
                     </div>
                 </div>
                 
-                <div class="card-body p-0">
-                    <!-- Messages section for notifications -->
-                    {% if messages %}
-                    <div class="p-3">
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
+               
                     <div class="row g-0">
                         <!-- Sidebar Navigation -->
                         <div class="col-md-3 border-end">
