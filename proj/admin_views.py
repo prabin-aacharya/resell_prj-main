@@ -39,9 +39,9 @@ def admin_dashboard(request):
     today = timezone.now().date()
     thirty_days_ago = today - timedelta(days=30)
     
-    monthly_sales = Order.objects.filter(
-        order_date__date__gte=thirty_days_ago,
-        status='completed'
+    monthly_sales = BikePaymentTransaction.objects.filter(
+        created_at__date__gte=thirty_days_ago,
+        status='Completed'
     ).aggregate(
         total=Sum('amount')
     )['total'] or 0

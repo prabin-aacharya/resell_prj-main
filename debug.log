@@ -33766,3 +33766,13 @@ INFO 2025-05-29 14:39:23,188 basehttp "GET /admin/products/ HTTP/1.1" 200 26654
 INFO 2025-05-29 14:39:28,635 basehttp "GET /admin/products/4/edit/ HTTP/1.1" 200 29494
 INFO 2025-05-29 14:39:34,077 basehttp "POST /admin/products/4/edit/ HTTP/1.1" 302 0
 INFO 2025-05-29 14:39:34,283 basehttp "GET /admin/products/ HTTP/1.1" 200 26646
+INFO 2025-05-29 16:38:16,348 autoreload Watching for file changes with StatReloader
+INFO 2025-05-29 16:39:43,378 autoreload H:\resell_prj-main\proj\admin_views.py changed, reloading.
+INFO 2025-05-29 16:39:54,595 autoreload Watching for file changes with StatReloader
+INFO 2025-05-29 16:39:57,482 autoreload H:\resell_prj-main\proj\admin_views.py changed, reloading.
+INFO 2025-05-29 16:40:01,798 autoreload Watching for file changes with StatReloader
+INFO 2025-05-29 16:40:18,179 basehttp - Broken pipe from ('127.0.0.1', 57605)
+INFO 2025-05-29 16:40:18,406 basehttp - Broken pipe from ('127.0.0.1', 57606)
+INFO 2025-05-29 16:40:18,629 basehttp "GET /admin/ HTTP/1.1" 200 32912
+INFO 2025-05-29 16:40:19,101 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 304 0
+INFO 2025-05-29 16:40:34,017 basehttp "GET /admin/products/ HTTP/1.1" 200 26562
