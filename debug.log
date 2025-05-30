@@ -34190,3 +34190,4 @@ WARNING 2025-05-30 18:22:12,827 basehttp "GET /static/proj/webfonts/fa-brands-40
 WARNING 2025-05-30 18:22:13,112 basehttp "GET /static/proj/webfonts/fa-regular-400.ttf HTTP/1.1" 404 2023
 WARNING 2025-05-30 18:22:13,262 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 404 2017
 WARNING 2025-05-30 18:22:13,383 basehttp "GET /static/proj/webfonts/fa-brands-400.ttf HTTP/1.1" 404 2020
+INFO 2025-05-30 20:17:47,681 autoreload Watching for file changes with StatReloader

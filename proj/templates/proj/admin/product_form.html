@@ -193,7 +193,7 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="id_number_plate" class="form-label">Number Plate <span class="text-danger">*</span></label>
-                        <input type="text" name="number_plate" id="id_number_plate" class="form-control" placeholder="e.g., BA 12 PA 3456" value="{% if form.instance.number_plate %}{{ form.instance.number_plate }}{% endif %}">
+                        <input type="text" name="number_plate" id="id_number_plate" class="form-control"  value="{% if form.instance.number_plate %}{{ form.instance.number_plate }}{% endif %}">
                         {% if form.number_plate.errors %}
                         <div class="text-danger mt-1">
                             {% for error in form.number_plate.errors %}
