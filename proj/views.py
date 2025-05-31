@@ -741,8 +741,16 @@ def toggle_wishlist(request):
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
-        if self.request.user.is_staff:
+        # Get the next parameter from the request
+        next_url = self.request.GET.get('next')
+        if next_url:
+            return next_url
+            
+        # If the user is staff and trying to access admin, redirect to admin dashboard
+        if self.request.user.is_staff and self.request.path.startswith('/admin/'):
             return '/admin/'
+            
+        # Otherwise redirect to home
         return '/'
 
 # Simple view functions for terms and privacy pages
@@ -1282,12 +1290,12 @@ def check_unique_field(request):
 # Custom logout view to clear only frontend session
 def custom_logout(request):
     """
-    Custom logout view that only clears the frontend session cookie
-    while preserving the admin session if it exists.
+    Custom logout view that handles CSRF tokens properly and ensures a clean logout.
     """
     from django.contrib.auth import logout
     from django.shortcuts import redirect
     from django.conf import settings
+    from django.contrib import messages
     
     # Store the session cookie name
     session_cookie_name = settings.SESSION_COOKIE_NAME
@@ -1300,6 +1308,12 @@ def custom_logout(request):
     
     # Explicitly delete only the frontend session cookie
     response.delete_cookie(session_cookie_name)
+    
+    # Add a success message
+    messages.success(request, "You have been successfully logged out. Please refresh any open forms before submitting them.")
+    
+    # Set a flag in the session to indicate a fresh login is needed
+    request.session['needs_refresh'] = True
     
     return response
 

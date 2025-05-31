@@ -10,6 +10,7 @@ from django.contrib.sessions.models import Session
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth import login
 from django.utils.deprecation import MiddlewareMixin
+from django.shortcuts import redirect
 
 
 class TimezoneMiddleware:

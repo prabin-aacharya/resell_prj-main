@@ -15,14 +15,16 @@
     <div class="mb-4 p-3 bg-light rounded-3 shadow-sm">
         <h5 class="mb-3">Filter Products</h5>
         <form method="get" class="d-flex align-items-center">
-          
+
             <div class="me-2 flex-grow-1">
                 <select name="status" class="form-select" style="width: auto;">
                     <option value="">All Status</option>
-                    <option value="available" {% if request.GET.status == 'available' %}selected{% endif %}>Available</option>
+                    <option value="available" {% if request.GET.status == 'available' %}selected{% endif %}>Available
+                    </option>
                     <option value="sold" {% if request.GET.status == 'sold' %}selected{% endif %}>Sold</option>
                     <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
-                    <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved</option>
+                    <option value="reserved" {% if request.GET.status == 'reserved' %}selected{% endif %}>Reserved
+                    </option>
                 </select>
             </div>
 
@@ -30,12 +32,12 @@
                 <i class="fas fa-filter me-1"></i> Filter
             </button>
 
-             {% if request.GET.status %}
-                <a href="{% url 'admin:admin_product_list' %}" class="btn btn-secondary">Clear Filters</a>
+            {% if request.GET.status %}
+            <a href="{% url 'admin:admin_product_list' %}" class="btn btn-secondary">Clear Filters</a>
             {% endif %}
         </form>
     </div>
-    
+
     {% if products %}
     <div class="table-responsive">
         <table class="table table-hover">
@@ -57,9 +59,11 @@
                     <td>
                         <div class="d-flex align-items-center">
                             {% if product.product_image %}
-                            <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="img-thumbnail me-2" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="{{ product.product_image.url }}" alt="{{ product.title }}"
+                                class="img-thumbnail me-2" style="width: 50px; height: 50px; object-fit: cover;">
                             {% else %}
-                            <div class="bg-secondary text-white rounded me-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                            <div class="bg-secondary text-white rounded me-2 d-flex align-items-center justify-content-center"
+                                style="width: 50px; height: 50px;">
                                 <i class="fas fa-motorcycle"></i>
                             </div>
                             {% endif %}
@@ -87,13 +91,16 @@
                     <td>{{ product.created_at|date:"M d, Y" }}</td>
                     <td>
                         <div class="btn-group" role="group">
-                            <a href="{% url 'admin:admin_product_edit' product.id %}" class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'admin:admin_product_edit' product.id %}"
+                                class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="{% url 'admin:admin_product_delete' product.id %}" class="btn btn-sm btn-outline-danger">
+                            <a href="{% url 'admin:admin_product_delete' product.id %}"
+                                class="btn btn-sm btn-outline-danger">
                                 <i class="fas fa-trash"></i>
                             </a>
-                            <a href="{% url 'admin:admin_product_detail' product.id %}" class="btn btn-sm btn-outline-success">
+                            <a href="{% url 'admin:admin_product_detail' product.id %}"
+                                class="btn btn-sm btn-outline-success">
                                 <i class="fas fa-eye"></i>
                             </a>
                         </div>
@@ -103,50 +110,59 @@
             </tbody>
         </table>
     </div>
-    
+
     <!-- Pagination -->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center mt-4">
             {% if page_obj.has_previous %}
             <li class="page-item">
-                <a class="page-link" href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}" aria-label="First">
+                <a class="page-link"
+                    href="?page=1{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
+                    aria-label="First">
                     <span aria-hidden="true">&laquo;&laquo;</span>
                 </a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}" aria-label="Previous">
+                <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
+                    aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
             {% endif %}
-            
+
             {% for num in page_obj.paginator.page_range %}
-                {% if page_obj.number == num %}
-                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">{{ num }}</a>
+            {% if page_obj.number == num %}
+            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item">
+                <a class="page-link"
+                    href="?page={{ num }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">{{
+                    num }}</a>
                 </li>
                 {% endif %}
-            {% endfor %}
-            
-            {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}" aria-label="Last">
-                    <span aria-hidden="true">&raquo;&raquo;</span>
-                </a>
-            </li>
-            {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link"
+                        href="?page={{ page_obj.next_page_number }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
+                        aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link"
+                        href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}"
+                        aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
         </ul>
     </nav>
     {% endif %}
-    
+
     {% else %}
     <div class="text-center py-5">
         <i class="fas fa-motorcycle fa-5x text-muted mb-3"></i>
@@ -162,21 +178,21 @@
 
 {% block extra_css %}
 <style>
-/* Remove all borders and outlines for the search input */
-.table-container form .form-control {
-    border: none !important;
-    box-shadow: none !important;
-}
+    /* Remove all borders and outlines for the search input */
+    .table-container form .form-control {
+        border: none !important;
+        box-shadow: none !important;
+    }
 
-.table-container form .form-control:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-}
+    .table-container form .form-control:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
 
-/* Existing modal CSS - Remove if not needed anymore */
-/* Ensure modal is always above the backdrop and clickable */
-/*
+    /* Existing modal CSS - Remove if not needed anymore */
+    /* Ensure modal is always above the backdrop and clickable */
+    /*
 .modal {
   z-index: 2001055 !important;
   pointer-events: auto !important;
@@ -197,32 +213,32 @@ body.modal-open {
 
 {% block extra_js %}
 <script>
-// Remove existing modal JS if not needed anymore
-/*
-document.addEventListener('DOMContentLoaded', function() {
-  // Attach event listeners to all view buttons
-  document.querySelectorAll('button[data-bs-target^="#productModal"]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var targetId = btn.getAttribute('data-bs-target');
-      var modalEl = document.getElementById(targetId.replace('#', ''));
-      if (modalEl) {
-        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-        modal.show();
-      }
+    // Remove existing modal JS if not needed anymore
+    /*
+    document.addEventListener('DOMContentLoaded', function() {
+      // Attach event listeners to all view buttons
+      document.querySelectorAll('button[data-bs-target^="#productModal"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetId = btn.getAttribute('data-bs-target');
+          var modalEl = document.getElementById(targetId.replace('#', ''));
+          if (modalEl) {
+            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.show();
+          }
+        });
+      });
+    
+      // Ensure all close buttons in product modals use Bootstrap's hide()
+      document.querySelectorAll('.modal[id^="productModal"] .btn-close, .modal[id^="productModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var modalEl = btn.closest('.modal');
+          if (modalEl) {
+            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+            modal.hide();
+          }
+        });
+      });
     });
-  });
-
-  // Ensure all close buttons in product modals use Bootstrap's hide()
-  document.querySelectorAll('.modal[id^="productModal"] .btn-close, .modal[id^="productModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var modalEl = btn.closest('.modal');
-      if (modalEl) {
-        var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-        modal.hide();
-      }
-    });
-  });
-});
-*/
+    */
 </script>
-{% endblock %} 
+{% endblock %}

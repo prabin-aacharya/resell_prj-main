@@ -1,8 +1,23 @@
 {% extends 'proj/base.html' %}
+{% block title %}Sell Success{% endblock title %}
 {% block main-content %}
-<div class="container py-5 text-center">
-  <h2 class="text-success mb-4">Your bike listing has been submitted!</h2>
-  <p>Thank you for using our platform. We will review your listing and contact you soon.</p>
-  <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+<div class="container-fluid py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h2 class="text-success mb-4">Your bike listing has been submitted!</h2>
+                    <p class="lead mb-4">Thank you for using our platform. We will review your listing and contact you soon.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="/" class="btn btn-primary btn-lg px-4 me-md-2">Back to Home</a>
+                        <a href="/sell" class="btn btn-outline-secondary btn-lg px-4">List Another Bike</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %} 

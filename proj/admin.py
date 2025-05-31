@@ -66,6 +66,16 @@ class BikeResellAdminSite(AdminSite):
         # Insert our custom URLs before the default admin URLs
         return custom_urls + urls
     
+    def login(self, request, extra_context=None):
+        """
+        Override the login view to handle redirection properly
+        """
+        # Only redirect to dashboard if user is authenticated and is staff
+        if request.user.is_authenticated and request.user.is_staff:
+            return redirect('admin:index')
+        # Otherwise show the login form
+        return super().login(request, extra_context)
+    
     def logout_view(self, request):
         """Custom logout view that redirects to the admin login page"""
         # Store the admin session cookie
