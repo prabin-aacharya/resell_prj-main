@@ -110,6 +110,7 @@
             price: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="price"]`, 'data-value') || 'N/A',
             location: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="location"]`, 'data-value') || 'N/A',
             previous_owners: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="previous_owners"]`, 'data-value') || 'N/A',
+            kilometer_ridden: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="kilometer_ridden"]`, 'data-value') || 'N/A',
           };
           
           // Get seller data
@@ -161,6 +162,7 @@
           safeSetTextContent('product-previous-owners', productData.previous_owners);
           safeSetTextContent('product-price', productData.price);
           safeSetTextContent('product-location', productData.location);
+          safeSetTextContent('product-kilometer-ridden', productData.kilometer_ridden);
           
           // Seller details
           safeSetTextContent('seller-name', sellerData.name);
@@ -362,9 +364,23 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-circle bg-soft-primary text-primary me-2">
-                                        {{ payment.buyer.username|slice:":1"|upper }}
+                                        {% with buyer_customer=payment.buyer.customers.first %}
+                                            {% if buyer_customer and buyer_customer.name %}
+                                                {{ buyer_customer.name|slice:":1"|upper }}
+                                            {% else %}
+                                                {{ payment.buyer.username|slice:":1"|upper }}
+                                            {% endif %}
+                                        {% endwith %}
                                     </div>
-                                    <span class="buyer-name">{{ payment.buyer.username }}</span>
+                                    <span class="buyer-name">
+                                        {% with buyer_customer=payment.buyer.customers.first %}
+                                            {% if buyer_customer and buyer_customer.name %}
+                                                {{ buyer_customer.name }}
+                                            {% else %}
+                                                {{ payment.buyer.username }}
+                                            {% endif %}
+                                        {% endwith %}
+                                    </span>
                                 </div>
                             </td>
                             <td class="product-title">{{ payment.product.title }}</td>
@@ -404,6 +420,8 @@
                                         <span data-payment-id="{{ payment.id }}" data-field="price" data-value="₹{{ payment.product.price|floatformat:2|default:'N/A' }}"></span>
                                         <span data-payment-id="{{ payment.id }}" data-field="location" data-value="{{ payment.product.location|default:'N/A' }}"></span>
                                         <span data-payment-id="{{ payment.id }}" data-field="previous_owners" data-value="{{ payment.product.previous_owners|default:'N/A' }}"></span>
+                                        <span data-payment-id="{{ payment.id }}" data-field="kilometer_ridden" data-value="{{ payment.product.kilometers|default:'N/A' }} km"></span>
+                                       
                                         
                                         <!-- Seller details from product and related data -->
                                         <span data-payment-id="{{ payment.id }}" data-field="seller_name" data-value="{{ payment.product.seller_name }}"></span>
@@ -420,7 +438,13 @@
                                         {% endwith %}
                                         
                                         <!-- Buyer details from auth_user and customer profile -->
-                                        <span data-payment-id="{{ payment.id }}" data-field="buyer_name" data-value="{{ payment.buyer.username }}"></span>
+                                        {% with buyer_customer=payment.buyer.customers.first %}
+                                            {% if buyer_customer and buyer_customer.name %}
+                                                <span data-payment-id="{{ payment.id }}" data-field="buyer_name" data-value="{{ buyer_customer.name }}"></span>
+                                            {% else %}
+                                                <span data-payment-id="{{ payment.id }}" data-field="buyer_name" data-value="{{ payment.buyer.username }}"></span>
+                                            {% endif %}
+                                        {% endwith %}
                                         <span data-payment-id="{{ payment.id }}" data-field="buyer_email" data-value="{{ payment.buyer.email }}"></span>
                                         
                                         {% with buyer_customer=payment.buyer.customers.first %}
@@ -608,6 +632,10 @@
                                         <div class="mb-3">
                                             <label class="small text-muted">Condition</label>
                                             <p class="mb-0" id="product-condition"></p>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="small text-muted">Kilometer Ridden</label>
+                                            <p class="mb-0" id="product-kilometer-ridden"></p>
                                         </div>
                                         <div class="mb-3">
                                             <label class="small text-muted">Previous Owners</label>
