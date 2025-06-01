@@ -78,7 +78,7 @@
                                                     <div class="col-md-6 mb-4">
                                                         <div class="card shadow-sm h-100">
                                                             <div class="row g-0">
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                     {% if transaction.product.product_image %}
                                                                         <img src="{{ transaction.product.product_image.url }}" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="{{ transaction.product.title }}">
                                                                     {% else %}
@@ -87,7 +87,7 @@
                                                                         </div>
                                                                     {% endif %}
                                                                 </div>
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-6">
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">{{ transaction.product.title }}</h5>
                                                                         <p class="card-text">
@@ -134,7 +134,7 @@
                                                     <div class="col-md-6 mb-4">
                                                         <div class="card shadow-sm h-100">
                                                             <div class="row g-0">
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                     {% if item.product.product_image %}
                                                                         <img src="{{ item.product.product_image.url }}" class="img-fluid rounded-start h-100" style="object-fit: cover;" alt="{{ item.product.title }}">
                                                                     {% else %}
@@ -143,7 +143,7 @@
                                                                         </div>
                                                                     {% endif %}
                                                                 </div>
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-6">
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">{{ item.product.title }}</h5>
                                                                         <p class="card-text">
@@ -242,6 +242,23 @@
         color: var(--bs-primary);
         border-bottom: 2px solid var(--bs-primary);
         background: none;
+    }
+
+    /* Custom styles for larger images in My Deals cards */
+    .card .row.g-0 .col-md-6 img {
+        height: 250px; /* Increase height */
+        width: 100%; /* Ensure it takes full width of its column */
+        object-fit: cover; /* Maintain aspect ratio and cover container */
+    }
+
+    .card .row.g-0 .col-md-6 .bg-light { /* Style for placeholder if no image */
+        height: 250px; /* Match image height */
+        width: 100%; /* Match image width */
+    }
+
+    /* Adjust card body padding if needed to align with image */
+    .card-body {
+        padding: 1rem; /* You can adjust this value */
     }
 </style>
 

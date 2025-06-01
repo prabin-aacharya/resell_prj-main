@@ -187,14 +187,6 @@ class ProductDetail(View):
                     messages.error(request, "This product is not available for viewing.")
                     return redirect('main:home')
                 
-                # If the product is sold, show a message but still let them view it
-                if product.status != 'available' and product.status == 'sold':
-                    messages.info(request, "This bike has been sold and is no longer available for purchase.")
-                # If the product has any other status, don't let them view it
-                elif product.status != 'available':
-                    messages.error(request, "This product is not available for viewing.")
-                    return redirect('main:home')
-                
             user_wishlist = []
             in_wishlist = False
             
