@@ -251,8 +251,8 @@ def update_seller_info_on_product_sold(sender, instance, created, **kwargs):
 
     if instance.status == 'sold':
         try:
-            # Get the related SellerInfo instance
-            seller_info = instance.sellerinfo
+            # Get the related SellerInfo instance through the reverse relationship
+            seller_info = SellerInfo.objects.get(product=instance)
             
             # Check if the status is already completed to avoid unnecessary saves
             if seller_info.status != 'completed':

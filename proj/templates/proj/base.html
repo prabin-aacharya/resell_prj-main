@@ -36,6 +36,24 @@
          border-color: #366488; /* Darker Steel Blue */
       }
 
+      /* Navigation item styles */
+      .nav-item-hover {
+        color: rgba(255, 255, 255, 0.9) !important;
+        transition: all 0.3s ease;
+      }
+
+      .nav-item-hover:hover {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+      }
+
+      .nav-item-hover.active {
+        color: #ffffff !important;
+        background-color: rgba(255, 255, 255, 0.15);
+        font-weight: 500;
+      }
+
       /* Update custom styles that used green */
       .dropdown-item:hover {
         background-color: rgba(var(--bs-primary-rgb), 0.1);

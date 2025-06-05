@@ -37980,3 +37980,301 @@ INFO 2025-06-01 13:58:00,733 basehttp "GET /sell/ HTTP/1.1" 200 25202
 WARNING 2025-06-01 13:58:00,987 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
 INFO 2025-06-01 13:58:04,217 basehttp "GET /profile/ HTTP/1.1" 200 22192
 WARNING 2025-06-01 13:58:04,402 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:35:34,924 autoreload Watching for file changes with StatReloader
+INFO 2025-06-02 13:35:45,663 basehttp "GET / HTTP/1.1" 200 22885
+INFO 2025-06-02 13:35:45,793 basehttp "GET /static/proj/css/owl.carousel.min.css HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:45,793 basehttp "GET /static/proj/css/style.css HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:45,798 basehttp "GET /static/proj/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:45,900 basehttp "GET /static/proj/js/owl.carousel.min.js HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,033 basehttp "GET /static/proj/js/all.min.js HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,049 basehttp "GET /static/proj/js/csrf_handler.js HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,157 basehttp "GET /static/proj/js/myscript.js HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,171 basehttp "GET /static/proj/images/logo.png HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,506 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:46,568 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:47,161 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:47,812 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 304 0
+INFO 2025-06-02 13:35:48,230 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 304 0
+WARNING 2025-06-02 13:35:48,475 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:35:49,417 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 304 0
+WARNING 2025-06-02 13:35:51,434 log Not Found: /favicon.ico
+WARNING 2025-06-02 13:35:51,444 basehttp "GET /favicon.ico HTTP/1.1" 404 13978
+INFO 2025-06-02 13:35:55,881 basehttp "GET /buy/ HTTP/1.1" 200 27191
+WARNING 2025-06-02 13:35:56,065 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:35:56,176 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+INFO 2025-06-02 13:39:13,448 basehttp "GET /buy/ HTTP/1.1" 200 27191
+WARNING 2025-06-02 13:39:13,597 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:39:15,241 basehttp "GET / HTTP/1.1" 200 22885
+WARNING 2025-06-02 13:39:16,197 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:39:19,290 basehttp "GET /buy/ HTTP/1.1" 200 27191
+WARNING 2025-06-02 13:39:19,469 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:39:22,157 basehttp "GET /contact/ HTTP/1.1" 200 21138
+WARNING 2025-06-02 13:39:22,385 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:39:25,088 basehttp "GET /about/ HTTP/1.1" 200 27178
+INFO 2025-06-02 13:39:25,190 basehttp "GET /static/proj/images/product/about-bike.PNG HTTP/1.1" 304 0
+WARNING 2025-06-02 13:39:25,335 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 13:39:31,983 basehttp "GET / HTTP/1.1" 200 22885
+WARNING 2025-06-02 13:39:32,099 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-02 14:27:13,721 basehttp "GET /admin/ HTTP/1.1" 200 41471
+INFO 2025-06-02 14:27:13,991 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 304 0
+INFO 2025-06-02 14:27:14,167 basehttp "GET /media/product_images/bike-1726245204802.jpg HTTP/1.1" 304 0
+INFO 2025-06-02 14:27:14,605 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-02 14:27:17,478 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-05 12:43:20,849 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 12:43:40,928 basehttp "GET / HTTP/1.1" 200 22886
+INFO 2025-06-05 12:43:41,360 basehttp "GET /static/proj/css/style.css HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,360 basehttp "GET /static/proj/images/banner/b1.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,472 basehttp "GET /static/proj/images/product/yamaha.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,515 basehttp "GET /static/proj/images/banner/b3.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,619 basehttp "GET /static/proj/images/product/honda.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,719 basehttp "GET /static/proj/images/banner/b2.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,727 basehttp "GET /static/proj/images/product/bajaj.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,877 basehttp "GET /static/proj/images/product/hero.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,885 basehttp "GET /static/proj/images/product/tvs.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:41,951 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:42,004 basehttp "GET /static/proj/js/csrf_handler.js HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:42,105 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:42,586 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:42,942 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:43,161 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:43,445 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:43,634 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 304 0
+INFO 2025-06-05 12:43:43,895 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 304 0
+WARNING 2025-06-05 12:43:44,688 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:43:47,011 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 304 0
+WARNING 2025-06-05 12:43:47,452 log Not Found: /favicon.ico
+WARNING 2025-06-05 12:43:47,476 basehttp "GET /favicon.ico HTTP/1.1" 404 13978
+INFO 2025-06-05 12:43:48,327 basehttp "GET /buy/ HTTP/1.1" 200 27192
+INFO 2025-06-05 12:43:48,729 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 304 0
+WARNING 2025-06-05 12:43:48,801 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:43:56,166 basehttp "GET /product-detail/5 HTTP/1.1" 200 18552
+INFO 2025-06-05 12:43:56,495 basehttp "GET /static/proj/images/khaltilogo.png HTTP/1.1" 304 0
+WARNING 2025-06-05 12:43:56,676 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:44:28,760 payment_views Initiating payment for product 5 with amount 4000000 paisa
+INFO 2025-06-05 12:44:31,940 payment_views Khalti initiate response: 200
+INFO 2025-06-05 12:44:31,943 payment_views Payment initiated with pidx: Z5spWtSFJQzKJQXtdxALYS
+INFO 2025-06-05 12:44:32,281 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:44:55,203 basehttp "GET /payment/callback?pidx=Z5spWtSFJQzKJQXtdxALYS&transaction_id=w5kxbscYuACuLoD65a2LRY&tidx=w5kxbscYuACuLoD65a2LRY&txnId=w5kxbscYuACuLoD65a2LRY&amount=4000000&total_amount=4000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-ac58677b-b28c-45dc-b724-e34dde17ef9b&purchase_order_name=Bike%3A+2011+Honda+CB+Twister HTTP/1.1" 301 0
+INFO 2025-06-05 12:44:55,432 payment_views Payment callback received: <QueryDict: {'pidx': ['Z5spWtSFJQzKJQXtdxALYS'], 'transaction_id': ['w5kxbscYuACuLoD65a2LRY'], 'tidx': ['w5kxbscYuACuLoD65a2LRY'], 'txnId': ['w5kxbscYuACuLoD65a2LRY'], 'amount': ['4000000'], 'total_amount': ['4000000'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-ac58677b-b28c-45dc-b724-e34dde17ef9b'], 'purchase_order_name': ['Bike: 2011 Honda CB Twister']}>
+INFO 2025-06-05 12:44:55,512 payment_views Session data: product_id=5, purchase_order_id=BIKE-ac58677b-b28c-45dc-b724-e34dde17ef9b, pidx=Z5spWtSFJQzKJQXtdxALYS
+INFO 2025-06-05 12:44:55,534 payment_views Payment status: Completed, transaction_id: w5kxbscYuACuLoD65a2LRY
+INFO 2025-06-05 12:44:57,616 payment_views Khalti lookup response: 200
+INFO 2025-06-05 12:44:57,618 payment_views Payment verified as Completed for pidx: Z5spWtSFJQzKJQXtdxALYS
+ERROR 2025-06-05 12:44:57,906 payment_views Khalti lookup error: 'Product' object has no attribute 'sellerinfo'
+Traceback (most recent call last):
+  File "H:\resell_prj-main\proj\payment_views.py", line 248, in payment_callback
+    product.save()
+  File "D:\python\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "D:\python\Lib\site-packages\django\db\models\base.py", line 1012, in save_base
+    post_save.send(
+  File "D:\python\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\models.py", line 255, in update_seller_info_on_product_sold
+    seller_info = instance.sellerinfo
+                  ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Product' object has no attribute 'sellerinfo'. Did you mean: 'seller_name'?
+INFO 2025-06-05 12:44:58,854 basehttp "GET /payment/callback/?pidx=Z5spWtSFJQzKJQXtdxALYS&transaction_id=w5kxbscYuACuLoD65a2LRY&tidx=w5kxbscYuACuLoD65a2LRY&txnId=w5kxbscYuACuLoD65a2LRY&amount=4000000&total_amount=4000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-ac58677b-b28c-45dc-b724-e34dde17ef9b&purchase_order_name=Bike%3A+2011+Honda+CB+Twister HTTP/1.1" 200 15190
+WARNING 2025-06-05 12:44:59,669 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:44:59,932 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-05 12:47:10,035 payment_views Initiating payment for product 5 with amount 4000000 paisa
+INFO 2025-06-05 12:47:12,374 payment_views Khalti initiate response: 200
+INFO 2025-06-05 12:47:12,376 payment_views Payment initiated with pidx: VpjbFrDmbfRDq7TkYGHaPf
+INFO 2025-06-05 12:47:12,684 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:47:17,910 basehttp "GET /buy/ HTTP/1.1" 200 25578
+WARNING 2025-06-05 12:47:18,954 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:47:19,125 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-05 12:47:19,905 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-05 12:47:20,423 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-05 12:47:20,843 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-05 12:47:21,221 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-05 12:47:48,889 basehttp "GET /admin/ HTTP/1.1" 200 41555
+INFO 2025-06-05 12:47:54,820 basehttp "GET /admin/ HTTP/1.1" 200 41471
+INFO 2025-06-05 12:47:55,165 basehttp - Broken pipe from ('127.0.0.1', 58640)
+INFO 2025-06-05 12:47:55,765 basehttp - Broken pipe from ('127.0.0.1', 58628)
+INFO 2025-06-05 12:48:00,377 basehttp "GET /product-detail/38 HTTP/1.1" 200 18709
+WARNING 2025-06-05 12:48:00,893 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:48:02,630 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-05 12:48:02,910 basehttp "GET /media/product_images/bike-1726245204802.jpg HTTP/1.1" 200 324154
+INFO 2025-06-05 12:48:03,270 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-05 12:48:03,702 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-05 12:48:04,047 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-05 12:48:04,353 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-05 12:48:04,906 basehttp "GET /admin/products/ HTTP/1.1" 200 33186
+INFO 2025-06-05 12:48:05,418 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-05 12:48:06,063 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-05 12:48:06,346 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-05 12:48:11,752 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:48:12,504 basehttp "GET /profile/ HTTP/1.1" 200 22968
+WARNING 2025-06-05 12:48:12,897 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:48:17,600 basehttp "GET /buy/ HTTP/1.1" 200 25723
+WARNING 2025-06-05 12:48:18,751 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:48:21,754 basehttp "GET /product-detail/38 HTTP/1.1" 200 18709
+WARNING 2025-06-05 12:48:23,648 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:48:29,297 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:48:30,114 basehttp "GET /accounts/login/ HTTP/1.1" 200 18909
+WARNING 2025-06-05 12:48:30,551 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:48:59,092 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:48:59,553 basehttp "GET / HTTP/1.1" 200 22193
+WARNING 2025-06-05 12:49:03,618 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:49:20,690 basehttp "GET /my-deals/ HTTP/1.1" 200 35422
+WARNING 2025-06-05 12:49:21,120 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:49:21,275 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-05 12:49:21,316 basehttp "GET /media/product_images/bike-1726245204802.jpg HTTP/1.1" 200 324154
+INFO 2025-06-05 12:49:26,786 basehttp "GET /buy/ HTTP/1.1" 200 25578
+WARNING 2025-06-05 12:49:27,529 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:49:29,627 basehttp "GET /product-detail/38 HTTP/1.1" 200 18564
+WARNING 2025-06-05 12:49:29,967 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:49:31,671 payment_views Initiating payment for product 38 with amount 10000000 paisa
+INFO 2025-06-05 12:49:33,447 payment_views Khalti initiate response: 200
+INFO 2025-06-05 12:49:33,472 payment_views Payment initiated with pidx: 7RugYJSSprERmngPGGxnje
+INFO 2025-06-05 12:49:33,921 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:49:54,503 basehttp "GET /payment/callback?pidx=7RugYJSSprERmngPGGxnje&transaction_id=fN4YHtCXUVqQmusFLy94Aa&tidx=fN4YHtCXUVqQmusFLy94Aa&txnId=fN4YHtCXUVqQmusFLy94Aa&amount=10000000&total_amount=10000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-1f956546-1efb-46a6-9b14-a8fdfbbef43f&purchase_order_name=Bike%3A+2015+Bajaj+Pulsar+150 HTTP/1.1" 301 0
+INFO 2025-06-05 12:49:54,516 payment_views Payment callback received: <QueryDict: {'pidx': ['7RugYJSSprERmngPGGxnje'], 'transaction_id': ['fN4YHtCXUVqQmusFLy94Aa'], 'tidx': ['fN4YHtCXUVqQmusFLy94Aa'], 'txnId': ['fN4YHtCXUVqQmusFLy94Aa'], 'amount': ['10000000'], 'total_amount': ['10000000'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-1f956546-1efb-46a6-9b14-a8fdfbbef43f'], 'purchase_order_name': ['Bike: 2015 Bajaj Pulsar 150']}>
+INFO 2025-06-05 12:49:54,530 payment_views Session data: product_id=38, purchase_order_id=BIKE-1f956546-1efb-46a6-9b14-a8fdfbbef43f, pidx=7RugYJSSprERmngPGGxnje
+INFO 2025-06-05 12:49:54,579 payment_views Payment status: Completed, transaction_id: fN4YHtCXUVqQmusFLy94Aa
+INFO 2025-06-05 12:49:56,168 payment_views Khalti lookup response: 200
+INFO 2025-06-05 12:49:56,170 payment_views Payment verified as Completed for pidx: 7RugYJSSprERmngPGGxnje
+ERROR 2025-06-05 12:49:56,423 payment_views Khalti lookup error: 'Product' object has no attribute 'sellerinfo'
+Traceback (most recent call last):
+  File "H:\resell_prj-main\proj\payment_views.py", line 248, in payment_callback
+    product.save()
+  File "D:\python\Lib\site-packages\django\db\models\base.py", line 891, in save
+    self.save_base(
+  File "D:\python\Lib\site-packages\django\db\models\base.py", line 1012, in save_base
+    post_save.send(
+  File "D:\python\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\models.py", line 255, in update_seller_info_on_product_sold
+    seller_info = instance.sellerinfo
+                  ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Product' object has no attribute 'sellerinfo'. Did you mean: 'seller_name'?
+INFO 2025-06-05 12:49:57,247 basehttp "GET /payment/callback/?pidx=7RugYJSSprERmngPGGxnje&transaction_id=fN4YHtCXUVqQmusFLy94Aa&tidx=fN4YHtCXUVqQmusFLy94Aa&txnId=fN4YHtCXUVqQmusFLy94Aa&amount=10000000&total_amount=10000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-1f956546-1efb-46a6-9b14-a8fdfbbef43f&purchase_order_name=Bike%3A+2015+Bajaj+Pulsar+150 HTTP/1.1" 200 15194
+INFO 2025-06-05 12:49:57,860 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+WARNING 2025-06-05 12:49:58,066 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:51:04,170 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-06-05 12:51:23,463 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 12:51:27,570 autoreload H:\resell_prj-main\proj\models.py changed, reloading.
+INFO 2025-06-05 12:51:35,157 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 12:51:39,903 basehttp "GET /buy/ HTTP/1.1" 200 25578
+INFO 2025-06-05 12:51:40,066 basehttp "GET /static/proj/css/all.min.css HTTP/1.1" 304 0
+INFO 2025-06-05 12:51:40,067 basehttp "GET /static/proj/css/owl.carousel.min.css HTTP/1.1" 304 0
+INFO 2025-06-05 12:51:40,228 basehttp "GET /static/proj/js/all.min.js HTTP/1.1" 304 0
+INFO 2025-06-05 12:51:40,804 basehttp "GET /static/proj/images/logo.png HTTP/1.1" 304 0
+INFO 2025-06-05 12:51:40,811 basehttp "GET /static/proj/js/owl.carousel.min.js HTTP/1.1" 304 0
+WARNING 2025-06-05 12:51:41,093 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:51:41,128 basehttp "GET /static/proj/js/myscript.js HTTP/1.1" 304 0
+INFO 2025-06-05 12:51:41,668 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-05 12:51:41,844 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-05 12:51:41,928 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-05 12:51:42,297 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-05 12:51:44,335 basehttp "GET /buy/ HTTP/1.1" 200 25578
+WARNING 2025-06-05 12:51:44,744 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:51:52,851 basehttp "GET /product-detail/38 HTTP/1.1" 200 18564
+WARNING 2025-06-05 12:51:53,276 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:51:55,014 payment_views Initiating payment for product 38 with amount 10000000 paisa
+INFO 2025-06-05 12:51:56,880 payment_views Khalti initiate response: 200
+INFO 2025-06-05 12:51:56,882 payment_views Payment initiated with pidx: VPkT3a5m7fFfxiHHTWwFW2
+INFO 2025-06-05 12:51:57,150 basehttp "POST /payment/initiate/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:52:20,620 basehttp "GET /payment/callback?pidx=VPkT3a5m7fFfxiHHTWwFW2&transaction_id=Vu23rnMW3HkqoocDhnsfqP&tidx=Vu23rnMW3HkqoocDhnsfqP&txnId=Vu23rnMW3HkqoocDhnsfqP&amount=10000000&total_amount=10000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f&purchase_order_name=Bike%3A+2015+Bajaj+Pulsar+150 HTTP/1.1" 301 0
+INFO 2025-06-05 12:52:20,629 payment_views Payment callback received: <QueryDict: {'pidx': ['VPkT3a5m7fFfxiHHTWwFW2'], 'transaction_id': ['Vu23rnMW3HkqoocDhnsfqP'], 'tidx': ['Vu23rnMW3HkqoocDhnsfqP'], 'txnId': ['Vu23rnMW3HkqoocDhnsfqP'], 'amount': ['10000000'], 'total_amount': ['10000000'], 'mobile': ['98XXXXX001'], 'status': ['Completed'], 'purchase_order_id': ['BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f'], 'purchase_order_name': ['Bike: 2015 Bajaj Pulsar 150']}>
+INFO 2025-06-05 12:52:20,637 payment_views Session data: product_id=38, purchase_order_id=BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f, pidx=VPkT3a5m7fFfxiHHTWwFW2
+INFO 2025-06-05 12:52:20,642 payment_views Payment status: Completed, transaction_id: Vu23rnMW3HkqoocDhnsfqP
+INFO 2025-06-05 12:52:22,367 payment_views Khalti lookup response: 200
+INFO 2025-06-05 12:52:22,368 payment_views Payment verified as Completed for pidx: VPkT3a5m7fFfxiHHTWwFW2
+INFO 2025-06-05 12:52:22,710 payment_views Created BikePaymentTransaction record for pidx: VPkT3a5m7fFfxiHHTWwFW2
+INFO 2025-06-05 12:52:22,884 basehttp "GET /payment/callback/?pidx=VPkT3a5m7fFfxiHHTWwFW2&transaction_id=Vu23rnMW3HkqoocDhnsfqP&tidx=Vu23rnMW3HkqoocDhnsfqP&txnId=Vu23rnMW3HkqoocDhnsfqP&amount=10000000&total_amount=10000000&mobile=98XXXXX001&status=Completed&purchase_order_id=BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f&purchase_order_name=Bike%3A+2015+Bajaj+Pulsar+150 HTTP/1.1" 200 16003
+WARNING 2025-06-05 12:52:24,101 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:52:30,395 basehttp "GET /admin/products/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:52:30,672 basehttp "GET /admin/login/?next=/admin/products/ HTTP/1.1" 200 7591
+INFO 2025-06-05 12:52:30,889 basehttp "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-06-05 12:52:46,623 basehttp "POST /admin/login/?next=/admin/products/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:52:46,959 basehttp "GET /admin/products/ HTTP/1.1" 200 33180
+INFO 2025-06-05 12:53:00,500 basehttp "GET /payment/sales-report/BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f/ HTTP/1.1" 200 3399
+INFO 2025-06-05 12:53:08,574 basehttp "GET /my-deals/ HTTP/1.1" 200 38416
+INFO 2025-06-05 12:53:09,152 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+WARNING 2025-06-05 12:53:09,474 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:53:09,783 basehttp "GET /media/product_images/bike-1726245204802.jpg HTTP/1.1" 200 324154
+INFO 2025-06-05 12:53:10,130 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-05 12:53:10,444 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-05 12:53:17,608 basehttp "GET / HTTP/1.1" 200 22278
+WARNING 2025-06-05 12:53:17,904 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:53:18,241 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-05 12:53:18,455 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-05 12:53:19,192 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-05 12:53:28,306 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-05 12:54:47,909 basehttp "GET /profile/ HTTP/1.1" 200 22193
+WARNING 2025-06-05 12:54:48,308 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:54:58,828 basehttp "GET / HTTP/1.1" 200 22278
+WARNING 2025-06-05 12:55:00,450 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:57:02,077 basehttp "GET /buy/ HTTP/1.1" 200 25389
+WARNING 2025-06-05 12:57:03,476 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:57:08,440 basehttp "GET /admin/products/ HTTP/1.1" 200 33180
+INFO 2025-06-05 12:57:08,777 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-05 12:57:08,912 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-05 12:57:12,108 basehttp "GET /admin/products/5/edit/ HTTP/1.1" 200 29978
+INFO 2025-06-05 12:57:12,419 basehttp "GET /media/bluebook_images/9_elU0gNI.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:12,497 basehttp "GET /media/bluebook_images/pg2_cwDHglP.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:57:18,560 basehttp "POST /admin/products/5/edit/ HTTP/1.1" 302 0
+INFO 2025-06-05 12:57:18,690 basehttp "GET /admin/products/ HTTP/1.1" 200 33256
+INFO 2025-06-05 12:57:23,257 basehttp "GET /buy/ HTTP/1.1" 200 27003
+WARNING 2025-06-05 12:57:23,460 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 12:57:39,490 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-05 12:57:41,787 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 127006
+INFO 2025-06-05 12:57:42,195 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-05 12:57:42,316 basehttp "GET /media/bluebook_images/BBpg_9_LGln3tv.jpg HTTP/1.1" 200 656792
+INFO 2025-06-05 12:57:42,574 basehttp "GET /media/bluebook_images/pg2_N8IrS5d.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:57:42,718 basehttp "GET /media/bluebook_images/9_hsctnus.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:42,986 basehttp "GET /media/bluebook_images/9_t32yOmp.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:43,134 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:43,382 basehttp "GET /media/bluebook_images/pg2_ZjS16lT.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:57:43,756 basehttp "GET /media/bluebook_images/9_1IU5lNO.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:43,945 basehttp "GET /media/bluebook_images/9_tWYaiCn.jpg HTTP/1.1" 200 663421
+INFO 2025-06-05 12:57:44,132 basehttp "GET /media/bluebook_images/pg2_WtIu9Hg.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:57:44,384 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:57:44,518 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-05 12:59:16,770 basehttp "GET /buy/ HTTP/1.1" 200 27475
+WARNING 2025-06-05 12:59:16,886 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:00:12,403 basehttp "GET / HTTP/1.1" 200 23442
+WARNING 2025-06-05 13:00:13,839 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:00:45,455 basehttp "GET /my-deals/ HTTP/1.1" 200 38887
+WARNING 2025-06-05 13:00:45,881 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:00:49,582 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-06-05 13:00:49,944 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-05 13:00:50,419 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:00:51,570 basehttp "GET / HTTP/1.1" 200 20085
+WARNING 2025-06-05 13:00:53,271 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:00:56,658 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-05 13:00:56,911 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:01:07,208 basehttp - Broken pipe from ('127.0.0.1', 59183)
+INFO 2025-06-05 13:01:10,133 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-05 13:01:10,327 basehttp "GET / HTTP/1.1" 200 23442
+WARNING 2025-06-05 13:01:11,884 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:03:50,202 basehttp "GET /contact/ HTTP/1.1" 200 22074
+WARNING 2025-06-05 13:03:50,444 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:04:03,348 basehttp "POST /contact/ HTTP/1.1" 302 0
+INFO 2025-06-05 13:04:03,466 basehttp "GET /contact/ HTTP/1.1" 200 22055
+WARNING 2025-06-05 13:04:03,607 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:06:13,587 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-05 13:06:28,346 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 13:09:29,362 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-05 13:09:35,132 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 13:10:03,939 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 127006
+INFO 2025-06-05 13:10:29,767 basehttp "GET /admin/products/ HTTP/1.1" 200 33172
+INFO 2025-06-05 13:10:30,496 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-05 13:10:30,585 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-05 13:10:30,696 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-05 13:12:56,111 basehttp "GET / HTTP/1.1" 200 23442
+WARNING 2025-06-05 13:12:56,248 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:13:02,215 basehttp "GET /product-detail/36 HTTP/1.1" 200 17821
+WARNING 2025-06-05 13:13:02,527 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:13:06,870 basehttp "GET /admin/ HTTP/1.1" 200 42056
+INFO 2025-06-05 13:14:37,600 basehttp "GET /profile/ HTTP/1.1" 200 22664
+WARNING 2025-06-05 13:14:38,192 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-05 13:17:39,480 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-05 13:17:57,037 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 13:18:07,588 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-05 13:18:15,861 autoreload Watching for file changes with StatReloader
+INFO 2025-06-05 13:20:41,716 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
