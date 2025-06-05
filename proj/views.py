@@ -940,7 +940,7 @@ def update_product(request, pk):
                 seller_info.verification_status = 'pending'
                 seller_info.save()
                 
-                messages.success(request, "Your listing has been updated successfully.")
+                # messages.success(request, "Your listing has been updated successfully.")
                 # Construct the URL with query parameters and fragment identifier
                 my_deals_url = reverse('main:my_deals')
                 redirect_url = f'{my_deals_url}?updated=true#selling'
