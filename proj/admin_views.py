@@ -89,6 +89,44 @@ class ProductListView(AdminRequiredMixin, ListView):
             queryset = queryset.filter(status=status_filter)
             
         return queryset
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Custom pagination range with ellipsis
+        paginator = context['paginator']
+        page_obj = context['page_obj']
+        
+        # Define the number of page links to show around the current page
+        num_pages_to_show = 5
+        
+        # Calculate start and end page numbers for the displayed range
+        start_page = max(1, page_obj.number - num_pages_to_show // 2)
+        end_page = min(paginator.num_pages, page_obj.number + num_pages_to_show // 2)
+        
+        # Adjust range if it's too small at the beginning or end
+        if end_page - start_page + 1 < num_pages_to_show:
+            if start_page == 1:
+                end_page = min(paginator.num_pages, num_pages_to_show)
+            elif end_page == paginator.num_pages:
+                start_page = max(1, paginator.num_pages - num_pages_to_show + 1)
+                
+        page_range_with_ellipsis = list(range(start_page, end_page + 1))
+        
+        # Add ellipsis if needed
+        if start_page > 1:
+            if start_page > 2:
+                page_range_with_ellipsis.insert(0, '...')
+            page_range_with_ellipsis.insert(0, 1)
+            
+        if end_page < paginator.num_pages:
+            if end_page < paginator.num_pages - 1:
+                page_range_with_ellipsis.append('...')
+            page_range_with_ellipsis.append(paginator.num_pages)
+            
+        context['page_range_with_ellipsis'] = page_range_with_ellipsis
+        
+        return context
 
 class ProductCreateView(AdminRequiredMixin, CreateView):
     model = Product
