@@ -38726,3 +38726,430 @@ INFO 2025-06-09 18:31:16,698 basehttp "GET /brand-title/Raider%20125 HTTP/1.1" 2
 WARNING 2025-06-09 18:31:16,995 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
 INFO 2025-06-09 18:31:21,092 basehttp "GET / HTTP/1.1" 200 24815
 WARNING 2025-06-09 18:31:21,376 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:42:19,164 autoreload Watching for file changes with StatReloader
+INFO 2025-06-09 18:42:20,650 basehttp - Broken pipe from ('127.0.0.1', 52272)
+INFO 2025-06-09 18:42:20,763 basehttp "GET /buy/ HTTP/1.1" 200 30679
+WARNING 2025-06-09 18:42:21,577 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:42:22,867 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 18:42:36,948 basehttp "GET /contact/ HTTP/1.1" 200 21610
+WARNING 2025-06-09 18:42:37,236 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:43:54,434 basehttp "GET /contact/ HTTP/1.1" 200 21773
+WARNING 2025-06-09 18:43:54,899 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:45:36,700 basehttp "GET /contact/ HTTP/1.1" 200 21777
+WARNING 2025-06-09 18:45:37,111 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:48:26,727 basehttp "GET /contact/ HTTP/1.1" 200 21610
+WARNING 2025-06-09 18:48:26,984 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:49:20,354 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 18:49:22,618 basehttp "GET /admin/products/add/ HTTP/1.1" 200 28979
+INFO 2025-06-09 18:53:01,125 basehttp "GET /admin/products/add/ HTTP/1.1" 200 28979
+INFO 2025-06-09 18:53:03,812 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 18:53:05,759 basehttp "GET /admin/products/add/ HTTP/1.1" 200 28979
+INFO 2025-06-09 18:55:10,972 basehttp "GET /buy/ HTTP/1.1" 200 30679
+WARNING 2025-06-09 18:55:11,493 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:55:14,023 basehttp "GET /brand/HONDA HTTP/1.1" 200 21200
+WARNING 2025-06-09 18:55:14,382 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:55:17,668 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 18:55:17,963 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 18:55:20,990 basehttp "GET /brand/TVS HTTP/1.1" 200 21148
+WARNING 2025-06-09 18:55:22,418 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:02:06,797 basehttp "GET /brand/TVS HTTP/1.1" 200 21148
+WARNING 2025-06-09 19:02:07,026 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:02:11,074 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:02:11,367 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:02:11,808 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:02:35,732 basehttp "GET /admin/products/add/ HTTP/1.1" 200 29063
+INFO 2025-06-09 19:02:37,086 basehttp "GET /admin/logout/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:02:37,390 basehttp "GET /admin/login/ HTTP/1.1" 200 7119
+INFO 2025-06-09 19:03:00,565 basehttp "GET /admin/login/ HTTP/1.1" 200 7193
+ERROR 2025-06-09 19:04:10,261 log Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\python\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\python\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\python\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\templatetags\static.py", line 171, in do_static
+    return StaticNode.handle_token(parser, token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\templatetags\static.py", line 141, in handle_token
+    raise template.TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'static' takes at least one argument (path to file)
+ERROR 2025-06-09 19:04:10,308 basehttp "GET /admin/login/ HTTP/1.1" 500 222738
+INFO 2025-06-09 19:04:50,001 basehttp "GET /admin/login/ HTTP/1.1" 200 7193
+INFO 2025-06-09 19:05:03,737 basehttp "POST /admin/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:05:03,937 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:05:05,478 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:05:05,619 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:05:06,311 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:05:06,562 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:05:06,618 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:05:07,120 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:05:07,345 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:05:07,763 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:05:22,794 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:05:23,251 basehttp "GET / HTTP/1.1" 200 24960
+WARNING 2025-06-09 19:05:23,605 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:05:28,192 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:05:28,482 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:05:29,173 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:05:32,374 basehttp "GET /my-deals/ HTTP/1.1" 200 35487
+WARNING 2025-06-09 19:05:32,727 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:05:38,755 basehttp "GET / HTTP/1.1" 200 24960
+WARNING 2025-06-09 19:05:40,426 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:05:43,047 basehttp "GET /profile/ HTTP/1.1" 200 22747
+WARNING 2025-06-09 19:05:44,000 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:05:53,483 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:05:53,672 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:05:54,187 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:08,605 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:06:08,752 basehttp "GET / HTTP/1.1" 200 24817
+INFO 2025-06-09 19:06:09,194 basehttp "GET /admin/products/ HTTP/1.1" 200 36280
+INFO 2025-06-09 19:06:09,515 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-09 19:06:09,921 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:06:10,160 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:06:10,568 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+WARNING 2025-06-09 19:06:10,907 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:20,484 basehttp "GET /my-deals/ HTTP/1.1" 200 27356
+WARNING 2025-06-09 19:06:20,763 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:24,708 basehttp "GET /profile/ HTTP/1.1" 200 22665
+WARNING 2025-06-09 19:06:24,976 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:25,973 basehttp "GET / HTTP/1.1" 200 24817
+WARNING 2025-06-09 19:06:26,171 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:27,870 basehttp "GET /buy/ HTTP/1.1" 200 30681
+WARNING 2025-06-09 19:06:28,375 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:06:29,929 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:06:37,523 basehttp "GET /admin/customers/25/detail/ HTTP/1.1" 200 19644
+INFO 2025-06-09 19:06:39,866 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:06:42,479 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:06:44,273 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:06:52,967 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:06:54,804 basehttp "GET /admin/customers/22/detail/ HTTP/1.1" 200 19645
+INFO 2025-06-09 19:07:02,799 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:07:09,257 basehttp "GET /passwordchange/ HTTP/1.1" 200 21691
+WARNING 2025-06-09 19:07:09,637 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:07:12,411 basehttp "POST /logout/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:07:12,506 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:07:12,722 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:07:14,638 basehttp "GET /password-reset/ HTTP/1.1" 200 12907
+WARNING 2025-06-09 19:07:14,809 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:07:22,180 basehttp "POST /password-reset/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:07:22,276 basehttp "GET /password-reset/done/ HTTP/1.1" 200 12047
+WARNING 2025-06-09 19:07:22,398 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:08:18,874 basehttp "GET /password-reset-confirm/MzM/cr5946-aac8211dfc7651e34dc16968a5024283/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:08:19,074 basehttp "GET /password-reset-confirm/MzM/set-password/ HTTP/1.1" 200 14429
+WARNING 2025-06-09 19:08:19,723 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:08:54,018 basehttp "POST /password-reset-confirm/MzM/set-password/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:08:54,179 basehttp "GET /password-reset-complete/ HTTP/1.1" 200 11989
+WARNING 2025-06-09 19:08:54,415 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:09:01,730 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:09:02,125 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:09:14,998 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:09:15,114 basehttp "GET / HTTP/1.1" 200 24817
+WARNING 2025-06-09 19:09:15,501 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:09:15,705 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:09:15,935 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:09:16,125 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:09:16,577 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:09:16,757 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:09:17,207 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-09 19:09:17,352 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:09:17,631 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-09 19:09:21,455 basehttp "GET /admin/ HTTP/1.1" 200 41180
+INFO 2025-06-09 19:09:21,748 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:09:21,883 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:09:22,136 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:09:22,425 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:09:22,616 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:09:22,865 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:09:23,757 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:09:25,313 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 163480
+INFO 2025-06-09 19:09:25,835 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:09:26,104 basehttp "GET /media/bluebook_images/BBpg_9_LGln3tv.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:09:26,243 basehttp "GET /media/bluebook_images/BBpg_2_YPATv6n.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:09:26,432 basehttp "GET /media/bluebook_images/BBpg_2_016NvXm.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:09:26,505 basehttp "GET /media/bluebook_images/BBpg_9_2G98qSL.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:09:26,683 basehttp "GET /media/bluebook_images/BBpg_9_n5KAJjS.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:09:26,821 basehttp "GET /media/bluebook_images/9_hsctnus.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:09:27,172 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:09:27,210 basehttp "GET /media/bluebook_images/BBpg_2_8MiJCoE.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:09:27,460 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-09 19:09:27,472 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:09:27,766 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:09:27,853 basehttp "GET /media/bluebook_images/pg2_ZjS16lT.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:09:28,016 basehttp "GET /media/bluebook_images/pg2_WtIu9Hg.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:09:28,195 basehttp "GET /media/bluebook_images/9_1IU5lNO.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:09:28,388 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-09 19:09:28,564 basehttp "GET /media/bluebook_images/9_tWYaiCn.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:09:28,685 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:09:28,915 basehttp "GET /media/bluebook_images/BBpg_9_50LENxk.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:09:30,563 basehttp "GET /admin/wishlists/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:09:30,697 basehttp "GET /admin/login/?next=/admin/wishlists/ HTTP/1.1" 200 7226
+INFO 2025-06-09 19:09:49,829 basehttp "POST /admin/login/?next=/admin/wishlists/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:09:49,963 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:09:51,001 basehttp "GET / HTTP/1.1" 200 21458
+WARNING 2025-06-09 19:09:51,365 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:09:54,730 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:09:59,478 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 19:09:59,563 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:09:59,563 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:10:00,884 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:10:02,257 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:10:03,167 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:10:09,495 basehttp "GET /admin/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:10:09,918 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:10:10,115 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:10:10,125 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:10:13,474 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:10:13,823 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:16:45,018 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:16:45,226 basehttp "GET / HTTP/1.1" 200 24817
+WARNING 2025-06-09 19:16:46,358 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:16:48,013 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:16:48,520 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:16:48,985 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:16:49,424 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:16:49,792 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:16:50,111 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:16:50,333 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:16:50,535 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:16:51,787 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 163480
+INFO 2025-06-09 19:16:52,692 basehttp "GET /media/bluebook_images/BBpg_9_2G98qSL.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:16:52,923 basehttp "GET /media/bluebook_images/BBpg_2_8MiJCoE.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:16:53,195 basehttp "GET /media/bluebook_images/BBpg_9_LGln3tv.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:16:53,335 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:16:53,728 basehttp "GET /media/bluebook_images/BBpg_9_n5KAJjS.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:16:53,895 basehttp "GET /media/bluebook_images/BBpg_9_50LENxk.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:16:54,084 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:16:54,492 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:16:54,722 basehttp "GET /media/bluebook_images/9_hsctnus.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:16:54,728 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:16:55,133 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-09 19:16:55,507 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:16:55,981 basehttp - Broken pipe from ('127.0.0.1', 40974)
+INFO 2025-06-09 19:16:56,063 basehttp - Broken pipe from ('127.0.0.1', 40978)
+INFO 2025-06-09 19:16:56,347 basehttp - Broken pipe from ('127.0.0.1', 40982)
+INFO 2025-06-09 19:16:56,518 basehttp "GET /admin/wishlists/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:16:56,782 basehttp - Broken pipe from ('127.0.0.1', 40980)
+INFO 2025-06-09 19:16:57,004 basehttp - Broken pipe from ('127.0.0.1', 40981)
+INFO 2025-06-09 19:16:57,146 basehttp "GET /admin/login/?next=/admin/wishlists/ HTTP/1.1" 200 7226
+INFO 2025-06-09 19:16:57,518 basehttp - Broken pipe from ('127.0.0.1', 40979)
+INFO 2025-06-09 19:17:10,613 basehttp "POST /admin/login/?next=/admin/wishlists/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:17:10,747 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:17:13,120 basehttp "GET / HTTP/1.1" 200 21458
+WARNING 2025-06-09 19:17:13,299 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:17:17,226 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:17:21,050 basehttp "GET /accounts/login/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:17:21,197 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:17:35,811 basehttp "POST /accounts/login/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:17:35,938 basehttp "GET / HTTP/1.1" 200 24817
+WARNING 2025-06-09 19:17:36,092 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:17:38,234 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 19:17:38,525 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-09 19:17:38,632 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-09 19:17:38,859 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:17:39,158 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:17:39,390 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:17:40,531 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:17:43,095 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:17:44,331 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 163480
+INFO 2025-06-09 19:17:44,613 basehttp "GET /media/bluebook_images/BBpg_2_8MiJCoE.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:17:45,010 basehttp "GET /media/bluebook_images/BBpg_2_YPATv6n.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:17:45,036 basehttp "GET /media/bluebook_images/BBpg_9_50LENxk.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:17:45,224 basehttp "GET /media/bluebook_images/BBpg_2_016NvXm.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:17:45,366 basehttp "GET /media/bluebook_images/BBpg_9_LGln3tv.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:17:45,480 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:17:45,610 basehttp "GET /media/bluebook_images/BBpg_9_n5KAJjS.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:17:45,742 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:17:45,895 basehttp "GET /media/bluebook_images/9_hsctnus.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:17:46,126 basehttp "GET /media/bluebook_images/pg2_ZjS16lT.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:17:46,203 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:17:46,406 basehttp "GET /media/bluebook_images/9_tWYaiCn.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:17:46,533 basehttp "GET /media/bluebook_images/BBpg_9_2G98qSL.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:17:46,784 basehttp "GET /media/bluebook_images/pg2_WtIu9Hg.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:17:46,784 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:17:47,049 basehttp "GET /media/bluebook_images/9_1IU5lNO.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:17:47,205 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:17:48,500 basehttp "GET /admin/seller-listings/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:17:48,787 basehttp "GET /admin/login/?next=/admin/seller-listings/ HTTP/1.1" 200 7238
+INFO 2025-06-09 19:17:54,068 basehttp "GET / HTTP/1.1" 200 24817
+WARNING 2025-06-09 19:17:54,297 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:18:12,213 basehttp "POST /admin/login/?next=/admin/seller-listings/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:18:12,449 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 163480
+INFO 2025-06-09 19:18:13,037 basehttp "GET /media/bluebook_images/BBpg_2_YPATv6n.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:18:13,490 basehttp "GET /media/bluebook_images/BBpg_9_2G98qSL.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:18:13,759 basehttp "GET /media/bluebook_images/BBpg_9_LGln3tv.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:18:14,106 basehttp "GET /media/bluebook_images/BBpg_2_016NvXm.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:18:14,446 basehttp "GET /media/bluebook_images/BBpg_9_n5KAJjS.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:18:14,730 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:18:15,027 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:18:15,187 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:18:15,358 basehttp "GET /media/bluebook_images/9_hsctnus.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:18:15,493 basehttp "GET /media/bluebook_images/pg2_ZjS16lT.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:18:15,611 basehttp "GET /media/bluebook_images/9_tWYaiCn.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:18:15,773 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:18:15,923 basehttp "GET /media/bluebook_images/9_1IU5lNO.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:18:16,121 basehttp "GET /media/bluebook_images/pg2_WtIu9Hg.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:18:16,282 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:18:16,542 basehttp "GET /media/bluebook_images/BBpg_2_8MiJCoE.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:18:16,745 basehttp "GET /media/bluebook_images/BBpg_9_50LENxk.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:18:19,835 basehttp "GET /profile/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:18:19,963 basehttp "GET /accounts/login/?next=/profile/ HTTP/1.1" 200 19380
+WARNING 2025-06-09 19:18:20,263 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:18:37,715 basehttp "POST /accounts/login/?next=/profile/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:18:37,865 basehttp "GET /profile/ HTTP/1.1" 200 22664
+WARNING 2025-06-09 19:18:38,654 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:18:39,817 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:18:40,002 basehttp "GET /admin/login/?next=/admin/bike-purchases/ HTTP/1.1" 200 7236
+INFO 2025-06-09 19:18:44,739 basehttp "GET /admin/login/?next=/admin/bike-purchases/ HTTP/1.1" 200 7236
+INFO 2025-06-09 19:19:01,575 basehttp "GET / HTTP/1.1" 200 24815
+INFO 2025-06-09 19:19:02,741 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:19:03,070 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:19:03,328 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:19:03,612 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-09 19:19:03,850 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:19:04,040 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:19:04,266 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:19:05,371 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+WARNING 2025-06-09 19:19:08,114 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+WARNING 2025-06-09 19:19:09,632 log Not Found: /favicon.ico
+WARNING 2025-06-09 19:19:09,670 basehttp "GET /favicon.ico HTTP/1.1" 404 13978
+INFO 2025-06-09 19:19:13,980 basehttp "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:19:14,141 basehttp "GET /admin/login/?next=/admin/ HTTP/1.1" 200 7206
+INFO 2025-06-09 19:19:27,015 basehttp "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-06-09 19:19:27,171 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:19:27,703 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:19:28,285 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:19:28,635 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:19:28,775 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:19:28,952 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:19:29,087 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:19:29,958 basehttp "GET / HTTP/1.1" 200 24815
+INFO 2025-06-09 19:19:30,490 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:19:31,037 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:19:31,207 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-09 19:19:31,416 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+WARNING 2025-06-09 19:19:31,508 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:19:33,894 basehttp "GET /buy/ HTTP/1.1" 200 30679
+WARNING 2025-06-09 19:19:34,216 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:19:35,936 basehttp "GET /sell/ HTTP/1.1" 200 25674
+WARNING 2025-06-09 19:19:36,295 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:19:39,386 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:19:41,112 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 163480
+INFO 2025-06-09 19:19:41,556 basehttp "GET /media/bluebook_images/BBpg_9_2G98qSL.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:19:41,566 basehttp "GET /media/bluebook_images/BBpg_2_8MiJCoE.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:19:41,964 basehttp "GET /media/bluebook_images/BBpg_2_PYWV9Re.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:19:42,254 basehttp "GET /media/bluebook_images/BBpg_9_n5KAJjS.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:19:42,336 basehttp "GET /media/bluebook_images/pg2_trB5luo.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:19:42,569 basehttp "GET /media/bluebook_images/BBpg_9_50LENxk.jpg HTTP/1.1" 200 656792
+INFO 2025-06-09 19:19:42,687 basehttp "GET /media/bluebook_images/BBpg_2_YPATv6n.jpg HTTP/1.1" 200 538483
+INFO 2025-06-09 19:19:42,886 basehttp "GET /admin/sellers/ HTTP/1.1" 200 50943
+INFO 2025-06-09 19:19:42,896 basehttp "GET /media/bluebook_images/pg2_6DLkqBZ.jpg HTTP/1.1" 200 618367
+INFO 2025-06-09 19:19:43,395 basehttp "GET /media/bluebook_images/9_rGPiKAh.jpg HTTP/1.1" 200 663421
+INFO 2025-06-09 19:19:43,507 basehttp - Broken pipe from ('127.0.0.1', 41074)
+INFO 2025-06-09 19:19:43,581 basehttp - Broken pipe from ('127.0.0.1', 41081)
+INFO 2025-06-09 19:19:43,731 basehttp - Broken pipe from ('127.0.0.1', 41080)
+INFO 2025-06-09 19:19:43,916 basehttp - Broken pipe from ('127.0.0.1', 41073)
+INFO 2025-06-09 19:19:44,104 basehttp - Broken pipe from ('127.0.0.1', 41079)
+INFO 2025-06-09 19:19:44,279 basehttp - Broken pipe from ('127.0.0.1', 41071)
+INFO 2025-06-09 19:19:44,378 basehttp "GET /admin/wishlists/ HTTP/1.1" 200 16523
+INFO 2025-06-09 19:19:45,339 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:19:46,334 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 19:19:46,793 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-09 19:19:47,018 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:19:47,299 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:19:47,621 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:19:50,426 basehttp "GET /profile/ HTTP/1.1" 200 22664
+WARNING 2025-06-09 19:19:50,858 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:19:52,629 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 19:19:53,715 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:19:55,863 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 19:19:58,199 basehttp "GET /admin/products/?page=2 HTTP/1.1" 200 18979
+INFO 2025-06-09 19:19:58,439 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-09 19:20:00,284 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:20:03,547 basehttp "GET /admin/customers/20/detail/ HTTP/1.1" 200 19634
+INFO 2025-06-09 19:20:05,771 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:20:13,576 basehttp "GET /payment/sales-report/BIKE-c64af2e4-89a8-4e25-988e-7a3a4a1f882a/ HTTP/1.1" 200 3390
+INFO 2025-06-09 19:20:13,694 basehttp "GET /payment/sales-report/BIKE-c64af2e4-89a8-4e25-988e-7a3a4a1f882a/ HTTP/1.1" 200 3390
+INFO 2025-06-09 19:20:35,572 basehttp "GET /payment/sales-report/BIKE-7e289c86-0233-4d7c-917c-dde2ed08d07f/ HTTP/1.1" 200 3403
+INFO 2025-06-09 19:22:17,062 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 19:22:17,522 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:22:22,397 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:24:32,435 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 19:24:33,568 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:24:38,329 basehttp "GET /brand/HONDA HTTP/1.1" 200 21200
+WARNING 2025-06-09 19:24:38,696 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:24:40,285 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 19:24:41,932 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:26:41,876 basehttp "GET / HTTP/1.1" 200 24815
+WARNING 2025-06-09 19:26:47,152 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-09 19:26:49,477 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 58277
+INFO 2025-06-09 19:26:52,681 basehttp "GET /admin/ HTTP/1.1" 200 41096
+INFO 2025-06-09 19:26:53,542 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-09 19:26:54,244 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-09 19:26:54,539 basehttp "GET /media/product_images/bike-1726245204802_G2Rxws0.jpg HTTP/1.1" 200 324154
+INFO 2025-06-09 19:26:55,035 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-09 19:26:55,428 basehttp "GET /admin/products/ HTTP/1.1" 200 36196
+INFO 2025-06-09 19:26:57,221 basehttp "GET /media/product_images/bike-1721438677936.jpeg HTTP/1.1" 200 385637
+INFO 2025-06-09 19:26:57,583 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-09 19:26:58,033 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-09 19:26:58,631 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-09 19:26:59,487 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-09 19:26:59,707 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-09 19:27:00,641 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
+INFO 2025-06-09 19:27:04,737 basehttp "GET /admin/customers/22/delete/ HTTP/1.1" 200 14904
+INFO 2025-06-09 19:27:12,883 basehttp "GET /admin/customers/ HTTP/1.1" 200 17305
