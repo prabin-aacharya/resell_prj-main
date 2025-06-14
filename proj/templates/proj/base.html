@@ -54,6 +54,16 @@
         font-weight: 500;
       }
 
+      /* Styles for truncated long usernames/full names in the navbar */
+      .navbar-nav .nav-item .nav-link .text-capitalize {
+        max-width: 120px; /* Adjust as needed */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block; /* Required for max-width to work with span */
+        vertical-align: middle;
+      }
+
       /* Update custom styles that used green */
       .dropdown-item:hover {
         background-color: rgba(var(--bs-primary-rgb), 0.1);

@@ -425,7 +425,15 @@ class ProductForm(forms.ModelForm):
 class AdminCustomerCreateForm(forms.ModelForm):
     """Form for admin to create a customer with associated user account"""
     # User account fields
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}),
+        validators=[
+            RegexValidator(
+                regex=r'^[\w.@+-]+$',
+                message='Username must contain only letters, numbers, and @/./+/-/_ characters.'
+            )
+        ]
+    )
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(
         label='Password',
@@ -458,22 +466,24 @@ class AdminCustomerCreateForm(forms.ModelForm):
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
+        if not username:
+            raise forms.ValidationError('Username is required.')
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError('This username is already taken.')
         return username
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if email:
-            email = email.lower()  # Convert to lowercase
-            # Check if email already exists
-            if User.objects.filter(email=email).exists():
-                raise forms.ValidationError('This email is already registered.')
+        if not email:
+            raise forms.ValidationError('Email is required.')
+        email = email.lower()  # Convert to lowercase
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email is already registered.')
         return email
 
     def clean_mobile(self):
-        mobile = self.cleaned_data['mobile']
-        if len(mobile) != 10:
+        mobile = self.cleaned_data.get('mobile', '')
+        if mobile and len(mobile) != 10:
             raise forms.ValidationError("Mobile number must be 10 digits")
         return mobile
     
@@ -488,18 +498,36 @@ class AdminCustomerCreateForm(forms.ModelForm):
         return cleaned_data
     
     def save(self, commit=True):
-        # Create the User instance
-        user = User.objects.create_user(
-            username=self.cleaned_data['username'],
-            email=self.cleaned_data['email'],
-            password=self.cleaned_data['password1']
-        )
-        
-        # Create the Customer instance
-        customer = super().save(commit=False)
-        customer.user = user
-        
-        if commit:
-            customer.save()
+        try:
+            # Create the User instance first
+            user = User.objects.create_user(
+                username=self.cleaned_data['username'],
+                email=self.cleaned_data['email'],
+                password=self.cleaned_data['password1']
+            )
             
-        return customer
+            # Create the Customer instance
+            customer = super().save(commit=False)
+            customer.user = user
+            
+            if commit:
+                customer.save()
+                
+            return customer
+        except Exception as e:
+            # If anything fails, clean up the user if it was created
+            if 'user' in locals() and hasattr(user, 'pk') and user.pk:
+                user.delete()
+            
+            # Convert database errors (like IntegrityError) into form validation errors
+            # This ensures they are displayed cleanly on the form
+            error_message = str(e)
+            if "UNIQUE constraint failed: auth_user.username" in error_message:
+                self.add_error('username', "This username is already taken. Please choose a different username.")
+            elif "UNIQUE constraint failed: auth_user.email" in error_message:
+                self.add_error('email', "This email is already registered. Please use a different one.")
+            else:
+                self.add_error(None, f"An unexpected error occurred during customer creation: {error_message}")
+            
+            # Re-raise as a ValidationError so form_invalid is called
+            raise forms.ValidationError("Error during save. Please check the form for details.")

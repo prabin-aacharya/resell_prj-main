@@ -11,6 +11,7 @@ from datetime import timedelta
 from .models import Product, Customer, Wishlist, SellerInfo, BikePaymentTransaction
 from django.contrib.auth.models import User
 from .forms import ProductForm, SellerInfoForm, AdminCustomerCreateForm
+from django import forms
 
 def is_admin(user):
     return user.is_authenticated and (user.is_staff or user.is_superuser)
@@ -163,15 +164,17 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
     success_url = reverse_lazy('admin:admin_product_list')
     
     def form_valid(self, form):
-        response = super().form_valid(form)
-        product = self.object
+        response = super().form_valid(form) # Saves the product and updates self.object
+        product = self.object # Get the saved product instance
+        
+        # Update associated SellerInfo instances
+        seller_infos_updated_count = 0
         seller_infos = SellerInfo.objects.filter(product=product)
         if seller_infos.exists():
             for seller_info in seller_infos:
                 # Update SellerInfo fields based on product
                 seller_info.bike_brand = product.brand
                 seller_info.bike_model = product.title
-                # Update number plate and previous owners
                 seller_info_number_plate = getattr(product, 'number_plate', None)
                 if seller_info_number_plate is not None:
                     seller_info.number_plate = seller_info_number_plate
@@ -189,13 +192,23 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
                 elif product.status == 'available':
                     seller_info.status = 'completed'  # Completed means listing process is done
                 seller_info.save()
-            messages.success(self.request, f"Product and {seller_infos.count()} associated seller listing(s) updated successfully!")
-        else:
-            messages.success(self.request, "Product updated successfully!")
-        # Ensure available products are approved
+                seller_infos_updated_count += 1
+
+        # Ensure available products are approved (this logic remains as is)
         if product.status == 'available' and product.verification_status != 'approved':
             product.verification_status = 'approved'
             product.save()
+
+        # Now, add the appropriate message based on the final product verification status
+        if product.verification_status == 'rejected':
+            messages.warning(self.request, "Product listing has been rejected. Please review and re-submit if necessary.")
+        elif product.verification_status == 'approved':
+            messages.success(self.request, f"Product '{product.title}' has been approved and updated successfully!")
+        else: # Covers 'pending' or other states where an update is still a 'success' in terms of saving data
+            messages.success(self.request, f"Product '{product.title}' updated successfully.")
+            if seller_infos_updated_count > 0:
+                messages.info(self.request, f"Also updated {seller_infos_updated_count} associated seller listing(s).")
+        
         return response
     
     def form_invalid(self, form):
@@ -299,11 +312,16 @@ class CustomerCreateView(AdminRequiredMixin, CreateView):
 
     def form_valid(self, form):
         try:
+            # The form.save() method (from AdminCustomerCreateForm) handles
+            # creating the User and Customer. It will raise a ValidationError
+            # if a unique constraint is violated and convert other database errors.
             customer = form.save()
             messages.success(self.request, f"Customer '{customer.name}' created successfully with user account.")
-            return super(CreateView, self).form_valid(form)
-        except Exception as e:
-            messages.error(self.request, f"Error creating customer: {str(e)}")
+            # After successful save and message, redirect directly
+            return redirect(self.success_url)
+        except forms.ValidationError:
+            # If form.save() raised a ValidationError, it means there was an issue.
+            # We re-render the form with the errors.
             return self.form_invalid(form)
     
     def get_context_data(self, **kwargs):
