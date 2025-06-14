@@ -28,7 +28,6 @@ import json
 # Create your views here.
 def home(request):
     from .models import Product
-    from django.core.paginator import Paginator
     
     # Get all verified products (both available and sold) ordered by status and latest first
     all_products = Product.objects.filter(
@@ -36,26 +35,17 @@ def home(request):
         status__in=['available', 'sold']
     ).order_by('status', '-created_at')
     
-    # Set up pagination
-    paginator = Paginator(all_products, 12)  # Show 12 products per page
-    page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
-    
-    # Get the current page's products
-    latest_products = list(page_obj.object_list)
-    
     # Get user's wishlist items if authenticated
     user_wishlist = []
     if request.user.is_authenticated:
         user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
     
     # Group products into sublists of 3 for the grid layout
-    latest_product_groups = [latest_products[i:i+3] for i in range(0, len(latest_products), 3)]
+    latest_product_groups = [all_products[i:i+3] for i in range(0, len(all_products), 3)]
     
     return render(request, "proj/home.html", {
-        'latest_products': latest_products,
+        'latest_products': all_products,
         'latest_product_groups': latest_product_groups,
-        'page_obj': page_obj,
         'user_wishlist': user_wishlist,
     })
 
@@ -598,14 +588,8 @@ def buy_bikes(request):
     elif sort == 'year_asc':
         bikes = bikes.order_by('made_year')
     
-    # Count total bikes that match the criteria (after all filters)
     total_count = bikes.count()
     
-    # Pass the full queryset directly to the template, no pagination
-    # from django.core.paginator import Paginator
-    # paginator = Paginator(bikes, 9)  # Show 9 products per page (3x3 grid)
-    # page_number = request.GET.get('page', 1)
-    # page_obj = paginator.get_page(page_number)
 
     return render(request, 'proj/buy_bikes.html', {
         'bikes': bikes, # Pass the full queryset directly
