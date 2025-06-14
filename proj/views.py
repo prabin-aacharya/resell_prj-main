@@ -598,17 +598,17 @@ def buy_bikes(request):
     elif sort == 'year_asc':
         bikes = bikes.order_by('made_year')
     
-    # Count total bikes that match the criteria
+    # Count total bikes that match the criteria (after all filters)
     total_count = bikes.count()
     
-    # Pagination
-    from django.core.paginator import Paginator
-    paginator = Paginator(bikes, 9)  # Show 9 products per page (3x3 grid)
-    page_number = request.GET.get('page', 1)
-    page_obj = paginator.get_page(page_number)
+    # Pass the full queryset directly to the template, no pagination
+    # from django.core.paginator import Paginator
+    # paginator = Paginator(bikes, 9)  # Show 9 products per page (3x3 grid)
+    # page_number = request.GET.get('page', 1)
+    # page_obj = paginator.get_page(page_number)
 
     return render(request, 'proj/buy_bikes.html', {
-        'bikes': page_obj,
+        'bikes': bikes, # Pass the full queryset directly
         'query': query,
         'sort': sort,
         'user_wishlist': user_wishlist,
@@ -623,7 +623,7 @@ def buy_bikes(request):
         'all_years': all_years,
         'price_range': price_range,
         'total_count': total_count,
-        'page_obj': page_obj,
+        # 'page_obj': page_obj, # No longer needed
     })
 
 def check_uploaded_files(request):

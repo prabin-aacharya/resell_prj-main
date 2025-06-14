@@ -40596,3 +40596,433 @@ INFO 2025-06-14 18:18:33,374 basehttp "GET /media/product_images/bike-1722260301
 INFO 2025-06-14 18:18:33,507 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
 INFO 2025-06-14 18:18:38,415 basehttp "GET / HTTP/1.1" 200 27438
 WARNING 2025-06-14 18:18:38,523 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:24:51,438 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:24:55,359 basehttp "GET /buy/ HTTP/1.1" 200 33847
+INFO 2025-06-14 18:24:55,652 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+WARNING 2025-06-14 18:24:55,849 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:24:55,886 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:24:56,543 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-14 18:24:56,726 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-14 18:24:56,902 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-14 18:24:57,069 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-14 18:25:04,789 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:25:04,950 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:25:05,121 basehttp "GET /media/product_images/bike-2_SoKwAHI.jpg HTTP/1.1" 200 264258
+INFO 2025-06-14 18:25:05,339 basehttp "GET /media/product/bike-1701589392393.jpeg HTTP/1.1" 200 173228
+INFO 2025-06-14 18:25:07,979 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:25:09,061 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:25:12,202 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:25:12,445 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:25:15,614 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:25:15,747 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:25:32,018 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:25:32,167 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:26:06,022 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:26:06,121 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:26:17,273 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:26:17,411 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:26:21,788 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:26:21,918 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:26:53,066 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:26:53,222 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:26:53,283 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:26:53,400 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:30:08,690 basehttp "GET /buy/ HTTP/1.1" 200 33913
+WARNING 2025-06-14 18:30:08,840 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:30:08,966 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:30:09,079 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:30:14,664 basehttp "GET /buy/?q=yam&sort=relevance HTTP/1.1" 200 20101
+WARNING 2025-06-14 18:30:14,774 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:30:39,550 basehttp "GET /buy/?q=h&sort=relevance HTTP/1.1" 200 33706
+WARNING 2025-06-14 18:30:39,663 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:30:49,608 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:30:49,740 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:30:51,733 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:30:51,885 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:30:55,602 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:30:56,777 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:33:33,693 basehttp "GET /buy/?q=yam&sort=relevance HTTP/1.1" 200 20101
+WARNING 2025-06-14 18:33:33,813 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:33:39,569 basehttp "GET /buy/?q=&sort=relevance HTTP/1.1" 200 33913
+WARNING 2025-06-14 18:33:39,715 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:33:39,805 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:33:39,918 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:34:24,213 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:34:32,511 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:34:41,456 basehttp "GET /buy/?q=by&sort=relevance HTTP/1.1" 200 26405
+WARNING 2025-06-14 18:34:41,569 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:34:44,475 basehttp "GET /buy/?q=by&sort=relevance HTTP/1.1" 200 26405
+WARNING 2025-06-14 18:34:44,627 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:35:16,405 basehttp "GET /buy/?q=by&sort=relevance HTTP/1.1" 200 26339
+WARNING 2025-06-14 18:35:16,607 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:35:20,316 basehttp "GET /buy/?q=by&sort=relevance HTTP/1.1" 200 26339
+WARNING 2025-06-14 18:35:20,440 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:35:21,525 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:35:21,634 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:35:22,952 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:35:23,352 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:35:39,085 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:35:43,691 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:37:10,004 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:37:15,484 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:37:38,534 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:37:42,637 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:38:19,868 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:38:24,374 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:38:48,762 basehttp "GET / HTTP/1.1" 200 27438
+INFO 2025-06-14 18:38:49,045 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+WARNING 2025-06-14 18:38:49,089 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:38:49,402 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:38:49,840 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:38:52,037 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:38:56,982 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:38:57,947 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:38:58,530 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:39:09,525 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:39:10,930 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:39:11,592 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:39:17,537 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:39:36,252 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:39:42,423 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:40:58,853 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:41:04,222 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:41:14,913 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:41:15,357 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:41:16,888 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:41:18,867 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:41:56,729 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:41:56,961 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:41:56,990 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:41:58,421 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:41:58,618 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:18,509 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:44:18,652 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:18,712 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:44:20,812 basehttp "GET /buy/ HTTP/1.1" 200 33805
+WARNING 2025-06-14 18:44:21,001 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:31,757 basehttp "GET /buy/ HTTP/1.1" 200 33805
+INFO 2025-06-14 18:44:32,261 basehttp "GET /static/proj/css/owl.carousel.min.css HTTP/1.1" 200 3351
+INFO 2025-06-14 18:44:32,262 basehttp "GET /static/proj/css/style.css HTTP/1.1" 200 538
+INFO 2025-06-14 18:44:32,263 basehttp "GET /static/proj/css/all.min.css HTTP/1.1" 200 59344
+INFO 2025-06-14 18:44:32,585 basehttp "GET /static/proj/js/owl.carousel.min.js HTTP/1.1" 200 44342
+INFO 2025-06-14 18:44:32,652 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 200 222150
+INFO 2025-06-14 18:44:32,769 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 200 104564
+INFO 2025-06-14 18:44:32,794 basehttp "GET /static/proj/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 24948
+INFO 2025-06-14 18:44:32,856 basehttp "GET /static/proj/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 272637
+INFO 2025-06-14 18:44:32,919 basehttp "GET /static/proj/images/logo.png HTTP/1.1" 200 44268
+INFO 2025-06-14 18:44:32,988 basehttp "GET /static/proj/webfonts/fa-brands-400.woff2 HTTP/1.1" 200 108028
+INFO 2025-06-14 18:44:33,010 basehttp "GET /static/proj/js/all.min.js HTTP/1.1" 200 1194960
+WARNING 2025-06-14 18:44:33,054 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:33,055 basehttp "GET /static/proj/js/myscript.js HTTP/1.1" 200 2551
+INFO 2025-06-14 18:44:33,114 basehttp "GET /media/product_images/bike1_Fs4XaLp.jpg HTTP/1.1" 200 637215
+INFO 2025-06-14 18:44:33,175 basehttp "GET /static/proj/js/csrf_handler.js HTTP/1.1" 200 1873
+INFO 2025-06-14 18:44:33,454 basehttp "GET /static/proj/webfonts/fa-solid-900.ttf HTTP/1.1" 200 394628
+INFO 2025-06-14 18:44:33,462 basehttp "GET /media/product_images/bike-1711502290999.jpg HTTP/1.1" 200 243518
+INFO 2025-06-14 18:44:33,810 basehttp "GET /media/product/bike-1724730726564_ayvUNQG.webp HTTP/1.1" 200 85960
+INFO 2025-06-14 18:44:33,919 basehttp "GET /media/product/bike-1695977133850.jpg HTTP/1.1" 200 489902
+INFO 2025-06-14 18:44:34,155 basehttp "GET /media/product_images/bike-3_bZbGcWh.jpg HTTP/1.1" 200 266940
+INFO 2025-06-14 18:44:34,262 basehttp "GET /media/product_images/bike-1741775475433.jpeg HTTP/1.1" 200 307641
+INFO 2025-06-14 18:44:34,347 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 200 150825
+WARNING 2025-06-14 18:44:34,490 log Not Found: /favicon.ico
+WARNING 2025-06-14 18:44:34,491 basehttp "GET /favicon.ico HTTP/1.1" 404 13978
+INFO 2025-06-14 18:44:49,115 basehttp "GET /buy/?page=2& HTTP/1.1" 200 22297
+WARNING 2025-06-14 18:44:49,244 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:55,023 basehttp "GET /buy/?page=1&page=2 HTTP/1.1" 200 22330
+WARNING 2025-06-14 18:44:55,247 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:57,470 basehttp "GET /buy/?page=1&page=1&page=2 HTTP/1.1" 200 22363
+WARNING 2025-06-14 18:44:57,572 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:44:59,916 basehttp "GET /buy/?page=1&page=1&page=1&page=2 HTTP/1.1" 200 22396
+WARNING 2025-06-14 18:45:00,020 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:02,496 basehttp "GET /buy/?page=1&page=1&page=1&page=1&page=2 HTTP/1.1" 200 22429
+WARNING 2025-06-14 18:45:02,714 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:04,809 basehttp "GET /buy/?page=1&page=1&page=1&page=1&page=1&page=2 HTTP/1.1" 200 22462
+WARNING 2025-06-14 18:45:05,046 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:10,261 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:45:18,714 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:45:20,598 basehttp "GET /buy/?page=1&page=1&page=1&page=1&page=1&page=1&page=2 HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:45:20,731 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:23,490 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:45:23,650 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:27,249 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:45:27,657 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:29,357 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:45:29,478 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:32,004 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:45:32,103 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:34,235 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:45:34,365 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:45:38,133 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:45:38,329 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:07,865 basehttp "GET /buy/ HTTP/1.1" 200 33047
+WARNING 2025-06-14 18:47:07,972 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:14,033 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 200 25539
+WARNING 2025-06-14 18:47:14,152 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:18,025 basehttp "GET /buy/?q=yam&sort=relevance HTTP/1.1" 200 19235
+WARNING 2025-06-14 18:47:18,128 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:19,462 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:47:19,606 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:21,217 basehttp "GET /buy/ HTTP/1.1" 200 33047
+WARNING 2025-06-14 18:47:22,861 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:47:30,796 basehttp "GET /buy/?q=y&sort=relevance HTTP/1.1" 200 27150
+WARNING 2025-06-14 18:47:30,950 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:48:25,992 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:48:26,141 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:48:26,217 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:48:28,417 basehttp "GET /buy/ HTTP/1.1" 200 34085
+WARNING 2025-06-14 18:48:28,660 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:50:07,111 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:50:15,499 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:51:03,119 basehttp "GET / HTTP/1.1" 200 27438
+INFO 2025-06-14 18:51:03,480 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+WARNING 2025-06-14 18:51:04,918 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:07,207 basehttp "GET /admin/products/ HTTP/1.1" 200 36278
+INFO 2025-06-14 18:51:07,680 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:07,985 basehttp "GET /media/product_images/bike-1748194853308.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:08,170 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:08,362 basehttp "GET /media/product_images/bike-1701272733218_GTh9tzI.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:08,445 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:08,608 basehttp "GET /media/product_images/bike-1738915466758.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:51:11,949 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:51:13,154 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:13,998 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:51:14,402 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:19,762 basehttp "GET /buy/?q=yama&sort=relevance HTTP/1.1" 200 20155
+WARNING 2025-06-14 18:51:19,858 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:29,697 basehttp "GET /buy/?q=hero&sort=relevance HTTP/1.1" 200 20367
+WARNING 2025-06-14 18:51:29,805 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:36,049 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:51:36,183 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:37,963 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:51:38,999 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:52,481 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:51:52,605 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:51:56,620 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:51:57,062 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:00,421 basehttp "GET /buy/?q=yamaha&sort=relevance HTTP/1.1" 200 20159
+WARNING 2025-06-14 18:52:00,569 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:07,448 basehttp "GET /buy/?q=hero&sort=relevance HTTP/1.1" 200 20367
+WARNING 2025-06-14 18:52:07,567 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:22,613 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:52:29,144 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:52:30,148 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:52:30,557 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:32,367 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:52:32,836 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:38,448 basehttp "GET /buy/?q=yamaha&sort=relevance HTTP/1.1" 200 20041
+WARNING 2025-06-14 18:52:38,624 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:49,936 basehttp "GET /buy/?q=her&sort=relevance HTTP/1.1" 200 20247
+WARNING 2025-06-14 18:52:50,035 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:52:58,143 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:52:58,296 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:53:21,379 basehttp "GET /buy/?page=2&sort=relevance HTTP/1.1" 200 22321
+WARNING 2025-06-14 18:53:21,489 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:53:35,443 basehttp "GET /buy/?page=1&sort=relevance HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:53:35,680 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:21,734 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:57:21,889 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:21,976 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 18:57:22,102 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 18:57:23,271 basehttp "GET /buy/ HTTP/1.1" 200 33279
+WARNING 2025-06-14 18:57:24,138 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:25,328 basehttp "GET /buy/?q=h&sort=relevance HTTP/1.1" 200 33138
+WARNING 2025-06-14 18:57:25,473 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:28,517 basehttp "GET /buy/?q=he&sort=relevance HTTP/1.1" 200 24366
+WARNING 2025-06-14 18:57:28,668 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:31,035 basehttp - Broken pipe from ('127.0.0.1', 33300)
+INFO 2025-06-14 18:57:31,169 basehttp "GET /buy/?q=&sort=relevance HTTP/1.1" 200 33279
+WARNING 2025-06-14 18:57:31,356 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:34,627 basehttp "GET /buy/?q=y&sort=relevance HTTP/1.1" 200 27382
+WARNING 2025-06-14 18:57:34,789 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:57:37,893 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 200 25771
+WARNING 2025-06-14 18:57:38,098 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:58:20,552 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:58:26,762 autoreload Watching for file changes with StatReloader
+ERROR 2025-06-14 18:58:40,468 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 18:58:40,497 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 500 73202
+ERROR 2025-06-14 18:58:42,457 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 18:58:42,464 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 500 73202
+ERROR 2025-06-14 18:58:43,864 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 18:58:43,871 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 500 73202
+INFO 2025-06-14 18:58:52,985 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 18:58:57,354 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 18:58:58,293 basehttp "GET /buy/?q=ya&sort=relevance HTTP/1.1" 200 26339
+WARNING 2025-06-14 18:58:58,679 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:59:04,433 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 18:59:04,615 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:59:06,153 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 18:59:06,411 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 18:59:59,600 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:00:06,983 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:00:17,317 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 19:00:17,478 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+ERROR 2025-06-14 19:00:18,971 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 19:00:18,979 basehttp "GET /buy/ HTTP/1.1" 500 72683
+ERROR 2025-06-14 19:00:21,060 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 19:00:21,066 basehttp "GET /buy/ HTTP/1.1" 500 72820
+INFO 2025-06-14 19:00:23,252 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 19:00:23,356 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+ERROR 2025-06-14 19:00:24,832 log Internal Server Error: /buy/
+Traceback (most recent call last):
+  File "D:\python\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\python\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "H:\resell_prj-main\proj\views.py", line 596, in buy_bikes
+    paginator = Paginator(bikes, 9)
+                ^^^^^^^^^
+NameError: name 'Paginator' is not defined
+ERROR 2025-06-14 19:00:24,839 basehttp "GET /buy/ HTTP/1.1" 500 72683
+INFO 2025-06-14 19:00:31,064 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:00:35,136 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:01:31,802 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 19:01:32,139 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:01:33,399 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 19:01:33,736 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:01:40,572 basehttp "GET /buy/?q=yam&sort=relevance HTTP/1.1" 200 20035
+WARNING 2025-06-14 19:01:40,660 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:01:51,829 basehttp "GET /buy/?sort=price_asc&q=yam HTTP/1.1" 200 20035
+WARNING 2025-06-14 19:01:51,947 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:01:55,690 basehttp "GET /buy/?sort=price_desc&q=yam HTTP/1.1" 200 20036
+WARNING 2025-06-14 19:01:55,854 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:01:57,103 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 19:01:57,507 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:03:49,326 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:03:54,554 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:04:15,693 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 19:04:15,822 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:04:15,928 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:04:16,054 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:04:16,148 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:04:17,843 basehttp "GET /buy/ HTTP/1.1" 200 33847
+WARNING 2025-06-14 19:04:18,850 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:04:50,295 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:04:53,923 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:06:47,899 basehttp "GET /buy/ HTTP/1.1" 200 32117
+WARNING 2025-06-14 19:06:48,398 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:07:39,705 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:07:46,080 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:08:02,966 basehttp "GET / HTTP/1.1" 200 27438
+WARNING 2025-06-14 19:08:03,121 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:08:06,212 basehttp "GET /buy/ HTTP/1.1" 200 34958
+WARNING 2025-06-14 19:08:08,103 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:08:18,004 basehttp "GET /admin/products/ HTTP/1.1" 200 36278
+INFO 2025-06-14 19:08:18,330 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:18,702 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:18,861 basehttp "GET /media/product_images/bike-1701272733218_GTh9tzI.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:19,004 basehttp "GET /media/product_images/bike-1722260301257.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:19,164 basehttp "GET /media/product_images/bike-1748194853308.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:19,284 basehttp "GET /media/product_images/bike-1738915466758.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:20,707 basehttp "GET /admin/bike-purchases/ HTTP/1.1" 200 65220
+INFO 2025-06-14 19:08:21,580 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 183192
+INFO 2025-06-14 19:08:21,843 basehttp "GET /media/bluebook_images/BBpg_2_ozepSDj.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:21,966 basehttp "GET /media/bluebook_images/BBpg_9_6klX0A9.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:22,139 basehttp "GET /media/bluebook_images/BBpg_2_GkbsrNU.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:22,308 basehttp "GET /media/bluebook_images/BBpg_9_Cd1HAKu.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:22,616 basehttp "GET /media/bluebook_images/BBpg_2_QBAdZbw.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:22,793 basehttp "GET /media/bluebook_images/BBpg_9_CD1eip7.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:22,924 basehttp "GET /media/bluebook_images/BBpg_2_k442ko5.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:23,104 basehttp "GET /media/bluebook_images/BBpg_9_YjxUOTB.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:23,286 basehttp "GET /media/bluebook_images/BBpg_2_G4cBpEn.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:08:23,474 basehttp "GET /admin/seller-listings/?verification_status=pending HTTP/1.1" 200 110070
+INFO 2025-06-14 19:08:23,776 basehttp - Broken pipe from ('127.0.0.1', 34773)
+INFO 2025-06-14 19:08:24,008 basehttp - Broken pipe from ('127.0.0.1', 34776)
+INFO 2025-06-14 19:08:24,171 basehttp - Broken pipe from ('127.0.0.1', 34775)
+INFO 2025-06-14 19:08:24,406 basehttp "GET /media/bluebook_images/BBpg_9_9ziNHyu.jpg HTTP/1.1" 200 656792
+INFO 2025-06-14 19:08:24,843 basehttp "GET /media/bluebook_images/9_1IU5lNO.jpg HTTP/1.1" 200 663421
+INFO 2025-06-14 19:08:24,929 basehttp "GET /media/bluebook_images/pg2_WtIu9Hg.jpg HTTP/1.1" 200 618367
+INFO 2025-06-14 19:08:25,017 basehttp "GET /media/bluebook_images/BBpg_9_j9yy2Ts.jpg HTTP/1.1" 200 656792
+INFO 2025-06-14 19:08:25,040 basehttp "GET /media/bluebook_images/BBpg_2_NETmMjg.jpg HTTP/1.1" 200 538483
+INFO 2025-06-14 19:08:25,253 basehttp "GET /media/product_images/bike-1748119876257.jpg HTTP/1.1" 200 277320
+INFO 2025-06-14 19:08:31,602 basehttp "POST /admin/seller-listings/approve/36/ HTTP/1.1" 302 0
+INFO 2025-06-14 19:08:31,780 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 182742
+INFO 2025-06-14 19:08:34,359 basehttp "GET /buy/ HTTP/1.1" 200 36572
+WARNING 2025-06-14 19:08:34,518 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:09:27,027 basehttp "GET /buy/ HTTP/1.1" 200 37373
+WARNING 2025-06-14 19:09:27,158 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:09:49,297 autoreload H:\resell_prj-main\proj\views.py changed, reloading.
+INFO 2025-06-14 19:09:52,557 autoreload Watching for file changes with StatReloader
+INFO 2025-06-14 19:10:10,152 basehttp "GET /buy/ HTTP/1.1" 200 37373
+WARNING 2025-06-14 19:10:10,344 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:10:10,430 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:13:49,397 basehttp "GET /buy/ HTTP/1.1" 200 37373
+WARNING 2025-06-14 19:13:49,577 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:13:49,608 basehttp "GET /media/product_images/bike-1749467517797.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:14:11,230 basehttp "GET /admin/seller-listings/?verification_status=pending HTTP/1.1" 200 91301
+INFO 2025-06-14 19:14:24,284 basehttp "POST /admin/seller-listings/approve/37/ HTTP/1.1" 302 0
+INFO 2025-06-14 19:14:24,462 basehttp "GET /admin/seller-listings/ HTTP/1.1" 200 182233
+INFO 2025-06-14 19:14:24,748 basehttp "GET /media/product_images/2de30a2d-a469-4eaf-be13-0189b13b70fa_bWiuMcJpf.jpeg HTTP/1.1" 304 0
+INFO 2025-06-14 19:14:24,928 basehttp "GET /media/bluebook_images/BBpg_2_ozepSDj.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:14:25,077 basehttp "GET /media/bluebook_images/BBpg_9_6klX0A9.jpg HTTP/1.1" 304 0
+INFO 2025-06-14 19:14:27,045 basehttp "GET /buy/ HTTP/1.1" 200 39007
+WARNING 2025-06-14 19:14:27,229 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:14:38,631 basehttp "GET /buy/?sort=price_asc HTTP/1.1" 200 39007
+WARNING 2025-06-14 19:14:38,901 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:14:40,449 basehttp "GET /buy/?sort=price_desc HTTP/1.1" 200 39008
+WARNING 2025-06-14 19:14:40,585 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:14:43,777 basehttp "GET /buy/?sort=latest HTTP/1.1" 200 39004
+WARNING 2025-06-14 19:14:43,951 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:14:48,221 basehttp "GET /buy/?sort=relevance HTTP/1.1" 200 39007
+WARNING 2025-06-14 19:14:48,386 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:15:01,456 basehttp "GET /terms/ HTTP/1.1" 200 16430
+WARNING 2025-06-14 19:15:01,610 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:15:05,452 basehttp "GET /privacy/ HTTP/1.1" 200 17103
+WARNING 2025-06-14 19:15:05,572 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
+INFO 2025-06-14 19:15:34,222 basehttp "GET / HTTP/1.1" 200 28787
+WARNING 2025-06-14 19:15:34,376 basehttp "GET /static/proj/webfonts/fa-solid-900.woff HTTP/1.1" 404 2020
