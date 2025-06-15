@@ -112,24 +112,24 @@ class CustomerRegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email:
-            email = email.lower()  # Convert to lowercase
-            # Check if email already exists
+            email = email.lower()  
+            
             if User.objects.filter(email=email).exists():
                 raise forms.ValidationError('This email is already registered.')
         return email
     
     def clean_username(self):
         username = self.cleaned_data.get('username')
-        # Additional custom validation if needed
+        
         if username and len(username) < 4:
             raise forms.ValidationError('Username must be at least 4 characters long.')
         return username
     
     def clean_password1(self):
         password = self.cleaned_data.get('password1')
-        # Additional custom validation
+        
         if password:
-            # Check for common passwords
+            
             common_passwords = ['password', 'admin', '12345678', 'qwerty', 'letmein']
             if password.lower() in common_passwords:
                 raise forms.ValidationError('This password is too common. Please choose a stronger password.')
@@ -229,9 +229,9 @@ class CustomerProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # If instance is provided (editing mode) and it has a user
+        
         if self.instance and hasattr(self.instance, 'user') and self.instance.user:
-            # Set initial value for email from the associated user
+            
             self.fields['email'].initial = self.instance.user.email
 
     def clean_mobile(self):
@@ -243,7 +243,7 @@ class CustomerProfileForm(forms.ModelForm):
 from datetime import datetime
 
 BRAND_CHOICES = [
-    ('', 'Select Brand'),  # Add blank first option
+    ('', 'Select Brand'),  
     ('HONDA', 'Honda'),
     ('YAMAHA', 'Yamaha'),
     ('BAJAJ', 'Bajaj'),
@@ -252,7 +252,7 @@ BRAND_CHOICES = [
 ]
 
 CONDITION_CHOICES = [
-    ('', 'Select Condition'),  # Add blank first option
+    ('', 'Select Condition'),  
     ('LIKE_NEW', 'Like New'),
     ('EXCELLENT', 'Excellent'),
     ('GOOD', 'Good'),
@@ -265,7 +265,7 @@ CURRENT_YEAR = datetime.now().year
 class SellBikeForm(forms.Form):
     brand = forms.ChoiceField(
         choices=BRAND_CHOICES, 
-        initial='',  # No default selection
+        initial='',  
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     model = forms.CharField(
@@ -274,7 +274,7 @@ class SellBikeForm(forms.Form):
     )
     made_year = forms.IntegerField(
         label="Year of manufacturing",
-        min_value=1950,  # Reasonable lower bound
+        min_value=1950,  
         max_value=CURRENT_YEAR,
         widget=forms.Select(
             choices=[(year, str(year)) for year in range(CURRENT_YEAR, 1949, -1)],
@@ -295,7 +295,7 @@ class SellBikeForm(forms.Form):
     )
     condition = forms.ChoiceField(
         choices=CONDITION_CHOICES, 
-        initial='',  # No default selection
+        initial='',  
         label="Condition",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
@@ -354,7 +354,7 @@ class SellBikeForm(forms.Form):
 from django.utils.safestring import mark_safe
 
 class SellerInfoForm(forms.ModelForm):
-    # Define the BRAND_CHOICES constant from the Product model
+    
     BRAND_CHOICES = [
         ('', 'Select Brand'),
         ('HONDA', 'Honda'),
@@ -364,14 +364,14 @@ class SellerInfoForm(forms.ModelForm):
         ('TVS', 'TVS'),
     ]
     
-    # Override the bike_brand field to use choices
+    
     bike_brand = forms.ChoiceField(
         choices=BRAND_CHOICES,
         required=True,
         widget=forms.Select(attrs={'class': 'form-select'})
     )
     
-    # Include product field
+
     product = forms.ModelChoiceField(
         queryset=Product.objects.all(),
         required=False,
@@ -423,8 +423,7 @@ class ProductForm(forms.ModelForm):
         return year
 
 class AdminCustomerCreateForm(forms.ModelForm):
-    """Form for admin to create a customer with associated user account"""
-    # User account fields
+    
     username = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
         validators=[
@@ -445,7 +444,7 @@ class AdminCustomerCreateForm(forms.ModelForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
     
-    # Override the name field to make it required and more prominent
+    
     name = forms.CharField(
         label='Full Name',
         max_length=200,
@@ -476,7 +475,7 @@ class AdminCustomerCreateForm(forms.ModelForm):
         email = self.cleaned_data.get('email')
         if not email:
             raise forms.ValidationError('Email is required.')
-        email = email.lower()  # Convert to lowercase
+        email = email.lower()  
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('This email is already registered.')
         return email
@@ -499,14 +498,14 @@ class AdminCustomerCreateForm(forms.ModelForm):
     
     def save(self, commit=True):
         try:
-            # Create the User instance first
+            
             user = User.objects.create_user(
                 username=self.cleaned_data['username'],
                 email=self.cleaned_data['email'],
                 password=self.cleaned_data['password1']
             )
             
-            # Create the Customer instance
+            
             customer = super().save(commit=False)
             customer.user = user
             
@@ -515,12 +514,11 @@ class AdminCustomerCreateForm(forms.ModelForm):
                 
             return customer
         except Exception as e:
-            # If anything fails, clean up the user if it was created
+            
             if 'user' in locals() and hasattr(user, 'pk') and user.pk:
                 user.delete()
             
-            # Convert database errors (like IntegrityError) into form validation errors
-            # This ensures they are displayed cleanly on the form
+            
             error_message = str(e)
             if "UNIQUE constraint failed: auth_user.username" in error_message:
                 self.add_error('username', "This username is already taken. Please choose a different username.")
@@ -529,5 +527,5 @@ class AdminCustomerCreateForm(forms.ModelForm):
             else:
                 self.add_error(None, f"An unexpected error occurred during customer creation: {error_message}")
             
-            # Re-raise as a ValidationError so form_invalid is called
+                
             raise forms.ValidationError("Error during save. Please check the form for details.")

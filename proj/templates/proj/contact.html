@@ -157,30 +157,26 @@
     }
 }
 
-/* Custom styles for alert messages */
+
 .alert {
-    border-radius: 8px; /* Slightly rounded corners */
-    padding: 15px 20px; /* Adjust padding */
-    margin-bottom: 20px; /* Space below alert */
-    position: relative; /* Needed for absolute positioning of close button if modified */
+    border-radius: 8px; 
+    padding: 15px 20px; 
+    margin-bottom: 20px; 
+    position: relative; 
 }
 
 .alert-info {
-    background-color: #e7f3ff; /* Lighter blue background */
-    color: #004085; /* Darker blue text */
-    border: 1px solid #b8daff; /* Light blue border */
-    border-left: 5px solid #007bff; /* Prominent blue left border */
+    background-color: #e7f3ff; 
+    color: #004085; 
+    border: 1px solid #b8daff; 
+    border-left: 5px solid #007bff; 
 }
 
 .alert-info .btn-close {
-    font-size: 1rem; /* Adjust close button size */
-    padding: 0.75rem 1.25rem; /* Adjust padding for click area */
+    font-size: 1rem; 
+    padding: 0.75rem 1.25rem; 
 }
 
-/* You can add similar rules for other alert types if needed */
-/* .alert-success { ... } */
-/* .alert-danger { ... } */
-/* .alert-warning { ... } */
 </style>
 
 <script>
@@ -216,17 +212,17 @@ function getCookie(name) {
     return cookieValue;
 }
 
-// Set up CSRF token on form submission
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Try to get the CSRF token from cookie
+    
     const csrftoken = getCookie('csrftoken');
     
-    // Set the token in the form
+    
     if (csrftoken) {
         document.querySelector('input[name="csrfmiddlewaretoken"]').value = csrftoken;
     }
     
-    // Set up form submission
+    
     document.querySelector('form.needs-validation').addEventListener('submit', function(e) {
         const tokenInput = document.querySelector('input[name="csrfmiddlewaretoken"]');
         

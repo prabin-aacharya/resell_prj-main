@@ -6,17 +6,17 @@
 <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
 <style>
   body {
-    background: linear-gradient(to right, #5d8aa8, #4682b4); /* Moderate blue gradient background */
+    background: linear-gradient(to right, #5d8aa8, #4682b4);
     font-family: 'Poppins', sans-serif;
-    display: block; /* Use flexbox to center content */
-    min-height: 100vh; /* Full viewport height */
-    margin: 0; /* Remove default body margin */
-    padding-top: 50px; /* Add some padding at the top */
-    padding-bottom: 50px; /* Add some padding at the bottom */
+    display: block;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
   
   .login {
-    background: none; /* Explicitly remove background */
+    background: none;
     border-radius: 12px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     max-width: 400px;
@@ -32,24 +32,24 @@
   
   .login .form-row label {
     display: block;
-    font-weight: 600; /* Slightly bolder label */
+    font-weight: 600;
     margin-bottom: 6px;
-    color: #555; /* Dark grey label color */
-    font-size: 14px; /* Slightly smaller label font */
+    color: #555;
+    font-size: 14px;
   }
   
   .login .form-row input {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ccc; /* Lighter border */
-    border-radius: 6px; /* Match card rounding */
-    font-size: 16px; /* Standard font size */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
     transition: all 0.3s ease-in-out;
   }
   
   .login .form-row input:focus {
-    border-color: #5d8aa8; /* Moderate blue focus color */
-    box-shadow: 0 0 0 0.2rem rgba(93, 138, 168, 0.25); /* Moderate blue focus shadow */
+    border-color: #5d8aa8;
+    box-shadow: 0 0 0 0.2rem rgba(93, 138, 168, 0.25);
     outline: none;
   }
   
@@ -60,65 +60,64 @@
   .login .submit-row input[type="submit"] {
     width: 100%;
     padding: 14px;
-    background: #5d8aa8; /* Moderate blue button */
+    background: #5d8aa8;
     color: white;
     border: none;
-    border-radius: 6px; /* Match input rounding */
-    font-size: 17px; /* Slightly larger font */
-    font-weight: 700; /* Bolder font */
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    text-transform: uppercase; /* Uppercase text */
-    letter-spacing: 0.5px; /* Add letter spacing */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   
   .login .submit-row input[type="submit"]:hover {
-    background: #4682b4; /* Darker moderate blue on hover */
-    transform: translateY(-3px); /* More pronounced lift */
-    box-shadow: 0 8px 20px rgba(70, 130, 180, 0.3); /* Stronger hover shadow */
+    background: #4682b4;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(70, 130, 180, 0.3);
   }
   
   h1 {
-    font-size: 28px; /* Larger title */
-    color: #333; /* Dark grey title color */
-    margin-bottom: 15px; /* Reduced margin */
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
     text-align: center;
   }
   
   .login-header {
     text-align: center;
-    margin-bottom: 25px; /* Reduced margin */
+    margin-bottom: 25px;
   }
   
   .login-header i {
-    font-size: 60px; /* Larger icon */
-    color: #5d8aa8; /* Moderate blue icon color */
-    margin-bottom: 10px; /* Reduced margin */
+    font-size: 60px;
+    color: #5d8aa8;
+    margin-bottom: 10px;
   }
   
   .login-header h2 {
-    font-size: 22px; /* Slightly smaller heading */
-    color: #333; /* Dark grey heading color */
-    margin-bottom: 4px; /* Reduced margin */
-    font-weight: 600; /* Bolder heading */
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 4px;
+    font-weight: 600;
   }
   
   .login-header p {
-    color: #888; /* Lighter grey text color */
-    font-size: 13px; /* Slightly smaller text */
+    color: #888;
+    font-size: 13px;
   }
   
   .errornote {
-    background: #fdeded; /* Lighter error background */
+    background: #fdeded;
     border-left: 4px solid #e74c3c;
     padding: 12px 15px;
-    color: #c0392b; /* Darker red error text color */
+    color: #c0392b;
     margin-bottom: 20px;
     border-radius: 4px;
-    font-size: 14px; /* Consistent font size */
+    font-size: 14px;
   }
 
-  /* Add a subtle transition to form elements */
   .login .form-row input {
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
@@ -141,7 +140,6 @@
 {% block content %}
 <div class="login">
   <div class="login-header">
-    <!-- Add your logo here -->
     <img src="{% static 'proj/images/logo.png' %}" alt="Resale Admin Logo" height="50">
     <h2>Resale Admin</h2>
     <p>Please sign in to access the admin dashboard</p>

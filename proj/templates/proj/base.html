@@ -14,7 +14,7 @@
 
     <style>
       :root {
-        --bs-primary: #4682B4; /* Steel Blue */
+        --bs-primary: #4682B4; 
         --bs-primary-rgb: 70, 130, 180;
       }
 
@@ -32,11 +32,10 @@
       }
 
       .btn-primary:hover {
-         background-color: #396b91; /* Darker Steel Blue */
-         border-color: #366488; /* Darker Steel Blue */
+         background-color: #396b91; 
+         border-color: #366488; 
       }
 
-      /* Navigation item styles */
       .nav-item-hover {
         color: rgba(255, 255, 255, 0.9) !important;
         transition: all 0.3s ease;
@@ -54,17 +53,15 @@
         font-weight: 500;
       }
 
-      /* Styles for truncated long usernames/full names in the navbar */
       .navbar-nav .nav-item .nav-link .text-capitalize {
-        max-width: 120px; /* Adjust as needed */
+        max-width: 120px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        display: inline-block; /* Required for max-width to work with span */
+        display: inline-block;
         vertical-align: middle;
       }
 
-      /* Update custom styles that used green */
       .dropdown-item:hover {
         background-color: rgba(var(--bs-primary-rgb), 0.1);
       }
@@ -78,9 +75,103 @@
       }
       
       .footer-green hr {
-        border-color: #366488; /* Darker Steel Blue */
+        border-color: #366488;
       }
 
+      .navbar {
+        padding-top: 0.7rem;
+        padding-bottom: 0.7rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
+      }
+      
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+      
+      .nav-item-hover {
+        position: relative;
+        margin: 0 0.2rem;
+        transition: all 0.3s ease;
+        border-radius: 5px;
+      }
+      
+      .nav-item-hover:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-2px);
+      }
+      
+      .nav-item-hover::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #fff;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s;
+      }
+      
+      .nav-item-hover:hover::after {
+        width: 70%;
+      }
+      
+      .dropdown-menu {
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      
+      .dropdown-item {
+        transition: all 0.2s ease;
+      }
+      
+      .dropdown-item:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        transform: translateX(5px);
+      }
+      
+      .user-icon {
+        display: inline-block;
+        border-radius: 50%;
+        padding: 0.5rem;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .footer-green {
+        background: var(--bs-primary) !important;
+        color: #fff;
+      }
+      
+      .footer-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      
+      .footer-link:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .footer-social {
+        color: #fff;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+      }
+      
+      .footer-social:hover {
+        opacity: 1;
+      }
+
+      body {
+        background-color: #f0f8ff;
+      }
     </style>
 
 </head>
@@ -232,127 +323,6 @@
         </div>
       </div>
     </div>
-    <style>
-      /* Define Bootstrap primary color variable */
-      :root {
-        --bs-primary: #4682B4; /* Steel Blue */
-        --bs-primary-rgb: 70, 130, 180;
-      }
-
-      /* Override Bootstrap classes to use the new primary color */
-      .btn-primary {
-         background-color: var(--bs-primary);
-         border-color: var(--bs-primary);
-      }
-
-      .btn-primary:hover {
-         background-color: #396b91; /* Darker Steel Blue */
-         border-color: #366488; /* Darker Steel Blue */
-      }
-
-      .bg-primary {
-        background-color: var(--bs-primary) !important;
-      }
-
-      .text-primary {
-        color: var(--bs-primary) !important;
-      }
-
-      /* Navbar Styles */
-      .navbar {
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1) !important;
-      }
-      
-      .navbar-brand {
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
-      
-      .nav-item-hover {
-        position: relative;
-        margin: 0 0.2rem;
-        transition: all 0.3s ease;
-        border-radius: 5px;
-      }
-      
-      .nav-item-hover:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-        transform: translateY(-2px);
-      }
-      
-      .nav-item-hover::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        background: #fff;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: width 0.3s;
-      }
-      
-      .nav-item-hover:hover::after {
-        width: 70%;
-      }
-      
-      .dropdown-menu {
-        border-radius: 0.5rem;
-        margin-top: 0.5rem;
-        animation: fadeIn 0.3s ease-in-out;
-      }
-      
-      .dropdown-item {
-        transition: all 0.2s ease;
-      }
-      
-      /* Update dropdown item hover background */
-      .dropdown-item:hover {
-        background-color: rgba(var(--bs-primary-rgb), 0.1);
-        transform: translateX(5px);
-      }
-      
-      /* Update user icon background */
-      .user-icon {
-        display: inline-block;
-        border-radius: 50%;
-        padding: 0.5rem;
-        background-color: rgba(var(--bs-primary-rgb), 0.1);
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      /* Footer Styles */
-      .footer-green {
-        background: var(--bs-primary) !important; /* Use primary color for footer */
-        color: #fff;
-      }
-      
-      .footer-link {
-        color: #fff;
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-      
-      .footer-link:hover {
-        color: rgba(255, 255, 255, 0.8);
-      }
-      
-      .footer-social {
-        color: #fff;
-        opacity: 0.8;
-        transition: opacity 0.2s ease;
-      }
-      
-      .footer-social:hover {
-        opacity: 1;
-      }
-    </style>
   </footer>
     
 
@@ -369,10 +339,7 @@
 <script src="{% static 'proj/js/csrf_handler.js'%}"></script>
 
 <script>
-// Previous wishlist functionality has been replaced with direct links
-// to improve reliability and prevent AJAX-related errors
 
-// Add CSRF token to all AJAX requests
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
@@ -381,27 +348,18 @@ $.ajaxSetup({
     }
 });
 
-// Handle logout form submission
+
 document.addEventListener('DOMContentLoaded', function() {
     const logoutForm = document.querySelector('form[action*="logout"]');
     if (logoutForm) {
         logoutForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Set the needs_refresh flag before submitting
             sessionStorage.setItem('needs_refresh', 'true');
             this.submit();
         });
     }
 });
 </script>
-
-<style>
-body {
-  background-color: #f0f8ff;
-}
-
-/* Navbar Styles */
-</style>
 
 </body>
 </html>

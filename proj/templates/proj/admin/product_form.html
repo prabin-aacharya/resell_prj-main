@@ -91,7 +91,6 @@
                 <div class="col-md-4">
                     <div class="mb-3">
                         <label for="id_condition" class="form-label">Condition <span class="text-danger">*</span></label>
-                        <!-- Debug: Current condition is: {{ form.instance.condition }} -->
                         <select name="condition" id="id_condition" class="form-select">
                             <option value="">Select Condition</option>
                             <option value="Like New" {% if form.instance.condition == 'Like New' %}selected="selected"{% endif %}>Like New</option>
@@ -341,7 +340,7 @@
 {% block extra_js %}
 <script>
     document.addEventListener('DOMContentLoaded', function(e) {
-        // Show/hide image preview when file input changes
+        
         document.querySelectorAll('input[type="file"]').forEach(function(input) {
             input.addEventListener('change', function() {
                 if (this.files && this.files[0]) {
@@ -360,52 +359,52 @@
             });
         });
         
-        // Fields that need uniqueness validation
+        // eng num chassis num num plate unique validation
         const uniqueFields = [
             { id: 'id_engine_number', name: 'engine_number', label: 'Engine Number' },
             { id: 'id_chassis_number', name: 'chassis_number', label: 'Chassis Number' },
             { id: 'id_number_plate', name: 'number_plate', label: 'Number Plate' }
         ];
 
-        // Current product ID for excluding from uniqueness check (if editing)
+       
         const currentProductId = "{{ form.instance.id|default:'0' }}";
 
-        // Add event listeners to each field with uniqueness requirements
+        
         uniqueFields.forEach(field => {
             const inputElement = document.getElementById(field.id);
             if (inputElement) {
-                // Add validation on blur (when user leaves the field)
+                
                 inputElement.addEventListener('blur', function() {
                     validateUniqueField(inputElement, field.name, field.label);
                 });
             }
         });
 
-        // Function to validate uniqueness via AJAX
+        
         function validateUniqueField(inputElement, fieldName, fieldLabel) {
             const value = inputElement.value.trim();
             if (!value) return; // Skip empty values
 
-            // Find or create feedback element
+            
             let feedbackId = `${inputElement.id}_feedback`;
             let feedbackElement = document.getElementById(feedbackId);
             
             if (!feedbackElement) {
-                // Create new feedback element
+               
                 feedbackElement = document.createElement('div');
                 feedbackElement.id = feedbackId;
                 feedbackElement.classList.add('unique-feedback', 'mt-2');
                 
-                // Insert after the input element
+                
                 if (inputElement.parentNode) {
                     inputElement.parentNode.insertBefore(feedbackElement, inputElement.nextSibling);
                 }
             }
 
-            // Show loading indicator
+           
             feedbackElement.innerHTML = '<div class="text-muted"><i class="fas fa-spinner fa-spin"></i> Checking...</div>';
 
-            // Make AJAX request to check uniqueness
+            
             fetch(`/check-unique-field/?field=${fieldName}&value=${encodeURIComponent(value)}&exclude_id=${currentProductId}`, {
                 method: 'GET',
                 headers: {
@@ -415,10 +414,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.exists) {
-                    // Field value already exists
+                   
                     const productInfo = data.product_info;
                     
-                    // Create error message with Bootstrap styling and highlight it
+                    
                     const errorMessage = `
                         <div class="alert alert-danger mt-1 p-2">
                             <strong>This ${fieldLabel.toLowerCase()} is already registered!</strong><br>
@@ -432,10 +431,10 @@
                     inputElement.style.borderColor = '#dc3545';
                     inputElement.style.boxShadow = '0 0 0 0.2rem rgba(220, 53, 69, 0.25)';
                     
-                    // Make sure the error is visible
+                    
                     feedbackElement.style.display = 'block';
                 } else {
-                    // Field value is unique
+                    
                     feedbackElement.innerHTML = `<div class="alert alert-success mt-1 p-2">✓ ${fieldLabel} is available and valid</div>`;
                     inputElement.classList.remove('is-invalid');
                     inputElement.classList.add('is-valid');
@@ -449,10 +448,10 @@
             });
         }
 
-        // Form submission validation
+        
         const form = document.querySelector('form');
         form.addEventListener('submit', function(event) {
-            // Check if any fields have the is-invalid class
+            
             const invalidFields = form.querySelectorAll('.is-invalid');
             if (invalidFields.length > 0) {
                 event.preventDefault();

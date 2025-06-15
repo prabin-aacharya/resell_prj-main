@@ -179,21 +179,21 @@
                 <div class="row mb-4">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="{{ form.product_image.id_for_label }}" class="form-label">Product Image (Optional to replace)</label>
+                            <label for="{{ form.product_image.id_for_label }}" class="form-label">Product Image</label>
                             {% render_field form.product_image class="form-control" %}
                         </div>
                     </div>
                     
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="{{ form.bluebook_page2.id_for_label }}" class="form-label">Bluebook Page 2 (Optional to replace)</label>
+                            <label for="{{ form.bluebook_page2.id_for_label }}" class="form-label">Bluebook Page 2</label>
                             {% render_field form.bluebook_page2 class="form-control" %}
                         </div>
                     </div>
                     
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="{{ form.bluebook_page9.id_for_label }}" class="form-label">Bluebook Page 9 (Optional to replace)</label>
+                            <label for="{{ form.bluebook_page9.id_for_label }}" class="form-label">Bluebook Page 9</label>
                             {% render_field form.bluebook_page9 class="form-control" %}
                         </div>
                     </div>
@@ -224,14 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const chassisError = document.getElementById('chassis_number_error');
   const plateError = document.getElementById('number_plate_error');
 
-  // Current product ID for excluding from uniqueness check
   const currentProductId = "{{ product.id }}";
 
   function checkUnique(field, fieldName, errorElement) {
     const value = field.value.trim();
     if (!value || !errorElement) return;
 
-    // Make AJAX request with the current product ID to exclude it from the check
     fetch('/check-unique-field/?field=' + fieldName + '&value=' + encodeURIComponent(value) + '&exclude_id=' + currentProductId, {
       method: 'GET',
       headers: { 'X-Requested-With': 'XMLHttpRequest' }
@@ -251,7 +249,6 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => {
       console.error('Error during unique field check:', error);
-      // Optionally display a generic error message
       if (errorElement) {
          errorElement.textContent = 'Error checking uniqueness.';
          errorElement.style.display = 'block';
@@ -261,7 +258,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // Add event listeners to trigger the check on input and blur
   engineNumberField.addEventListener('input', function() { checkUnique(this, 'engine_number', engineError); });
   engineNumberField.addEventListener('blur', function() { checkUnique(this, 'engine_number', engineError); });
 
@@ -271,12 +267,10 @@ document.addEventListener('DOMContentLoaded', function() {
   numberPlateField.addEventListener('input', function() { checkUnique(this, 'number_plate', plateError); });
   numberPlateField.addEventListener('blur', function() { checkUnique(this, 'number_plate', plateError); });
 
-  // Initial check on page load if fields are pre-filled (optional)
-  // checkUnique(engineNumberField, 'engine_number', engineError);
-  // checkUnique(chassisNumberField, 'chassis_number', chassisError);
-  // checkUnique(numberPlateField, 'number_plate', plateError);
+  checkUnique(engineNumberField, 'engine_number', engineError);
+  checkUnique(chassisNumberField, 'chassis_number', chassisError);
+  checkUnique(numberPlateField, 'number_plate', plateError);
 
-  // Debug form submission
   console.log('Form action:', form ? form.getAttribute('action') : 'Form not found');
   console.log('Form method:', form ? form.getAttribute('method') : 'Form not found');
   if (form) {
@@ -295,5 +289,5 @@ document.addEventListener('DOMContentLoaded', function() {
 {% endblock %}
 
 {% block extra_css %}
-<!-- Add any additional CSS here -->
+
 {% endblock %}

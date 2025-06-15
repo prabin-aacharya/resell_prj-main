@@ -178,7 +178,7 @@
 
 {% block extra_css %}
 <style>
-    /* Remove all borders and outlines for the search input */
+    
     .table-container form .form-control {
         border: none !important;
         box-shadow: none !important;
@@ -190,55 +190,10 @@
         border: none !important;
     }
 
-    /* Existing modal CSS - Remove if not needed anymore */
-    /* Ensure modal is always above the backdrop and clickable */
-    /*
-.modal {
-  z-index: 2001055 !important;
-  pointer-events: auto !important;
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-}
-.modal-backdrop {
-  z-index: 2001050 !important;
-  pointer-events: none !important;
-}
-body.modal-open {
-  overflow: hidden !important;
-}
-*/
+    
 </style>
 {% endblock %}
 
 {% block extra_js %}
-<script>
-    // Remove existing modal JS if not needed anymore
-    /*
-    document.addEventListener('DOMContentLoaded', function() {
-      // Attach event listeners to all view buttons
-      document.querySelectorAll('button[data-bs-target^="#productModal"]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var targetId = btn.getAttribute('data-bs-target');
-          var modalEl = document.getElementById(targetId.replace('#', ''));
-          if (modalEl) {
-            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-            modal.show();
-          }
-        });
-      });
-    
-      // Ensure all close buttons in product modals use Bootstrap's hide()
-      document.querySelectorAll('.modal[id^="productModal"] .btn-close, .modal[id^="productModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var modalEl = btn.closest('.modal');
-          if (modalEl) {
-            var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-            modal.hide();
-          }
-        });
-      });
-    });
-    */
-</script>
+
 {% endblock %}

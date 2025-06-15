@@ -35,9 +35,7 @@ class AdminSessionMiddleware(SessionMiddleware):
     """
     Middleware that handles separate admin and user sessions.
     
-    This middleware ensures that admin sessions are maintained independently
-    from regular user sessions, allowing admins to log in and out as different
-    users without losing their admin session.
+    admin ra user ko 2 ta diff session banauna
     """
     
     def is_admin_path(self, path):
@@ -56,11 +54,11 @@ class AdminSessionMiddleware(SessionMiddleware):
             # Use regular session cookie for frontend
             settings.SESSION_COOKIE_NAME = 'sessionid'
         
-        # Call the parent class's process_request method
+        
         super().process_request(request)
     
     def process_response(self, request, response):
-        # Check if this is an admin URL
+        
         is_admin_url = self.is_admin_path(request.path)
         
         # Use different session cookie names for admin and frontend
@@ -71,10 +69,10 @@ class AdminSessionMiddleware(SessionMiddleware):
             # Use regular session cookie for frontend
             settings.SESSION_COOKIE_NAME = 'sessionid'
         
-        # Call the parent class's process_response method
+        
         response = super().process_response(request, response)
         
-        # Add Vary header to prevent caching issues
+       
         patch_vary_headers(response, ('Cookie',))
         
         return response
@@ -82,9 +80,7 @@ class AdminSessionMiddleware(SessionMiddleware):
 
 class AllowAdminSessionForPDFMiddleware(MiddlewareMixin):
     """
-    For /payment/sales-report/ URLs, if the user is not authenticated or not staff,
-    try to authenticate using the admin_sessionid cookie. If that user is staff,
-    set request.user to the admin user for this request.
+   payment ra sales report ko admin session use garna
     """
     def process_request(self, request):
         if request.path.startswith('/payment/sales-report/'):

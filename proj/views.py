@@ -25,22 +25,21 @@ import logging
 from django.conf import settings
 from django.urls import reverse
 import json
-# Create your views here.
+
 def home(request):
     from .models import Product
     
-    # Get all verified products (both available and sold) ordered by status and latest first
+    # Get all verified products 
     all_products = Product.objects.filter(
         verification_status='approved',
         status__in=['available', 'sold']
     ).order_by('status', '-created_at')
     
-    # Get user's wishlist items if authenticated
+    # user ko wishlist items authenticated user matra
     user_wishlist = []
     if request.user.is_authenticated:
         user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
     
-    # Group products into sublists of 3 for the grid layout
     latest_product_groups = [all_products[i:i+3] for i in range(0, len(all_products), 3)]
     
     return render(request, "proj/home.html", {
@@ -59,7 +58,6 @@ def contact(req):
     from django.contrib import messages
     from django.middleware.csrf import get_token
     
-    # Explicitly set CSRF token
     csrf_token = get_token(req)
     
     if req.method == 'POST':
@@ -78,7 +76,6 @@ def contact(req):
             from django.conf import settings
             from django.middleware.csrf import get_token
             
-            # Ensure CSRF token is set
             get_token(req)
             
             send_mail(
@@ -99,27 +96,23 @@ def contact(req):
     
 class BrandView(View):
     def get(self, request, val):
-        # Show verified products that are either available or sold, sorted by status and latest first
         product = Product.objects.filter(
             brand=val, 
             verification_status='approved', 
             status__in=['available', 'sold']
         ).order_by('status', '-created_at')
         
-        # Get all unique models (titles) for this brand, with count
         title = Product.objects.filter(
             brand=val, 
             verification_status='approved', 
             status__in=['available', 'sold']
         ).values('title').annotate(count=Count('id'))
         
-        # For sidebar: get all unique brands
         brands = Product.objects.filter(
             verification_status='approved', 
             status__in=['available', 'sold']
         ).values('brand').annotate(count=Count('id'))
         
-        # Get user's wishlist items if authenticated
         user_wishlist = []
         if request.user.is_authenticated:
             user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
@@ -132,19 +125,16 @@ class BrandView(View):
             'user_wishlist': user_wishlist,
         })
     
-
 class BrandTitle(View):
     def get(self, request, val):
-        # Show verified products that are either available or sold
         product = Product.objects.filter(title=val, verification_status='approved', status__in=['available', 'sold'])
         if product.exists():
             brand_val = product[0].brand
-            # All models for this brand
+           
             title = Product.objects.filter(brand=brand_val, verification_status='approved', status__in=['available', 'sold']).values('title').annotate(count=Count('id'))
-            # For sidebar: get all unique brands
+            
             brands = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).values('brand').annotate(count=Count('id'))
             
-            # Get user's wishlist items if authenticated
             user_wishlist = []
             if request.user.is_authenticated:
                 user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
@@ -157,7 +147,6 @@ class BrandTitle(View):
                 'user_wishlist': user_wishlist,
             })
         else:
-            # fallback if no product found
             return render(request, "proj/brand.html", {
                 'product': [],
                 'title': [],
@@ -165,13 +154,11 @@ class BrandTitle(View):
                 'brand': '',
             })
     
-
 class ProductDetail(View):
     def get(self,request,pk):
         try:
             product = Product.objects.get(pk=pk)
             
-            # For non-staff users, ensure the product is both approved and available
             if not request.user.is_staff:
                 if product.verification_status != 'approved':
                     messages.error(request, "This product is not available for viewing.")
@@ -181,12 +168,9 @@ class ProductDetail(View):
             in_wishlist = False
             
             if request.user.is_authenticated:
-                # Get all wishlist items for the user
                 user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
-                # Check if current product is in wishlist
                 in_wishlist = pk in user_wishlist
             
-            # Create context dictionary with all variables
             context = {
                 'product': product,
                 'user_wishlist': user_wishlist,
@@ -198,8 +182,6 @@ class ProductDetail(View):
             messages.error(request, "Product not found.")
             return redirect('main:home')
     
-    
-
 class CustomerRegistrationView(View):
     def get(self,request):
         form= CustomerRegistrationForm()
@@ -207,21 +189,18 @@ class CustomerRegistrationView(View):
     def post(self,request):
         form= CustomerRegistrationForm(request.POST)
         if form.is_valid():
-            # Save the user first, but don't activate yet
             user = form.save(commit=False)
             user.is_active = False
             user.save()
             
-            # Create a Customer record linked to the user
-            # Set default values for required fields
             Customer.objects.create(
                 user=user,
-                name=user.username,  # Default name to username
-                city='',             # Empty default
-                state='Bagmati Province',  # Default province
-                mobile='',           # Empty default
-                zipcode='',          # Empty default
-                gender=''            # Empty default gender
+                name=user.username,
+                city='',
+                state='',
+                mobile='',
+                zipcode='',
+                gender=''
             )
             
             # Get email from form
@@ -234,7 +213,6 @@ class CustomerRegistrationView(View):
                 print(f"DEBUG: Activation email send result: {send_result}")
                 
                 if not send_result and settings.DEBUG:
-                    # If email sending failed and we're in debug mode, activate the user anyway
                     user.is_active = True
                     user.save()
                     print(f"DEBUG: Activated user {user.username} despite email failure (DEBUG mode)")
@@ -242,7 +220,6 @@ class CustomerRegistrationView(View):
             except Exception as e:
                 print(f"DEBUG: Exception during email sending: {str(e)}")
                 if settings.DEBUG:
-                    # If exception occurred and we're in debug mode, activate the user anyway
                     user.is_active = True
                     user.save()
                     print(f"DEBUG: Activated user {user.username} despite exception (DEBUG mode)")
@@ -252,9 +229,6 @@ class CustomerRegistrationView(View):
         else:
             messages.warning(request,"Invalid Input Data")
         return render(request,'proj/customerregistration.html',locals())
-    
-
-
 
 @method_decorator(login_required, name='dispatch')
 class ProfileView(View):
@@ -299,12 +273,8 @@ class ProfileView(View):
             else:
                 messages.warning(request, "Invalid Input Data")
                 
-        # Refresh the form with the latest data
         has_profile = Customer.objects.filter(user=request.user).exists()
         return render(request, 'proj/profile.html', {'form': form, 'has_profile': has_profile})
-    
-
-
 
 @login_required
 def address(request):
@@ -312,8 +282,6 @@ def address(request):
     add = Customer.objects.filter(user=request.user)
     email = request.user.email  # Get the user's email
     return render(request, 'proj/address.html', {'add': add, 'email': email})
-
-
 
 @method_decorator(login_required, name='dispatch')
 class updateAddress(View):
@@ -340,28 +308,21 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def sell_bike(request):
-    # Ensure the session exists
     if not request.session.session_key:
         request.session.create()
     
-    # Store the current session key to ensure it doesn't change
     session_key = request.session.session_key
     
-    # Initialize customer data
     customer_data = {}
     customer = None
     previous_listings = None
     
-    # If user is authenticated, try to fetch their customer profile and previous listings
     if request.user.is_authenticated:
         try:
-            # Use filter instead of get to handle multiple customer profiles
             customer_profiles = Customer.objects.filter(user=request.user).order_by('-id')
             
             if customer_profiles.exists():
-                # Use the most recent customer profile
                 customer = customer_profiles.first()
-                # Pre-fill form with customer data
                 customer_data = {
                     'seller_name': customer.name,
                     'city': customer.city,
@@ -369,14 +330,11 @@ def sell_bike(request):
             else:
                 raise Customer.DoesNotExist()
             
-            # Check for previous listings by this customer
             previous_listings = SellerInfo.objects.filter(
                 email=request.user.email
             ).order_by('-id').first()
             
-            # If they have previous listings, pre-fill more data
             if previous_listings:
-                # Only update fields that aren't already set from the customer profile
                 if 'seller_name' not in customer_data or not customer_data['seller_name']:
                     customer_data['seller_name'] = previous_listings.full_name
         except Customer.DoesNotExist:
@@ -384,10 +342,7 @@ def sell_bike(request):
     
     if request.method == 'POST':
         form = SellBikeForm(request.POST, request.FILES)
-        # Do not check form.is_valid() yet, we will check errors after adding custom ones
-
-        # Perform uniqueness checks manually before checking overall validity
-        cd = form.data # Use form.data to access submitted data directly
+        cd = form.data
         errors_occurred = False
 
         if 'number_plate' in cd and cd['number_plate'].strip():
@@ -405,11 +360,9 @@ def sell_bike(request):
                 form.add_error('chassis_number', f'A bike with chassis number {cd["chassis_number"]} is already registered.')
                 errors_occurred = True
 
-        # Now check if the form is valid (including errors added above and standard validation)
-        if form.is_valid() and not errors_occurred: # Ensure no errors were added manually
+        if form.is_valid() and not errors_occurred:
             cd = form.cleaned_data
 
-            # Create the product with all details including images
             product = Product.objects.create(
                 brand=cd['brand'],
                 title=cd['model'],
@@ -429,7 +382,6 @@ def sell_bike(request):
                 description=cd.get('description', ''),
             )
 
-            # Add bluebook images if provided
             if cd.get('bluebook_page2'):
                 product.bluebook_page2 = cd['bluebook_page2']
             if cd.get('bluebook_page9'):
@@ -437,14 +389,12 @@ def sell_bike(request):
 
             product.save()
 
-            # Get customer contact details
             email = ''
             phone_number = ''
 
             if request.user.is_authenticated:
                 email = request.user.email
 
-                # Try to get phone from customer profile
                 try:
                     customer_profiles = Customer.objects.filter(user=request.user).order_by('-id')
                     if customer_profiles.exists():
@@ -453,13 +403,11 @@ def sell_bike(request):
                 except Customer.DoesNotExist:
                     pass
 
-                # If no customer profile, try previous listings
                 if not phone_number:
                     previous_listings = SellerInfo.objects.filter(email=email).order_by('-id').first()
                     if previous_listings and previous_listings.phone:
                         phone_number = previous_listings.phone
 
-            # Create SellerInfo with all available details
             seller_info = SellerInfo.objects.create(
                 full_name=cd['seller_name'],
                 email=email,
@@ -471,38 +419,26 @@ def sell_bike(request):
 
             messages.success(request, 'Your bike has been successfully listed for sale!')
 
-            # Make sure the session key doesn't change
             if session_key != request.session.session_key:
                 request.session.cycle_key()
 
-            # Set CSRF cookie explicitly
             from django.middleware.csrf import get_token
             get_token(request)
 
             return redirect('main:sell_success')
         else:
-            # If form is not valid (either initial validation or custom errors), render with errors
             messages.warning(request, "Please correct the errors below.")
-            # Fall through to the render statement outside the if/else block
     else:
-        # Pre-fill form with customer data for GET requests
         form = SellBikeForm(initial=customer_data)
 
-    # This render statement handles both GET requests and POST requests with errors
     return render(request, 'proj/sell_bike_form.html', {
         'form': form,
         'customer': customer,
         'previous_listings': previous_listings
     })
 
-
 @ensure_csrf_cookie
 def sell_success(request):
-    """
-    View to display success message after a bike has been listed for sale.
-    This view maintains the user's session to prevent logout.
-    """
-    # Ensure the session is maintained
     if not request.session.session_key:
         request.session.create()
         
@@ -517,16 +453,12 @@ def buy_bikes(request):
     max_price = request.GET.get('max_price', '')
     year_filter = request.GET.get('year', '')
 
-    # Show products that have been verified/approved and are either available or sold
-    # Sort by status (available first) and then by latest listed date
     bikes = Product.objects.filter(verification_status='approved', status__in=['available', 'sold']).order_by('status', '-created_at')
     user_wishlist = []
     
-    # Get user's wishlist items if authenticated
     if request.user.is_authenticated:
         user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
 
-    # Apply search query if provided
     if query:
         bikes = bikes.filter(
             Q(title__icontains=query) |
@@ -535,7 +467,6 @@ def buy_bikes(request):
             Q(description__icontains=query)
         )
     
-    # Apply filters if provided
     if brand_filter:
         bikes = bikes.filter(brand=brand_filter)
     
@@ -560,21 +491,17 @@ def buy_bikes(request):
         except ValueError:
             pass
 
-    # Get brand counts for the sidebar
     brands = Product.objects.filter(verification_status='approved', status='available').values('brand').annotate(count=Count('id'))
     
-    # Get unique brands, conditions, and years for filters
     all_brands = Product.objects.filter(verification_status='approved', status='available').values_list('brand', flat=True).distinct().order_by('brand')
     all_conditions = Product.objects.filter(verification_status='approved', status='available').values_list('condition', flat=True).distinct().order_by('condition')
     all_years = Product.objects.filter(verification_status='approved', status='available').values_list('made_year', flat=True).distinct().order_by('-made_year')
     
-    # Get price range for the filter
     price_range = Product.objects.filter(verification_status='approved', status='available').aggregate(
         min_price=Min('price'),
         max_price=Max('price')
     )
 
-    # Sorting logic
     if sort == 'price_asc':
         bikes = bikes.order_by('price')
     elif sort == 'price_desc':
@@ -590,9 +517,8 @@ def buy_bikes(request):
     
     total_count = bikes.count()
     
-
     return render(request, 'proj/buy_bikes.html', {
-        'bikes': bikes, # Pass the full queryset directly
+        'bikes': bikes,
         'query': query,
         'sort': sort,
         'user_wishlist': user_wishlist,
@@ -607,11 +533,9 @@ def buy_bikes(request):
         'all_years': all_years,
         'price_range': price_range,
         'total_count': total_count,
-        # 'page_obj': page_obj, # No longer needed
     })
 
 def check_uploaded_files(request):
-    # Get the most recently uploaded SellerInfo
     latest_seller = SellerInfo.objects.order_by('-id').first()
     
     context = {
@@ -635,13 +559,10 @@ def remove_from_wishlist(request, product_id):
 
 @login_required
 def wishlist(request):
-    # Get all products that are in the user's wishlist with all details
     wishlisted_products = Product.objects.filter(wishlist__user=request.user).distinct().select_related()
     
-    # Get all wishlist item IDs for the user
     user_wishlist = list(Wishlist.objects.filter(user=request.user).values_list('product_id', flat=True))
     
-    # Get the customer information for the current user
     customer = None
     try:
         customer = Customer.objects.get(user=request.user)
@@ -656,8 +577,6 @@ def wishlist(request):
 
 @require_POST
 def toggle_wishlist(request):
-    """Toggle a product in the user's wishlist with improved error handling"""
-    # Check if user is authenticated
     if not request.user.is_authenticated:
         return JsonResponse({
             'success': False,
@@ -677,19 +596,15 @@ def toggle_wishlist(request):
             
         product = Product.objects.get(id=product_id)
         
-        # Check if this product is already in the user's wishlist
         wishlist_item = Wishlist.objects.filter(user=request.user, product=product).first()
         
         if wishlist_item:
-            # Product is in wishlist, so remove it
             wishlist_item.delete()
             in_wishlist = False
         else:
-            # Product is not in wishlist, so add it
             Wishlist.objects.create(user=request.user, product=product)
             in_wishlist = True
         
-        # Get the updated count of wishlist items
         count = Wishlist.objects.filter(user=request.user).count()
         
         return JsonResponse({
@@ -706,7 +621,6 @@ def toggle_wishlist(request):
             'count': Wishlist.objects.filter(user=request.user).count()
         })
     except Exception as e:
-        # Log the error for debugging
         print(f"Wishlist error: {str(e)}")
         return JsonResponse({
             'success': False,
@@ -717,19 +631,15 @@ def toggle_wishlist(request):
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
-        # Get the next parameter from the request
         next_url = self.request.GET.get('next')
         if next_url:
             return next_url
             
-        # If the user is staff and trying to access admin, redirect to admin dashboard
         if self.request.user.is_staff and self.request.path.startswith('/admin/'):
             return '/admin/'
             
-        # Otherwise redirect to home
         return '/'
 
-# Simple view functions for terms and privacy pages
 def terms(request):
     return render(request, "proj/terms.html")
 
@@ -738,15 +648,11 @@ def privacy(request):
 
 @login_required
 def my_deals(request):
-    """Display all bikes purchased by the user and bikes listed for sale by the user"""
-    # Get the user info
     user = request.user
     
-    # 1. Get purchased bikes (bikes the user has bought)
     purchased_bikes = []
     
     try:
-        # Get all completed payments for this user from BikePaymentTransaction
         from .models import BikePaymentTransaction, Product, SellerInfo
         completed_transactions = BikePaymentTransaction.objects.filter(
             buyer=user,
@@ -755,8 +661,6 @@ def my_deals(request):
         
         purchased_bikes = list(completed_transactions)
         
-        # As a backup, also check for bikes with 'sold' status 
-        # that might not have transactions but belong to the user
         sold_products = Product.objects.filter(
             status='sold',
             bikepaymenttransaction__buyer=user
@@ -764,9 +668,7 @@ def my_deals(request):
             bikepaymenttransaction__in=completed_transactions
         )
         
-        # For any sold products that don't have transactions, create placeholder transaction objects
         for product in sold_products:
-            # Create a temporary transaction object for display purposes
             transaction = BikePaymentTransaction(
                 product=product,
                 buyer=user,
@@ -781,17 +683,13 @@ def my_deals(request):
     except Exception as e:
         messages.error(request, f"Error retrieving your purchased bikes: {str(e)}")
     
-    # 2. Get bikes listed for sale by the user (by email association)
     listed_bikes = []
     
     try:
-        # Find all SellerInfo records that match the user's email
         seller_infos = SellerInfo.objects.filter(email=user.email).order_by('-created_at')
         
-        # For each SellerInfo, get the associated product
         for seller_info in seller_infos:
             if seller_info.product:
-                # Add verification status info for the UI
                 verification_status = seller_info.product.verification_status
                 verification_badge = ""
                 
@@ -802,7 +700,6 @@ def my_deals(request):
                 elif verification_status == 'rejected':
                     verification_badge = '<span class="badge bg-danger">Rejected</span>'
                 
-                # Add status info for the UI
                 status = seller_info.product.status
                 status_badge = ""
                 
@@ -836,33 +733,25 @@ def my_deals(request):
 
 @login_required
 def update_product(request, pk):
-    """Allow users to update their product listings"""
     try:
-        # Find the product
         from django.shortcuts import get_object_or_404
         product = get_object_or_404(Product, pk=pk)
         
-        # Find the associated seller info
         seller_info = SellerInfo.objects.filter(product=product, email=request.user.email).first()
         
-        # If no seller info found or doesn't belong to this user, deny access
         if not seller_info:
             messages.error(request, "You don't have permission to update this listing.")
             return redirect('main:my_deals')
         
-        # If product is already sold, don't allow editing
         if product.status == 'sold':
             messages.error(request, "This listing has already been sold and cannot be edited.")
             return redirect('main:my_deals')
         
-        # Handle form submission
         if request.method == 'POST':
-            # Since SellBikeForm is not a ModelForm, we can't use the instance parameter
             form = SellBikeForm(request.POST, request.FILES)
             if form.is_valid():
                 cd = form.cleaned_data
 
-                # Server-side check for unique fields, excluding the current product
                 duplicate_product = Product.objects.filter(
                     Q(number_plate=cd['number_plate']) |
                     Q(engine_number=cd['engine_number']) |
@@ -877,15 +766,13 @@ def update_product(request, pk):
                     if duplicate_product.chassis_number == cd['chassis_number']:
                         form.add_error('chassis_number', f'A bike with chassis number {cd["chassis_number"]} is already registered.')
 
-                    # If there are errors, re-render the form with messages
                     if form.errors:
                         messages.warning(request, "Please correct the errors below.")
                         return render(request, 'proj/update_product.html', {
                             'form': form,
-                            'product': product # Pass the product to retain image/document URLs
+                            'product': product
                         })
 
-                # Update the product manually with form data
                 product.title = form.cleaned_data['model']
                 product.brand = form.cleaned_data['brand']
                 product.price = form.cleaned_data['price']
@@ -902,7 +789,6 @@ def update_product(request, pk):
                 product.seller_name = form.cleaned_data['seller_name']
                 product.description = form.cleaned_data.get('description', '')
                 
-                # Handle file uploads if new ones provided
                 if 'product_image' in request.FILES:
                     product.product_image = request.FILES['product_image']
                 if 'bluebook_page2' in request.FILES:
@@ -910,7 +796,6 @@ def update_product(request, pk):
                 if 'bluebook_page9' in request.FILES:
                     product.bluebook_page9 = request.FILES['bluebook_page9']
                 
-                # Reset verification status to pending since it was edited
                 if product.verification_status == 'approved' or product.verification_status == 'rejected':
                     product.verification_status = 'pending'
                     product.status = 'pending'
@@ -918,24 +803,19 @@ def update_product(request, pk):
                 
                 product.save()
                 
-                # Update the seller info
                 seller_info.bike_brand = product.brand
                 seller_info.bike_model = product.title
                 seller_info.verification_status = 'pending'
                 seller_info.save()
                 
-                # messages.success(request, "Your listing has been updated successfully.")
-                # Construct the URL with query parameters and fragment identifier
                 my_deals_url = reverse('main:my_deals')
                 redirect_url = f'{my_deals_url}?updated=true#selling'
                 return redirect(redirect_url)
             else:
-                # If the form is invalid, show the form again with errors
                 for field, errors in form.errors.items():
                     for error in errors:
                         messages.error(request, f"Error in {field}: {error}")
         else:
-            # Pre-fill form with existing product data
             initial_data = {
                 'brand': product.brand,
                 'model': product.title,
@@ -955,7 +835,6 @@ def update_product(request, pk):
             }
             form = SellBikeForm(initial=initial_data)
             
-            # Make image fields not required for update
             form.fields['product_image'].required = False
             form.fields['bluebook_page2'].required = False
             form.fields['bluebook_page9'].required = False
@@ -971,28 +850,21 @@ def update_product(request, pk):
 
 @login_required
 def delete_product(request, pk):
-    """Allow users to delete their product listings"""
     try:
-        # Find the product
         from django.shortcuts import get_object_or_404
         product = get_object_or_404(Product, pk=pk)
         
-        # Find the associated seller info
         seller_info = SellerInfo.objects.filter(product=product, email=request.user.email).first()
         
-        # If no seller info found or doesn't belong to this user, deny access
         if not seller_info:
             messages.error(request, "You don't have permission to delete this listing.")
             return redirect('main:my_deals')
         
-        # Handle confirmation
         if request.method == 'POST':
-            # Delete the product (this will cascade to the seller_info due to ForeignKey)
             product.delete()
             messages.success(request, "Your listing has been deleted successfully.")
             return redirect('main:my_deals')
         
-        # Show confirmation page
         return render(request, 'proj/delete_product_confirm.html', {
             'product': product
         })
@@ -1003,7 +875,6 @@ def delete_product(request, pk):
 
 @login_required
 def create_test_transaction(request):
-    """Test function to create a transaction record for testing purposes"""
     if not request.user.is_staff:
         messages.error(request, "You don't have permission to do this")
         return redirect('main:home')
@@ -1011,14 +882,12 @@ def create_test_transaction(request):
     try:
         from .models import BikePaymentTransaction, Product
         
-        # Get the first available product
         product = Product.objects.filter(status='available').first()
         
         if not product:
             messages.error(request, "No available products to use for test transaction")
             return redirect('main:home')
         
-        # Create a test transaction
         transaction = BikePaymentTransaction.objects.create(
             pidx=f"TEST-{uuid.uuid4()}",
             purchase_order_id=f"TEST-ORDER-{uuid.uuid4()}",
@@ -1030,7 +899,6 @@ def create_test_transaction(request):
             payment_method='Test'
         )
         
-        # Update product status
         product.status = 'sold'
         product.save()
         
@@ -1041,7 +909,6 @@ def create_test_transaction(request):
         messages.error(request, f"Error creating test transaction: {str(e)}")
         return redirect('main:home')
 
-# Admin view for customer lookup
 @login_required
 def admin_lookup_customer(request):
     if not request.user.is_staff:
@@ -1051,10 +918,8 @@ def admin_lookup_customer(request):
     if not query:
         return JsonResponse({'found': False})
     
-    # Try to find customer by email or phone
     customer = None
     
-    # Check if query looks like an email
     if '@' in query:
         try:
             user = User.objects.get(email=query)
@@ -1062,7 +927,6 @@ def admin_lookup_customer(request):
         except User.DoesNotExist:
             pass
     
-    # If not found by email, try phone
     if not customer:
         customer = Customer.objects.filter(mobile=query).first()
     
@@ -1088,37 +952,30 @@ def activate_account(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    # Check if user exists and token is valid, AND user is not already active
     if user is not None and account_activation_token.check_token(user, token) and not user.is_active:
         user.is_active = True
         user.save()
-        # Login the user immediately after activation if you want them logged in right away
         login(request, user)
         messages.success(request, "Your account has been activated successfully! You are now logged in.")
-        return redirect('main:home') # Redirect to home after successful activation and login
+        return redirect('main:home')
     elif user is not None and user.is_active:
-        # User is already active, maybe show a different message or just redirect
-        return redirect('main:home') # Redirect even if already active
+        return redirect('main:home')
     else:
-        # Invalid link or token
         messages.error(request, "Activation link is invalid or has expired!")
-        return redirect('main:home') # Redirect to home on failure
+        return redirect('main:home')
 
 def send_activation_email(request, user, to_email):
     from django.conf import settings
     import sys
     
     try:
-        # Prepare email subject and content
         mail_subject = 'Activate your BikeResale account'
         
-        # Prepare token data
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = account_activation_token.make_token(user)
         domain = get_current_site(request).domain
         protocol = 'https' if request.is_secure() else 'http'
         
-        # Render email message from template
         message = render_to_string('email_activation.html', {
             'user': user,
             'domain': domain,
@@ -1127,21 +984,18 @@ def send_activation_email(request, user, to_email):
             'protocol': protocol
         })
         
-        # Get sender email - use a fallback if DEFAULT_FROM_EMAIL is empty
         from_email = settings.DEFAULT_FROM_EMAIL
         if not from_email:
-            from_email = 'noreply@bikeresell.com'  # Use a fallback email if settings.DEFAULT_FROM_EMAIL is empty
+            from_email = 'noreply@bikeresell.com'
             print(f"WARNING: Using fallback email address: {from_email}")
         
-        # Create and send email
         email = EmailMessage(
             mail_subject,
             message,
-            from_email,  # From address
-            [to_email]   # To address(es)
+            from_email,
+            [to_email]
         )
         
-        # Try to send email
         send_result = email.send(fail_silently=False)
         
         if send_result > 0:
@@ -1158,7 +1012,6 @@ def send_activation_email(request, user, to_email):
         print(f"Exception type: {type(e)}")
         messages.error(request, f"Email could not be sent. Error: {str(e)}")
         
-        # Auto-activate user in DEBUG mode
         if settings.DEBUG:
             user.is_active = True
             user.save()
@@ -1190,7 +1043,6 @@ def test_email(request):
     }
     
     try:
-        # Try simple send_mail function
         send_result = send_mail(
             'Test Email from BikeResell',
             'This is a test email to debug email sending functionality.',
@@ -1207,15 +1059,11 @@ def test_email(request):
         result['exception_type'] = str(type(e))
         result['traceback'] = str(sys.exc_info())
     
-    # Return as JSON for easier debugging
+    
     from django.http import JsonResponse
     return JsonResponse(result)
 
-# View to check if a field value is unique for AJAX validation
 def check_unique_field(request):
-    """Check if a field value already exists in the database.
-    Used for AJAX validation in forms.
-    """
     if not request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         return JsonResponse({'error': 'Invalid request'}, status=400)
         
@@ -1226,16 +1074,13 @@ def check_unique_field(request):
     if not field_name or not value:
         return JsonResponse({'error': 'Missing parameters'}, status=400)
         
-    # Only allow checking specific fields for security
     allowed_fields = ['engine_number', 'chassis_number', 'number_plate']
     if field_name not in allowed_fields:
         return JsonResponse({'error': 'Invalid field'}, status=400)
     
-    # Check if the value exists in the database
     query = {field_name: value}
     queryset = Product.objects.filter(**query)
     
-    # If we're updating an existing product, exclude it from the check
     if exclude_id:
         queryset = queryset.exclude(pk=exclude_id)
     
@@ -1244,9 +1089,7 @@ def check_unique_field(request):
     
     response_data = {'exists': exists}
     
-    # If the value exists, include details about the existing product
     if exists:
-        # Make sure we have valid data for the response
         brand = existing_product.brand if existing_product.brand else 'Unknown'
         model = existing_product.title if existing_product.title else 'Unknown'
         
@@ -1263,32 +1106,22 @@ def check_unique_field(request):
     
     return JsonResponse(response_data)
 
-# Custom logout view to clear only frontend session
 def custom_logout(request):
-    """
-    Custom logout view that handles CSRF tokens properly and ensures a clean logout.
-    """
     from django.contrib.auth import logout
     from django.shortcuts import redirect
     from django.conf import settings
     from django.contrib import messages
     
-    # Store the session cookie name
     session_cookie_name = settings.SESSION_COOKIE_NAME
     
-    # Perform logout
     logout(request)
     
-    # Create response that redirects to login page
     response = redirect('main:login')
     
-    # Explicitly delete only the frontend session cookie
     response.delete_cookie(session_cookie_name)
     
-    # Add a success message
     messages.success(request, "You have been successfully logged out. Please refresh any open forms before submitting them.")
     
-    # Set a flag in the session to indicate a fresh login is needed
     request.session['needs_refresh'] = True
     
     return response

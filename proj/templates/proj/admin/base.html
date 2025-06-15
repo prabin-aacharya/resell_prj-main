@@ -8,7 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-            <style>        :root {            --sidebar-width: 250px;            --primary-color: #1e3c72;            --secondary-color: #2a5298;            --success-color: #28a745;            --info-color: #17a2b8;            --warning-color: #ffc107;            --danger-color: #dc3545;            --indigo-color: #6610f2;            --light-color: #f8f9fa;            --dark-color: #343a40;            --transition-speed: 0.3s;
+    <style>
+        :root {
+            --sidebar-width: 250px;
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
             --success-color: #28a745;
             --info-color: #17a2b8;
             --warning-color: #ffc107;
@@ -53,7 +57,6 @@
             background: rgba(255, 255, 255, 0.2);
         }
         
-        /* Enhanced Card Styles */
         .stat-card {
             background: white;
             border-radius: 10px;
@@ -110,7 +113,6 @@
             margin-top: 10px;
         }
         
-        /* Card Types */
         .primary-card .stat-icon {
             color: var(--primary-color);
         }
@@ -131,7 +133,6 @@
             color: var(--danger-color);
         }
         
-        /* Table Container */
         .table-container {
             background: white;
             border-radius: 10px;
@@ -172,7 +173,6 @@
             transition: all 0.2s;
         }
         
-        /* Table Styles */
         .custom-table {
             margin-bottom: 0;
         }
@@ -203,14 +203,12 @@
             background-color: rgba(30, 60, 114, 0.02);
         }
         
-        /* Status badges */
         .status-badge {
             padding: 6px 10px;
             font-weight: 500;
             letter-spacing: 0.3px;
         }
         
-        /* Avatar */
         .avatar-circle {
             width: 30px;
             height: 30px;
@@ -222,7 +220,6 @@
             font-size: 12px;
         }
         
-        /* Action Buttons */
         .action-btn {
             margin-right: 5px;
             width: 30px;
@@ -267,7 +264,6 @@
             color: var(--primary-color);
         }
         
-        /* Analytics Section */
         .analytics-container {
             padding: 15px;
         }
@@ -353,7 +349,6 @@
             color: #343a40;
         }
         
-        /* Empty States */
         .empty-state {
             padding: 40px 20px;
             text-align: center;
@@ -372,7 +367,6 @@
             color: #adb5bd;
         }
         
-        /* Search Container */
         .search-container {
             position: relative;
             min-width: 250px;
@@ -391,14 +385,12 @@
             color: #adb5bd;
         }
         
-        /* Page title */
         .page-title {
             font-weight: 600;
             color: #343a40;
             margin: 0;
         }
         
-        /* Pagination styling */
         .pagination-container {
             border-top: 1px solid #eee;
         }
@@ -408,14 +400,12 @@
             font-size: 14px;
         }
         
-        /* Order ID */
         .order-id {
             font-family: monospace;
             font-size: 13px;
             color: #495057;
         }
         
-        /* Payment Method */
         .payment-method {
             display: flex;
             align-items: center;
@@ -477,9 +467,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JavaScript -->
     {% block extra_js %}{% endblock %}
 </body>
 </html> 

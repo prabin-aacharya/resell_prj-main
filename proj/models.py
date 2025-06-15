@@ -36,9 +36,9 @@ GENDER_CHOICES = (
 )
 
 def bluebook_upload_path(instance, filename):
-    # Get a safe version of the seller name for the folder name
+    
     safe_name = instance.seller_name.replace(' ', '_').lower()
-    # Return the complete path including the owner's name
+    
     return f'bluebook/{safe_name}/{filename}'
 
 class Product(models.Model):
@@ -96,7 +96,7 @@ class Customer(models.Model):
     user = models.ForeignKey(
         User, 
         on_delete=models.CASCADE,
-        related_name='customers'  # Added for better querying
+        related_name='customers'  
     )
     name = models.CharField(
         max_length=200,
@@ -117,12 +117,12 @@ class Customer(models.Model):
         max_length=100,
         verbose_name='Province'
     )
-    mobile = models.CharField(  # Changed to CharField
+    mobile = models.CharField(  
         max_length=10,
-        validators=[MinLengthValidator(10)],  # For 10-digit numbers
+        validators=[MinLengthValidator(10)],  
         verbose_name='Mobile Number'
     )
-    zipcode = models.CharField(  # Changed to CharField
+    zipcode = models.CharField(  
         max_length=10,
         verbose_name='Postal Code'
     )
@@ -142,7 +142,7 @@ class Wishlist(models.Model):
 
     class Meta:
         unique_together = ('user', 'product')
-        ordering = ['-created_at']  # Most recent first
+        ordering = ['-created_at']  
     
     def __str__(self):
         return f"{self.user.username}'s wishlist - {self.product.title}"
@@ -215,27 +215,27 @@ class BikePaymentTransaction(models.Model):
         """Returns formatted amount for display"""
         return f"Rs. {self.amount}"
 
-# Signal handlers to keep SellerInfo in sync with Customer profile updates
+
 @receiver(post_save, sender=Customer)
 def update_seller_info_on_customer_update(sender, instance, **kwargs):
     """
     When a Customer profile is updated, update all related SellerInfo records
     that match the customer's email or phone number.
     """
-    # Find all SellerInfo records with matching email
+   
     if instance.user and instance.user.email:
         seller_infos_by_email = SellerInfo.objects.filter(email=instance.user.email)
         for seller_info in seller_infos_by_email:
-            # Update the phone number if it's not already set
+           
             if not seller_info.phone or seller_info.phone == '':
                 seller_info.phone = instance.mobile
                 seller_info.save()
     
-    # Find all SellerInfo records with matching phone
+    
     if instance.mobile:
         seller_infos_by_phone = SellerInfo.objects.filter(phone=instance.mobile)
         for seller_info in seller_infos_by_phone:
-            # Update the email if it's not already set
+            
             if (not seller_info.email or seller_info.email == '') and instance.user and instance.user.email:
                 seller_info.email = instance.user.email
                 seller_info.save()
@@ -245,20 +245,20 @@ def update_seller_info_on_product_sold(sender, instance, created, **kwargs):
     """
     When a Product's status is set to 'sold', update the associated SellerInfo's status to 'completed'.
     """
-    # Avoid infinite loops when saving SellerInfo
+    
     if kwargs.get('raw'):
         return
 
     if instance.status == 'sold':
         try:
-            # Get the related SellerInfo instance through the reverse relationship
+            
             seller_info = SellerInfo.objects.get(product=instance)
             
-            # Check if the status is already completed to avoid unnecessary saves
+            
             if seller_info.status != 'completed':
                 seller_info.status = 'completed'
                 seller_info.save()
         except SellerInfo.DoesNotExist:
-            # No seller info associated, which is fine
+            
             pass
 

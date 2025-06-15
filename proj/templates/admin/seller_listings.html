@@ -4,7 +4,6 @@
 {% block title %}Seller Listing{% endblock %}
 {% block extra_css %}
 <style>
-    /* Image zoom effect on hover */
     .zoomable-image {
         transition: transform 0.3s ease;
         cursor: pointer;
@@ -15,7 +14,6 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
     
-    /* Image popup/lightbox styles */
     .image-lightbox {
         display: none;
         position: fixed;
@@ -64,7 +62,6 @@
 {% endblock extra_css %}
 
 {% block content %}
-<!-- Header section with page title -->
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Seller Listings Management</h2>
 </div>
@@ -117,7 +114,6 @@
     {% for listing in listings %}
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
-                <!-- Product Image with Status Badge -->
                 <div class="position-relative">
                     {% if listing.product.product_image %}
                     <img src="{{ listing.product.product_image.url }}" class="card-img-top" alt="{{ listing.product.title }}" style="height: 200px; object-fit: cover;" onclick="window.open(this.src, '_blank')">
@@ -158,7 +154,6 @@
                     </div>
                 </div>
                 
-                <!-- Action Buttons -->
                 <div class="card-footer bg-white">
                     <div class="d-flex justify-content-center align-items-center">
                         <button type="button" class="btn btn-primary view-details-btn rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#detailsModal{{ listing.id }}">
@@ -192,7 +187,6 @@
                                     {% endif %}
                                 </div>
                                 
-                                <!-- Bluebook Images -->
                                 {% if listing.product.bluebook_page2 or listing.product.bluebook_page9 %}
                                 <div class="bluebook-images mt-3">
                                     <h5 class="border-bottom pb-2"><i class="fas fa-id-card me-2"></i>Bluebook Images</h5>
@@ -349,7 +343,6 @@
             </div>
         </div>
         
-        <!-- Approve Modal -->
         <div class="modal fade" id="approveModal{{ listing.id }}" tabindex="-1" aria-labelledby="approveModalLabel{{ listing.id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content border-0 shadow">
@@ -389,7 +382,6 @@
             </div>
         </div>
         
-        <!-- Reject Modal -->
         <div class="modal fade" id="rejectModal{{ listing.id }}" tabindex="-1" aria-labelledby="rejectModalLabel{{ listing.id }}" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content border-0 shadow">
@@ -431,7 +423,6 @@
     {% endfor %}
 </div>
 
-<!-- Pagination Controls -->
 {% if is_paginated %}
 <nav aria-label="Page navigation" class="mt-4">
     <ul class="pagination justify-content-center">
@@ -474,7 +465,6 @@
 </nav>
 {% endif %}
 {% else %}
-<!-- No Results Message -->
 <div class="alert alert-info text-center my-5">
     <i class="fas fa-info-circle fa-2x mb-3"></i>
     <h4>No listings found</h4>
@@ -482,21 +472,14 @@
 </div>
 {% endif %}
 
-<!-- Images open in new tab when clicked -->
 {% endblock content %}
 
 {% block extra_js %}
 <script>
-    // Images now open in a new tab when clicked via the onclick attribute
-    // No additional JavaScript needed for this functionality
 </script>
 {% endblock extra_js %}
 
 <style>
-/* =============================================
-   SECTION: Base Modal Styling
-   - Removes default borders for cleaner look
-============================================= */
 .modal-header {
     border-bottom: 0;
 }
@@ -505,10 +488,6 @@
     border-top: 0;
 }
 
-/* =============================================
-   SECTION: Icon Container Animation
-   - Creates pulsing effects for status icons
-============================================= */
 .icon-container {
     display: flex;
     align-items: center;
@@ -528,11 +507,6 @@
     }
 }
 
-/* =============================================
-   SECTION: Button Styling
-   - Enhances buttons with modern styling
-   - Adds hover effects and animations
-============================================= */
 .btn {
     transition: all 0.3s ease;
     font-weight: 500;
@@ -586,20 +560,12 @@
     border-color: #3a56d4;
 }
 
-/* =============================================
-   SECTION: Badge Styling
-   - Enhances status badges with consistent styling
-============================================= */
 .badge {
     font-weight: 500;
     padding: 0.5em 0.75em;
     border-radius: 4px;
 }
 
-/* =============================================
-   SECTION: Modal Styling
-   - Creates modern, clean modal appearance 
-============================================= */
 .modal-content {
     border: none;
     border-radius: 10px;
@@ -619,11 +585,6 @@
     padding: 1.25rem 1.5rem;
 }
 
-/* =============================================
-   SECTION: Form Control Styling
-   - Enhances form fields with modern styling
-   - Adds subtle animations on focus
-============================================= */
 .form-control {
     border-radius: 5px;
     border: 1px solid #e2e8f0;
@@ -638,23 +599,18 @@
 }
 
 .custom-textarea {
-    resize: none; /* Prevents resizing */
+    resize: none;
     transition: height 0.2s ease;
     min-height: 100px;
 }
 
 .custom-textarea:focus {
-    height: 120px; /* Grow slightly when focused */
+    height: 120px;
 }
 
-/* =============================================
-   SECTION: Stats Card Styling
-   - Creates modern card style for statistics
-   - Adds hover effects and animations
-============================================= */
 .stat-card {
     min-width: 0;
-    min-height: 180px; /* Adjust height as needed */
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -666,21 +622,26 @@
     position: relative;
     border: 1.5px solid #f0f0f0;
 }
+
 .stat-card:hover {
     box-shadow: 0 8px 32px rgba(67,97,238,0.13);
     transform: translateY(-4px) scale(1.03);
     border-color: #4361ee33;
 }
+
 .stat-icon {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+
 .stat-content h5 {
     font-size: 1.1rem;
     color: #222;
 }
+
 .stat-content .fs-3 {
     font-size: 2.2rem !important;
 }
+
 .stat-card .btn {
     font-weight: 500;
     border-radius: 0.75rem;
@@ -691,14 +652,11 @@
 @media (max-width: 991px) {
     .stat-card { min-height: 160px; }
 }
+
 @media (max-width: 767px) {
     .stat-card { min-height: 140px; }
 }
 
-/* =============================================
-   SECTION: Body Background
-   - Adds subtle pattern to the background
-============================================= */
 body {
     background-color: #f9fafb;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");

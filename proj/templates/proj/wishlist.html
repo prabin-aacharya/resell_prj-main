@@ -208,7 +208,6 @@
     color: white;
   }
 
-  /* Wishlist button styles */
   .wishlist-btn {
     cursor: pointer;
     opacity: 0.7;
@@ -231,7 +230,6 @@
     color: #6c757d;
   }
 
-  /* Add badges for status */
   .badge.bg-available {
     background-color: #28a745;
   }
@@ -251,9 +249,7 @@
 </style>
 
 <script>
-  // Wishlist functionality
   document.addEventListener('DOMContentLoaded', function () {
-    // Handle wishlist icon button
     document.querySelectorAll('.wishlist-btn, .remove-wishlist-btn').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -263,7 +259,6 @@
         var card = document.querySelector('.product-card[data-product-id="' + productId + '"]');
         var csrftoken = getCookie('csrftoken');
 
-        // Add a small animation
         if (this.querySelector('i')) {
           this.querySelector('i').classList.add('fa-beat');
         }
@@ -285,16 +280,13 @@
             return response.json();
           })
           .then((data) => {
-            // Check if the response indicates success
             if (data.success) {
-              // Remove the card with animation
               card.style.opacity = '0';
               card.style.transform = 'scale(0.8)';
 
               setTimeout(function () {
                 card.remove();
 
-                // If no more items, show empty state
                 if (document.querySelectorAll('.product-card').length === 0) {
                   var emptyState = `
                 <div class="text-center py-5">
@@ -311,11 +303,9 @@
                   document.querySelector('.row.g-4').innerHTML = emptyState;
                 }
 
-                // Update header count
                 document.querySelector('h4.mb-4.border-bottom').innerHTML =
                   `<i class="fas fa-heart text-danger me-2"></i>Saved Bikes (${data.count})`;
 
-                // Update wishlist count in navbar
                 var wishlistCountSpan = document.querySelector('.nav-link .badge');
                 if (wishlistCountSpan) {
                   wishlistCountSpan.textContent = data.count;
@@ -327,10 +317,8 @@
                 }
               }, 300);
             } else if (!data.authenticated) {
-              // User is not authenticated, redirect to login
               window.location.href = '{% url "main:login" %}?next=' + encodeURIComponent(window.location.pathname);
             } else {
-              // Other error occurred, just remove the animation
               if (this.querySelector('i')) {
                 this.querySelector('i').classList.remove('fa-beat');
               }
@@ -338,7 +326,6 @@
           })
           .catch((error) => {
             console.error('Wishlist error:', error);
-            // Just update the UI to show it's still in the wishlist
             if (this.querySelector('i')) {
               this.querySelector('i').classList.remove('fa-beat');
             }

@@ -48,8 +48,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # Replace the default SessionMiddleware with our custom AdminSessionMiddleware
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
     'proj.middleware.AdminSessionMiddleware',  # Custom middleware for separate admin/user sessions
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -148,7 +146,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'prabinacharya573@gmail.com'
-EMAIL_HOST_PASSWORD = 'qomswzrkqpnuzbhx'  # Enter your new app password here (without spaces)
+EMAIL_HOST_PASSWORD = 'qomswzrkqpnuzbhx'  #  app password here (without spaces)
 DEFAULT_FROM_EMAIL = 'prabinacharya573@gmail.com'
 
 # Password reset token timeout (in seconds)
@@ -164,11 +162,11 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Don't expire when browser closes
 SESSION_SAVE_EVERY_REQUEST = True  # Update the session on every request
 
 # Payment Gateway Settings
-KHALTI_SECRET_KEY = '2fdb277ebbb144448fca0564e5c8c2f8'  # Replace with actual key in production
-KHALTI_PUBLIC_KEY = 'c887a495931546fabfb8a85dd58a1e90'  # Replace with actual key in production
+KHALTI_SECRET_KEY = '2fdb277ebbb144448fca0564e5c8c2f8'  
+KHALTI_PUBLIC_KEY = 'c887a495931546fabfb8a85dd58a1e90'  
 
 # Set to True to use sandbox environment, False for production
-KHALTI_DEBUG = True  # Set to False in production.py
+KHALTI_DEBUG = True  
 
 # Configure logging for better debugging
 LOGGING = {

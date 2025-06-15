@@ -7,18 +7,18 @@ from .forms import LoginForm,MyPasswordResetForm,MyPasswordChangeForm,MySetReset
 from .views import CustomLoginView, validate_old_password
 from django.urls import reverse_lazy
 
-# Import our custom admin site
+#  custom admin site
 from proj.admin import admin_site
 
 app_name = 'main'
 
 urlpatterns = [
-    path('admin/', admin_site.urls),  # Use our custom admin site
+    path('admin/', admin_site.urls),  
     
-    # Admin functionality
+    # Admin 
     path('admin/lookup-customer/', views.admin_lookup_customer, name='admin_lookup_customer'),
     
-    # Original URLs
+    
     path('', views.home, name='home'),
     path('about/', views.about,name='about'),
     path('contact/', views.contact,name='contact'),
@@ -80,7 +80,7 @@ urlpatterns = [
     path('terms/', views.terms, name='terms'),
     path('privacy/', views.privacy, name='privacy'),
     
-    # Test URL (only for admins to test functionality)
+   
     path('test-transaction/', views.create_test_transaction, name='test_transaction'),
     
     # Debug email sending
@@ -89,7 +89,7 @@ urlpatterns = [
     path('validate-old-password/', validate_old_password, name='validate_old_password'),
 ]
 
-# Add static and media URLs in development
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

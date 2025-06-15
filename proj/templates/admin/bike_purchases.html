@@ -6,9 +6,7 @@
 
 {% block extra_js %}
 <script>
-  // Animation for cards on page load
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize event handlers for modal buttons
     const downloadInvoiceBtn = document.getElementById('modal-download-invoice');
     if (downloadInvoiceBtn) {
       downloadInvoiceBtn.addEventListener('click', function() {
@@ -39,16 +37,13 @@
       });
     }, 200);
     
-    // Action buttons functionality
     document.querySelectorAll('.action-btn.view-details').forEach(btn => {
       btn.addEventListener('click', function() {
         console.log('View details button clicked');
         try {
-          // Get the payment ID from a data attribute
           const paymentId = this.getAttribute('data-payment-id');
           console.log('Payment ID:', paymentId);
           
-          // Extract data from the row
           const row = this.closest('tr');
           const orderId = row.querySelector('.order-id').textContent.trim();
           const buyerName = row.querySelector('.buyer-name').textContent.trim();
@@ -62,7 +57,6 @@
           
           console.log('Data extracted from row:', { orderId, buyerName, productTitle, amount, status, date });
           
-          // Store current order ID in a data attribute on the modal for other buttons to use
           const modal = document.getElementById('transactionModal');
           if (!modal) {
             console.error('Transaction modal element not found');
@@ -70,7 +64,6 @@
           }
           modal.dataset.currentOrderId = orderId;
           
-          // Function to safely set text content
           function safeSetTextContent(id, text) {
             const element = document.getElementById(id);
             if (element) {
@@ -80,7 +73,6 @@
             }
           }
           
-          // Function to safely set HTML content
           function safeSetHTML(id, html) {
             const element = document.getElementById(id);
             if (element) {
@@ -90,13 +82,11 @@
             }
           }
           
-          // Get additional data from hidden data elements if they exist
           const getDataAttribute = (selector, attribute) => {
             const element = document.querySelector(selector);
             return element ? element.getAttribute(attribute) : null;
           };
           
-          // Get product data
           const productData = {
             brand: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="brand"]`, 'data-value') || 'Honda',
             model: getDataAttribute(`[data-payment-id="${paymentId}"][data-field="model"]`, 'data-value') || productTitle,
@@ -138,11 +128,10 @@
           safeSetTextContent('transaction-ref-id', paymentIdValue);
           safeSetTextContent('transaction-payment-method', 'Khalti');
           
-          // Set status with appropriate styling
           const statusElement = document.getElementById('transaction-status');
           if (statusElement) {
             statusElement.textContent = status;
-            statusElement.className = ''; // Clear previous classes
+            statusElement.className = ''; 
             statusElement.classList.add('badge', statusClass);
           } else {
             console.warn('Status element not found');
@@ -176,7 +165,6 @@
           safeSetTextContent('buyer-contact', buyerData.contact);
           safeSetTextContent('buyer-location', buyerData.location);
           
-          // Show the appropriate alert based on status
           const alertContainer = document.getElementById('transaction-status-alert');
           if (alertContainer) {
             if (status.includes('Completed')) {
@@ -191,7 +179,7 @@
           }
           
           console.log('Showing transaction modal');
-          // Show modal
+          
           const transactionModal = new bootstrap.Modal(document.getElementById('transactionModal'));
           transactionModal.show();
           
@@ -202,7 +190,7 @@
       });
     });
     
-    // Table download invoice buttons
+    // download invoice 
     document.querySelectorAll('.action-btn.download-invoice').forEach(btn => {
       btn.addEventListener('click', function() {
         const orderId = this.closest('tr').querySelector('.order-id').textContent.trim();
@@ -210,40 +198,30 @@
       });
     });
     
-    // Modal download invoice button
     document.getElementById('modal-download-invoice').addEventListener('click', function() {
       const orderId = document.getElementById('transaction-order-id').textContent.trim();
       downloadInvoice(orderId);
     });
     
-    // Search functionality
     document.getElementById('purchaseSearch').addEventListener('keyup', function() {
       const searchTerm = this.value.toLowerCase();
       filterTransactions(searchTerm);
     });
     
-    // Filter button functionality
     document.getElementById('filterButton').addEventListener('click', function() {
       alert('Filter options will be displayed here');
     });
     
-    // Export button functionality
     document.getElementById('exportButton').addEventListener('click', function() {
       alert('Transactions will be exported');
     });
     
-    // Functions
     function downloadInvoice(orderId) {
-      // Create a URL for the invoice download - using the payment_views.generate_pdf_sales_report URL
       const url = `/payment/sales-report/${orderId}/`;
-      
-      // Create a temporary link element
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `Invoice-${orderId}.pdf`);
       link.setAttribute('target', '_blank');
-      
-      // Append to body, click and remove
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -272,9 +250,7 @@
   <h2 class="page-title"><i class="fas fa-shopping-cart me-2"></i>Bike Purchases</h2>
 </div>
 
-<!-- Combined Stat Cards -->
 <div class="row g-4 mb-4">
-    <!-- Total Purchases Card -->
     <div class="col-lg-4 col-md-6 col-12 d-flex">
         <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
             <div class="stat-icon mb-3 mx-auto bg-primary bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
@@ -284,11 +260,10 @@
                 <h5 class="fw-bold mb-1">Total Purchases</h5>
                 <div class="fs-3 fw-bold text-dark">{{ total_purchases }}</div>
             </div>
-            
         </div>
     </div>
     
-    <!-- Total Revenue Card -->
+    
     <div class="col-lg-4 col-md-6 col-12 d-flex">
         <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
             <div class="stat-icon mb-3 mx-auto bg-success bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
@@ -302,7 +277,7 @@
         </div>
     </div>
     
-    <!-- Payment Analytics Card -->
+    
     <div class="col-lg-4 col-md-12 col-12 d-flex">
         <div class="stat-card flex-fill text-center p-4 shadow-sm rounded-4 bg-white position-relative h-100">
              <div class="stat-icon mb-3 mx-auto bg-info bg-gradient text-white d-flex align-items-center justify-content-center rounded-circle" style="width:60px;height:60px;font-size:2rem;">
@@ -313,7 +288,7 @@
                 <div class="payment-methods mt-3">
                     <h6 class="text-muted">Payment Methods:</h6>
                      <div class="d-flex justify-content-center align-items-center">
-                                    <!-- Using local Khalti logo image -->
+                                    
                         <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" style="width: 40px; height: auto; margin-right: 10px;">
                         <span class="fw-bold">Khalti</span>
                     </div>
@@ -336,7 +311,6 @@
                 <h3><i class="fas fa-shopping-basket me-2 text-indigo"></i>All Bike Purchases</h3>
                 <div class="card-actions">
                     <span class="badge bg-soft-primary me-2">{{ bike_payments|length }} transactions</span>
-                    
                 </div>
             </div>
             
@@ -393,7 +367,7 @@
                             </td>
                             <td>
                                 <div class="payment-method">
-                                    <!-- Using local Khalti logo image -->
+                                    
                                     <img src="{% static 'proj/images/khaltilogo.png' %}" alt="Khalti" width="20" height="20" style="vertical-align: middle; margin-right: 5px;">
                                     Khalti
                                 </div>
@@ -405,7 +379,7 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                     
-                                    <!-- Hidden data elements for detailed information -->
+                                    
                                     <div class="d-none">
                                         <!-- Product details -->
                                         <span data-payment-id="{{ payment.id }}" data-field="brand" data-value="{{ payment.product.bike_brand|default:'Honda' }}"></span>
@@ -423,7 +397,7 @@
                                         <span data-payment-id="{{ payment.id }}" data-field="kilometer_ridden" data-value="{{ payment.product.kilometers|default:'N/A' }} km"></span>
                                        
                                         
-                                        <!-- Seller details from product and related data -->
+                                        <
                                         <span data-payment-id="{{ payment.id }}" data-field="seller_name" data-value="{{ payment.product.seller_name }}"></span>
                                         <span data-payment-id="{{ payment.id }}" data-field="seller_location" data-value="{{ payment.product.location }}"></span>
                                         
@@ -437,7 +411,7 @@
                                             {% endif %}
                                         {% endwith %}
                                         
-                                        <!-- Buyer details from auth_user and customer profile -->
+                                       
                                         {% with buyer_customer=payment.buyer.customers.first %}
                                             {% if buyer_customer and buyer_customer.name %}
                                                 <span data-payment-id="{{ payment.id }}" data-field="buyer_name" data-value="{{ buyer_customer.name }}"></span>

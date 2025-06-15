@@ -73,11 +73,10 @@ class ProductListView(AdminRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         
-        # Get search query and status filter from URL parameters
+        
         search_query = self.request.GET.get('search', '')
         status_filter = self.request.GET.get('status', '')
         
-        # Apply filters if they exist
         if search_query:
             queryset = queryset.filter(
                 Q(title__icontains=search_query) | 
@@ -94,18 +93,14 @@ class ProductListView(AdminRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         
-        # Custom pagination range with ellipsis
         paginator = context['paginator']
         page_obj = context['page_obj']
         
-        # Define the number of page links to show around the current page
         num_pages_to_show = 5
         
-        # Calculate start and end page numbers for the displayed range
         start_page = max(1, page_obj.number - num_pages_to_show // 2)
         end_page = min(paginator.num_pages, page_obj.number + num_pages_to_show // 2)
         
-        # Adjust range if it's too small at the beginning or end
         if end_page - start_page + 1 < num_pages_to_show:
             if start_page == 1:
                 end_page = min(paginator.num_pages, num_pages_to_show)
@@ -114,7 +109,6 @@ class ProductListView(AdminRequiredMixin, ListView):
                 
         page_range_with_ellipsis = list(range(start_page, end_page + 1))
         
-        # Add ellipsis if needed
         if start_page > 1:
             if start_page > 2:
                 page_range_with_ellipsis.insert(0, '...')
@@ -136,12 +130,10 @@ class ProductCreateView(AdminRequiredMixin, CreateView):
     success_url = reverse_lazy('admin:admin_product_list')
     
     def form_valid(self, form):
-        # Set admin info as seller if not provided
         product = form.save(commit=False)
         if not product.seller_name:
             product.seller_name = self.request.user.username
         product.save()
-        # Create SellerInfo for admin if not exists
         from .models import SellerInfo
         if not SellerInfo.objects.filter(product=product).exists():
             SellerInfo.objects.create(
@@ -164,15 +156,13 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
     success_url = reverse_lazy('admin:admin_product_list')
     
     def form_valid(self, form):
-        response = super().form_valid(form) # Saves the product and updates self.object
-        product = self.object # Get the saved product instance
+        response = super().form_valid(form) 
+        product = self.object 
         
-        # Update associated SellerInfo instances
         seller_infos_updated_count = 0
         seller_infos = SellerInfo.objects.filter(product=product)
         if seller_infos.exists():
             for seller_info in seller_infos:
-                # Update SellerInfo fields based on product
                 seller_info.bike_brand = product.brand
                 seller_info.bike_model = product.title
                 seller_info_number_plate = getattr(product, 'number_plate', None)
@@ -181,30 +171,26 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
                 seller_info_previous_owners = getattr(product, 'previous_owners', None)
                 if seller_info_previous_owners is not None:
                     seller_info.previous_owners = seller_info_previous_owners
-                # Update verification status to match product
                 if product.verification_status == 'approved':
                     seller_info.verification_status = 'verified'
                 elif product.verification_status == 'rejected':
                     seller_info.verification_status = 'rejected'
-                # Update status to match product
                 if product.status == 'sold':
                     seller_info.status = 'completed'
                 elif product.status == 'available':
-                    seller_info.status = 'completed'  # Completed means listing process is done
+                    seller_info.status = 'completed'  
                 seller_info.save()
                 seller_infos_updated_count += 1
 
-        # Ensure available products are approved (this logic remains as is)
         if product.status == 'available' and product.verification_status != 'approved':
             product.verification_status = 'approved'
             product.save()
 
-        # Now, add the appropriate message based on the final product verification status
         if product.verification_status == 'rejected':
             messages.warning(self.request, "Product listing has been rejected. Please review and re-submit if necessary.")
         elif product.verification_status == 'approved':
             messages.success(self.request, f"Product '{product.title}' has been approved and updated successfully!")
-        else: # Covers 'pending' or other states where an update is still a 'success' in terms of saving data
+        else: 
             messages.success(self.request, f"Product '{product.title}' updated successfully.")
             if seller_infos_updated_count > 0:
                 messages.info(self.request, f"Also updated {seller_infos_updated_count} associated seller listing(s).")
@@ -212,7 +198,6 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
         return response
     
     def form_invalid(self, form):
-        # Log detailed form errors
         error_msg = "Product update failed. Please check the following errors:\n"
         for field, errors in form.errors.items():
             error_msg += f"- {field}: {', '.join(errors)}\n"
@@ -221,7 +206,6 @@ class ProductUpdateView(AdminRequiredMixin, UpdateView):
         
     def get_form(self, form_class=None):
         form = super().get_form(form_class)
-        # Ensure the form knows it's for an existing instance
         if self.object and self.object.pk:
             form.instance = self.object
         return form
@@ -260,7 +244,7 @@ class CustomerUpdateView(AdminRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_create'] = False  # Indicate that this is an update form
+        context['is_create'] = False 
         return context
 
 class CustomerDetailView(AdminRequiredMixin, UpdateView):
@@ -273,10 +257,8 @@ class CustomerDetailView(AdminRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         customer = self.get_object()
         
-        # Get customer's purchase transactions
         context['purchases'] = BikePaymentTransaction.objects.filter(buyer=customer.user).select_related('product')
         
-        # Get customer's wishlist
         context['wishlist_items'] = Wishlist.objects.filter(user=customer.user).select_related('product')
         
         return context
@@ -292,7 +274,7 @@ class CustomerDeleteView(AdminRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['opts'] = self.model._meta
-        context['opts'].app_label = 'proj'  # Set app_label explicitly
+        context['opts'].app_label = 'proj'  
         return context
         
     def delete(self, request, *args, **kwargs):
@@ -312,16 +294,10 @@ class CustomerCreateView(AdminRequiredMixin, CreateView):
 
     def form_valid(self, form):
         try:
-            # The form.save() method (from AdminCustomerCreateForm) handles
-            # creating the User and Customer. It will raise a ValidationError
-            # if a unique constraint is violated and convert other database errors.
             customer = form.save()
             messages.success(self.request, f"Customer '{customer.name}' created successfully with user account.")
-            # After successful save and message, redirect directly
             return redirect(self.success_url)
         except forms.ValidationError:
-            # If form.save() raised a ValidationError, it means there was an issue.
-            # We re-render the form with the errors.
             return self.form_invalid(form)
     
     def get_context_data(self, **kwargs):

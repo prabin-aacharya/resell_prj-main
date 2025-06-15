@@ -238,7 +238,6 @@
                             <p class="card-text small"><i class="fas fa-calendar me-2"></i>{{ listing.created_at|date:"M d, Y" }}</p>
                         </div>
                         <div class="card-footer bg-transparent d-flex justify-content-between">
-                            <!-- Details button removed -->
                             
                             {% if listing.product.verification_status == 'pending' %}
                             <div>
@@ -368,18 +367,17 @@
 </style>
 
 <script>
-  // You can add dashboard-specific JavaScript here
+  
   document.addEventListener('DOMContentLoaded', function() {
     console.log('Dashboard loaded');
     
-    // Example: Fetch updated stats every 5 minutes
+    
     function fetchUpdatedStats() {
-      // This would be an AJAX call to get fresh data
+      
       console.log('Fetching updated stats...');
     }
     
-    // Uncomment to enable auto-refresh
-    // setInterval(fetchUpdatedStats, 300000); // 5 minutes
+    
   });
 </script>
 {% endblock %}

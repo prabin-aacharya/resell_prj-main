@@ -108,7 +108,7 @@
 </div>
 
 <style>
-  /* Bike card styles */
+ 
   .bike-card-hover {
     transition: all 0.3s ease;
     border: 1px solid transparent;
@@ -120,7 +120,6 @@
     box-shadow: 0 10px 20px rgba(var(--bs-primary-rgb), 0.15) !important;
   }
   
-  /* Professional SOLD badge styles */
   .sold-badge {
     position: absolute;
     top: 0;
@@ -150,7 +149,6 @@
     letter-spacing: 1px;
   }
   
-  /* Wishlist button styles */
   .wishlist-btn {
     opacity: 0.7;
     transition: all 0.2s ease;
@@ -175,13 +173,11 @@
     color: #dc3545 !important;
   }
   
-  /* Empty state styles */
   .empty-state {
     padding: 3rem 1rem;
     color: #6c757d;
   }
   
-  /* Badge animation */
   .badge {
     transition: all 0.3s ease;
   }
@@ -192,17 +188,16 @@
 </style>
 
 <script>
-// Client-side search functionality (in addition to server-side)
 document.getElementById('bikeSearch').addEventListener('input', function() {
   var query = this.value.toLowerCase();
   document.querySelectorAll('.bike-card').forEach(function(card) {
     var brand = card.getAttribute('data-brand');
     var title = card.getAttribute('data-title');
     
-    // Precise brand search (first letter or full match)
+    
     var brandMatch = brand.startsWith(query);
     
-    // Precise model search (first letter of model or full match)
+    
     var modelMatch = title.split(' ').some(function(word) {
       return word.toLowerCase().startsWith(query);
     });

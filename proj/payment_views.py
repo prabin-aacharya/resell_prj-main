@@ -298,7 +298,7 @@ def payment_callback(request):
                     })
             
             except Exception as e:
-                # API error
+                
                 logger.exception(f"Khalti lookup error: {str(e)}")
                 
                 product.status = 'available'
@@ -335,7 +335,7 @@ def payment_callback(request):
         messages.error(request, "An error occurred while processing your payment")
         return redirect('main:home')
 
-# Add a test view to check Khalti configuration
+#  Khalti pay
 def test_khalti_config(request):
     """Simple view to test if Khalti is properly configured"""
     return JsonResponse({
@@ -351,9 +351,9 @@ def generate_pdf_sales_report(request, transaction_id):
     # Get the transaction
     transaction = get_object_or_404(BikePaymentTransaction, purchase_order_id=transaction_id)
     
-    # Allow staff or superuser to download any invoice
+    # Allow admin to download any invoice
     if not (request.user.is_staff or request.user.is_superuser):
-        # For non-staff, only allow the buyer
+        # only allow the buyer
         if request.user != transaction.buyer:
             return HttpResponse("Unauthorized", status=401)
     

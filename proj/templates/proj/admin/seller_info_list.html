@@ -138,7 +138,7 @@
             {% endfor %}
 
 <style>
-/* Ensure modal is always above the backdrop and clickable */
+
 .modal {
   z-index: 2001055 !important;
   pointer-events: auto !important;
@@ -160,7 +160,7 @@ body.modal-open {
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Attach event listeners to all info buttons
+  
   document.querySelectorAll('.seller-info-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var targetId = btn.getAttribute('data-modal-id');
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  // Ensure all close buttons in seller modals use Bootstrap's hide()
+  
   document.querySelectorAll('.modal[id^="sellerModal"] .btn-close, .modal[id^="sellerModal"] [data-bs-dismiss="modal"]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var modalEl = btn.closest('.modal');
